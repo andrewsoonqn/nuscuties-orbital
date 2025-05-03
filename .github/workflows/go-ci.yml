@@ -1,0 +1,54 @@
+# .github/workflows/go-ci.yml
+name: Go Backend CI
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/go-ci.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/go-ci.yml'
+
+jobs:
+  test-and-lint:
+    name: Test & Lint Backend
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.23'
+
+    - name: Cache Go modules
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cache/go-build
+          ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-
+
+    # Use 'make' or direct commands for linting/testing
+    - name: Install golangci-lint
+      run: go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.52.2
+
+    - name: Run golangci-lint
+      run: golangci-lint run ./...
+      working-directory: ./backend # Run linter inside backend folder
+
+    - name: Run Go unit tests
+      run: go test -v ./... # Run tests inside backend folder
+      working-directory: ./backend
+
+    - name: Build Go application
+      run: go build -v ./cmd/server/main.go # Check that code can build/compile
+      working-directory: ./backend
