@@ -1,0 +1,30 @@
+# === Godot Cache/Metadata ===
+.godot/
+# Ignore Godot's unique IDs for C# scripts
+*.cs.uid
+# Ignore generated translation files
+*.translation
+# Ignore import metadata files (can often be regenerated)
+*.import
+# Ignore export settings (can be sensitive or user-specific)
+export_presets.cfg
+
+icon.ico
+icon.png.import
+
+# === Rider Project Files ===
+# Ignore Rider's project-specific settings folder
+.idea/
+
+# === C# / .NET Build Output ===
+# Ignore binary and object folders
+bin/
+obj/
+
+# === User-specific Files ===
+# Ignore user-specific C# project/solution settings
+*.csproj.user
+*.sln.user
+
+# === OS Files ===
+.DS_Store
