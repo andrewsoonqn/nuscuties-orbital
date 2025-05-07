@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddrxtkjuc80pl"]
+
+[ext_resource type="PackedScene" uid="uid://d10077bwug3rs" path="res://shared/home.tscn" id="1_fw42t"]
+[ext_resource type="PackedScene" uid="uid://dt1g5mbwpw6iq" path="res://daily/daily.tscn" id="2_cm82v"]
+
+[node name="MainUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Home" parent="PanelContainer" instance=ExtResource("1_fw42t")]
+layout_mode = 2
+
+[node name="Daily" parent="PanelContainer" instance=ExtResource("2_cm82v")]
+layout_mode = 2
+
+[node name="Passive" parent="PanelContainer" instance=ExtResource("2_cm82v")]
+layout_mode = 2
+
+[node name="Active" parent="PanelContainer" instance=ExtResource("2_cm82v")]
+layout_mode = 2

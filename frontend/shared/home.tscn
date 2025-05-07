@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://d10077bwug3rs"]
+
+[ext_resource type="Script" uid="uid://d0nofvv31ptse" path="res://shared/buttons/GoToDaily.cs" id="1_16xax"]
+[ext_resource type="Script" uid="uid://dbikgcccfo3ly" path="res://shared/buttons/GoToPassive.cs" id="2_sq7hj"]
+[ext_resource type="Script" uid="uid://defyh16hawns8" path="res://shared/buttons/GoToActive.cs" id="3_4wci5"]
+
+[node name="Home" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -11.5
+offset_right = 44.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Home Page"
+
+[node name="NavButtonsHBox" type="HBoxContainer" parent="."]
+offset_left = 160.5
+offset_top = 725.0
+offset_right = 559.5
+offset_bottom = 756.0
+
+[node name="GoToDaily" type="Button" parent="NavButtonsHBox"]
+layout_mode = 2
+text = "Daily Quests"
+script = ExtResource("1_16xax")
+
+[node name="GoToPassive" type="Button" parent="NavButtonsHBox"]
+layout_mode = 2
+text = "Passive Dungeons"
+script = ExtResource("2_sq7hj")
+
+[node name="GoToActive" type="Button" parent="NavButtonsHBox"]
+layout_mode = 2
+text = "Active Dungeons"
+script = ExtResource("3_4wci5")
