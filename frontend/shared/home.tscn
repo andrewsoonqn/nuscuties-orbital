@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d10077bwug3rs"]
+[gd_scene load_steps=5 format=3 uid="uid://d10077bwug3rs"]
 
 [ext_resource type="Script" uid="uid://d0nofvv31ptse" path="res://shared/buttons/GoToDaily.cs" id="1_16xax"]
 [ext_resource type="Script" uid="uid://dbikgcccfo3ly" path="res://shared/buttons/GoToPassive.cs" id="2_sq7hj"]
 [ext_resource type="Script" uid="uid://defyh16hawns8" path="res://shared/buttons/GoToActive.cs" id="3_4wci5"]
+[ext_resource type="Texture2D" uid="uid://cujamtcjya83n" path="res://assets/godot_icon.svg" id="4_4wci5"]
 
 [node name="Home" type="Control"]
 layout_mode = 3
@@ -14,11 +15,11 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.3
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.3
 offset_left = -44.0
 offset_top = -11.5
 offset_right = 44.0
@@ -28,6 +29,7 @@ grow_vertical = 2
 text = "Home Page"
 
 [node name="NavButtonsHBox" type="HBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 160.5
 offset_top = 725.0
 offset_right = 559.5
@@ -47,3 +49,17 @@ script = ExtResource("2_sq7hj")
 layout_mode = 2
 text = "Active Dungeons"
 script = ExtResource("3_4wci5")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_4wci5")
