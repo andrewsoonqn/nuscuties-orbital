@@ -21,7 +21,7 @@ offset_left = -48.5
 offset_right = 48.5
 offset_bottom = 23.0
 grow_horizontal = 2
-text = "Daily Quests"
+text = "Active Dungeons"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_right = 40.0
