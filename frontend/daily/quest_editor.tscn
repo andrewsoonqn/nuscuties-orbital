@@ -1,22 +1,14 @@
 [gd_scene load_steps=2 format=3 uid="uid://s146bk741j32"]
 
 [ext_resource type="Script" uid="uid://b5bvt24thcprj" path="res://daily/QuestEditor.cs" id="1_acea3"]
-[gd_scene load_steps=2 format=3 uid="uid://s146bk741j32"]
 
-[ext_resource type="Script" uid="uid://b5bvt24thcprj" path="res://daily/QuestEditor.cs" id="1_acea3"]
-
-[node name="QuestEditor" type="Control" node_paths=PackedStringArray("_titleInput", "_descriptionInput", "_addQuestButton", "_questList") node_paths=PackedStringArray("_titleInput", "_descriptionInput", "_addQuestButton", "_questList", "_goBackButton")]
+[node name="QuestEditor" type="Control" node_paths=PackedStringArray("_titleInput", "_descriptionInput", "_addQuestButton", "_questList", "_goBackButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_acea3")
-_titleInput = NodePath("Margin/ScrollContainer/QuestList/PanelContainer/VBoxContainer/Title")
-_descriptionInput = NodePath("Margin/ScrollContainer/QuestList/PanelContainer/VBoxContainer/HBoxContainer/Description")
-_addQuestButton = NodePath("Margin/ScrollContainer/QuestList/PanelContainer/VBoxContainer/HBoxContainer/Add")
-_questList = NodePath("Margin/ScrollContainer/QuestList")
 script = ExtResource("1_acea3")
 _titleInput = NodePath("Margin/ScrollContainer/QuestList/PanelContainer/VBoxContainer/Title")
 _descriptionInput = NodePath("Margin/ScrollContainer/QuestList/PanelContainer/VBoxContainer/HBoxContainer/Description")
@@ -60,35 +52,28 @@ theme_override_constants/margin_bottom = 200
 layout_mode = 2
 
 [node name="QuestList" type="VBoxContainer" parent="Margin/ScrollContainer"]
-[node name="QuestList" type="VBoxContainer" parent="Margin/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="Margin/ScrollContainer/QuestList"]
-[node name="PanelContainer" type="PanelContainer" parent="Margin/ScrollContainer/QuestList"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Margin/ScrollContainer/QuestList/PanelContainer"]
 [node name="VBoxContainer" type="VBoxContainer" parent="Margin/ScrollContainer/QuestList/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Title" type="LineEdit" parent="Margin/ScrollContainer/QuestList/PanelContainer/VBoxContainer"]
 [node name="Title" type="LineEdit" parent="Margin/ScrollContainer/QuestList/PanelContainer/VBoxContainer"]
 layout_mode = 2
 placeholder_text = "Quest Title"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Margin/ScrollContainer/QuestList/PanelContainer/VBoxContainer"]
-[node name="HBoxContainer" type="HBoxContainer" parent="Margin/ScrollContainer/QuestList/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Description" type="LineEdit" parent="Margin/ScrollContainer/QuestList/PanelContainer/VBoxContainer/HBoxContainer"]
 [node name="Description" type="LineEdit" parent="Margin/ScrollContainer/QuestList/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Quest Description"
 
-[node name="Add" type="Button" parent="Margin/ScrollContainer/QuestList/PanelContainer/VBoxContainer/HBoxContainer"]
 [node name="Add" type="Button" parent="Margin/ScrollContainer/QuestList/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Add"
