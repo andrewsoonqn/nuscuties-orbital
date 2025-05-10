@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class QuestEditor : Control
 {
@@ -15,12 +16,23 @@ public partial class QuestEditor : Control
     [Export]
     private VBoxContainer _questList;
     
-    private QuestManager _questManager = new QuestManager();
-
+    [Export]
+    private Button _goBackButton;
+    
+    private QuestManager _questManager;
+    
     public override void _Ready()
     {
-        GD.Print("QuestEditor");
+        _goBackButton.Pressed += QueueFree;
+        
         _addQuestButton.Pressed += OnAddQuestButtonPressed;
+        
+        _questManager = this.GetNode<QuestManager>("/root/QuestManager");
+
+        // TODO
+        // _questManager.ManagerQuestAdded += OnManagerQuestAdded;
+        // _questManager.ManagerQuestEdited += OnManagerQuestEdited;
+        // _questManager.ManagerQuestRemoved += OnManagerQuestRemoved;
     }
 
     private void OnAddQuestButtonPressed()

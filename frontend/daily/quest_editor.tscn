@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5bvt24thcprj" path="res://daily/QuestEditor.cs" id="1_acea3"]
 
-[node name="QuestEditor" type="Control" node_paths=PackedStringArray("_titleInput", "_descriptionInput", "_addQuestButton", "_questList")]
+[node name="QuestEditor" type="Control" node_paths=PackedStringArray("_titleInput", "_descriptionInput", "_addQuestButton", "_questList", "_goBackButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +14,7 @@ _titleInput = NodePath("Margin/ScrollContainer/QuestList/PanelContainer/VBoxCont
 _descriptionInput = NodePath("Margin/ScrollContainer/QuestList/PanelContainer/VBoxContainer/HBoxContainer/Description")
 _addQuestButton = NodePath("Margin/ScrollContainer/QuestList/PanelContainer/VBoxContainer/HBoxContainer/Add")
 _questList = NodePath("Margin/ScrollContainer/QuestList")
+_goBackButton = NodePath("GoBack")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -76,3 +77,9 @@ placeholder_text = "Quest Description"
 [node name="Add" type="Button" parent="Margin/ScrollContainer/QuestList/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Add"
+
+[node name="GoBack" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Go Back"
