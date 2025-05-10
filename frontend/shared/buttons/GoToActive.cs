@@ -10,6 +10,6 @@ public partial class GoToActive : Button
 
     private void OnPressed()
     {
-        GetTree().ChangeSceneToFile("res://active/Active.tscn");
+        GetTree().ChangeSceneToFile("res://active/active.tscn");
     }
 }
