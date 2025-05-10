@@ -10,40 +10,43 @@ public partial class DailyQuestUi : Control
     [Export]
     private VBoxContainer _questList;
     
-    private PackedScene QuestEditor = ResourceLoader.Load<PackedScene>("res://daily/quest_editor.tscn");
+    [Export]
+    private Button _backToHomeButton;
+    
+    private PackedScene _questEditor = ResourceLoader.Load<PackedScene>("res://daily/quest_editor.tscn");
 
-    private Godot.Collections.Dictionary<int, CompletableQuestComponent> CompletableQuestComponents = new Godot.Collections.Dictionary<int, CompletableQuestComponent>();
+    private Godot.Collections.Dictionary<int, CompletableQuestComponent> _completableQuestComponents = new Godot.Collections.Dictionary<int, CompletableQuestComponent>();
     
     private QuestManager _questManager;
     
     public override void _Ready()
     {
+        GD.Print(_questList);
         _editQuestsButton.Pressed += OnEditQuestsButtonPressed;
+        _backToHomeButton.Pressed += OnBackToHomeButtonPressed;
         _questManager = this.GetNode<QuestManager>("/root/QuestManager");
         
-        _questManager.ManagerQuestAdded += OnManagerQuestAdded;
-        _questManager.ManagerQuestEdited += OnManagerQuestEdited;
-        _questManager.ManagerQuestRemoved += OnManagerQuestRemoved;
+        this.ConnectSignals();
     }
 
     private void OnEditQuestsButtonPressed()
     {
-        Node QuestEditorInstance = QuestEditor.Instantiate();
-        GetTree().GetRoot().AddChild(QuestEditorInstance);
+        Node questEditorInstance = _questEditor.Instantiate();
+        GetTree().GetRoot().AddChild(questEditorInstance);
     }
     
     private void OnManagerQuestAdded(int id)
     {
-        GD.Print("OnManagerQuestAdded");
         CompletableQuestComponent newComp = (CompletableQuestComponent)ResourceLoader.Load<PackedScene>("res://daily/components/completable_quest.tscn").Instantiate<HBoxContainer>();
         newComp.Initialize(_questManager.Get(id));
-        this.CompletableQuestComponents.Add(id, newComp);
+        this._completableQuestComponents.Add(id, newComp);
+        
         this._questList.AddChild(newComp);
     }
     
     private void OnManagerQuestEdited(int id)
     {
-        CompletableQuestComponent edited = this.CompletableQuestComponents.GetValueOrDefault(id);
+        CompletableQuestComponent edited = this._completableQuestComponents.GetValueOrDefault(id);
         edited.Update(
             _questManager.Get(id).Title, 
             _questManager.Get(id).Description, 
@@ -52,8 +55,28 @@ public partial class DailyQuestUi : Control
     
     private void OnManagerQuestRemoved(int id)
     {
-        CompletableQuestComponent toRemove = this.CompletableQuestComponents.GetValueOrDefault(id);
+        CompletableQuestComponent toRemove = this._completableQuestComponents.GetValueOrDefault(id);
         this.RemoveChild(toRemove);
-        this.CompletableQuestComponents.Remove(id);
+        this._completableQuestComponents.Remove(id);
+    }
+
+    private void OnBackToHomeButtonPressed()
+    {
+        DisconnectSignals();
+        GetTree().ChangeSceneToFile("res://shared/home.tscn");
+    }
+
+    private void ConnectSignals()
+    {
+        _questManager.ManagerQuestAdded += OnManagerQuestAdded;
+        _questManager.ManagerQuestEdited += OnManagerQuestEdited;
+        _questManager.ManagerQuestRemoved += OnManagerQuestRemoved;
+    }
+    
+    private void DisconnectSignals()
+    {
+        _questManager.ManagerQuestAdded -= OnManagerQuestAdded;
+        _questManager.ManagerQuestEdited -= OnManagerQuestEdited;
+        _questManager.ManagerQuestRemoved -= OnManagerQuestRemoved;
     }
 }

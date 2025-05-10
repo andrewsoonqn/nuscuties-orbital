@@ -1,9 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dt1g5mbwpw6iq"]
+[gd_scene load_steps=2 format=3 uid="uid://dt1g5mbwpw6iq"]
 
-[ext_resource type="Script" uid="uid://dap5ra1mtdkmy" path="res://shared/buttons/GoToHome.cs" id="1_g6b8b"]
 [ext_resource type="Script" uid="uid://vnp53os44340" path="res://daily/DailyQuestUi.cs" id="1_xdnnp"]
 
-[node name="DailyQuestUi" type="Control" node_paths=PackedStringArray("_editQuestsButton", "_questList")]
+[node name="DailyQuestUi" type="Control" node_paths=PackedStringArray("_editQuestsButton", "_questList", "_backToHomeButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_xdnnp")
 _editQuestsButton = NodePath("QuestsMargin/VBoxContainer/PanelContainer/HBoxContainer/EditQuestsButton")
 _questList = NodePath("QuestsMargin/VBoxContainer/PanelContainer2/QuestsScroll/QuestsContainer")
+_backToHomeButton = NodePath("MarginContainer/BackToHome")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -31,10 +31,9 @@ offset_bottom = 40.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
-[node name="GoToHome" type="Button" parent="MarginContainer"]
+[node name="BackToHome" type="Button" parent="MarginContainer"]
 layout_mode = 2
 text = "Back to Home"
-script = ExtResource("1_g6b8b")
 
 [node name="QuestsMargin" type="MarginContainer" parent="."]
 layout_mode = 1
