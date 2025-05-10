@@ -10,6 +10,6 @@ public partial class GoToDaily : Button
 
     private void OnPressed()
     {
-        GetTree().ChangeSceneToFile("res://daily/Daily.tscn");
+        GetTree().ChangeSceneToFile("res://daily/daily.tscn");
     }
 }
