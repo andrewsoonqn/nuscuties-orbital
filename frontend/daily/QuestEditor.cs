@@ -6,27 +6,27 @@ public partial class QuestEditor : Control
 {
     [Export]
     private LineEdit _titleInput;
-    
+
     [Export]
     private LineEdit _descriptionInput;
-    
+
     [Export]
     private Button _addQuestButton;
-    
+
     [Export]
     private VBoxContainer _questList;
-    
+
     [Export]
     private Button _goBackButton;
-    
+
     private QuestManager _questManager;
-    
+
     public override void _Ready()
     {
         _goBackButton.Pressed += QueueFree;
-        
+
         _addQuestButton.Pressed += OnAddQuestButtonPressed;
-        
+
         _questManager = this.GetNode<QuestManager>("/root/QuestManager");
 
         // TODO

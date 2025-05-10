@@ -6,13 +6,13 @@ public partial class QuestManager : Node
 {
     [Signal]
     public delegate void ManagerQuestAddedEventHandler(int id);
-    
+
     [Signal]
     public delegate void ManagerQuestRemovedEventHandler(int id);
-    
+
     [Signal]
     public delegate void ManagerQuestEditedEventHandler(int id);
-    
+
     // Maps id to Quest object
     private Dictionary<int, Quest> _quests = new Dictionary<int, Quest>();
     public static readonly int MaxQuests = 5;
@@ -36,7 +36,7 @@ public partial class QuestManager : Node
     }
 
     public void Edit(int id, string newTitle, string newDescription)
-    { 
+    {
         Quest q = _quests[id];
         q.Title = newTitle;
         q.Description = newDescription;
