@@ -10,6 +10,6 @@ public partial class GoToHome : Button
 
     private void OnPressed()
     {
-        GetTree().ChangeSceneToFile("res://shared/Home.tscn");
+        GetTree().ChangeSceneToFile("res://shared/home.tscn");
     }
 }

@@ -10,6 +10,6 @@ public partial class GoToPassive : Button
 
     private void OnPressed()
     {
-        GetTree().ChangeSceneToFile("res://passive/Passive.tscn");
+        GetTree().ChangeSceneToFile("res://passive/passive.tscn");
     }
 }
