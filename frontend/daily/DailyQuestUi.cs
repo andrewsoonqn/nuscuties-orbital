@@ -57,7 +57,8 @@ public partial class DailyQuestUi : Control
     private void OnManagerQuestRemoved(int id)
     {
         CompletableQuestComponent toRemove = this._completableQuestComponents.GetValueOrDefault(id);
-        this.RemoveChild(toRemove);
+        toRemove.QueueFree();
+        // this.RemoveChild(toRemove);
         this._completableQuestComponents.Remove(id);
     }
 

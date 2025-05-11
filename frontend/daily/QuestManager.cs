@@ -20,6 +20,7 @@ public partial class QuestManager : Node
     public override void _Ready()
     {
         this._quests = new Dictionary<int, Quest>(MaxQuests);
+        LoadQuests();
     }
 
     public void Submit(string title, string description)
@@ -32,7 +33,7 @@ public partial class QuestManager : Node
     public void Remove(int id)
     {
         this._quests.Remove(id);
-        EmitSignal(nameof(ManagerQuestRemovedEventHandler), id);
+        EmitSignal("ManagerQuestRemoved", id);
     }
 
     public void Edit(int id, string newTitle, string newDescription)
@@ -58,5 +59,14 @@ public partial class QuestManager : Node
     public Dictionary<int, Quest> GetQuests()
     { // TODO remove
         return _quests;
+    }
+    
+    private void LoadQuests()
+    {
+        List<Quest> quests = new QuestLogManager().LoadQuestLog();
+        foreach (Quest quest in quests)
+        {
+            this._quests[quest.Id] = quest;
+        }
     }
 }

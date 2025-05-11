@@ -71,7 +71,8 @@ public partial class QuestEditor : Control
     private void OnManagerQuestRemoved(int id)
     {
         EditableQuestComponent toRemove = this._editableQuestComponents.GetValueOrDefault(id);
-        this.RemoveChild(toRemove);
+        toRemove.QueueFree();
+        // this.RemoveChild(toRemove);
         this._editableQuestComponents.Remove(id);
     }
     
