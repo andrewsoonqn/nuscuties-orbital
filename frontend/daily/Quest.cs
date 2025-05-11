@@ -6,9 +6,9 @@ public class Quest
     private static int _id = 0;
 
     public int Id { get; set; } // TODO: Hide this
-    public string Title {get; set;}
-    public string Description {get; set;}
-    public bool Completed {get; set;}
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public bool Completed { get; set; }
 
     public Quest(string title, string description)
     {
@@ -20,12 +20,12 @@ public class Quest
     }
 
     public Quest() { }
-    
+
     public override bool Equals(object obj)
     {
-        if (obj == null) 
+        if (obj == null)
         {
-            return false;  
+            return false;
         }
         if (!(obj is Quest))
         {

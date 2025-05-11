@@ -19,10 +19,10 @@ public partial class QuestEditor : Control
 
     [Export]
     private Button _goBackButton;
-    
+
     private Dictionary<
-        int, 
-        EditableQuestComponent> _editableQuestComponents = 
+        int,
+        EditableQuestComponent> _editableQuestComponents =
         new Dictionary<int, EditableQuestComponent>();
 
     private QuestManager _questManager;
@@ -30,7 +30,7 @@ public partial class QuestEditor : Control
     public override void _Ready()
     {
         LoadQuests();
-        
+
         _goBackButton.Pressed += OnBackPressed;
 
         _addQuestButton.Pressed += OnAddQuestButtonPressed;
@@ -48,26 +48,26 @@ public partial class QuestEditor : Control
         _titleInput.Clear();
         _descriptionInput.Clear();
     }
-    
+
     private void OnManagerQuestAdded(int id)
     {
         EditableQuestComponent newComp = (EditableQuestComponent)ResourceLoader.Load<PackedScene>("res://daily/components/editable_quest.tscn").Instantiate<HBoxContainer>();
         newComp.Initialize(_questManager.Get(id));
         this._editableQuestComponents[id] = newComp;
-        
+
         this._questList.AddChild(newComp);
     }
-    
+
     private void OnManagerQuestEdited(int id)
     {
         GD.Print("OnManagerQuestEdited");
         EditableQuestComponent edited = this._editableQuestComponents.GetValueOrDefault(id);
         edited.Update(
-            _questManager.Get(id).Title, 
+            _questManager.Get(id).Title,
             _questManager.Get(id).Description,
             _questManager.Get(id).Completed);
     }
-    
+
     private void OnManagerQuestRemoved(int id)
     {
         EditableQuestComponent toRemove = this._editableQuestComponents.GetValueOrDefault(id);
@@ -75,14 +75,14 @@ public partial class QuestEditor : Control
         // this.RemoveChild(toRemove);
         this._editableQuestComponents.Remove(id);
     }
-    
+
     private void ConnectSignals()
     {
         _questManager.ManagerQuestAdded += OnManagerQuestAdded;
         _questManager.ManagerQuestEdited += OnManagerQuestEdited;
         _questManager.ManagerQuestRemoved += OnManagerQuestRemoved;
     }
-    
+
     private void DisconnectSignals()
     {
         _questManager.ManagerQuestAdded -= OnManagerQuestAdded;
@@ -93,7 +93,7 @@ public partial class QuestEditor : Control
     private void OnBackPressed()
     {
         DisconnectSignals();
-        new QuestLogManager().SaveQuestLog(_questManager.GetQuests().Values.ToList()); 
+        new QuestLogManager().SaveQuestLog(_questManager.GetQuests().Values.ToList());
         QueueFree();
     }
 

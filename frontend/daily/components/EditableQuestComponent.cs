@@ -7,7 +7,7 @@ public partial class EditableQuestComponent : HBoxContainer
     [Export] private LineEdit _description;
     [Export] private Button _saveButton;
     [Export] private Button _deleteButton;
-    
+
     private Quest _quest;
     private QuestManager _questManager;
 
@@ -26,15 +26,15 @@ public partial class EditableQuestComponent : HBoxContainer
     private void SaveButtonOnPressed()
     {
         // Update(_title.Text, _description.Text);
-        _questManager.Edit(_quest.Id, _title.Text, _description.Text); 
+        _questManager.Edit(_quest.Id, _title.Text, _description.Text);
     }
 
     public void Initialize(Quest quest)
     {
         _quest = quest;
-        
+
         _title.Text = quest.Title;
-        _description.Text = quest.Description; 
+        _description.Text = quest.Description;
     }
 
     public void Update(string title, string description, bool completed)

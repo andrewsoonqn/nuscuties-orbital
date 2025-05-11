@@ -25,7 +25,7 @@ public partial class QuestManager : Node
 
     public void Submit(string title, string description)
     {
-        Quest q =  new Quest(title, description);
+        Quest q = new Quest(title, description);
         this._quests.Add(q.Id, q);
         EmitSignal("ManagerQuestAdded", q.Id);
     }
@@ -61,7 +61,7 @@ public partial class QuestManager : Node
     { // TODO remove
         return _quests;
     }
-    
+
     private void LoadQuests()
     {
         List<Quest> quests = new QuestLogManager().LoadQuestLog();
