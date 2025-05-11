@@ -1,17 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://d10077bwug3rs"]
+[gd_scene load_steps=3 format=3 uid="uid://d10077bwug3rs"]
 
-[ext_resource type="Script" uid="uid://d0nofvv31ptse" path="res://shared/buttons/GoToDaily.cs" id="1_16xax"]
-[ext_resource type="Script" uid="uid://dbikgcccfo3ly" path="res://shared/buttons/GoToPassive.cs" id="2_sq7hj"]
-[ext_resource type="Script" uid="uid://defyh16hawns8" path="res://shared/buttons/GoToActive.cs" id="3_4wci5"]
+[ext_resource type="Script" uid="uid://crjrlgdwahath" path="res://shared/Home.cs" id="1_kkgq1"]
 [ext_resource type="Texture2D" uid="uid://cujamtcjya83n" path="res://assets/godot_icon.svg" id="4_4wci5"]
 
-[node name="Home" type="Control"]
+[node name="Home" type="Control" node_paths=PackedStringArray("_expLabel", "_dailyButton", "_passiveButton", "_activeButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kkgq1")
+_expLabel = NodePath("Exp")
+_dailyButton = NodePath("NavButtonsHBox/Daily")
+_passiveButton = NodePath("NavButtonsHBox/Passive")
+_activeButton = NodePath("NavButtonsHBox/Active")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -35,20 +38,17 @@ offset_top = 725.0
 offset_right = 559.5
 offset_bottom = 756.0
 
-[node name="GoToDaily" type="Button" parent="NavButtonsHBox"]
+[node name="Daily" type="Button" parent="NavButtonsHBox"]
 layout_mode = 2
 text = "Daily Quests"
-script = ExtResource("1_16xax")
 
-[node name="GoToPassive" type="Button" parent="NavButtonsHBox"]
+[node name="Passive" type="Button" parent="NavButtonsHBox"]
 layout_mode = 2
 text = "Passive Dungeons"
-script = ExtResource("2_sq7hj")
 
-[node name="GoToActive" type="Button" parent="NavButtonsHBox"]
+[node name="Active" type="Button" parent="NavButtonsHBox"]
 layout_mode = 2
 text = "Active Dungeons"
-script = ExtResource("3_4wci5")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -63,3 +63,14 @@ grow_vertical = 2
 [node name="Sprite2D" type="Sprite2D" parent="PanelContainer"]
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_4wci5")
+
+[node name="Exp" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.394
+anchor_top = 0.079
+anchor_right = 0.604
+anchor_bottom = 0.13
+text = "EXP COUNT"
+horizontal_alignment = 1
+vertical_alignment = 1

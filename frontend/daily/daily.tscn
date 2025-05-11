@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dt1g5mbwpw6iq"]
-
-[ext_resource type="Script" uid="uid://dap5ra1mtdkmy" path="res://shared/buttons/GoToHome.cs" id="1_g6b8b"]
+[gd_scene format=3 uid="uid://dt1g5mbwpw6iq"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -29,8 +27,3 @@ offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
-
-[node name="GoToHome" type="Button" parent="MarginContainer"]
-layout_mode = 2
-text = "Back to Home"
-script = ExtResource("1_g6b8b")

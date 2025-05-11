@@ -1,14 +1,17 @@
 [gd_scene load_steps=2 format=3 uid="uid://b4al34vyos4fy"]
 
-[ext_resource type="Script" uid="uid://dap5ra1mtdkmy" path="res://shared/buttons/GoToHome.cs" id="1_551pl"]
+[ext_resource type="Script" uid="uid://cu0ik6y6n8qhl" path="res://active/Active.cs" id="1_o7aax"]
 
-[node name="Daily" type="Control"]
+[node name="Active" type="Control" node_paths=PackedStringArray("_backToHomeButton", "_addExpButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_o7aax")
+_backToHomeButton = NodePath("MarginContainer/BackToHome")
+_addExpButton = NodePath("AddExp")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -24,12 +27,21 @@ grow_horizontal = 2
 text = "Active Dungeons"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
-[node name="GoToHome" type="Button" parent="MarginContainer"]
+[node name="BackToHome" type="Button" parent="MarginContainer"]
 layout_mode = 2
 text = "Back to Home"
-script = ExtResource("1_551pl")
+
+[node name="AddExp" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.085
+anchor_top = 0.129
+anchor_right = 0.238
+anchor_bottom = 0.173
+text = "add exp"
