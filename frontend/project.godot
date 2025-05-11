@@ -18,7 +18,6 @@ config/icon="uid://cujamtcjya83n"
 [autoload]
 
 QuestManager="*res://daily/QuestManager.cs"
-DailySceneManager="*res://daily/DailySceneManager.cs"
 QuestLogManager="*res://daily/QuestLogManager.cs"
 
 [display]
