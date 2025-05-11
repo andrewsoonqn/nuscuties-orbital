@@ -9,6 +9,25 @@ public partial class EditableQuestComponent : HBoxContainer
     [Export] private Button _deleteButton;
     
     private Quest _quest;
+    private QuestManager _questManager;
+
+    public override void _Ready()
+    {
+        _saveButton.Pressed += SaveButtonOnPressed;
+        _deleteButton.Pressed += DeleteButtonOnPressed;
+        _questManager = this.GetNode<QuestManager>("/root/QuestManager");
+    }
+
+    private void DeleteButtonOnPressed()
+    {
+        _questManager.Remove(_quest.Id);
+    }
+
+    private void SaveButtonOnPressed()
+    {
+        // Update(_title.Text, _description.Text);
+        _questManager.Edit(_quest.Id, _title.Text, _description.Text); 
+    }
 
     public void Initialize(Quest quest)
     {
@@ -18,10 +37,11 @@ public partial class EditableQuestComponent : HBoxContainer
         _description.Text = quest.Description; 
     }
 
-    public void Update(string title, string description)
+    public void Update(string title, string description, bool completed)
     {
         this._quest.Title = title;
         this._quest.Description = description;
+        this._quest.Completed = completed;
     }
 
     public Quest Get()

@@ -7,7 +7,7 @@ public partial class CompletableQuestComponent : HBoxContainer
     [Export] private Label _description;
     [Export] private CheckBox _checkbox;
     
-    private Quest _quest;
+    private Quest _quest; // TODO: only id needed, quest manager takes care of the quest storing
 
     public void Initialize(Quest quest)
     {
@@ -23,6 +23,8 @@ public partial class CompletableQuestComponent : HBoxContainer
         this._quest.Title = title;
         this._quest.Description = description;
         this._quest.Completed = completed;
+        this._title.Text = title;
+        this._description.Text = description;
     }
 
     public Quest Get()

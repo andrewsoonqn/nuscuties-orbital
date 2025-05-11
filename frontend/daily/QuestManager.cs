@@ -40,7 +40,7 @@ public partial class QuestManager : Node
         Quest q = _quests[id];
         q.Title = newTitle;
         q.Description = newDescription;
-        EmitSignal(nameof(ManagerQuestEditedEventHandler), id);
+        EmitSignal("ManagerQuestEdited", id);
     }
 
     public void ToggleCompletion(int id)

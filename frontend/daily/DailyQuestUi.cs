@@ -23,7 +23,6 @@ public partial class DailyQuestUi : Control
     {
         LoadQuests();
         
-        GD.Print(_questList);
         _editQuestsButton.Pressed += OnEditQuestsButtonPressed;
         _backToHomeButton.Pressed += OnBackToHomeButtonPressed;
         _questManager = this.GetNode<QuestManager>("/root/QuestManager");
@@ -41,7 +40,7 @@ public partial class DailyQuestUi : Control
     {
         CompletableQuestComponent newComp = (CompletableQuestComponent)ResourceLoader.Load<PackedScene>("res://daily/components/completable_quest.tscn").Instantiate<HBoxContainer>();
         newComp.Initialize(_questManager.Get(id));
-        this._completableQuestComponents.Add(id, newComp);
+        this._completableQuestComponents[id] = newComp;
         
         this._questList.AddChild(newComp);
     }

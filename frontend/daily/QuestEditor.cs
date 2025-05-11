@@ -37,10 +37,9 @@ public partial class QuestEditor : Control
 
         _questManager = this.GetNode<QuestManager>("/root/QuestManager");
 
-        // TODO
         _questManager.ManagerQuestAdded += OnManagerQuestAdded;
-        // _questManager.ManagerQuestEdited += OnManagerQuestEdited;
-        // _questManager.ManagerQuestRemoved += OnManagerQuestRemoved;
+        _questManager.ManagerQuestEdited += OnManagerQuestEdited;
+        _questManager.ManagerQuestRemoved += OnManagerQuestRemoved;
     }
 
     private void OnAddQuestButtonPressed()
@@ -61,10 +60,12 @@ public partial class QuestEditor : Control
     
     private void OnManagerQuestEdited(int id)
     {
+        GD.Print("OnManagerQuestEdited");
         EditableQuestComponent edited = this._editableQuestComponents.GetValueOrDefault(id);
         edited.Update(
             _questManager.Get(id).Title, 
-            _questManager.Get(id).Description);
+            _questManager.Get(id).Description,
+            _questManager.Get(id).Completed);
     }
     
     private void OnManagerQuestRemoved(int id)
