@@ -10,7 +10,6 @@ public partial class Active : Control
     public override void _Ready()
     {
         _backToHomeButton.Pressed += BackToHomeButtonOnPressed;
-        _addExpButton.Pressed += AddExpButtonOnPressed;
         _statsManager = GetNode<StatsManager>("/root/StatsManager");
     }
 

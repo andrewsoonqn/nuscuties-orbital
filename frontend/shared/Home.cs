@@ -18,7 +18,7 @@ public partial class Home : Control
         _statsManager = GetNode<StatsManager>("/root/StatsManager");
         int exp = _statsManager.GetExp();
         GD.Print($"Main scene got {exp}");
-        _expLabel.Text = exp.ToString();
+        _expLabel.Text = $"EXP: {exp.ToString()}";
         
         _dailyButton.Pressed += () => switchScene(_dailyPath);
         _passiveButton.Pressed += () => switchScene(_passivePath);
