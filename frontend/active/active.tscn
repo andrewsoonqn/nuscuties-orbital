@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cu0ik6y6n8qhl" path="res://active/Active.cs" id="1_o7aax"]
 
-[node name="Active" type="Control" node_paths=PackedStringArray("_backToHomeButton", "_addExpButton")]
+[node name="Active" type="Control" node_paths=PackedStringArray("_backToHomeButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o7aax")
 _backToHomeButton = NodePath("MarginContainer/BackToHome")
-_addExpButton = NodePath("AddExp")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
