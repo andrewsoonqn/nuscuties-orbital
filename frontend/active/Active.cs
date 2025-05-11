@@ -4,8 +4,6 @@ public partial class Active : Control
 {
     [Export]
     private Button _backToHomeButton;
-
-    [Export] private Button _addExpButton;
     
     private StatsManager _statsManager;
 
