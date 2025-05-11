@@ -21,6 +21,8 @@ public partial class DailyQuestUi : Control
     
     public override void _Ready()
     {
+        LoadQuests();
+        
         GD.Print(_questList);
         _editQuestsButton.Pressed += OnEditQuestsButtonPressed;
         _backToHomeButton.Pressed += OnBackToHomeButtonPressed;
@@ -78,5 +80,18 @@ public partial class DailyQuestUi : Control
         _questManager.ManagerQuestAdded -= OnManagerQuestAdded;
         _questManager.ManagerQuestEdited -= OnManagerQuestEdited;
         _questManager.ManagerQuestRemoved -= OnManagerQuestRemoved;
+    }
+
+    private void LoadQuests()
+    {
+        List<Quest> quests = new QuestLogManager().LoadQuestLog();
+        foreach (Quest quest in quests)
+        {
+            CompletableQuestComponent newComp = (CompletableQuestComponent)ResourceLoader
+                .Load<PackedScene>("res://daily/components/completable_quest.tscn").Instantiate<HBoxContainer>();
+            newComp.Initialize(quest);
+            this._completableQuestComponents[quest.Id] = newComp;
+            this._questList.AddChild(newComp);
+        }
     }
 }

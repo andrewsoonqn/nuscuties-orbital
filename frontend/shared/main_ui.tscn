@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddrxtkjuc80pl"]
+[gd_scene load_steps=4 format=3 uid="uid://ddrxtkjuc80pl"]
 
+[ext_resource type="Script" uid="uid://bse8lga4ryvd7" path="res://shared/MainUi.cs" id="1_cm82v"]
 [ext_resource type="PackedScene" uid="uid://d10077bwug3rs" path="res://shared/home.tscn" id="1_fw42t"]
 [ext_resource type="PackedScene" uid="uid://dt1g5mbwpw6iq" path="res://daily/daily.tscn" id="2_cm82v"]
 
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_cm82v")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

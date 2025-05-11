@@ -1,10 +1,11 @@
 using System;
+using System.Text.Json.Serialization;
 
 public class Quest
 {
     private static int _id = 0;
 
-    public readonly int Id;
+    public int Id { get; set; } // TODO: Hide this
     public string Title {get; set;}
     public string Description {get; set;}
     public bool Completed {get; set;}
@@ -18,6 +19,8 @@ public class Quest
         this.Completed = false;
     }
 
+    public Quest() { }
+    
     public override bool Equals(object obj)
     {
         if (obj == null) 

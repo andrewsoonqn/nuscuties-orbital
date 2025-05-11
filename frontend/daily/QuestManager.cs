@@ -54,4 +54,9 @@ public partial class QuestManager : Node
     {
         return _quests[id];
     }
+
+    public Dictionary<int, Quest> GetQuests()
+    { // TODO remove
+        return _quests;
+    }
 }
