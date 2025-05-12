@@ -48,7 +48,6 @@ public partial class PlayerFSM : FiniteStateMachine
     {
         if (newStateId == _states["idle"])
         {
-            GD.Print("playing");
             _animationPlayer.Play("idle");
         } else if (newStateId == _states["move"])
         {

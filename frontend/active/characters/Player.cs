@@ -21,17 +21,16 @@ public partial class Player : Character
     public override void GetInput()
     {
         _movDirection = Vector2.Zero;
-        if (Input.IsActionPressed("ui_up"))
+        if (Input.IsActionPressed("ui_up") || Input.IsKeyPressed(Key.W))
         {
-            GD.Print("up");
             _movDirection += Vector2.Up;
-        } else if (Input.IsActionPressed("ui_down"))
+        } else if (Input.IsActionPressed("ui_down") || Input.IsKeyPressed(Key.S))
         {
             _movDirection += Vector2.Down;
-        } else if (Input.IsActionPressed("ui_left"))
+        } else if (Input.IsActionPressed("ui_left") || Input.IsKeyPressed(Key.A))
         {
             _movDirection += Vector2.Left;
-        } else if (Input.IsActionPressed("ui_right"))
+        } else if (Input.IsActionPressed("ui_right") || Input.IsKeyPressed(Key.D))
         {
             _movDirection += Vector2.Right;
         }
