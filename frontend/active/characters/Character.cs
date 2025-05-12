@@ -5,10 +5,17 @@ public partial class Character : CharacterBody2D
 {
     public const float Friction = 0.15f;
     
-    [Export] private int _acceleration = 40;
-    [Export] private float _maxSpeed = 100;
+    [Export] private int _acceleration = 250;
+    [Export] private float _maxSpeed = 20000;
     
-    private Vector2 _movDirection = Vector2.Zero;
+    protected AnimatedSprite2D _animatedSprite;
+    
+    protected Vector2 _movDirection = Vector2.Zero;
+
+    public override void _Ready()
+    {
+        this._animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+    }
 
     public override void _PhysicsProcess(double delta)
     {
@@ -16,10 +23,13 @@ public partial class Character : CharacterBody2D
         Velocity = Velocity.Lerp(Vector2.Zero, Friction);
     }
 
-    private void Move()
+    public void Move()
     {
         _movDirection = _movDirection.Normalized();
         Velocity = _movDirection * _acceleration;
         Velocity = Velocity.LimitLength(_maxSpeed);
     }
+    
+    public virtual void GetInput()
+    {}
 }

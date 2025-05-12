@@ -1,0 +1,213 @@
+[gd_scene load_steps=23 format=3 uid="uid://ddl7kcco0nnpt"]
+
+[ext_resource type="PackedScene" uid="uid://c2aoax7gfqdq6" path="res://active/characters/character.tscn" id="1_wjgc2"]
+[ext_resource type="Texture2D" uid="uid://e44ds11llc6w" path="res://assets/dungeon_art/heroes/knight/knight_idle_spritesheet.png" id="2_tlgbr"]
+[ext_resource type="Script" uid="uid://dxgw4m3bmqjax" path="res://active/characters/Player.cs" id="2_x55qg"]
+[ext_resource type="Script" uid="uid://6g8wo1eht2ay" path="res://active/characters/PlayerFSM.cs" id="3_oha7n"]
+[ext_resource type="Texture2D" uid="uid://bw21rbqmofoji" path="res://assets/dungeon_art/heroes/knight/knight_run_spritesheet.png" id="3_x55qg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlgbr"]
+atlas = ExtResource("2_tlgbr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x55qg"]
+atlas = ExtResource("2_tlgbr")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oha7n"]
+atlas = ExtResource("2_tlgbr")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guxn7"]
+atlas = ExtResource("2_tlgbr")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s54qp"]
+atlas = ExtResource("2_tlgbr")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5a7i"]
+atlas = ExtResource("2_tlgbr")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qge4"]
+atlas = ExtResource("3_x55qg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypdry"]
+atlas = ExtResource("3_x55qg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebw1x"]
+atlas = ExtResource("3_x55qg")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jd3uh"]
+atlas = ExtResource("3_x55qg")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhfxq"]
+atlas = ExtResource("3_x55qg")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uwu5"]
+atlas = ExtResource("3_x55qg")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b0vep"]
+animations = [{
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_tlgbr")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_x55qg")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_oha7n")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_guxn7")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_s54qp")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_e5a7i")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_0qge4")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_ypdry")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_ebw1x")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_jd3uh")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_fhfxq")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_8uwu5")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_oha7n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"move"]
+}
+
+[sub_resource type="Animation" id="Animation_0y68l"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_38amp"]
+resource_name = "move"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"move"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0qge4"]
+_data = {
+&"RESET": SubResource("Animation_oha7n"),
+&"idle": SubResource("Animation_0y68l"),
+&"move": SubResource("Animation_38amp")
+}
+
+[node name="Player" instance=ExtResource("1_wjgc2")]
+script = ExtResource("2_x55qg")
+
+[node name="FiniteStateMachine" parent="." index="0"]
+script = ExtResource("3_oha7n")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+position = Vector2(21.5, 16)
+scale = Vector2(10, 8.134)
+sprite_frames = SubResource("SpriteFrames_b0vep")
+animation = &"move"
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_0qge4")
+}
