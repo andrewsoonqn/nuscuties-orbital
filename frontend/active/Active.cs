@@ -5,12 +5,21 @@ public partial class Active : Control
     [Export]
     private Button _backToHomeButton;
     
+    [Export]
+    private Button _startGameButton;
+    
     private StatsManager _statsManager;
 
     public override void _Ready()
     {
         _backToHomeButton.Pressed += BackToHomeButtonOnPressed;
         _statsManager = GetNode<StatsManager>("/root/StatsManager");
+        _startGameButton.Pressed += StartGameButtonOnPressed;
+    }
+
+    private void StartGameButtonOnPressed()
+    {
+        GetTree().ChangeSceneToFile("res://active/active_game.tscn");
     }
 
     private void AddExpButtonOnPressed()
