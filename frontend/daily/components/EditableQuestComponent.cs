@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class EditableQuestComponent : HBoxContainer
 {
@@ -21,12 +22,14 @@ public partial class EditableQuestComponent : HBoxContainer
     private void DeleteButtonOnPressed()
     {
         _questManager.Remove(_quest.Id);
+        new QuestLogManager().SaveQuestLog(_questManager.GetQuests().Values.ToList());
     }
 
     private void SaveButtonOnPressed()
     {
         // Update(_title.Text, _description.Text);
         _questManager.Edit(_quest.Id, _title.Text, _description.Text);
+        new QuestLogManager().SaveQuestLog(_questManager.GetQuests().Values.ToList());
     }
 
     public void Initialize(Quest quest)

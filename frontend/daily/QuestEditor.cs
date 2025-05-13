@@ -47,6 +47,7 @@ public partial class QuestEditor : Control
         _questManager.Submit(_titleInput.Text, _descriptionInput.Text);
         _titleInput.Clear();
         _descriptionInput.Clear();
+        new QuestLogManager().SaveQuestLog(_questManager.GetQuests().Values.ToList());
     }
 
     private void OnManagerQuestAdded(int id)
@@ -93,7 +94,6 @@ public partial class QuestEditor : Control
     private void OnBackPressed()
     {
         DisconnectSignals();
-        new QuestLogManager().SaveQuestLog(_questManager.GetQuests().Values.ToList());
         QueueFree();
     }
 

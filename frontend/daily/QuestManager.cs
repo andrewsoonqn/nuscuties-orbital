@@ -26,7 +26,7 @@ public partial class QuestManager : Node
     public void Submit(string title, string description)
     {
         Quest q = new Quest(title, description);
-        this._quests.Add(q.Id, q);
+        this._quests[q.Id] = q;
         EmitSignal("ManagerQuestAdded", q.Id);
     }
 

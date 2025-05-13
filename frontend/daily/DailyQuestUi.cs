@@ -66,7 +66,6 @@ public partial class DailyQuestUi : Control
     private void OnBackToHomeButtonPressed()
     {
         DisconnectSignals();
-        new QuestLogManager().SaveQuestLog(_questManager.GetQuests().Values.ToList());
         GetTree().ChangeSceneToFile("res://shared/home.tscn");
     }
 

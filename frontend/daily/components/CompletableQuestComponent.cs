@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class CompletableQuestComponent : HBoxContainer
 {
@@ -19,6 +20,7 @@ public partial class CompletableQuestComponent : HBoxContainer
     private void CheckboxOnToggled(bool toggledOn)
     {
         _questManager.ToggleCompletion(_quest.Id);
+        new QuestLogManager().SaveQuestLog(_questManager.GetQuests().Values.ToList());
     }
 
     public void Initialize(Quest quest)
