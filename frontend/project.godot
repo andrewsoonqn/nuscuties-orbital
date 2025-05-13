@@ -19,6 +19,7 @@ config/icon="uid://cujamtcjya83n"
 
 QuestManager="*res://daily/QuestManager.cs"
 QuestLogManager="*res://daily/QuestLogManager.cs"
+StatsManager="*res://shared/StatsManager.cs"
 
 [display]
 
