@@ -13,7 +13,12 @@ config_version=5
 config/name="nuscuties app"
 run/main_scene="uid://d10077bwug3rs"
 config/features=PackedStringArray("4.4", "C#", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://cujamtcjya83n"
+
+[autoload]
+
+QuestManager="*res://daily/QuestManager.cs"
+QuestLogManager="*res://daily/QuestLogManager.cs"
 
 [display]
 
