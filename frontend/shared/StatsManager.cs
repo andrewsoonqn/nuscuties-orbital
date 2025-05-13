@@ -30,6 +30,11 @@ public partial class StatsManager : Node
         }
     }
 
+    public void ResetExp()
+    {
+        Exp = 0;
+        SaveStats();
+    } 
     public class PlayerStats
     {
         public int Exp { get; set; }
