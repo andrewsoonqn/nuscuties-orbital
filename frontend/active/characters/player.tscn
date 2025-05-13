@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ddl7kcco0nnpt"]
+[gd_scene load_steps=23 format=3 uid="uid://d4ukkagofjxm"]
 
 [ext_resource type="PackedScene" uid="uid://c2aoax7gfqdq6" path="res://active/characters/character.tscn" id="1_wjgc2"]
 [ext_resource type="Texture2D" uid="uid://e44ds11llc6w" path="res://assets/dungeon_art/heroes/knight/knight_idle_spritesheet.png" id="2_tlgbr"]
@@ -202,7 +202,7 @@ script = ExtResource("2_x55qg")
 script = ExtResource("3_oha7n")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
-position = Vector2(21.5, 16)
+position = Vector2(360, 540)
 scale = Vector2(10, 8.134)
 sprite_frames = SubResource("SpriteFrames_b0vep")
 animation = &"move"
