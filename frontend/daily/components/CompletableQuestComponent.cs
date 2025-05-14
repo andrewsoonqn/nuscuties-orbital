@@ -10,16 +10,26 @@ public partial class CompletableQuestComponent : HBoxContainer
 
     private Quest _quest; // TODO: only id needed, quest manager takes care of the quest storing
     private QuestManager _questManager;
+    private StatsManager _statsManager;
 
     public override void _Ready()
     {
         _questManager = GetNode<QuestManager>("/root/QuestManager");
+        _statsManager = GetNode<StatsManager>("/root/StatsManager");
         _checkbox.Toggled += CheckboxOnToggled;
     }
 
     private void CheckboxOnToggled(bool toggledOn)
     {
         _questManager.ToggleCompletion(_quest.Id);
+        if (toggledOn)
+        {
+            _statsManager.AddExp(100);
+        }
+        else
+        {
+            _statsManager.DecrExp(100);
+        }
         new QuestLogManager().SaveQuestLog(_questManager.GetQuests().Values.ToList());
     }
 

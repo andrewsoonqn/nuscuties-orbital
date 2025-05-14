@@ -29,6 +29,16 @@ public partial class StatsManager : Node
             SaveStats();
         }
     }
+    
+    public void DecrExp(int amount)
+    {
+        if (amount > 0)
+        {
+            Exp -= amount;
+            GD.Print($"Decreased {amount} EXP. Current EXP: {Exp}");
+            SaveStats();
+        }
+    }
 
     public void ResetExp()
     {
