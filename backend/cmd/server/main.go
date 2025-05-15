@@ -21,13 +21,9 @@ func main() {
 	db.Init() // connect to db
 	handlers.SetDB(db.DB) // share db connection with handlers
 
-	// Example: Basic HTTP server setup (you'll expand this later)
-	// We'll define handlers elsewhere later
-	// http.HandleFunc("/", handleRoot) // Example placeholder
-
-	port := os.Getenv("PORT") // Get port from environment variable
+	port := os.Getenv("PORT") // get port from environment variable
 	if port == "" {
-		port = "8080" // Default port if not set
+		port = "8080" // default port if not set
 		fmt.Printf("Defaulting to port %s\n", port)
 	}
 
@@ -56,8 +52,3 @@ func main() {
     		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	})
 }
-
-// Example placeholder handler function (move to handlers package later)
-// func handleRoot(w http.ResponseWriter, r *http.Request) {
-// 	fmt.Fprintf(w, "Hello from the backend!")
-// }
