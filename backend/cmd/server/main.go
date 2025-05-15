@@ -30,9 +30,33 @@ func main() {
 
 	log.Printf("Listening on port %s\n", port)
 	// Start the server
-	if err := http.ListenAndServe(":"+port, nil); err != nil {
-		log.Fatal(err) // Log fatal errors if server fails to start
-	}
+	import (
+    		"nuscuties-backend/handlers"
+		"nuscuties-backend/db"
+	)
+
+	db.Init()
+	handlers.SetDB(db.DB)
+
+	// get and post quests
+	http.HandleFunc("/quests", func(w http.ResponseWriter, r *http.Request) {
+	    switch r.Method {
+	    case "GET":
+	        handlers.GetQuests(w, r)
+	    case "POST":
+	        handlers.CreateQuest(w, r)
+	    default:
+	        http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+	    }
+})
+
+	http.HandleFunc("/quests/", func(w http.ResponseWriter, r *http.Request) {
+    	if r.Method == "PUT" && strings.HasSuffix(r.URL.Path, "/complete") {
+        	handlers.CompleteQuest(w, r)
+        	return
+    	}
+    		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+	})
 }
 
 // Example placeholder handler function (move to handlers package later)
