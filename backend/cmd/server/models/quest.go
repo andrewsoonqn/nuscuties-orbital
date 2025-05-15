@@ -4,5 +4,5 @@ type Quest struct {
     ID         int       `json:"id"`
     Title      string    `json:"title"`
     Description  string      `json:"description"`
-    Completed  bool       `json: "completed"`
+    Completed  bool       `json:"completed"`
 }
