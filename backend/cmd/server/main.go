@@ -42,13 +42,14 @@ func main() {
 	    default:
 	        http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	    }
-})
+	})
 
 	http.HandleFunc("/quests/", func(w http.ResponseWriter, r *http.Request) {
     	if r.Method == "PUT" && strings.HasSuffix(r.URL.Path, "/complete") {
         	handlers.CompleteQuest(w, r)
         	return
-    	}
-    		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+    		}
+		
+    	http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	})
 }
