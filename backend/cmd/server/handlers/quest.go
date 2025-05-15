@@ -16,10 +16,9 @@ func SetDB(conn *sql.DB) {
     DB = conn
 }
 
-// GET /quests?user_id=abc123
+// GET /quests
 func GetQuests(w http.ResponseWriter, r *http.Request) {
-    userID := r.URL.Query().Get("user_id")
-    rows, err := DB.Query("SELECT id, user_id, title, completed, exp_reward FROM quests WHERE user_id=$1", userID)
+    rows, err := DB.Query("SELECT id, title, description, completed FROM quests")
     if err != nil {
         http.Error(w, err.Error(), http.StatusInternalServerError)
         return
@@ -29,7 +28,7 @@ func GetQuests(w http.ResponseWriter, r *http.Request) {
     var quests []models.Quest
     for rows.Next() {
         var q models.Quest
-        if err := rows.Scan(&q.ID, &q.UserID, &q.Title, &q.Completed, &q.ExpReward); err != nil {
+        if err := rows.Scan(&q.ID, &q.Title, &q.Description, &q.Completed); err != nil {
             http.Error(w, err.Error(), http.StatusInternalServerError)
             return
         }
@@ -48,8 +47,8 @@ func CreateQuest(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    _, err := DB.Exec("INSERT INTO quests (user_id, title, exp_reward) VALUES ($1, $2, $3)",
-        q.UserID, q.Title, q.ExpReward)
+    _, err := DB.Exec("INSERT INTO quests (title, description, completed) VALUES ($1, $2, $3)",
+        q.Title, q.Description, q.Completed)
     if err != nil {
         http.Error(w, err.Error(), http.StatusInternalServerError)
         return
