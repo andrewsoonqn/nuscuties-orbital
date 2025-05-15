@@ -5,9 +5,11 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 
     	"github.com/joho/godotenv"
     	"nuscuties-backend/db"
+	"nuscuties-backend/handlers"
 	
 )
 
@@ -16,7 +18,8 @@ func main() {
 	
 	fmt.Println("Starting backend server...")
 
-	db.Init() // connect to DB
+	db.Init() // connect to db
+	handlers.SetDB(db.DB) // share db connection with handlers
 
 	// Example: Basic HTTP server setup (you'll expand this later)
 	// We'll define handlers elsewhere later
@@ -29,14 +32,9 @@ func main() {
 	}
 
 	log.Printf("Listening on port %s\n", port)
-	// Start the server
-	import (
-    		"nuscuties-backend/handlers"
-		"nuscuties-backend/db"
-	)
-
-	db.Init()
-	handlers.SetDB(db.DB)
+	if err := http.ListenAndServe(":"+port, nil); err != nil {
+        	log.Fatal(err)
+	}
 
 	// get and post quests
 	http.HandleFunc("/quests", func(w http.ResponseWriter, r *http.Request) {
