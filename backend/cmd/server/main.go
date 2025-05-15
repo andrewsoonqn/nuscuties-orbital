@@ -5,10 +5,18 @@ import (
 	"log"
 	"net/http"
 	"os"
+
+    	"github.com/joho/godotenv"
+    	"nuscuties-backend/db"
+	
 )
 
 func main() {
+	_ = godotenv.Load() // load .env file
+	
 	fmt.Println("Starting backend server...")
+
+	db.Init() // connect to DB
 
 	// Example: Basic HTTP server setup (you'll expand this later)
 	// We'll define handlers elsewhere later
