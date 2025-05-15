@@ -81,10 +81,6 @@ The rise of TikTok, YouTube Shorts and Instagram Reels has contributed to attent
 
 ---
 
-## 📂 Folder Structure
-
-> (to be updated when project is pushed)
-
 ## 🕵️‍♀️ Acknowledgements
 - 🎨 Sprites: [The Spriters Resource](https://www.spriters-resource.com/)
 - 🔊 Sound: [Sonniss GameAudioGDC](https://sonniss.com/gameaudiogdc/)
