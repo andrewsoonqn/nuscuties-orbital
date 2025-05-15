@@ -1,17 +1,17 @@
-# NUSCuties: Solo Leveling-Inspired Productivity App
+# Solo Scheduler: Gamified Productivity App inspired by Solo Leveling
 
 ![Project Status](https://img.shields.io/badge/status-in%20progress-yellow)
 ![Built With](https://img.shields.io/badge/built%20with-Godot%20%7C%20Go%20%7C%20Firebase%20%7C%20SQL-blue)
 
 ## 🚀 Overview
 
-**NUSCuties** is a gamified productivity app that transforms mundane daily tasks into exciting quests, inspired by the hit Korean franchise _Solo Leveling_. Designed to combat digital procrastination, the app uses RPG mechanics like EXP, stats, and dungeons to help users stay focused and motivated in their real lives.
+**Solo Scheduler** is a gamified productivity app inspired by Solo Leveling that aims to transform mundane daily tasks into exciting quests. The app uses traditional RPG elements like levels, experience points (EXP), stats, skills, items and more to provide visually appealing and engaging markers of progression, thereby instilling a sense of satisfaction and accomplishment in users. This in turn motivates users to take control of their lives, boosting productivity and cutting down on digital procrastination.
 
 ---
 
 ## 🎯 Motivation
 
-The rise of TikTok, YouTube Shorts, and Instagram Reels has contributed to attention fragmentation and dopamine-driven distractions. NUSCuties offers a fun, focused alternative that rewards productivity and discourages endless scrolling.
+The rise of TikTok, YouTube Shorts and Instagram Reels has contributed to attention fragmentation and dopamine-driven distractions. Solo Scheduler offers a fun and focused alternative that rewards productivity and discourages endless scrolling.
 
 ---
 
@@ -19,23 +19,22 @@ The rise of TikTok, YouTube Shorts, and Instagram Reels has contributed to atten
 
 | Feature            | Description |
 |--------------------|-------------|
-| **Login System**   | Social login via Google/Facebook or guest mode (data saved locally). |
-| **Character Page** | RPG-style status page with avatar, gear, stats, and rank. |
+| **Login System**   | Social login via Google/Facebook or guest mode. |
+| **Character Page** | RPG-style status page with avatar, gear, stats and rank. |
 | **Daily Quests**   | To-do list system with rewards (EXP, gold) and penalties for missed tasks. |
 | **Passive Dungeon**| Lock phone for a set period to earn rewards. Early exit yields partial rewards. |
 | **Active Dungeon** | A 2D rogue-like game mode where users battle enemies with earned stats and items. |
 | **Reward System**  | Levels, ranks, items, stat points, gold, skills, and titles. |
-| **Store & Inventory** | Buy, equip, and upgrade items that affect in-game power. |
 | **Art & Sound**    | Free online assets used for polished visuals and sound design. |
 
 ---
 
 ## 🎮 Gameplay Loop
 
-1. **Create Quests** – Set daily goals via customizable to-do lists.
+1. **Create Quests** – Set daily goals via customisable to-do lists.
 2. **Enter Dungeons** – Focus using Passive Dungeons or unwind with Active Dungeons.
-3. **Earn Rewards** – Gain EXP, gold, titles, and loot for real-life productivity.
-4. **Level Up** – Allocate stat points, unlock new abilities, and rise through hunter ranks.
+3. **Earn Rewards** – Gain EXP, gold, titles and loot for real-life productivity.
+4. **Level Up** – Allocate stat points, unlock new abilities and rise through hunter ranks.
 
 ---
 
@@ -56,13 +55,13 @@ The rise of TikTok, YouTube Shorts, and Instagram Reels has contributed to atten
 
 - **Design Patterns:** Observer, Singleton
 - **Architecture:** Clean architecture with modular managers
-- **Engineering Practices:** CI/CD with GitHub Actions, Kanban via Miro
+- **Engineering Practices:** CI with GitHub Actions, Kanban via Miro
 - **SOLID Principles:** SRP, OCP, LSP, ISP, DIP applied throughout systems
-- **Performance:** Lazy loading, memoization, caching, and optimized data structures
+- **Performance:** Lazy loading, memoization, caching and optimised data structures
 
 ---
 
-## 🗓️ Development Timeline
+## 🗓️ Development Timeline 
 
 | Milestone | Key Focus Areas |
 |----------|-----------------|
@@ -77,8 +76,8 @@ The rise of TikTok, YouTube Shorts, and Instagram Reels has contributed to atten
 
 | Name                | Background |
 |---------------------|------------|
-| **Andrew Soon Qian** | CS @ NUS + Performing Arts minor, CS50P graduate, IEEE Hackathon finalist |
-| **Maverick Lim Qi Xun** | CS @ NUS + Korean Studies minor, CS50x/SQL certified, education volunteer |
+| **Andrew Soon Qian** | CS @ NUS + Performing Arts minor, IEEE Hackathon finalist |
+| **Maverick Lim Qi Xun** | CS @ NUS + Korean Studies minor, CS50X/SQL certified|
 
 ---
 
