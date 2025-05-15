@@ -10,8 +10,9 @@ import (
     "nuscuties-backend/models"
 )
 
-var DB *sql.DB
+var DB *sql.DB // global variable db that points to *sql.db
 
+// setdb accepts connection from database and assigns it to the global variable db
 func SetDB(conn *sql.DB) {
     DB = conn
 }
@@ -60,7 +61,7 @@ func CreateQuest(w http.ResponseWriter, r *http.Request) {
 
 // PUT /quests/{id}/complete
 func CompleteQuest(w http.ResponseWriter, r *http.Request) {
-    // Extract quest ID from URL path
+    // extract quest id from url
     parts := strings.Split(r.URL.Path, "/")
     if len(parts) < 3 {
         http.Error(w, "Invalid request", http.StatusBadRequest)
@@ -72,7 +73,7 @@ func CompleteQuest(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    // Mark the quest as completed
+    // mark the quest as completed
     _, err = DB.Exec("UPDATE quests SET completed=true WHERE id=$1", id)
     if err != nil {
         http.Error(w, err.Error(), http.StatusInternalServerError)
