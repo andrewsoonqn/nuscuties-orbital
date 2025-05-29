@@ -4,10 +4,13 @@ using System;
 public partial class Player : Character
 {
     private Node2D _sword;
+    private AnimationPlayer _swordAnimationPlayer;
     public override void _Ready()
     {
         base._Ready();
         _sword = this.GetNode<Node2D>("Sword");
+        _swordAnimationPlayer = _sword.GetNode<AnimationPlayer>("SwordAnimationPlayer");
+        _sword.GetNode<Sprite2D>("SlashSprite").Visible = false;
     }
 
     public override void _Process(double delta)
@@ -34,6 +37,11 @@ public partial class Player : Character
         else if (mouseDirection.X > 0 && _sword.Scale.Y < 0)
         {
             _sword.ApplyScale(new Vector2(1, -1));
+        }
+
+        if (Input.IsActionJustPressed("ui_attack") && !_swordAnimationPlayer.IsPlaying())
+        {
+            _swordAnimationPlayer.Play("attack");
         }
     }
 
