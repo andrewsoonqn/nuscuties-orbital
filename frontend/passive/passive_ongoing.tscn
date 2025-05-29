@@ -1,0 +1,89 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnbn7cbnngtli"]
+
+[ext_resource type="Script" uid="uid://dk5cvxldnpjvf" path="res://passive/PassiveOngoing.cs" id="1_xw3ot"]
+
+[node name="PassiveOngoing" type="Control" node_paths=PackedStringArray("_timeSpentLabel", "_totalTimeLabel", "_timeProgressBar", "_expAccumulatedLabel", "_quitButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xw3ot")
+_timeSpentLabel = NodePath("VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer/PanelContainer/TimeSpent")
+_totalTimeLabel = NodePath("VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer/TotalTime")
+_timeProgressBar = NodePath("VBoxContainer/TimeInfo/VBoxContainer/ProgressBar")
+_expAccumulatedLabel = NodePath("VBoxContainer/Rewards/VBoxContainer/PanelContainer/ExpInfo")
+_quitButton = NodePath("VBoxContainer/Quit/QuitButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.3
+anchor_right = 0.85
+anchor_bottom = 0.35
+
+[node name="TimeInfo" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TimeInfo"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TimeInfo/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Time left in dungeon:"
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TimeSpent" type="Label" parent="VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+text = "x"
+
+[node name="TotalTime" type="Label" parent="VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "out of 120 seconds"
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/TimeInfo/VBoxContainer"]
+layout_mode = 2
+
+[node name="Rewards" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Rewards"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer/Rewards/VBoxContainer"]
+layout_mode = 2
+text = "Rewards gained so far:"
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Rewards/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExpInfo" type="Label" parent="VBoxContainer/Rewards/VBoxContainer/PanelContainer"]
+layout_mode = 2
+text = "0 EXP"
+horizontal_alignment = 1
+
+[node name="Quit" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 10
+
+[node name="QuitButton" type="Button" parent="VBoxContainer/Quit"]
+layout_mode = 2
+text = "Quit and Get Current Rewards"

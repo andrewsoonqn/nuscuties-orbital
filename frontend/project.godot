@@ -22,6 +22,7 @@ QuestLogManager="*res://daily/tools/QuestLogManager.cs"
 StatsManager="*res://tools/StatsManager.cs"
 Paths="*res://tools/Paths.cs"
 AccountManager="*res://tools/AccountManager.cs"
+PassiveSessionInfoManager="*res://passive/tools/PassiveSessionInfoManager.cs"
 
 [display]
 
@@ -34,4 +35,5 @@ project/assembly_name="nuscuties app"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"

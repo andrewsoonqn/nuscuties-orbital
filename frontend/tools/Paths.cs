@@ -11,4 +11,7 @@ public partial class Paths : Node
     public static readonly string EditableQuestComponent = "res://daily/components/editable_quest.tscn";
     public static readonly string QuestEditor = "res://daily/quest_editor.tscn";
     public static readonly string CompletableQuestComponent = "res://daily/components/completable_quest.tscn";
+    public static readonly string PassiveOngoing = "res://passive/passive_ongoing.tscn";
+    public static readonly string PassiveEndScene = "res://passive/passive_end_scene.tscn";
+
 }
