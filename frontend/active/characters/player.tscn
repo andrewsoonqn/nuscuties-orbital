@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://d4ukkagofjxm"]
+[gd_scene load_steps=25 format=3 uid="uid://d4ukkagofjxm"]
 
 [ext_resource type="PackedScene" uid="uid://c2aoax7gfqdq6" path="res://active/characters/character.tscn" id="1_wjgc2"]
 [ext_resource type="Texture2D" uid="uid://e44ds11llc6w" path="res://assets/dungeon_art/heroes/knight/knight_idle_spritesheet.png" id="2_tlgbr"]
 [ext_resource type="Script" uid="uid://dxgw4m3bmqjax" path="res://active/characters/Player.cs" id="2_x55qg"]
 [ext_resource type="Script" uid="uid://6g8wo1eht2ay" path="res://active/characters/PlayerFSM.cs" id="3_oha7n"]
 [ext_resource type="Texture2D" uid="uid://bw21rbqmofoji" path="res://assets/dungeon_art/heroes/knight/knight_run_spritesheet.png" id="3_x55qg"]
+[ext_resource type="Texture2D" uid="uid://bmd6bnudrqldm" path="res://assets/dungeon_art/heroes/knight/weapon_sword_1.png" id="6_guxn7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tlgbr"]
 atlas = ExtResource("2_tlgbr")
@@ -103,6 +104,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_s54qp"]
+radius = 3.5
+
 [sub_resource type="Animation" id="Animation_oha7n"]
 length = 0.001
 tracks/0/type = "value"
@@ -196,18 +200,32 @@ _data = {
 }
 
 [node name="Player" instance=ExtResource("1_wjgc2")]
+position = Vector2(360, 540)
+scale = Vector2(10, 10)
 script = ExtResource("2_x55qg")
 
 [node name="FiniteStateMachine" parent="." index="0"]
 script = ExtResource("3_oha7n")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
-position = Vector2(360, 540)
-scale = Vector2(10, 8.134)
+scale = Vector2(1, 0.813)
 sprite_frames = SubResource("SpriteFrames_b0vep")
 animation = &"move"
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0.9, 1.4)
+shape = SubResource("CircleShape2D_s54qp")
 
 [node name="AnimationPlayer" parent="." index="3"]
 libraries = {
 &"": SubResource("AnimationLibrary_0qge4")
 }
+
+[node name="Sword" type="Node2D" parent="." index="4"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sword" index="0"]
+position = Vector2(-1.7, -7.5)
+rotation = -2.35619
+texture = ExtResource("6_guxn7")
+
+[node name="SwordAnimationPlayer" type="AnimationPlayer" parent="Sword" index="1"]
