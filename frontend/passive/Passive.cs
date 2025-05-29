@@ -5,13 +5,13 @@ public partial class Passive : Control
 {
     [Export]
     private Button _backToHomeButton;
-    
+
     [Export]
     private Button _addExpButton;
-    
+
     [Export]
     private Button _resetExpButton;
-    
+
     private StatsManager _statsManager;
 
     public override void _Ready()
@@ -31,7 +31,7 @@ public partial class Passive : Control
     {
         _statsManager.ResetExp();
     }
-    
+
     private void BackToHomeButtonOnPressed()
     {
         GetTree().ChangeSceneToFile(Paths.Home);

@@ -4,12 +4,12 @@ using System;
 public partial class Character : CharacterBody2D
 {
     public const float Friction = 0.15f;
-    
+
     [Export] private int _acceleration = 250;
     [Export] private float _maxSpeed = 20000;
-    
+
     protected AnimatedSprite2D _animatedSprite;
-    
+
     protected Vector2 _movDirection = Vector2.Zero;
 
     public override void _Ready()
@@ -29,7 +29,7 @@ public partial class Character : CharacterBody2D
         Velocity = _movDirection * _acceleration;
         Velocity = Velocity.LimitLength(_maxSpeed);
     }
-    
+
     public virtual void GetInput()
-    {}
+    { }
 }

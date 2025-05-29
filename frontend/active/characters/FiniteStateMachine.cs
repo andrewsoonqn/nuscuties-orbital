@@ -50,7 +50,7 @@ public partial class FiniteStateMachine : Node
                 SetState(transition);
             }
         }
-        
+
     }
 
     protected virtual void StateLogic(double delta)

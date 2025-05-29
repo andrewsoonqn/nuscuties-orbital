@@ -5,10 +5,10 @@ public partial class Active : Control
 {
     [Export]
     private Button _backToHomeButton;
-    
+
     [Export]
     private Button _startGameButton;
-    
+
     private StatsManager _statsManager;
 
     public override void _Ready()

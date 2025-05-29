@@ -1,6 +1,6 @@
 namespace nuscutiesapp.tools;
 using Godot;
-    
+
 public partial class Paths : Node
 {
     public static readonly string ActiveGame = "res://active/active_game.tscn";

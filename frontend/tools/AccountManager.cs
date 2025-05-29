@@ -2,7 +2,7 @@ using Godot;
 
 public partial class AccountManager : Node
 {
-    private string Username {get; set;}
+    private string Username { get; set; }
 
     public void SetUsername(string username)
     {

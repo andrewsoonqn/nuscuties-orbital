@@ -1,7 +1,7 @@
 using Godot;
 using System;
-using System.Text.Json;
 using System.IO;
+using System.Text.Json;
 
 public partial class StatsManager : Node
 {
@@ -19,7 +19,7 @@ public partial class StatsManager : Node
     {
         return Exp;
     }
-    
+
     public void AddExp(int amount)
     {
         if (amount > 0)
@@ -29,7 +29,7 @@ public partial class StatsManager : Node
             SaveStats();
         }
     }
-    
+
     public void DecrExp(int amount)
     {
         if (amount > 0)
@@ -44,7 +44,7 @@ public partial class StatsManager : Node
     {
         Exp = 0;
         SaveStats();
-    } 
+    }
     public class PlayerStats
     {
         public int Exp { get; set; }
