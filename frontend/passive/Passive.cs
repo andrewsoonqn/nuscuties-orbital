@@ -6,30 +6,32 @@ public partial class Passive : Control
     [Export]
     private Button _backToHomeButton;
 
-    [Export]
-    private Button _addExpButton;
+    [Export] private Label _timeInfoLabel;
+    [Export] private Slider _timeSlider;
+    [Export] private Button _startButton;
 
-    [Export]
-    private Button _resetExpButton;
-
-    private StatsManager _statsManager;
-
+    private PassiveSessionInfoManager _passiveSessionInfoManager;
     public override void _Ready()
     {
+        _timeSlider.Value = 20;
+        _timeInfoLabel.Text = $"Enter dungeon for: {_timeSlider.Value} seconds";
         _backToHomeButton.Pressed += BackToHomeButtonOnPressed;
-        _addExpButton.Pressed += AddExpButtonOnPressed;
-        _resetExpButton.Pressed += ResetExpButtonOnPressed;
-        _statsManager = GetNode<StatsManager>("/root/StatsManager");
+        _timeSlider.ValueChanged += TimeSliderOnValueChanged;
+
+        _startButton.Pressed += StartButtonOnPressed;
+
+        _passiveSessionInfoManager = this.GetNode<PassiveSessionInfoManager>("/root/PassiveSessionInfoManager");
     }
 
-    private void AddExpButtonOnPressed()
+    private void StartButtonOnPressed()
     {
-        _statsManager.AddExp(50);
+        _passiveSessionInfoManager.setTotalTime(_timeSlider.Value);
+        this.GetTree().ChangeSceneToFile(Paths.PassiveOngoing);
     }
 
-    private void ResetExpButtonOnPressed()
+    private void TimeSliderOnValueChanged(double value)
     {
-        _statsManager.ResetExp();
+        _timeInfoLabel.Text = $"Enter dungeon for: {value} seconds";
     }
 
     private void BackToHomeButtonOnPressed()
