@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d32fw17quc76o" path="res://passive/Passive.cs" id="1_hlllf"]
 
-[node name="Passive" type="Control" node_paths=PackedStringArray("_backToHomeButton", "_addExpButton", "_resetExpButton")]
+[node name="Passive" type="Control" node_paths=PackedStringArray("_backToHomeButton", "_timeInfoLabel", "_timeSlider", "_startButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,19 +11,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hlllf")
 _backToHomeButton = NodePath("MarginContainer/BackToHome")
-_addExpButton = NodePath("VBoxContainer/Add")
-_resetExpButton = NodePath("VBoxContainer/Reset")
+_timeInfoLabel = NodePath("VBoxContainer/Label")
+_timeSlider = NodePath("VBoxContainer/HSlider")
+_startButton = NodePath("VBoxContainer/MarginContainer/Button")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.2
+anchor_top = 0.335
 anchor_right = 0.5
-anchor_bottom = 0.2
-offset_left = -48.5
-offset_right = 48.5
-offset_bottom = 23.0
+anchor_bottom = 0.335
 grow_horizontal = 2
 text = "Passive Dungeons"
 
@@ -41,20 +39,31 @@ text = "Back to Home"
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.435
-anchor_top = 0.379
-anchor_right = 0.565
-anchor_bottom = 0.436
-offset_left = 0.299988
-offset_right = -0.299988
-offset_bottom = -5.40002
-grow_horizontal = 2
-grow_vertical = 2
+anchor_left = 0.2
+anchor_top = 0.395
+anchor_right = 0.8
+anchor_bottom = 0.395
 
-[node name="Add" type="Button" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Add 50 Exp"
+text = "Enter dungeon for: 20 seconds"
 
-[node name="Reset" type="Button" parent="VBoxContainer"]
+[node name="HSlider" type="HSlider" parent="VBoxContainer"]
 layout_mode = 2
-text = "Reset Exp"
+size_flags_horizontal = 3
+min_value = 10.0
+max_value = 180.0
+step = 10.0
+value = 20.0
+tick_count = 18
+ticks_on_borders = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+
+[node name="Button" type="Button" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Confirm and Start"
