@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.tools;
 
 public partial class Passive : Control
 {
@@ -21,11 +22,6 @@ public partial class Passive : Control
         _statsManager = GetNode<StatsManager>("/root/StatsManager");
     }
 
-    private void StartGameButtonOnPressed()
-    {
-        GetTree().ChangeSceneToFile("res://active/active_game.tscn");
-    }
-
     private void AddExpButtonOnPressed()
     {
         _statsManager.AddExp(50);
@@ -38,6 +34,6 @@ public partial class Passive : Control
     
     private void BackToHomeButtonOnPressed()
     {
-        GetTree().ChangeSceneToFile("res://shared/home.tscn");
+        GetTree().ChangeSceneToFile(Paths.Home);
     }
 }

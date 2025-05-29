@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +53,7 @@ public partial class QuestEditor : Control
 
     private void OnManagerQuestAdded(int id)
     {
-        EditableQuestComponent newComp = (EditableQuestComponent)ResourceLoader.Load<PackedScene>("res://daily/components/editable_quest.tscn").Instantiate<HBoxContainer>();
+        EditableQuestComponent newComp = (EditableQuestComponent)ResourceLoader.Load<PackedScene>(Paths.EditableQuestComponent).Instantiate<HBoxContainer>();
         newComp.Initialize(_questManager.Get(id));
         this._editableQuestComponents[id] = newComp;
 
@@ -102,7 +103,7 @@ public partial class QuestEditor : Control
         List<Quest> quests = new QuestLogManager().LoadQuestLog();
         foreach (Quest quest in quests)
         {
-            EditableQuestComponent newComp = (EditableQuestComponent)ResourceLoader.Load<PackedScene>("res://daily/components/editable_quest.tscn").Instantiate<HBoxContainer>();
+            EditableQuestComponent newComp = (EditableQuestComponent)ResourceLoader.Load<PackedScene>(Paths.EditableQuestComponent).Instantiate<HBoxContainer>();
             newComp.Initialize(quest);
             this._editableQuestComponents[quest.Id] = newComp;
             this._questList.AddChild(newComp);

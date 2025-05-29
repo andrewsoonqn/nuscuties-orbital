@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ public partial class DailyQuestUi : Control
     [Export]
     private Button _backToHomeButton;
 
-    private PackedScene _questEditor = ResourceLoader.Load<PackedScene>("res://daily/quest_editor.tscn");
+    private PackedScene _questEditor = ResourceLoader.Load<PackedScene>(Paths.QuestEditor);
 
     private Godot.Collections.Dictionary<int, CompletableQuestComponent> _completableQuestComponents = new Godot.Collections.Dictionary<int, CompletableQuestComponent>();
 
@@ -39,7 +40,7 @@ public partial class DailyQuestUi : Control
 
     private void OnManagerQuestAdded(int id)
     {
-        CompletableQuestComponent newComp = (CompletableQuestComponent)ResourceLoader.Load<PackedScene>("res://daily/components/completable_quest.tscn").Instantiate<HBoxContainer>();
+        CompletableQuestComponent newComp = (CompletableQuestComponent)ResourceLoader.Load<PackedScene>(Paths.CompletableQuestComponent).Instantiate<HBoxContainer>();
         newComp.Initialize(_questManager.Get(id));
         this._completableQuestComponents[id] = newComp;
 
@@ -66,7 +67,7 @@ public partial class DailyQuestUi : Control
     private void OnBackToHomeButtonPressed()
     {
         DisconnectSignals();
-        GetTree().ChangeSceneToFile("res://shared/home.tscn");
+        GetTree().ChangeSceneToFile(Paths.Home);
     }
 
     private void ConnectSignals()
@@ -89,7 +90,7 @@ public partial class DailyQuestUi : Control
         foreach (Quest quest in quests)
         {
             CompletableQuestComponent newComp = (CompletableQuestComponent)ResourceLoader
-                .Load<PackedScene>("res://daily/components/completable_quest.tscn").Instantiate<HBoxContainer>();
+                .Load<PackedScene>(Paths.CompletableQuestComponent).Instantiate<HBoxContainer>();
             newComp.Initialize(quest);
             this._completableQuestComponents[quest.Id] = newComp;
             this._questList.AddChild(newComp);

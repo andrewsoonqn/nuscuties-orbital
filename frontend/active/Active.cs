@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.tools;
 
 public partial class Active : Control
 {
@@ -19,7 +20,7 @@ public partial class Active : Control
 
     private void StartGameButtonOnPressed()
     {
-        GetTree().ChangeSceneToFile("res://active/active_game.tscn");
+        GetTree().ChangeSceneToFile(Paths.ActiveGame);
     }
 
     private void AddExpButtonOnPressed()
@@ -29,6 +30,6 @@ public partial class Active : Control
 
     private void BackToHomeButtonOnPressed()
     {
-        GetTree().ChangeSceneToFile("res://shared/home.tscn");
+        GetTree().ChangeSceneToFile(Paths.Home);
     }
 }
