@@ -8,13 +8,13 @@ public partial class Character : CharacterBody2D
     [Export] private int _acceleration = 250;
     [Export] private float _maxSpeed = 20000;
 
-    protected AnimatedSprite2D _animatedSprite;
+    protected AnimatedSprite2D AnimatedSprite;
 
-    protected Vector2 _movDirection = Vector2.Zero;
+    protected Vector2 MovDirection = Vector2.Zero;
 
     public override void _Ready()
     {
-        this._animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        this.AnimatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -25,8 +25,8 @@ public partial class Character : CharacterBody2D
 
     public void Move()
     {
-        _movDirection = _movDirection.Normalized();
-        Velocity = _movDirection * _acceleration;
+        MovDirection = MovDirection.Normalized();
+        Velocity = MovDirection * _acceleration;
         Velocity = Velocity.LimitLength(_maxSpeed);
     }
 
