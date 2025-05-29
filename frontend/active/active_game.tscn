@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://chi5q1ptodsaf"]
 
 [ext_resource type="Texture2D" uid="uid://3jb08ef7rxbq" path="res://assets/dungeon_art/full tilemap.png" id="1_w8m30"]
-[ext_resource type="PackedScene" uid="uid://ddl7kcco0nnpt" path="res://active/characters/player.tscn" id="2_kudwv"]
+[ext_resource type="PackedScene" uid="uid://d4ukkagofjxm" path="res://active/characters/player.tscn" id="2_kudwv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kudwv"]
 texture = ExtResource("1_w8m30")

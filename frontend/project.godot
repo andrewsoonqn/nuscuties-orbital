@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="nuscuties app"
-run/main_scene="uid://d10077bwug3rs"
+run/main_scene="uid://cyd6qmgulbmvb"
 config/features=PackedStringArray("4.4", "C#", "Mobile")
 config/icon="uid://cujamtcjya83n"
 
@@ -21,6 +21,7 @@ QuestManager="*res://daily/tools/QuestManager.cs"
 QuestLogManager="*res://daily/tools/QuestLogManager.cs"
 StatsManager="*res://tools/StatsManager.cs"
 Paths="*res://tools/Paths.cs"
+AccountManager="*res://tools/AccountManager.cs"
 
 [display]
 
