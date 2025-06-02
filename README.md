@@ -119,3 +119,31 @@ The rise of TikTok, YouTube Shorts and Instagram Reels has contributed to attent
 
 6. **Run the project**
    - Press the Play button in Godot, or use `dotnet build` and run from the Godot editor.
+  
+---
+
+## 🙌 Using the App
+The app features three main core pages:
+
+https://github.com/user-attachments/assets/bddb389f-66b1-4d2c-b84e-c1fc9c19c240
+
+1. **Daily Quests**
+- Users can add, delete, edit, and mark quests as complete or incomplete.
+- Completing a quest grants 100 EXP.
+- All changes to quests and EXP are instantly reflected across all pages.
+- Quest data and EXP are saved and persist across page changes and new sessions.
+
+https://github.com/user-attachments/assets/2dd8a8db-a8c9-498e-80e4-aa2958843090
+
+2. **Passive Dungeons**
+- Users select a duration to enter the dungeon. When the chosen time elapses or the user quits, they receive EXP based on the time spent.
+- For testing, dungeon time is measured in seconds (not minutes).
+- 100 EXP is awarded for every 2 seconds spent in the dungeon.
+
+https://github.com/user-attachments/assets/d5a8ead5-15c9-482f-874e-c25704270b4f
+
+3. **Active Dungeons**
+- Users control their character with WASD keys to move and left-click to attack.
+- The current control scheme is for testing. In the final mobile version, attacks will be automated by the character’s AI, and movement will be controlled via an on-screen joystick.
+
+https://github.com/user-attachments/assets/ca4ddb3e-d05f-4ddb-9d30-e19645bbf906
