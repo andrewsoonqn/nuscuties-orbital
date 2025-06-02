@@ -12,7 +12,6 @@ public partial class StatsManager : Node
     public override void _Ready()
     {
         LoadStats();
-        GD.Print($"StatsManager ready. Loaded EXP: {Exp}");
     }
 
     public int GetExp()
@@ -25,7 +24,6 @@ public partial class StatsManager : Node
         if (amount > 0)
         {
             Exp += amount;
-            GD.Print($"Gained {amount} EXP. Current EXP: {Exp}");
             SaveStats();
         }
     }
@@ -35,7 +33,6 @@ public partial class StatsManager : Node
         if (amount > 0)
         {
             Exp -= amount;
-            GD.Print($"Decreased {amount} EXP. Current EXP: {Exp}");
             SaveStats();
         }
     }
@@ -66,7 +63,6 @@ public partial class StatsManager : Node
             }
 
             File.WriteAllText(SaveFilePath, json_string);
-            GD.Print($"EXP saved to {SaveFilePath}");
         }
         catch (Exception e)
         {
@@ -84,7 +80,6 @@ public partial class StatsManager : Node
             if (loadedData != null)
             {
                 Exp = loadedData.Exp;
-                GD.Print($"EXP loaded from {SaveFilePath}");
             }
             else
             {

@@ -13,7 +13,6 @@ public partial class PlayerFSM : FiniteStateMachine
     {
         base._Ready();
         SetState(_states["idle"]);
-        GD.Print($"PlayerFSM state: {_internalStateId}");
     }
 
     protected override void StateLogic(double delta)
