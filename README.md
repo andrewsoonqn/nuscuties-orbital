@@ -146,4 +146,4 @@ https://github.com/user-attachments/assets/d5a8ead5-15c9-482f-874e-c25704270b4f
 - Users control their character with WASD keys to move and left-click to attack.
 - The current control scheme is for testing. In the final mobile version, attacks will be automated by the character’s AI, and movement will be controlled via an on-screen joystick.
 
-https://github.com/user-attachments/assets/ca4ddb3e-d05f-4ddb-9d30-e19645bbf906
+https://github.com/user-attachments/assets/f9e55c82-22ae-45a2-b546-cfb5343c178a
