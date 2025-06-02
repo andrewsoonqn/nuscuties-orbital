@@ -24,11 +24,10 @@ public partial class QuestLogManager : Node
         if (file != null)
         {
             file.StoreString(jsonString);
-            GD.Print("Quest log saved.");
         }
         else
         {
-            GD.Print("Error saving quest log. File is null.");
+            GD.PrintErr("Error saving quest log. File is null.");
         }
     }
 
@@ -45,22 +44,21 @@ public partial class QuestLogManager : Node
                 {
                     List<Quest> loadedLog = JsonSerializer.Deserialize<List<Quest>>(jsonString);
                     quests = loadedLog ?? new List<Quest>();
-                    GD.Print($"Quest log loaded with {quests.Count} quests.");
                 }
                 catch (System.Exception e)
                 {
-                    GD.Print($"Error loading quest log: {e.Message}. Starting new log.");
+                    GD.PrintErr($"Error loading quest log: {e.Message}. Starting new log.");
                     quests = new List<Quest>();
                 }
             }
             else
             {
-                GD.Print("Error opening quest log file. File is null.");
+                GD.PrintErr("Error opening quest log file. File is null.");
             }
         }
         else
         {
-            GD.Print("No quest log file found. Starting new log.");
+            GD.PrintErr("No quest log file found. Starting new log.");
         }
 
         return quests;

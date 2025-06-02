@@ -48,7 +48,6 @@ public partial class QuestManager : Node
     {
         Quest q = _quests[id];
         q.Completed = !q.Completed;
-        GD.Print($"After toggling: {q.Completed}");
         EmitSignal("ManagerQuestEdited", id);
     }
 

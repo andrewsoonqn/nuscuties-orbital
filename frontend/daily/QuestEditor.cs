@@ -62,7 +62,6 @@ public partial class QuestEditor : Control
 
     private void OnManagerQuestEdited(int id)
     {
-        GD.Print("OnManagerQuestEdited");
         EditableQuestComponent edited = this._editableQuestComponents.GetValueOrDefault(id);
         edited.Update(
             _questManager.Get(id).Title,
