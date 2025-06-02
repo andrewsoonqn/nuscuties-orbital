@@ -85,3 +85,37 @@ The rise of TikTok, YouTube Shorts and Instagram Reels has contributed to attent
 - 🔊 Sound: [Sonniss GameAudioGDC](https://sonniss.com/gameaudiogdc/)
 - 📚 Inspired by: [Solo Leveling Wiki](https://en.wikipedia.org/wiki/Solo_Leveling)
 - 👀 Tilemap and Player character: [Simple Dungeon Crawler 16x16 Pixel Art Asset Pack](https://o-lobster.itch.io/simple-dungeon-crawler-16x16-pixel-pack?download). Done by [0_LOBSTER](https://itch.io/profile/o-lobster)
+
+---
+
+# Trying Out the Project
+## 🛠️ Requirements (Frontend)
+
+- **Godot Engine 4.4.1 or later** (with .NET support)
+- **.NET SDK 8.0 or later**
+- A compatible OS (Windows, macOS, or Linux)
+
+## 🚦 Setup Instructions (Frontend)
+
+1. **Install Godot 4.4.1 (Mono/.NET version)**
+   - Download from: https://godotengine.org/download
+
+2. **Install .NET 8.0 SDK**
+   - Download from: https://dotnet.microsoft.com/en-us/download/dotnet/8.0
+
+3. **Clone the repository**
+   ```sh
+   git clone https://github.com/andrewsoonqn/nuscuties-orbital
+   cd nuscuties-orbital/frontend
+   ```
+
+4. **Restore .NET dependencies**
+   ```sh
+   dotnet restore
+   ```
+
+5. **Open the project in Godot**
+   - Launch Godot, select `frontend/project.godot` to open the project.
+
+6. **Run the project**
+   - Press the Play button in Godot, or use `dotnet build` and run from the Godot editor.
