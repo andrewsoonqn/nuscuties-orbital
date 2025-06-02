@@ -47,7 +47,6 @@ The rise of TikTok, YouTube Shorts and Instagram Reels has contributed to attent
 | Auth Service  | [Firebase Authentication](https://firebase.google.com/) |
 | Database      | SQL (PostgreSQL / MySQL)      |
 | Version Control | Git + GitHub + GitHub Actions |
-| CI Tools      | StyleCop, golangci-lint       |
 
 ---
 
