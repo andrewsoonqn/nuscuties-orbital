@@ -23,3 +23,6 @@ ehthumbs_vista.db
 # *.log
 # logs/
 *.user
+/~/.backup
+/backend/~/.backup
+/backend/internal/handlers/~/.backup
