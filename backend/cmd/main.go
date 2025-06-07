@@ -12,7 +12,7 @@ func main() {
 	log.SetReportCaller(true)
 	fmt.Println("Starting backend...")
 
-	var r *chi.Mux = chi.NewRouter()
+	var r = chi.NewRouter()
 	handlers.Handler(r)
 
 	err := http.ListenAndServe("localhost:8080", r)

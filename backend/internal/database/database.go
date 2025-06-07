@@ -25,7 +25,7 @@ type ExpDetails struct {
 func NewDatabase() (*Database, error) {
 	var database Database = &mockDB{}
 
-	var err error = database.SetupDatabase()
+	var err = database.SetupDatabase()
 	if err != nil {
 		log.Error(err)
 		return nil, err

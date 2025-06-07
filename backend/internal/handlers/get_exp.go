@@ -30,8 +30,7 @@ func GetExp(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var expDetails *database.ExpDetails
-	expDetails = (*db).GetUserExp(username)
+	var expDetails = (*db).GetUserExp(username)
 	if expDetails == nil {
 		log.Error("expDetails empty")
 		api.InternalErrorHandler(w)
