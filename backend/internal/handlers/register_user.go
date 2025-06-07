@@ -19,7 +19,7 @@ type RegisterResponse struct {
 func RegisterUser(w http.ResponseWriter, r *http.Request) {
 	var params = RegisterRequestParams{}
 
-	var decoder *schema.Decoder = schema.NewDecoder()
+	var decoder = schema.NewDecoder()
 	err := decoder.Decode(&params, r.URL.Query())
 	if err != nil {
 		log.Error(err)

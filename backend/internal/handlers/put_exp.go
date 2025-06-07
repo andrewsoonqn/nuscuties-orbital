@@ -27,7 +27,7 @@ func PutExp(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var decoder *schema.Decoder = schema.NewDecoder()
+	var decoder = schema.NewDecoder()
 	err := decoder.Decode(&params, r.URL.Query())
 	if err != nil {
 		log.Error(err)
