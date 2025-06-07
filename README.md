@@ -89,36 +89,11 @@ The rise of TikTok, YouTube Shorts and Instagram Reels has contributed to attent
 ---
 
 # Trying Out the Project
-## 🛠️ Requirements (Frontend)
+Download the latest release [here](https://github.com/andrewsoonqn/nuscuties-orbital/releases/).
+- For **Windows** users, download the `.exe` file.
+- For **MacOS** users, download the `.dmg` file.  
 
-- **Godot Engine 4.4.1 or later** (with .NET support)
-- **.NET SDK 8.0 or later**
-- A compatible OS (Windows, macOS, or Linux)
-
-## 🚦 Setup Instructions (Frontend)
-
-1. **Install Godot 4.4.1 (Mono/.NET version)**
-   - Download from: https://godotengine.org/download
-
-2. **Install .NET 8.0 SDK**
-   - Download from: https://dotnet.microsoft.com/en-us/download/dotnet/8.0
-
-3. **Clone the repository**
-   ```sh
-   git clone https://github.com/andrewsoonqn/nuscuties-orbital
-   cd nuscuties-orbital/frontend
-   ```
-
-4. **Restore .NET dependencies**
-   ```sh
-   dotnet restore
-   ```
-
-5. **Open the project in Godot**
-   - Launch Godot, select `frontend/project.godot` to open the project.
-
-6. **Run the project**
-   - Press the Play button in Godot, or use `dotnet build` and run from the Godot editor.
+Run the downloaded `.dmg` or `.exe` file for the app.
   
 ---
 
