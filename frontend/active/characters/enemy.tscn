@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0i3bmu5wfdfq"]
+[gd_scene load_steps=11 format=3 uid="uid://c0i3bmu5wfdfq"]
 
 [ext_resource type="PackedScene" uid="uid://c2aoax7gfqdq6" path="res://active/characters/character.tscn" id="1_8ah4a"]
 [ext_resource type="Script" uid="uid://dpd1rukgyw4s5" path="res://active/characters/Enemy.cs" id="2_htnh5"]
-[ext_resource type="Texture2D" uid="uid://cn5d3wm272hpn" path="res://assets/dungeon_art/enemies/slime/slime_run_spritesheeet.png" id="3_1prlo"]
+[ext_resource type="Texture2D" uid="uid://bx5xnbjp5m747" path="res://assets/dungeon_art/enemies/flying creature/fly_anim_spritesheet.png" id="3_1prlo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ywsfq"]
 atlas = ExtResource("3_1prlo")
@@ -20,14 +20,6 @@ region = Rect2(32, 0, 16, 16)
 atlas = ExtResource("3_1prlo")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mff4r"]
-atlas = ExtResource("3_1prlo")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vn3eo"]
-atlas = ExtResource("3_1prlo")
-region = Rect2(80, 0, 16, 16)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_krth2"]
 animations = [{
 "frames": [{
@@ -42,15 +34,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_25j6a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mff4r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vn3eo")
 }],
 "loop": true,
-"name": &"run",
+"name": &"fly",
 "speed": 5.0
 }]
 
@@ -64,12 +50,12 @@ _data = {
 
 [node name="Enemy" instance=ExtResource("1_8ah4a")]
 script = ExtResource("2_htnh5")
+Speed = 13
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_krth2")
-animation = &"run"
-speed_scale = 200.0
+animation = &"fly"
 
 [node name="AnimationPlayer" parent="." index="3"]
 libraries = {
