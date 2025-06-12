@@ -9,7 +9,7 @@ public partial class Enemy : Character
 {
     private NavigationAgent2D _navigationAgent;
     private Node2D _target;
-    private const int velocity = 100;
+    private const int Speed = 100;
     public override void _Ready()
     {
         this.CallDeferred(nameof(SeekerSetup));
@@ -29,7 +29,7 @@ public partial class Enemy : Character
 
         Vector2 currentAgentPosition = GlobalPosition;
         Vector2 nextPathPosition = _navigationAgent.GetNextPathPosition();
-        Velocity = currentAgentPosition.DirectionTo(nextPathPosition);
+        Velocity = currentAgentPosition.DirectionTo(nextPathPosition) * Speed;
         MoveAndSlide();
     }
 
