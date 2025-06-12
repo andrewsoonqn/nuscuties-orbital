@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://chi5q1ptodsaf"]
+[gd_scene load_steps=8 format=3 uid="uid://chi5q1ptodsaf"]
 
 [ext_resource type="Texture2D" uid="uid://3jb08ef7rxbq" path="res://assets/dungeon_art/full tilemap.png" id="1_w8m30"]
 [ext_resource type="PackedScene" uid="uid://d4ukkagofjxm" path="res://active/characters/player.tscn" id="2_kudwv"]
 [ext_resource type="PackedScene" uid="uid://c0i3bmu5wfdfq" path="res://active/characters/enemy.tscn" id="3_ir5f8"]
+[ext_resource type="Script" uid="uid://lawrf0526g02" path="res://active/FollowPlayerCamera.cs" id="4_mp5i6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kudwv"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -75,7 +76,7 @@ sources/0 = SubResource("TileSetAtlasSource_kudwv")
 [node name="ActiveGame" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
-scale = Vector2(5, 5)
+scale = Vector2(0.5, 0.5)
 tile_set = SubResource("TileSet_ir5f8")
 rendering_quadrant_size = 32
 format = 2
@@ -84,3 +85,8 @@ layer_0/tile_data = PackedInt32Array(131074, 196608, 1, 0, 196608, 1, 65536, 196
 [node name="Player" parent="." instance=ExtResource("2_kudwv")]
 
 [node name="Enemy" parent="." instance=ExtResource("3_ir5f8")]
+
+[node name="FollowPlayerCamera" type="Camera2D" parent="." node_paths=PackedStringArray("Target")]
+zoom = Vector2(10, 10)
+script = ExtResource("4_mp5i6")
+Target = NodePath("../Player")
