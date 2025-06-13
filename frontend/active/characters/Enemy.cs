@@ -24,7 +24,7 @@ public partial class Enemy : Character
         {
             _navigationAgent.TargetPosition = _target.GlobalPosition;
         }
-        
+
         if (_navigationAgent.IsNavigationFinished()) return;
 
         Vector2 currentAgentPosition = GlobalPosition;
