@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/andrewsoonqn/nuscuties-orbital/backend/internal/database"
+	"github.com/andrewsoonqn/nuscuties-orbital/backend/server/database"
 	"github.com/avukadin/goapi/api"
 	"github.com/go-chi/chi"
 	log "github.com/sirupsen/logrus"
