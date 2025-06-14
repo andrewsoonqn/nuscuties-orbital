@@ -53,5 +53,5 @@ jobs:
       working-directory: ./backend
 
     - name: Build Go application
-      run: go build -v ./cmd/server/main.go # Check that code can build/compile
+      run: go build -v ./cmd/main.go # Check that code can build/compile
       working-directory: ./backend
