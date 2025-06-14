@@ -2,10 +2,14 @@ name: Godot Tests via GDUnit
 
 on:
   push:
+    branches:
+      - '**'
     paths:
       - '/frontend/**'
       - '.github/workflows/godot-tests.yml'
   pull_request:
+    branches:
+      - '**'
     paths:
       - '/frontend/**'
 
