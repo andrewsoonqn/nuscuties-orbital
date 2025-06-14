@@ -19,6 +19,7 @@ jobs:
         with:
           godot-version: '4.2.2'
           godot-net: true
+          project_dir: './frontend/'
           paths: 'res://tests'
           timeout: 10
           version: 'latest'
