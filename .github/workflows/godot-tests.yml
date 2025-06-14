@@ -3,11 +3,11 @@ name: Godot Tests via GDUnit
 on:
   push:
     paths:
-      - 'nuscuties-orbital/frontend/**'
+      - '/frontend/**'
       - '.github/workflows/godot-tests.yml'
   pull_request:
     paths:
-      - 'nuscuties-orbital/frontend/**'
+      - '/frontend/**'
 
 jobs:
   test:
