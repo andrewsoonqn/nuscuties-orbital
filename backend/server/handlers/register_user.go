@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
-	"github.com/andrewsoonqn/nuscuties-orbital/backend/internal/database"
+	"github.com/andrewsoonqn/nuscuties-orbital/backend/server/database"
 	"github.com/avukadin/goapi/api"
 	"github.com/gorilla/schema"
 	log "github.com/sirupsen/logrus"

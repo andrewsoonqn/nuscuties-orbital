@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/andrewsoonqn/nuscuties-orbital/backend/internal/handlers"
+	"github.com/andrewsoonqn/nuscuties-orbital/backend/server/handlers"
 	"github.com/go-chi/chi"
 	log "github.com/sirupsen/logrus"
 	"net/http"
