@@ -21,7 +21,6 @@ public partial class PlayerFSM : FiniteStateMachine
         {
             _parentCharacter.GetInput();
             _parentCharacter.Move();
-            GD.Print(_parentCharacter.Velocity);
         }
     }
 

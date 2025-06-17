@@ -20,6 +20,7 @@ public partial class Active : Control
 
     private void StartGameButtonOnPressed()
     {
+        GD.Print("VARstatrtttt");
         GetTree().ChangeSceneToFile(Paths.ActiveGame);
     }
 
