@@ -12,6 +12,7 @@ public partial class EnemyFSM : FiniteStateMachine
     public override void _Ready()
     {
         base._Ready();
+        _animationPlayer.Play("fly");
         SetState(_states["idle"]);
     }
 
@@ -48,11 +49,9 @@ public partial class EnemyFSM : FiniteStateMachine
     {
         if (newStateId == _states["idle"])
         {
-            _animationPlayer.Play("idle");
         }
         else if (newStateId == _states["move"])
         {
-            _animationPlayer.Play("move");
         }
     }
 }
