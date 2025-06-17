@@ -33,6 +33,14 @@ window/size/viewport_height=1080
 
 project/assembly_name="nuscuties app"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
+
+[gdunit4]
+
+settings/test/test_discovery=true
+
 [input]
 
 ui_attack={
