@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cal5ppvm3euy2" path="res://active/ActiveGame.cs" id="1_mp5i6"]
 [ext_resource type="Texture2D" uid="uid://3jb08ef7rxbq" path="res://assets/dungeon_art/full tilemap.png" id="1_w8m30"]
 [ext_resource type="PackedScene" uid="uid://d4ukkagofjxm" path="res://active/characters/player.tscn" id="2_kudwv"]
-[ext_resource type="PackedScene" uid="uid://c0i3bmu5wfdfq" path="res://active/characters/enemy.tscn" id="3_ir5f8"]
+[ext_resource type="PackedScene" uid="uid://dmweiqk1jxob0" path="res://active/characters/enemy.tscn" id="3_ir5f8"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kudwv"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -86,3 +86,4 @@ layer_0/tile_data = PackedInt32Array(131074, 196608, 1, 0, 196608, 1, 65536, 196
 [node name="Player" parent="." instance=ExtResource("2_kudwv")]
 
 [node name="Enemy" parent="." instance=ExtResource("3_ir5f8")]
+_acceleration = 0.25

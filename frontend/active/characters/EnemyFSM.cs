@@ -1,9 +1,9 @@
 using Godot;
 using System.Diagnostics;
 
-public partial class PlayerFSM : FiniteStateMachine
+public partial class EnemyFSM : FiniteStateMachine
 {
-    public PlayerFSM()
+    public EnemyFSM()
     {
         AddState("idle");
         AddState("move");
@@ -12,6 +12,7 @@ public partial class PlayerFSM : FiniteStateMachine
     public override void _Ready()
     {
         base._Ready();
+        _animationPlayer.Play("fly");
         SetState(_states["idle"]);
     }
 
@@ -21,7 +22,7 @@ public partial class PlayerFSM : FiniteStateMachine
         {
             _parentCharacter.GetInput();
             _parentCharacter.Move();
-            // GD.Print(_parentCharacter.Velocity);
+            GD.Print("velocity", _parentCharacter.Velocity);
         }
     }
 
@@ -48,11 +49,9 @@ public partial class PlayerFSM : FiniteStateMachine
     {
         if (newStateId == _states["idle"])
         {
-            _animationPlayer.Play("idle");
         }
         else if (newStateId == _states["move"])
         {
-            _animationPlayer.Play("move");
         }
     }
 }
