@@ -49,11 +49,11 @@ _data = {
 }
 
 [node name="Enemy" instance=ExtResource("1_8ah4a")]
+position = Vector2(360, 540)
 script = ExtResource("2_htnh5")
 Speed = 13
 
 [node name="AnimatedSprite2D" parent="." index="1"]
-scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_krth2")
 animation = &"fly"
 

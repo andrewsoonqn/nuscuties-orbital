@@ -9,7 +9,7 @@ public partial class Enemy : Character
 {
     private NavigationAgent2D _navigationAgent;
     private Node2D _target;
-    private const int Speed = 100;
+    [Export] private int Speed = 10;
     public override void _Ready()
     {
         this.CallDeferred(nameof(SeekerSetup));

@@ -5,8 +5,8 @@ public partial class Character : CharacterBody2D
 {
     public const float Friction = 0.15f;
 
-    [Export] private int _acceleration = 250;
-    [Export] private float _maxSpeed = 20000;
+    [Export] private int _acceleration = 50;
+    [Export] private float _maxSpeed = 250;
 
     protected AnimatedSprite2D AnimatedSprite;
 
