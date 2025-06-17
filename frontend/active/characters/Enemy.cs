@@ -31,7 +31,7 @@ public partial class Enemy : Character
         MovDirection = currentAgentPosition.DirectionTo(nextPathPosition);
         // Velocity = currentAgentPosition.DirectionTo(nextPathPosition) * Speed;
         // MoveAndSlide();
-        
+
     }
 
     public async void SeekerSetup()
