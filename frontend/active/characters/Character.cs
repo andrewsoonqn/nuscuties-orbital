@@ -26,7 +26,7 @@ public partial class Character : CharacterBody2D
     public void Move()
     {
         MovDirection = MovDirection.Normalized();
-        GD.Print(MovDirection*_maxSpeed);
+        GD.Print(MovDirection * _maxSpeed);
         Velocity = Velocity.Lerp(MovDirection * _maxSpeed, _acceleration);
         // Velocity += MovDirection * _acceleration;
         Velocity = Velocity.LimitLength(_maxSpeed);
