@@ -19,14 +19,17 @@ public partial class Character : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
     {
+        GD.Print(Name, "physics");
         MoveAndSlide();
+        GD.Print(Name, Velocity, "before");
         Velocity = Velocity.Lerp(Vector2.Zero, Friction);
+        GD.Print(Name, Velocity, "after");
     }
 
     public void Move()
     {
+        GD.Print(this.Name, "move", MovDirection, Velocity);
         MovDirection = MovDirection.Normalized();
-        GD.Print(MovDirection * _maxSpeed);
         Velocity = Velocity.Lerp(MovDirection * _maxSpeed, _acceleration);
         // Velocity += MovDirection * _acceleration;
         Velocity = Velocity.LimitLength(_maxSpeed);

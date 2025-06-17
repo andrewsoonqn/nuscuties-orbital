@@ -42,6 +42,7 @@ public partial class FiniteStateMachine : Node
     {
         if (_internalStateId != -1)
         {
+            GD.Print(_parentCharacter, _internalStateId);
             StateLogic(delta);
 
             int transition = GetTransition();

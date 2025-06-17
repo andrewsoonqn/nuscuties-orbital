@@ -1,9 +1,9 @@
 using Godot;
 using System.Diagnostics;
 
-public partial class PlayerFSM : FiniteStateMachine
+public partial class EnemyFSM : FiniteStateMachine
 {
-    public PlayerFSM()
+    public EnemyFSM()
     {
         AddState("idle");
         AddState("move");
@@ -21,7 +21,7 @@ public partial class PlayerFSM : FiniteStateMachine
         {
             _parentCharacter.GetInput();
             _parentCharacter.Move();
-            // GD.Print(_parentCharacter.Velocity);
+            GD.Print("velocity", _parentCharacter.Velocity);
         }
     }
 

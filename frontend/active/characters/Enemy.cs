@@ -9,7 +9,6 @@ public partial class Enemy : Character
 {
     private NavigationAgent2D _navigationAgent;
     private Node2D _target;
-    [Export] private int Speed = 10;
     public override void _Ready()
     {
         this.CallDeferred(nameof(SeekerSetup));
@@ -18,19 +17,21 @@ public partial class Enemy : Character
         base._Ready();
     }
 
-    public override void _PhysicsProcess(double delta)
+    public override void GetInput()
     {
+        MovDirection = Vector2.Zero;
         if (_target != null)
         {
             _navigationAgent.TargetPosition = _target.GlobalPosition;
         }
-
         if (_navigationAgent.IsNavigationFinished()) return;
 
         Vector2 currentAgentPosition = GlobalPosition;
         Vector2 nextPathPosition = _navigationAgent.GetNextPathPosition();
-        Velocity = currentAgentPosition.DirectionTo(nextPathPosition) * Speed;
-        MoveAndSlide();
+        MovDirection = currentAgentPosition.DirectionTo(nextPathPosition);
+        // Velocity = currentAgentPosition.DirectionTo(nextPathPosition) * Speed;
+        // MoveAndSlide();
+        
     }
 
     public async void SeekerSetup()
