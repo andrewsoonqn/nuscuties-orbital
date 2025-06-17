@@ -52,15 +52,15 @@ public partial class Player : Character
         {
             MovDirection += Vector2.Up;
         }
-        else if (Input.IsActionPressed("ui_down") || Input.IsKeyPressed(Key.S))
+        if (Input.IsActionPressed("ui_down") || Input.IsKeyPressed(Key.S))
         {
             MovDirection += Vector2.Down;
         }
-        else if (Input.IsActionPressed("ui_left") || Input.IsKeyPressed(Key.A))
+        if (Input.IsActionPressed("ui_left") || Input.IsKeyPressed(Key.A))
         {
             MovDirection += Vector2.Left;
         }
-        else if (Input.IsActionPressed("ui_right") || Input.IsKeyPressed(Key.D))
+        if (Input.IsActionPressed("ui_right") || Input.IsKeyPressed(Key.D))
         {
             MovDirection += Vector2.Right;
         }

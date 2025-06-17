@@ -5,8 +5,8 @@ public partial class Character : CharacterBody2D
 {
     public const float Friction = 0.15f;
 
-    [Export] private int _acceleration = 50;
-    [Export] private float _maxSpeed = 250;
+    [Export] private float _acceleration = 0.30f;
+    [Export] private float _maxSpeed = 50;
 
     protected AnimatedSprite2D AnimatedSprite;
 
@@ -26,7 +26,9 @@ public partial class Character : CharacterBody2D
     public void Move()
     {
         MovDirection = MovDirection.Normalized();
-        Velocity = MovDirection * _acceleration;
+        GD.Print(MovDirection * _maxSpeed);
+        Velocity = Velocity.Lerp(MovDirection * _maxSpeed, _acceleration);
+        // Velocity += MovDirection * _acceleration;
         Velocity = Velocity.LimitLength(_maxSpeed);
     }
 
