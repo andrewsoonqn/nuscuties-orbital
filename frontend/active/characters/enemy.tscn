@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0i3bmu5wfdfq"]
+[gd_scene load_steps=13 format=3 uid="uid://dmweiqk1jxob0"]
 
 [ext_resource type="PackedScene" uid="uid://c2aoax7gfqdq6" path="res://active/characters/character.tscn" id="1_8ah4a"]
 [ext_resource type="Script" uid="uid://dpd1rukgyw4s5" path="res://active/characters/Enemy.cs" id="2_htnh5"]
 [ext_resource type="Texture2D" uid="uid://bx5xnbjp5m747" path="res://assets/dungeon_art/enemies/flying creature/fly_anim_spritesheet.png" id="3_1prlo"]
+[ext_resource type="Script" uid="uid://c730gg8epim51" path="res://active/characters/EnemyFSM.cs" id="3_ywsfq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ywsfq"]
 atlas = ExtResource("3_1prlo")
@@ -40,17 +41,53 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_wjqhy"]
-resource_name = "run"
+[sub_resource type="Animation" id="Animation_ywsfq"]
+resource_name = "fly"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_vqgop"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nrmfh"]
 _data = {
-&"run": SubResource("Animation_wjqhy")
+&"RESET": SubResource("Animation_vqgop"),
+&"fly": SubResource("Animation_ywsfq")
 }
 
 [node name="Enemy" instance=ExtResource("1_8ah4a")]
 position = Vector2(360, 540)
 script = ExtResource("2_htnh5")
+
+_acceleration = 0.15
+_maxSpeed = 25.0
+
+[node name="FiniteStateMachine" parent="." index="0"]
+script = ExtResource("3_ywsfq")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_krth2")
@@ -62,3 +99,4 @@ libraries = {
 }
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="4"]
+debug_enabled = true
