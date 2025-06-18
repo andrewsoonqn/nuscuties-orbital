@@ -82,6 +82,7 @@ _data = {
 [node name="Enemy" instance=ExtResource("1_8ah4a")]
 position = Vector2(360, 540)
 script = ExtResource("2_htnh5")
+
 _acceleration = 0.15
 _maxSpeed = 25.0
 
