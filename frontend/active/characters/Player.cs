@@ -1,4 +1,6 @@
 using Godot;
+using nuscutiesapp.active.characters.MovementStrategies;
+using nuscutiesapp.active.characters.StateLogic;
 using System;
 
 public partial class Player : Character
@@ -11,6 +13,10 @@ public partial class Player : Character
         _sword = this.GetNode<Node2D>("Sword");
         _swordAnimationPlayer = _sword.GetNode<AnimationPlayer>("SwordAnimationPlayer");
         _sword.GetNode<Sprite2D>("SlashSprite").Visible = false;
+        MovementStrategy = new PlayerMovementStrategy(this);
+
+        MovementStateMachine = new StateMachine<IMovementState>(this, new IdleState());
+        ActionStateMachine = new StateMachine<IActionState>(this, new IdleState());
     }
 
     public override void _Process(double delta)
@@ -45,24 +51,12 @@ public partial class Player : Character
         }
     }
 
-    public override void GetInput()
+    public override void PlayIdleAnimation()
     {
-        MovDirection = Vector2.Zero;
-        if (Input.IsActionPressed("ui_up") || Input.IsKeyPressed(Key.W))
-        {
-            MovDirection += Vector2.Up;
-        }
-        if (Input.IsActionPressed("ui_down") || Input.IsKeyPressed(Key.S))
-        {
-            MovDirection += Vector2.Down;
-        }
-        if (Input.IsActionPressed("ui_left") || Input.IsKeyPressed(Key.A))
-        {
-            MovDirection += Vector2.Left;
-        }
-        if (Input.IsActionPressed("ui_right") || Input.IsKeyPressed(Key.D))
-        {
-            MovDirection += Vector2.Right;
-        }
+        this.GetNode<AnimationPlayer>("AnimationPlayer").Play("idle");
+    }
+    public override void PlayMoveAnimation()
+    {
+        this.GetNode<AnimationPlayer>("AnimationPlayer").Play("walk");
     }
 }
