@@ -1,9 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://d4ukkagofjxm"]
+[gd_scene load_steps=28 format=3 uid="uid://d4ukkagofjxm"]
 
 [ext_resource type="PackedScene" uid="uid://c2aoax7gfqdq6" path="res://active/characters/character.tscn" id="1_wjgc2"]
 [ext_resource type="Texture2D" uid="uid://e44ds11llc6w" path="res://assets/dungeon_art/heroes/knight/knight_idle_spritesheet.png" id="2_tlgbr"]
 [ext_resource type="Script" uid="uid://dxgw4m3bmqjax" path="res://active/characters/Player.cs" id="2_x55qg"]
-[ext_resource type="Script" path="res://active/characters/PlayerFSM.cs" id="3_oha7n"]
 [ext_resource type="Texture2D" uid="uid://bw21rbqmofoji" path="res://assets/dungeon_art/heroes/knight/knight_run_spritesheet.png" id="3_x55qg"]
 [ext_resource type="Texture2D" uid="uid://bmd6bnudrqldm" path="res://assets/dungeon_art/heroes/knight/weapon_sword_1.png" id="6_guxn7"]
 [ext_resource type="Texture2D" uid="uid://lhs3t4hmjk04" path="res://assets/dungeon_art/effects (new)/slash_effect_anim_spritesheet.png" id="7_s54qp"]
@@ -132,7 +131,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"move"]
+"values": [&"walk"]
 }
 
 [sub_resource type="Animation" id="Animation_0y68l"]
@@ -316,24 +315,21 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("2_x55qg")
 
-[node name="FiniteStateMachine" parent="." index="0"]
-script = ExtResource("3_oha7n")
-
-[node name="AnimatedSprite2D" parent="." index="1"]
+[node name="AnimatedSprite2D" parent="." index="0"]
 scale = Vector2(1, 0.813)
 sprite_frames = SubResource("SpriteFrames_b0vep")
-animation = &"move"
+animation = &"walk"
 
-[node name="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0.9, 1.4)
 shape = SubResource("CircleShape2D_s54qp")
 
-[node name="AnimationPlayer" parent="." index="3"]
+[node name="AnimationPlayer" parent="." index="2"]
 libraries = {
 &"": SubResource("AnimationLibrary_0qge4")
 }
 
-[node name="Sword" type="Node2D" parent="." index="4"]
+[node name="Sword" type="Node2D" parent="." index="3"]
 
 [node name="Node2D" type="Node2D" parent="Sword" index="0"]
 rotation = -1.5708
