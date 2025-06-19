@@ -1,4 +1,6 @@
 using Godot;
+using nuscutiesapp.active.characters.MovementStrategies;
+using nuscutiesapp.active.characters.StateLogic;
 using nuscutiesapp.tools;
 using System;
 using System.Collections.Generic;
@@ -9,30 +11,18 @@ public partial class Enemy : Character
 {
     private NavigationAgent2D _navigationAgent;
     private Node2D _target;
+
     public override void _Ready()
     {
         this.CallDeferred(nameof(SeekerSetup));
         this._navigationAgent = this.GetNode<NavigationAgent2D>("NavigationAgent2D");
         this._target = this.GetParent().GetNode<Node2D>("Player");
+        MovementStrategy = new SeekTargetMovementStrategy(this, _target, _navigationAgent);
         base._Ready();
+        MovementStateMachine = new StateMachine<IMovementState>(this, new IdleState());
+        ActionStateMachine = new StateMachine<IActionState>(this, new IdleState());
     }
 
-    public override void GetInput()
-    {
-        MovDirection = Vector2.Zero;
-        if (_target != null)
-        {
-            _navigationAgent.TargetPosition = _target.GlobalPosition;
-        }
-        if (_navigationAgent.IsNavigationFinished()) return;
-
-        Vector2 currentAgentPosition = GlobalPosition;
-        Vector2 nextPathPosition = _navigationAgent.GetNextPathPosition();
-        MovDirection = currentAgentPosition.DirectionTo(nextPathPosition);
-        // Velocity = currentAgentPosition.DirectionTo(nextPathPosition) * Speed;
-        // MoveAndSlide();
-
-    }
 
     public async void SeekerSetup()
     {
@@ -41,5 +31,13 @@ public partial class Enemy : Character
         {
             _navigationAgent.TargetPosition = _target.GlobalPosition;
         }
+    }
+    public override void PlayIdleAnimation()
+    {
+        this.GetNode<AnimationPlayer>("AnimationPlayer").Play("fly");
+    }
+    public override void PlayMoveAnimation()
+    {
+        this.GetNode<AnimationPlayer>("AnimationPlayer").Play("fly");
     }
 }

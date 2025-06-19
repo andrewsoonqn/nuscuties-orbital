@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cal5ppvm3euy2" path="res://active/ActiveGame.cs" id="1_e08lw"]
 [ext_resource type="Texture2D" uid="uid://3jb08ef7rxbq" path="res://assets/dungeon_art/full tilemap.png" id="2_e3xe6"]
 [ext_resource type="PackedScene" uid="uid://d4ukkagofjxm" path="res://active/characters/player.tscn" id="3_mcbma"]
-[ext_resource type="PackedScene" uid="uid://c0i3bmu5wfdfq" path="res://active/characters/enemy.tscn" id="4_ik71a"]
+[ext_resource type="PackedScene" uid="uid://dmweiqk1jxob0" path="res://active/characters/enemy.tscn" id="4_ik71a"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kudwv"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)

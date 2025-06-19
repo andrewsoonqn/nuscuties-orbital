@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c2aoax7gfqdq6" path="res://active/characters/character.tscn" id="1_wjgc2"]
 [ext_resource type="Texture2D" uid="uid://e44ds11llc6w" path="res://assets/dungeon_art/heroes/knight/knight_idle_spritesheet.png" id="2_tlgbr"]
 [ext_resource type="Script" uid="uid://dxgw4m3bmqjax" path="res://active/characters/Player.cs" id="2_x55qg"]
-[ext_resource type="Script" uid="uid://6g8wo1eht2ay" path="res://active/characters/PlayerFSM.cs" id="3_oha7n"]
+[ext_resource type="Script" path="res://active/characters/PlayerFSM.cs" id="3_oha7n"]
 [ext_resource type="Texture2D" uid="uid://bw21rbqmofoji" path="res://assets/dungeon_art/heroes/knight/knight_run_spritesheet.png" id="3_x55qg"]
 [ext_resource type="Texture2D" uid="uid://bmd6bnudrqldm" path="res://assets/dungeon_art/heroes/knight/weapon_sword_1.png" id="6_guxn7"]
 [ext_resource type="Texture2D" uid="uid://lhs3t4hmjk04" path="res://assets/dungeon_art/effects (new)/slash_effect_anim_spritesheet.png" id="7_s54qp"]
@@ -101,7 +101,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_8uwu5")
 }],
 "loop": true,
-"name": &"move",
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -165,7 +165,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_38amp"]
-resource_name = "move"
+resource_name = "walk"
 length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
@@ -178,7 +178,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"move"]
+"values": [&"walk"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -197,7 +197,7 @@ tracks/1/keys = {
 _data = {
 &"RESET": SubResource("Animation_oha7n"),
 &"idle": SubResource("Animation_0y68l"),
-&"move": SubResource("Animation_38amp")
+&"walk": SubResource("Animation_38amp")
 }
 
 [sub_resource type="Animation" id="Animation_s54qp"]
