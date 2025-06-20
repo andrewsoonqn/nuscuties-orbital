@@ -1,10 +1,12 @@
 using Godot;
+using nuscutiesapp.tools;
 using System;
 
 public partial class ActiveEndScene : Control
 {
     [Export] private Label _message;
     [Export] private Label _rewards;
+    [Export] private Button _backButton;
     
     private RewardManager _rewardManager;
     private StatsManager _statsManager;
@@ -26,6 +28,11 @@ public partial class ActiveEndScene : Control
 
         _rewards.Text = $"Total EXP Gained: {_rewardManager.ExpGained}";
         
-        
+        _backButton.Pressed += BackButtonOnPressed;
+    }
+
+    private void BackButtonOnPressed()
+    {
+        GetTree().ChangeSceneToFile(Paths.Active);
     }
 }

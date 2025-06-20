@@ -29,4 +29,11 @@ public partial class ActiveDungeonEventManager : Node
     public delegate void GameWonEventEventHandler();
     
     
+    public void GameStarted()
+    {
+        EmitSignal(SignalName.GameStartedEvent);
+    }
+
+    [Signal]
+    public delegate void GameStartedEventEventHandler();
 }

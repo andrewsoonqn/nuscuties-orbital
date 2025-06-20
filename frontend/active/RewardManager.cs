@@ -13,6 +13,11 @@ public partial class RewardManager : Node
         _eventManager.EnemyDiedEvent += ActiveDungeonEventManagerOnEnemyDiedEvent;
         _eventManager.GameWonEvent += () => GameWon = true;
         _eventManager.GameLostEvent += () => GameWon = false;
+        _eventManager.GameStartedEvent += () =>
+        {
+            GameWon = false;
+            ExpGained = 0;
+        };
     }
 
     private void ActiveDungeonEventManagerOnEnemyDiedEvent()
