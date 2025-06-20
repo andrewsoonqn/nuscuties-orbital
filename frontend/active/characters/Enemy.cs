@@ -34,10 +34,16 @@ public partial class Enemy : Character
     }
     public override void PlayIdleAnimation()
     {
-        this.GetNode<AnimationPlayer>("AnimationPlayer").Play("fly");
+        MyAnimationPlayer.Play("fly");
     }
     public override void PlayMoveAnimation()
     {
-        this.GetNode<AnimationPlayer>("AnimationPlayer").Play("fly");
+        MyAnimationPlayer.Play("fly");
+    }
+
+    public override async Task PlayDeathAnimation()
+    {
+        MyAnimationPlayer.Play("die");
+        await ToSignal(MyAnimationPlayer, AnimationPlayer.SignalName.AnimationFinished);
     }
 }

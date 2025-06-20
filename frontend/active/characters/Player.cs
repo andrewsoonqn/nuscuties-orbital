@@ -2,6 +2,7 @@ using Godot;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
 using System;
+using System.Threading.Tasks;
 
 public partial class Player : Character
 {
@@ -53,10 +54,15 @@ public partial class Player : Character
 
     public override void PlayIdleAnimation()
     {
-        this.GetNode<AnimationPlayer>("AnimationPlayer").Play("idle");
+        MyAnimationPlayer.Play("idle");
     }
     public override void PlayMoveAnimation()
     {
-        this.GetNode<AnimationPlayer>("AnimationPlayer").Play("walk");
+        MyAnimationPlayer.Play("walk");
+    }
+    public override async Task PlayDeathAnimation()
+    {
+        MyAnimationPlayer.Play("die");
+        await ToSignal(MyAnimationPlayer, AnimationPlayer.SignalName.AnimationFinished);
     }
 }

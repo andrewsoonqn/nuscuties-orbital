@@ -1,9 +1,11 @@
 using Godot;
+using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
 using System;
 using System.ComponentModel.Design;
 using System.Runtime.InteropServices.JavaScript;
+using System.Threading.Tasks;
 
 public abstract partial class Character : CharacterBody2D
 {
@@ -13,6 +15,7 @@ public abstract partial class Character : CharacterBody2D
     [Export] private float _maxSpeed = 50;
 
     public AnimatedSprite2D AnimatedSprite;
+    public AnimationPlayer MyAnimationPlayer;
 
     public Vector2 MovDirection = Vector2.Zero;
 
@@ -20,10 +23,28 @@ public abstract partial class Character : CharacterBody2D
 
     protected StateMachine<IMovementState> MovementStateMachine;
     protected StateMachine<IActionState> ActionStateMachine;
+    
+    protected HealthComponent Health;
 
     public override void _Ready()
     {
         this.AnimatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        this.MyAnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        this.Health = GetNode<HealthComponent>("Health");
+
+        Health.Damaged += OnDamaged;
+        Health.Died += OnDied;
+    }
+
+    public void OnDamaged(float currentHP, DamageInfo damageInfo)
+    {  
+        ActionStateMachine.SetState(new HurtState());
+        Velocity += damageInfo.Knockback;
+    }
+
+    public void OnDied(DamageInfo damageInfo)
+    {
+        ActionStateMachine.SetState(new DeadState());
     }
 
     public override void _PhysicsProcess(double delta)
@@ -35,15 +56,17 @@ public abstract partial class Character : CharacterBody2D
 
     private void _runStateMachines(double delta)
     {
-        MovementStateMachine.Update(delta);
+        if (!ActionStateMachine.IsAllLayerState())
+        {
+            MovementStateMachine.Update(delta);
+        }
         ActionStateMachine.Update(delta);
     }
 
     public void Move()
     {
         MovDirection = MovDirection.Normalized();
-        Velocity = Velocity.Lerp(MovDirection * _maxSpeed, _acceleration);
-        // Velocity += MovDirection * _acceleration;
+        Velocity += MovDirection * _acceleration;
         Velocity = Velocity.LimitLength(_maxSpeed);
     }
 
@@ -59,6 +82,22 @@ public abstract partial class Character : CharacterBody2D
         MovementStateMachine?.SetState(newState);
     }
 
+    public void ChangeActionState(IActionState newState)
+    {
+        ActionStateMachine?.SetState(newState);
+    }
+
+    public IMovementState GetMovementState()
+    {
+        return MovementStateMachine?.CurrentState;
+    }
+
+    public IActionState GetActionState()
+    {
+        return ActionStateMachine?.CurrentState;
+    }
+
     public abstract void PlayIdleAnimation();
     public abstract void PlayMoveAnimation();
+    public abstract Task PlayDeathAnimation();
 }
