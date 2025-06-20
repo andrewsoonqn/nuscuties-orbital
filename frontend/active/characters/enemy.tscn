@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://dmweiqk1jxob0"]
+[gd_scene load_steps=19 format=3 uid="uid://dmweiqk1jxob0"]
 
 [ext_resource type="PackedScene" uid="uid://c2aoax7gfqdq6" path="res://active/characters/character.tscn" id="1_8ah4a"]
 [ext_resource type="Script" uid="uid://dpd1rukgyw4s5" path="res://active/characters/Enemy.cs" id="2_htnh5"]
 [ext_resource type="Texture2D" uid="uid://bx5xnbjp5m747" path="res://assets/dungeon_art/enemies/flying creature/fly_anim_spritesheet.png" id="3_1prlo"]
 [ext_resource type="Texture2D" uid="uid://clk2gv5lxpvoe" path="res://assets/dungeon_art/effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" id="3_ywsfq"]
+[ext_resource type="PackedScene" uid="uid://cpqs0si6uhb1g" path="res://active/characters/DamageSystem/hitbox.tscn" id="5_vqgop"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mff4r"]
 atlas = ExtResource("3_ywsfq")
@@ -194,3 +195,5 @@ libraries = {
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="3"]
 debug_enabled = true
+
+[node name="Hitbox" parent="." index="5" instance=ExtResource("5_vqgop")]
