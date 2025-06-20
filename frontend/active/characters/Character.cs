@@ -75,6 +75,11 @@ public abstract partial class Character : CharacterBody2D
         this.MovementStrategy.GetDirection();
     }
 
+    public void TakeDamage(DamageInfo damageInfo)
+    {
+        Health.TakeDamage(damageInfo);
+    }
+
     // Allow state classes to change the current movement state while still keeping the
     // state machine encapsulated within the Character class.
     public void ChangeMovementState(IMovementState newState)

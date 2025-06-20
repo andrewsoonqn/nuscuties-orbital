@@ -6,16 +6,11 @@ namespace nuscutiesapp.active.characters.DamageSystem
     {
         public readonly float Amount;
         public readonly Vector2 Knockback;
-        public readonly Character Attacker;
-        public readonly DamageType Type; // (enum) melee, projectile
 
-        public DamageInfo(float amount, Vector2 knockback, Character attacker,
-            DamageType type)
+        public DamageInfo(float amount, Vector2 knockback)
         {
             Amount = amount;
             Knockback = knockback;
-            Attacker = attacker;
-            Type = type;
         }
     }
 }
