@@ -108,6 +108,16 @@ public abstract partial class Character : CharacterBody2D
         return ActionStateMachine?.CurrentState;
     }
 
+    public float GetHP()
+    {
+        return Health.CurrentHP;
+    }
+
+    public float GetMaxHP()
+    {
+        return Health.MaxHP;
+    }
+
     public abstract void PlayIdleAnimation();
     public abstract void PlayMoveAnimation();
     public abstract Task PlayDeathAnimation();

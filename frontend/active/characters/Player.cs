@@ -62,6 +62,7 @@ public partial class Player : Character
     }
     public override async Task PlayDeathAnimation()
     {
+        this._sword.Visible = false;
         MyAnimationPlayer.Play("die");
         await ToSignal(MyAnimationPlayer, AnimationPlayer.SignalName.AnimationFinished);
     }

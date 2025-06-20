@@ -10,6 +10,8 @@ public partial class Sword : Node2D
     private const int AttackDurationMs = 250; 
     public override void _Ready()
     {
+        this.Visible = true;
+        
         _hitbox.Wielder = this.GetParent<Character>();
         _hitbox.monitoring = false;
         

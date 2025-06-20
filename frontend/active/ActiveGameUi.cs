@@ -9,6 +9,7 @@ public partial class ActiveGameUi : Control
     [Export] private PanelContainer _pauseMenu;
     [Export] private Button _resumeButton;
     [Export] private Button _quitButton;
+    [Export] private DrawHealth _healthBar;
     private Node2D _gameWorld;
 
     public override void _Ready()
@@ -19,6 +20,7 @@ public partial class ActiveGameUi : Control
         _gameWorld = this.GetParent<Node>().GetNode<Node2D>("GameWorld");
         _resumeButton.Pressed += ResumeButtonOnPressed;
         _quitButton.Pressed += QuitButtonOnPressed;
+        _healthBar.TargetCharacter = _gameWorld.GetNode<Character>("Player");
     }
 
     private void QuitButtonOnPressed()

@@ -270,3 +270,6 @@ libraries = {
 }
 
 [node name="Sword" parent="." index="3" instance=ExtResource("6_s54qp")]
+
+[node name="Health" parent="." index="4"]
+MaxHP = 60.0
