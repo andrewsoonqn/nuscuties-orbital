@@ -11,10 +11,14 @@ public partial class Enemy : Character
 {
     private NavigationAgent2D _navigationAgent;
     private Node2D _target;
+    private Hitbox _hitbox;
 
     public override void _Ready()
     {
         this.CallDeferred(nameof(SeekerSetup));
+        _hitbox = GetNode<Hitbox>("Hitbox");
+        _hitbox.Wielder = this.GetParent<Character>();
+        _hitbox.monitoring = true;
         this._navigationAgent = this.GetNode<NavigationAgent2D>("NavigationAgent2D");
         this._target = this.GetParent().GetNode<Node2D>("Player");
         MovementStrategy = new SeekTargetMovementStrategy(this, _target, _navigationAgent);
