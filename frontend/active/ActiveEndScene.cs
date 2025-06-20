@@ -7,9 +7,14 @@ public partial class ActiveEndScene : Control
     [Export] private Label _rewards;
     
     private RewardManager _rewardManager;
+    private StatsManager _statsManager;
     public override void _Ready()
     {
+        _statsManager = GetNode<StatsManager>("/root/StatsManager");
         _rewardManager = GetNode<RewardManager>("/root/RewardManager");
+        _statsManager.AddExp(_rewardManager.ExpGained); 
+        // TODO this logic should be in reward manager, ^^
+        // but to reduce amount of updates, it is temporarily placed here
         if (_rewardManager.GameWon)
         {
             _message.Text = "You won!";
@@ -20,5 +25,7 @@ public partial class ActiveEndScene : Control
         }
 
         _rewards.Text = $"Total EXP Gained: {_rewardManager.ExpGained}";
+        
+        
     }
 }
