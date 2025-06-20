@@ -4,8 +4,10 @@ using System;
 
 public partial class Hitbox : Area2D
 {
+    public bool monitoring = false;
     [Export] private float damage;
-    public Vector2 knockbackDirection;
+    public Character Wielder;
+    private Vector2 knockbackDirection;
     [Export] private float knockbackMagnitude;
     
     private CollisionShape2D _collisionShape;
@@ -18,8 +20,9 @@ public partial class Hitbox : Area2D
 
     private void OnBodyEntered(Node2D body)
     {
-        if (body is Character character)
+        if (body is Character character && monitoring)
         {
+            this.knockbackDirection = Wielder.MovDirection; // TODO change this
             DamageInfo damage = new DamageInfo(
                 this.damage, knockbackDirection * knockbackMagnitude
             );
