@@ -23,9 +23,9 @@ public abstract partial class Character : CharacterBody2D
 
     protected StateMachine<IMovementState> MovementStateMachine;
     protected StateMachine<IActionState> ActionStateMachine;
-    
+
     protected HealthComponent Health;
-    
+
     private ActiveDungeonEventManager _eventManager;
 
     public override void _Ready()
@@ -37,13 +37,13 @@ public abstract partial class Character : CharacterBody2D
 
         Health.Damaged += OnDamaged;
         Health.Died += OnDied;
-        
+
         this.PlayIdleAnimation();
         this.Visible = true;
     }
 
     public void OnDamaged(float currentHP, DamageInfo damageInfo)
-    {  
+    {
         ActionStateMachine.SetState(new HurtState());
         Velocity += damageInfo.Knockback;
     }

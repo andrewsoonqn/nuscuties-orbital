@@ -16,7 +16,7 @@ namespace nuscutiesapp.active.characters.StateLogic
             await owner.ToSignal(owner.GetTree().CreateTimer(0.3f), SceneTreeTimer.SignalName.Timeout);
 
             owner.AnimatedSprite.Modulate = new Color(1, 1, 1, 1);
-            
+
         }
 
         public override void Update(Character owner, double delta)
@@ -26,7 +26,7 @@ namespace nuscutiesapp.active.characters.StateLogic
             {
                 owner.ChangeActionState(new IdleState());
             }
-            
+
         }
         public override string ToString()
         {

@@ -5,7 +5,7 @@ public partial class RewardManager : Node
 {
     private ActiveDungeonEventManager _eventManager;
     public int ExpGained { get; private set; } = 0;
-    public bool GameWon {get; private set;}
+    public bool GameWon { get; private set; }
 
     public override void _Ready()
     {

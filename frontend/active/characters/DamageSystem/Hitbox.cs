@@ -9,7 +9,7 @@ public partial class Hitbox : Area2D
     public Character Wielder;
     private Vector2 knockbackDirection;
     [Export] private float knockbackMagnitude;
-    
+
     private CollisionShape2D _collisionShape;
 
     public override void _Ready()

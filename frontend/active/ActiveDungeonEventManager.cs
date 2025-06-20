@@ -11,7 +11,7 @@ public partial class ActiveDungeonEventManager : Node
 
     [Signal]
     public delegate void GameLostEventEventHandler();
-    
+
     public void EnemyDied()
     {
         EmitSignal(SignalName.EnemyDiedEvent);
@@ -19,7 +19,7 @@ public partial class ActiveDungeonEventManager : Node
 
     [Signal]
     public delegate void EnemyDiedEventEventHandler();
-    
+
     public void GameWon()
     {
         EmitSignal(SignalName.GameWonEvent);
@@ -27,8 +27,8 @@ public partial class ActiveDungeonEventManager : Node
 
     [Signal]
     public delegate void GameWonEventEventHandler();
-    
-    
+
+
     public void GameStarted()
     {
         EmitSignal(SignalName.GameStartedEvent);
