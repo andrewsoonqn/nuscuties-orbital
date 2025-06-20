@@ -4,21 +4,29 @@ using System.Collections.Generic;
 
 public partial class ActiveDungeonEventManager : Node
 {
-    public void PlayerDied()
+    public void GameLost()
     {
-        GD.Print("dieddddddd");
-        EmitSignal(SignalName.PlayerDeathEvent);
+        EmitSignal(SignalName.GameLostEvent);
     }
 
     [Signal]
-    public delegate void PlayerDeathEventEventHandler();
+    public delegate void GameLostEventEventHandler();
+    
+    public void EnemyDied()
+    {
+        EmitSignal(SignalName.EnemyDiedEvent);
+    }
+
+    [Signal]
+    public delegate void EnemyDiedEventEventHandler();
     
     public void GameWon()
     {
-        GD.Print("wonnnnnnn");
         EmitSignal(SignalName.GameWonEvent);
     }
 
     [Signal]
     public delegate void GameWonEventEventHandler();
+    
+    
 }

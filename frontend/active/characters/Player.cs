@@ -69,4 +69,10 @@ public partial class Player : Character
         MyAnimationPlayer.Play("die");
         await ToSignal(MyAnimationPlayer, AnimationPlayer.SignalName.AnimationFinished);
     }
+
+    public override void OnDied(DamageInfo damageInfo)
+    {
+        ActionStateMachine.SetState(new DeadState());
+        _eventManager.GameLost();
+    }
 }

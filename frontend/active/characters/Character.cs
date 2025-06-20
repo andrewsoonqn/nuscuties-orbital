@@ -48,18 +48,7 @@ public abstract partial class Character : CharacterBody2D
         Velocity += damageInfo.Knockback;
     }
 
-    public void OnDied(DamageInfo damageInfo)
-    {
-        ActionStateMachine.SetState(new DeadState());
-        if (this is Player)
-        {
-            _eventManager.PlayerDied();
-        }
-        else
-        {
-            _eventManager.GameWon();
-        }
-    }
+    public abstract void OnDied(DamageInfo damageInfo);
 
     public override void _PhysicsProcess(double delta)
     {
