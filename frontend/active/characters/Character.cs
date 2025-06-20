@@ -25,9 +25,12 @@ public abstract partial class Character : CharacterBody2D
     protected StateMachine<IActionState> ActionStateMachine;
     
     protected HealthComponent Health;
+    
+    private ActiveDungeonEventManager _eventManager;
 
     public override void _Ready()
     {
+        this._eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
         this.AnimatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         this.MyAnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         this.Health = GetNode<HealthComponent>("Health");
@@ -48,6 +51,14 @@ public abstract partial class Character : CharacterBody2D
     public void OnDied(DamageInfo damageInfo)
     {
         ActionStateMachine.SetState(new DeadState());
+        if (this is Player)
+        {
+            _eventManager.PlayerDied();
+        }
+        else
+        {
+            _eventManager.GameWon();
+        }
     }
 
     public override void _PhysicsProcess(double delta)
@@ -82,7 +93,6 @@ public abstract partial class Character : CharacterBody2D
     public void TakeDamage(DamageInfo damageInfo)
     {
         this.Velocity = damageInfo.Knockback;
-        GD.Print(Velocity);
         Health.TakeDamage(damageInfo);
     }
 

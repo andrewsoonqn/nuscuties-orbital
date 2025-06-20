@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
 using nuscutiesapp.tools;
@@ -12,6 +13,7 @@ public partial class Enemy : Character
     private NavigationAgent2D _navigationAgent;
     private Node2D _target;
     private Hitbox _hitbox;
+    private ActiveDungeonEventManager _eventManager;
 
     public override void _Ready()
     {
@@ -25,6 +27,7 @@ public partial class Enemy : Character
         base._Ready();
         MovementStateMachine = new StateMachine<IMovementState>(this, new IdleState());
         ActionStateMachine = new StateMachine<IActionState>(this, new IdleState());
+        this._eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
     }
 
 

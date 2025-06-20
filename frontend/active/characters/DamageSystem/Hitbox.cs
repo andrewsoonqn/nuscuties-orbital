@@ -16,18 +16,14 @@ public partial class Hitbox : Area2D
     {
         this._collisionShape = this.GetNode<CollisionShape2D>("CollisionShape2D");
         this.BodyEntered += OnBodyEntered;
-        GD.Print("hi im here, my wielder is " + Wielder + " and my parent is " + GetParent().Name);
     }
 
     private void OnBodyEntered(Node2D body)
     {
-        GD.Print("hitbox entered");
         if (body is Character character && monitoring)
         {
-            GD.Print("char v ", Wielder.Velocity);
             this.knockbackDirection = character.GlobalPosition - Wielder.GlobalPosition; // TODO change this
             knockbackDirection = knockbackDirection.Normalized();
-            GD.Print("knockback ", knockbackDirection);
             DamageInfo damage = new DamageInfo(
                 this.damage, knockbackDirection * knockbackMagnitude
             );

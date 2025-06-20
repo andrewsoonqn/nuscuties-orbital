@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
 using System;
@@ -8,6 +9,7 @@ public partial class Player : Character
 {
     private Node2D _sword;
     private AnimationPlayer _swordAnimationPlayer;
+    private ActiveDungeonEventManager _eventManager;
     public override void _Ready()
     {
         base._Ready();
@@ -18,6 +20,7 @@ public partial class Player : Character
 
         MovementStateMachine = new StateMachine<IMovementState>(this, new IdleState());
         ActionStateMachine = new StateMachine<IActionState>(this, new IdleState());
+        this._eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
     }
 
     public override void _Process(double delta)

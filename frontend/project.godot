@@ -23,6 +23,7 @@ StatsManager="*res://tools/StatsManager.cs"
 Paths="*res://tools/Paths.cs"
 AccountManager="*res://tools/AccountManager.cs"
 PassiveSessionInfoManager="*res://passive/tools/PassiveSessionInfoManager.cs"
+ActiveDungeonEventManager="*res://active/ActiveDungeonEventManager.cs"
 
 [display]
 

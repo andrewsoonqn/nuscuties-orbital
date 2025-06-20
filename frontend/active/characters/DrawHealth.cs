@@ -7,7 +7,6 @@ public partial class DrawHealth : ProgressBar
 
     public override void _Ready()
     {
-        GD.Print("max" +  this.MaxValue);
     }
 
     public override void _PhysicsProcess(double delta)
