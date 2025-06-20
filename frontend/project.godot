@@ -23,6 +23,9 @@ StatsManager="*res://tools/StatsManager.cs"
 Paths="*res://tools/Paths.cs"
 AccountManager="*res://tools/AccountManager.cs"
 PassiveSessionInfoManager="*res://passive/tools/PassiveSessionInfoManager.cs"
+ActiveDungeonEventManager="*res://active/ActiveDungeonEventManager.cs"
+RewardManager="*res://active/RewardManager.cs"
+GameTerminationManager="*res://active/GameTerminationManager.cs"
 
 [display]
 

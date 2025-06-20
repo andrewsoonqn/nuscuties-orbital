@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3gajuaurr0n6"]
+
+[ext_resource type="Script" uid="uid://58r80g24p8rj" path="res://active/ActiveEndScene.cs" id="1_3vdbn"]
+
+[node name="EndScene" type="Control" node_paths=PackedStringArray("_message", "_rewards", "_backButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3vdbn")
+_message = NodePath("MarginContainer/VBoxContainer/Message")
+_rewards = NodePath("MarginContainer/VBoxContainer/Rewards")
+_backButton = NodePath("Button")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.341
+anchor_right = 0.5
+anchor_bottom = 0.341
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Message" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Congrats!"
+
+[node name="Rewards" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "You have won x EXP"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.406
+anchor_right = 0.6
+anchor_bottom = 0.433
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back to Menu"

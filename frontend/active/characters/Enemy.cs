@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
 using nuscutiesapp.tools;
@@ -11,16 +12,22 @@ public partial class Enemy : Character
 {
     private NavigationAgent2D _navigationAgent;
     private Node2D _target;
+    private Hitbox _hitbox;
+    private ActiveDungeonEventManager _eventManager;
 
     public override void _Ready()
     {
         this.CallDeferred(nameof(SeekerSetup));
+        _hitbox = GetNode<Hitbox>("Hitbox");
+        _hitbox.Wielder = this;
+        _hitbox.monitoring = true;
         this._navigationAgent = this.GetNode<NavigationAgent2D>("NavigationAgent2D");
         this._target = this.GetParent().GetNode<Node2D>("Player");
         MovementStrategy = new SeekTargetMovementStrategy(this, _target, _navigationAgent);
         base._Ready();
         MovementStateMachine = new StateMachine<IMovementState>(this, new IdleState());
         ActionStateMachine = new StateMachine<IActionState>(this, new IdleState());
+        this._eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
     }
 
 
@@ -34,10 +41,24 @@ public partial class Enemy : Character
     }
     public override void PlayIdleAnimation()
     {
-        this.GetNode<AnimationPlayer>("AnimationPlayer").Play("fly");
+        MyAnimationPlayer.Play("fly");
     }
     public override void PlayMoveAnimation()
     {
-        this.GetNode<AnimationPlayer>("AnimationPlayer").Play("fly");
+        MyAnimationPlayer.Play("fly");
     }
+
+    public override async Task PlayDeathAnimation()
+    {
+        MyAnimationPlayer.Play("die");
+        await ToSignal(MyAnimationPlayer, AnimationPlayer.SignalName.AnimationFinished);
+    }
+
+    public override void OnDied(DamageInfo damageInfo)
+    {
+        ActionStateMachine.SetState(new DeadState());
+        _eventManager.EnemyDied();
+        _eventManager.GameWon();
+    }
+
 }

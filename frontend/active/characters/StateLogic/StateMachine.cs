@@ -56,7 +56,7 @@ namespace nuscutiesapp.active.characters.StateLogic
         /// Determines if the current state is an all-layer state.
         /// </summary>
         /// <returns>True if the current state is an all-layer state, false otherwise.</returns>
-        private bool IsAllLayerState()
+        public bool IsAllLayerState()
         {
             return CurrentState.IsAllLayerState();
         }

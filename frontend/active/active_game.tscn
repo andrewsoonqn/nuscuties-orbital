@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://chi5q1ptodsaf"]
+[gd_scene load_steps=4 format=3 uid="uid://chi5q1ptodsaf"]
 
 [ext_resource type="PackedScene" uid="uid://cvf7e615kvfxq" path="res://game_world.tscn" id="1_kudwv"]
+[ext_resource type="Script" uid="uid://dv8gdccq18wng" path="res://active/characters/DrawHealth.cs" id="3_ir5f8"]
 [ext_resource type="Script" uid="uid://d17uqd6ssin58" path="res://active/ActiveGameUi.cs" id="5_lext4"]
 
 [node name="ActiveGame" type="Node"]
 
 [node name="GameWorld" parent="." instance=ExtResource("1_kudwv")]
 
-[node name="ActiveGameUI" type="Control" parent="." node_paths=PackedStringArray("_pauseLabel", "_pauseMenu", "_resumeButton", "_quitButton")]
+[node name="ActiveGameUI" type="Control" parent="." node_paths=PackedStringArray("_pauseLabel", "_pauseMenu", "_resumeButton", "_quitButton", "_healthBar")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -17,6 +18,7 @@ _pauseLabel = NodePath("CanvasLayer/PanelContainer")
 _pauseMenu = NodePath("CanvasLayer/PanelContainer2")
 _resumeButton = NodePath("CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/Resume")
 _quitButton = NodePath("CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/Quit")
+_healthBar = NodePath("CanvasLayer/MarginContainer/HBoxContainer/ProgressBar")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="ActiveGameUI"]
 
@@ -78,3 +80,26 @@ text = "Quit Game"
 [node name="Resume" type="Button" parent="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Resume"
+
+[node name="MarginContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.925
+anchor_right = 0.8
+anchor_bottom = 0.964
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Health"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="ActiveGameUI/CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+script = ExtResource("3_ir5f8")

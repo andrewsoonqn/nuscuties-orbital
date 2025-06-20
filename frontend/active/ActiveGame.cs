@@ -3,6 +3,7 @@ using System;
 
 public partial class ActiveGame : Node2D
 {
+    private ActiveDungeonEventManager _eventManager;
     public override void _Ready()
     {
         var camera = new FollowTargetCamera();
@@ -11,6 +12,8 @@ public partial class ActiveGame : Node2D
         camera.Zoom = new Vector2(10, 10);
         this.AddChild(camera);
 
+        _eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
+        _eventManager.GameStarted();
         base._Ready();
     }
 }

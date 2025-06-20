@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpw4yse16dpmd"]
+
+[ext_resource type="Script" uid="uid://dce3d7qkegp" path="res://active/characters/DamageSystem/Hitbox.cs" id="1_o1bvf"]
+
+[node name="Hitbox" type="Area2D"]
+script = ExtResource("1_o1bvf")
+damage = 10.0
+knockbackMagnitude = 3.0

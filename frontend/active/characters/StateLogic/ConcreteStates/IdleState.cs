@@ -37,5 +37,9 @@ namespace nuscutiesapp.active.characters.StateLogic
                 owner.ChangeMovementState(new MoveState());
             }
         }
+        public override string ToString()
+        {
+            return "idle";
+        }
     }
 }

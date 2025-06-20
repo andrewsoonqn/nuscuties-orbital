@@ -1,22 +1,26 @@
 using Godot;
+using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
 using System;
+using System.Threading.Tasks;
 
 public partial class Player : Character
 {
     private Node2D _sword;
     private AnimationPlayer _swordAnimationPlayer;
+    private ActiveDungeonEventManager _eventManager;
     public override void _Ready()
     {
         base._Ready();
         _sword = this.GetNode<Node2D>("Sword");
-        _swordAnimationPlayer = _sword.GetNode<AnimationPlayer>("SwordAnimationPlayer");
+        _swordAnimationPlayer = _sword.GetNode<AnimationPlayer>("AnimationPlayer");
         _sword.GetNode<Sprite2D>("SlashSprite").Visible = false;
         MovementStrategy = new PlayerMovementStrategy(this);
 
         MovementStateMachine = new StateMachine<IMovementState>(this, new IdleState());
         ActionStateMachine = new StateMachine<IActionState>(this, new IdleState());
+        this._eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
     }
 
     public override void _Process(double delta)
@@ -53,10 +57,22 @@ public partial class Player : Character
 
     public override void PlayIdleAnimation()
     {
-        this.GetNode<AnimationPlayer>("AnimationPlayer").Play("idle");
+        MyAnimationPlayer.Play("idle");
     }
     public override void PlayMoveAnimation()
     {
-        this.GetNode<AnimationPlayer>("AnimationPlayer").Play("walk");
+        MyAnimationPlayer.Play("walk");
+    }
+    public override async Task PlayDeathAnimation()
+    {
+        this._sword.Visible = false;
+        MyAnimationPlayer.Play("die");
+        await ToSignal(MyAnimationPlayer, AnimationPlayer.SignalName.AnimationFinished);
+    }
+
+    public override void OnDied(DamageInfo damageInfo)
+    {
+        ActionStateMachine.SetState(new DeadState());
+        _eventManager.GameLost();
     }
 }
