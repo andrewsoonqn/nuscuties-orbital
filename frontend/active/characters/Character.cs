@@ -34,6 +34,9 @@ public abstract partial class Character : CharacterBody2D
 
         Health.Damaged += OnDamaged;
         Health.Died += OnDied;
+        
+        this.PlayIdleAnimation();
+        this.Visible = true;
     }
 
     public void OnDamaged(float currentHP, DamageInfo damageInfo)
@@ -66,7 +69,8 @@ public abstract partial class Character : CharacterBody2D
     public void Move()
     {
         MovDirection = MovDirection.Normalized();
-        Velocity += MovDirection * _acceleration;
+        Velocity = Velocity.Lerp(_maxSpeed * MovDirection, _acceleration);
+        // Velocity += MovDirection * _acceleration;
         Velocity = Velocity.LimitLength(_maxSpeed);
     }
 
@@ -77,6 +81,8 @@ public abstract partial class Character : CharacterBody2D
 
     public void TakeDamage(DamageInfo damageInfo)
     {
+        this.Velocity = damageInfo.Knockback;
+        GD.Print(Velocity);
         Health.TakeDamage(damageInfo);
     }
 

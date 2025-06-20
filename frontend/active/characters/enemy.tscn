@@ -1,10 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://dmweiqk1jxob0"]
+[gd_scene load_steps=21 format=3 uid="uid://dmweiqk1jxob0"]
 
 [ext_resource type="PackedScene" uid="uid://c2aoax7gfqdq6" path="res://active/characters/character.tscn" id="1_8ah4a"]
 [ext_resource type="Script" uid="uid://dpd1rukgyw4s5" path="res://active/characters/Enemy.cs" id="2_htnh5"]
 [ext_resource type="Texture2D" uid="uid://bx5xnbjp5m747" path="res://assets/dungeon_art/enemies/flying creature/fly_anim_spritesheet.png" id="3_1prlo"]
 [ext_resource type="Texture2D" uid="uid://clk2gv5lxpvoe" path="res://assets/dungeon_art/effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" id="3_ywsfq"]
-[ext_resource type="PackedScene" uid="uid://cpqs0si6uhb1g" path="res://active/characters/DamageSystem/hitbox.tscn" id="5_vqgop"]
+[ext_resource type="Script" uid="uid://dce3d7qkegp" path="res://active/characters/DamageSystem/Hitbox.cs" id="5_vqgop"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mff4r"]
 atlas = ExtResource("3_ywsfq")
@@ -74,6 +74,9 @@ animations = [{
 "name": &"fly",
 "speed": 5.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vqgop"]
+radius = 4.0
 
 [sub_resource type="Animation" id="Animation_vqgop"]
 length = 0.001
@@ -178,15 +181,23 @@ _data = {
 &"fly": SubResource("Animation_ywsfq")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7kqd0"]
+radius = 4.0
+
 [node name="Enemy" instance=ExtResource("1_8ah4a")]
 position = Vector2(360, 540)
+collision_layer = 4
 script = ExtResource("2_htnh5")
 _acceleration = 0.15
 _maxSpeed = 25.0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_krth2")
-animation = &"die"
+animation = &"fly"
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_vqgop")
 
 [node name="AnimationPlayer" parent="." index="2"]
 libraries = {
@@ -194,6 +205,13 @@ libraries = {
 }
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="3"]
-debug_enabled = true
 
-[node name="Hitbox" parent="." index="5" instance=ExtResource("5_vqgop")]
+[node name="Hitbox" type="Area2D" parent="." index="5"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("5_vqgop")
+knockbackMagnitude = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_7kqd0")

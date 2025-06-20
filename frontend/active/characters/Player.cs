@@ -12,7 +12,7 @@ public partial class Player : Character
     {
         base._Ready();
         _sword = this.GetNode<Node2D>("Sword");
-        _swordAnimationPlayer = _sword.GetNode<AnimationPlayer>("SwordAnimationPlayer");
+        _swordAnimationPlayer = _sword.GetNode<AnimationPlayer>("AnimationPlayer");
         _sword.GetNode<Sprite2D>("SlashSprite").Visible = false;
         MovementStrategy = new PlayerMovementStrategy(this);
 

@@ -5,6 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://lhs3t4hmjk04" path="res://assets/dungeon_art/effects (new)/slash_effect_anim_spritesheet.png" id="2_hc1ns"]
 [ext_resource type="Script" uid="uid://dce3d7qkegp" path="res://active/characters/DamageSystem/Hitbox.cs" id="4_e8gme"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hc1ns"]
+radius = 2.0
+height = 12.0
+
 [sub_resource type="Animation" id="Animation_s54qp"]
 length = 0.001
 tracks/0/type = "value"
@@ -115,12 +119,9 @@ _data = {
 &"attack": SubResource("Animation_guxn7")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hc1ns"]
-radius = 2.0
-height = 12.0
-
-[node name="Sword" type="Node2D"]
+[node name="Sword" type="Node2D" node_paths=PackedStringArray("_hitbox")]
 script = ExtResource("1_hc1ns")
+_hitbox = NodePath("Node2D/Sprite2D/Hitbox")
 
 [node name="Node2D" type="Node2D" parent="."]
 rotation = -1.5708
@@ -132,7 +133,20 @@ texture = ExtResource("1_s6bpq")
 centered = false
 offset = Vector2(-2, -13)
 
-[node name="SwordAnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Hitbox" type="Area2D" parent="Node2D/Sprite2D"]
+position = Vector2(-0.707108, -6.36396)
+rotation = 2.3562
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("4_e8gme")
+knockbackMagnitude = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/Hitbox"]
+position = Vector2(-5, -6)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_hc1ns")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_e5a7i")
 }
@@ -141,13 +155,3 @@ libraries = {
 position = Vector2(15, 0)
 texture = ExtResource("2_hc1ns")
 hframes = 3
-
-[node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-script = ExtResource("4_e8gme")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-5, -6)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_hc1ns")
