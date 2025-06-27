@@ -21,13 +21,10 @@ namespace nuscutiesapp.active.characters.DamageSystem
             if (CurrentHP <= 0) return;
             CurrentHP -= damageInfo.Amount;
 
+            Damaged?.Invoke(CurrentHP, damageInfo);
             if (CurrentHP <= 0)
             {
                 Died?.Invoke(damageInfo);
-            }
-            else
-            {
-                Damaged?.Invoke(CurrentHP, damageInfo);
             }
         }
     }
