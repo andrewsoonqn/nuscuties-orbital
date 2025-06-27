@@ -44,7 +44,7 @@ public abstract partial class Character : CharacterBody2D
 
     public void OnDamaged(float currentHP, DamageInfo damageInfo)
     {
-        ActionStateMachine.SetState(new HurtState());
+        MovementStateMachine.SetState(new HurtState());
         Velocity += damageInfo.Knockback;
     }
 

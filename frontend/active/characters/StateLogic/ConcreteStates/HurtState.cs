@@ -5,7 +5,7 @@ using Timer = System.Timers.Timer;
 
 namespace nuscutiesapp.active.characters.StateLogic
 {
-    public class HurtState : State, IActionState
+    public class HurtState : State, IMovementState
     {
         private const double _hurtTime = 0.5f;
         private double _totalTime = 0f;
@@ -22,21 +22,26 @@ namespace nuscutiesapp.active.characters.StateLogic
         public override void Update(Character owner, double delta)
         {
             _totalTime += delta;
+
+            owner.GetDirection();
+            owner.Move();
+
             if (_totalTime >= _hurtTime)
             {
-                owner.ChangeActionState(new IdleState());
+                if (owner.Velocity.Length() > 10)
+                {
+                    owner.ChangeMovementState(new MoveState());
+                }
+                else
+                {
+                    owner.ChangeMovementState(new IdleState());
+                }
             }
-
         }
+
         public override string ToString()
         {
             return "hurt";
         }
-
-        public override bool IsAllLayerState()
-        {
-            return true;
-        }
     }
-
 }
