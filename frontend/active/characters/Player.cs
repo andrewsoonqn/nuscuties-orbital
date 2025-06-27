@@ -2,19 +2,18 @@ using Godot;
 using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
+using nuscutiesapp.active.characters.Weapons;
 using System;
 using System.Threading.Tasks;
 
 public partial class Player : Character
 {
-    private Node2D _sword;
-    private AnimationPlayer _swordAnimationPlayer;
+    private Weapon _sword;
     private ActiveDungeonEventManager _eventManager;
     public override void _Ready()
     {
         base._Ready();
-        _sword = this.GetNode<Node2D>("Sword");
-        _swordAnimationPlayer = _sword.GetNode<AnimationPlayer>("AnimationPlayer");
+        _sword = this.GetNode<Weapon>("Sword");
         _sword.GetNode<Sprite2D>("SlashSprite").Visible = false;
         MovementStrategy = new PlayerMovementStrategy(this);
 
@@ -49,9 +48,9 @@ public partial class Player : Character
             _sword.ApplyScale(new Vector2(1, -1));
         }
 
-        if (Input.IsActionJustPressed("ui_attack") && !_swordAnimationPlayer.IsPlaying())
+        if (Input.IsActionJustPressed("ui_attack"))
         {
-            _swordAnimationPlayer.Play("attack");
+            _sword.Use();
         }
     }
 
