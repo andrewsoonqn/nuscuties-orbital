@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d10077bwug3rs"]
 
-[ext_resource type="Script" uid="uid://crjrlgdwahath" path="res://shared/Home.cs" id="1_kkgq1"]
+[ext_resource type="Script" uid="uid://crjrlgdwahath" path="res://start/Home.cs" id="1_kkgq1"]
 [ext_resource type="Texture2D" uid="uid://cujamtcjya83n" path="res://assets/godot_icon.svg" id="4_4wci5"]
 
 [node name="Home" type="Control" node_paths=PackedStringArray("_expLabel", "_dailyButton", "_passiveButton", "_activeButton")]

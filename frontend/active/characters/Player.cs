@@ -18,8 +18,8 @@ public partial class Player : Character
         _sword.GetNode<Sprite2D>("SlashSprite").Visible = false;
         MovementStrategy = new PlayerMovementStrategy(this);
 
-        MovementStateMachine = new StateMachine<IMovementState>(this, new IdleState());
-        ActionStateMachine = new StateMachine<IActionState>(this, new IdleState());
+        MovementStateMachine = new StateMachine<IMovementState>(this, new IdleMovementState());
+        ActionStateMachine = new StateMachine<IActionState>(this, new IdleActionState());
         this._eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
     }
 

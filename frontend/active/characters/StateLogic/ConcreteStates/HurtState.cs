@@ -23,18 +23,16 @@ namespace nuscutiesapp.active.characters.StateLogic
         {
             _totalTime += delta;
 
-            owner.GetDirection();
-            owner.Move();
 
             if (_totalTime >= _hurtTime)
             {
-                if (owner.Velocity.Length() > 10)
+                if (owner.Velocity.Length() >= 10)
                 {
                     owner.ChangeMovementState(new MoveState());
                 }
                 else
                 {
-                    owner.ChangeMovementState(new IdleState());
+                    owner.ChangeMovementState(new IdleMovementState());
                 }
             }
         }

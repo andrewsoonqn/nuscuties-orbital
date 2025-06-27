@@ -5,7 +5,7 @@ namespace nuscutiesapp.active.characters.StateLogic
     /// <summary>
     /// Default idle state. Used for both movement and actions when nothing is occurring.
     /// </summary>
-    public class IdleState : State, IActionState, IMovementState
+    public class IdleActionState : State, IActionState
     {
         /// <summary>
         /// Called when the idle state is entered. Plays the "idle" animation.
@@ -13,7 +13,6 @@ namespace nuscutiesapp.active.characters.StateLogic
         /// <param name="owner">The character that owns this state machine.</param>
         public override void Enter(Character owner)
         {
-            owner.PlayIdleAnimation();
         }
 
         /// <summary>
@@ -23,19 +22,6 @@ namespace nuscutiesapp.active.characters.StateLogic
         /// <param name="delta">The time elapsed since the last frame.</param>
         public override void Update(Character owner, double delta)
         {
-            if (owner == null)
-            {
-                return;
-            }
-
-            owner.GetDirection();
-
-            owner.Move();
-
-            if (owner.Velocity.Length() > 10)
-            {
-                owner.ChangeMovementState(new MoveState());
-            }
         }
         public override string ToString()
         {

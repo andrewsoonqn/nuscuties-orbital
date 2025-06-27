@@ -25,8 +25,8 @@ public partial class Enemy : Character
         this._target = this.GetParent().GetNode<Node2D>("Player");
         MovementStrategy = new SeekTargetMovementStrategy(this, _target, _navigationAgent);
         base._Ready();
-        MovementStateMachine = new StateMachine<IMovementState>(this, new IdleState());
-        ActionStateMachine = new StateMachine<IActionState>(this, new IdleState());
+        MovementStateMachine = new StateMachine<IMovementState>(this, new IdleMovementState());
+        ActionStateMachine = new StateMachine<IActionState>(this, new IdleActionState());
         this._eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
     }
 

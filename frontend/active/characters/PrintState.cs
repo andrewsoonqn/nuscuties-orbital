@@ -10,7 +10,7 @@ public partial class PrintState : Label
         _owner = GetParent<Character>();
     }
 
-    public override void _PhysicsProcess(double delta)
+    public override void _Process(double delta)
     {
         this.Text = _owner.GetMovementState().ToString() + "\n" + _owner.GetActionState().ToString();
     }
