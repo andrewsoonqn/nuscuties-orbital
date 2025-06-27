@@ -1,9 +1,10 @@
 using Godot;
+using nuscutiesapp.active.characters.Weapons;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-public partial class Sword : Node2D
+public partial class Sword : Weapon
 {
     [Export] private Hitbox _hitbox;
     private AnimationPlayer _animationPlayer;
@@ -17,6 +18,14 @@ public partial class Sword : Node2D
 
         _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         _animationPlayer.AnimationStarted += OnAnimationStarted;
+    }
+
+    public override void Use()
+    {
+        if (!_animationPlayer.IsPlaying())
+        {
+            _animationPlayer.Play("attack");
+        }
     }
 
     private async void OnAttackFinished(StringName animName)

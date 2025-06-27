@@ -25,7 +25,7 @@ namespace nuscutiesapp.active.characters.StateLogic
 
             if (owner.Velocity.Length() < 10)
             {
-                owner.ChangeMovementState(new IdleState());
+                owner.ChangeMovementState(new IdleMovementState());
             }
         }
         public override string ToString()

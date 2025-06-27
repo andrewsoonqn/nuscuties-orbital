@@ -44,7 +44,7 @@ public abstract partial class Character : CharacterBody2D
 
     public void OnDamaged(float currentHP, DamageInfo damageInfo)
     {
-        ActionStateMachine.SetState(new HurtState());
+        ChangeMovementState(new HurtState());
         Velocity += damageInfo.Knockback;
     }
 
@@ -81,7 +81,6 @@ public abstract partial class Character : CharacterBody2D
 
     public void TakeDamage(DamageInfo damageInfo)
     {
-        this.Velocity = damageInfo.Knockback;
         Health.TakeDamage(damageInfo);
     }
 

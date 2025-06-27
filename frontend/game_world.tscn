@@ -90,7 +90,6 @@ collision_mask = 1
 _acceleration = 0.15
 
 [node name="PlayerStates" type="Label" parent="Player"]
-visible = false
 offset_left = -5.0
 offset_top = -16.0
 offset_right = 35.0
@@ -101,7 +100,6 @@ vertical_alignment = 2
 script = ExtResource("6_mcbma")
 
 [node name="PlayerHealth" type="Label" parent="Player"]
-visible = false
 offset_left = -5.0
 offset_top = 6.0
 offset_right = 35.0
@@ -117,7 +115,6 @@ _acceleration = 0.13
 _maxSpeed = 40.0
 
 [node name="EnemyStates" type="Label" parent="Enemy"]
-visible = false
 offset_left = -5.0
 offset_top = -11.0
 offset_right = 35.0
@@ -128,7 +125,6 @@ vertical_alignment = 2
 script = ExtResource("6_mcbma")
 
 [node name="EnemyHealth" type="Label" parent="Enemy"]
-visible = false
 offset_left = -6.0
 offset_top = 4.0
 offset_right = 34.0
