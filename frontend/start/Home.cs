@@ -9,11 +9,11 @@ public partial class Home : Control
     [Export] private Button _passiveButton;
     [Export] private Button _activeButton;
 
-    private ExpManager _expManager;
+    private ProgressionManager _expManager;
 
     public override void _Ready()
     {
-        _expManager = GetNode<ExpManager>("/root/ExpManager");
+        _expManager = GetNode<ProgressionManager>("/root/ProgressionManager");
         int exp = _expManager.GetExp();
         _expLabel.Text = $"EXP: {exp.ToString()}";
 

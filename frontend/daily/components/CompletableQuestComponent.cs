@@ -10,12 +10,12 @@ public partial class CompletableQuestComponent : HBoxContainer
 
     private Quest _quest; // TODO: only id needed, quest manager takes care of the quest storing
     private QuestManager _questManager;
-    private ExpManager _expManager;
+    private ProgressionManager _expManager;
 
     public override void _Ready()
     {
         _questManager = GetNode<QuestManager>("/root/QuestManager");
-        _expManager = GetNode<ExpManager>("/root/ExpManager");
+        _expManager = GetNode<ProgressionManager>("/root/ProgressionManager");
         _checkbox.Toggled += CheckboxOnToggled;
     }
 
@@ -28,7 +28,7 @@ public partial class CompletableQuestComponent : HBoxContainer
         }
         else
         {
-            _expManager.DecrExp(100);
+            _expManager.AddExp(-100);
         }
         new QuestLogManager().SaveQuestLog(_questManager.GetQuests().Values.ToList());
     }

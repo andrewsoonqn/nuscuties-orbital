@@ -25,7 +25,7 @@ PassiveSessionInfoManager="*res://passive/tools/PassiveSessionInfoManager.cs"
 ActiveDungeonEventManager="*res://active/ActiveDungeonEventManager.cs"
 RewardManager="*res://active/RewardManager.cs"
 GameTerminationManager="*res://active/GameTerminationManager.cs"
-ExpManager="*res://tools/ExpManager.cs"
+ProgressionManager="*res://tools/ProgressionManager.cs"
 
 [display]
 

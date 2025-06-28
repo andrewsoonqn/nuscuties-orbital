@@ -9,10 +9,10 @@ public partial class ActiveEndScene : Control
     [Export] private Button _backButton;
 
     private RewardManager _rewardManager;
-    private ExpManager _expManager;
+    private ProgressionManager _expManager;
     public override void _Ready()
     {
-        _expManager = GetNode<ExpManager>("/root/ExpManager");
+        _expManager = GetNode<ProgressionManager>("/root/ProgressionManager");
         _rewardManager = GetNode<RewardManager>("/root/RewardManager");
         _expManager.AddExp(_rewardManager.ExpGained);
         // TODO this logic should be in reward manager, ^^
