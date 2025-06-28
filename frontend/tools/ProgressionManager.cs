@@ -7,16 +7,23 @@ using System.Text.Json;
 
 public partial class ProgressionManager : BaseStatManager<ProgressionManager.ProgressionData>
 {
-    private const int BaseExp = 300;
-    private const double ScaleFactor = 1.2;
+    public static readonly int BaseExp = 300;
+    public static readonly double ScaleFactor = 1.2;
     public class ProgressionData
     {
         public int Exp { get; set; } = 0;
         public int Level { get; set; } = 1;
     }
 
+    private string _saveFilePath = "user://player_progression.json";
+    protected override string SaveFilePath => _saveFilePath;
 
-    protected override string SaveFilePath => "user://player_progression.json";
+    public void SetSaveFilePath(string newFilePath)
+    {
+        // Should be used for testing only!
+        _saveFilePath = newFilePath;
+    }
+    
     protected override void InitializeDefaults()
     {
         int calculatedLevel = CalculateLevel(Data.Exp);
