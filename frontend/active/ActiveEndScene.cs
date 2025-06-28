@@ -9,12 +9,12 @@ public partial class ActiveEndScene : Control
     [Export] private Button _backButton;
 
     private RewardManager _rewardManager;
-    private StatsManager _statsManager;
+    private ExpManager _expManager;
     public override void _Ready()
     {
-        _statsManager = GetNode<StatsManager>("/root/StatsManager");
+        _expManager = GetNode<ExpManager>("/root/ExpManager");
         _rewardManager = GetNode<RewardManager>("/root/RewardManager");
-        _statsManager.AddExp(_rewardManager.ExpGained);
+        _expManager.AddExp(_rewardManager.ExpGained);
         // TODO this logic should be in reward manager, ^^
         // but to reduce amount of updates, it is temporarily placed here
         if (_rewardManager.GameWon)

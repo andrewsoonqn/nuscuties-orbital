@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Text.Json;
 
-public partial class StatsManager : Node
+public partial class ExpManager : Node
 {
     private int Exp { get; set; } = 0;
 

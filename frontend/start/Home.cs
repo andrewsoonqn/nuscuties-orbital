@@ -9,12 +9,12 @@ public partial class Home : Control
     [Export] private Button _passiveButton;
     [Export] private Button _activeButton;
 
-    private StatsManager _statsManager;
+    private ExpManager _expManager;
 
     public override void _Ready()
     {
-        _statsManager = GetNode<StatsManager>("/root/StatsManager");
-        int exp = _statsManager.GetExp();
+        _expManager = GetNode<ExpManager>("/root/ExpManager");
+        int exp = _expManager.GetExp();
         _expLabel.Text = $"EXP: {exp.ToString()}";
 
         _dailyButton.Pressed += () => switchScene(Paths.Daily);
