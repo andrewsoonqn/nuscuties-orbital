@@ -57,6 +57,23 @@ public partial class ProgressionManagerTest
     }
     
     [TestCase]
+    public void TestCalculateLevel_NegativeValues()
+    {
+        // Test known calculation points
+        _progressionManager.AddExp(660);
+        AssertThat(_progressionManager.GetLevel()).IsEqual(3);
+        AssertThat(_progressionManager.GetExp()).IsEqual(660);
+        
+        _progressionManager.AddExp(1092 - 660); // Add remaining to reach level 4
+        AssertThat(_progressionManager.GetLevel()).IsEqual(4);
+        AssertThat(_progressionManager.GetExp()).IsEqual(1092);
+        
+        _progressionManager.AddExp(660 - 1092); // Deduct previous amount
+        AssertThat(_progressionManager.GetLevel()).IsEqual(3);
+        AssertThat(_progressionManager.GetExp()).IsEqual(660);
+    }
+    
+    [TestCase]
     public void TestCalculateLevel_KnownValues()
     {
         // Test known calculation points
@@ -70,7 +87,6 @@ public partial class ProgressionManagerTest
         AssertThat(_progressionManager.GetLevel()).IsEqual(5);
     }
     
-    [TestCase]
     [TestCase(1, 0)]
     [TestCase(2, 300)]
     [TestCase(3, 660)]
