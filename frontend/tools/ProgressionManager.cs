@@ -75,8 +75,9 @@ public partial class ProgressionManager : BaseStatManager<ProgressionManager.Pro
         if (totalExp < BaseExp) return 1;
 
         // Exp for level L = BaseExp * (ScaleFactor^L - 1) / (ScaleFactor - 1)
-        double level = Math.Log(1 + totalExp * (ScaleFactor - 1) / BaseExp) / Math.Log(ScaleFactor);
-        return (int)Math.Floor(level) + 1;
+        double level = Math.Log(1 + totalExp * (ScaleFactor - 1) / BaseExp) / Math.Log(ScaleFactor) + 1;
+        level = Math.Round(level, 2);
+        return (int)Math.Floor(level);
     }
 
     private static int GetTotalExpRequiredForLevel(int level)
