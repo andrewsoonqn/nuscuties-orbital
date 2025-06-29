@@ -27,26 +27,67 @@ namespace nuscutiesapp.tools
             base._Ready();
         }
 
-        private void ConnectSignals()
-        {
-            _addStrengthButton.Pressed += () => _playerStatManager.AddStrength(1);
-            _decrStrengthButton.Pressed += () => _playerStatManager.AddStrength(-1);
-            _addStaminaButton.Pressed += () => _playerStatManager.AddStamina(1);
-            _decrStaminaButton.Pressed += () => _playerStatManager.AddStamina(-1);
-            
-            _playerStatManager.StrengthChanged += PlayerStatManagerOnStrengthChanged;
-            _playerStatManager.StaminaChanged += PlayerStatManagerOnStaminaChanged;
-            _playerStatManager.StatPointsChanged += PlayerStatManagerOnStatPointsChanged;
-            
-            _closeButton.Pressed += QueueFree;
-        }
-
         private void InitializeUI()
         {
             _strengthLabel.Text = _playerStatManager.GetStrength().ToString();
             _staminaLabel.Text = _playerStatManager.GetStamina().ToString();
             UpdateRemaining();
         }
+
+        private void ConnectSignals()
+        {
+            _addStrengthButton.Pressed += AddStrengthButtonOnPressed;
+            _decrStrengthButton.Pressed += DecrStrengthButtonOnPressed;
+            _addStaminaButton.Pressed += AddStaminaButtonOnPressed;
+            _decrStaminaButton.Pressed += DecrStaminaButtonOnPressed;
+            
+            _playerStatManager.StrengthChanged += PlayerStatManagerOnStrengthChanged;
+            _playerStatManager.StaminaChanged += PlayerStatManagerOnStaminaChanged;
+            _playerStatManager.StatPointsChanged += PlayerStatManagerOnStatPointsChanged;
+            
+            _closeButton.Pressed += CloseButtonOnPressed;
+        }
+
+        private void CloseButtonOnPressed()
+        {
+            DisconnectSignals();
+            QueueFree();
+        }
+
+        private void DisconnectSignals()
+        {
+            _addStrengthButton.Pressed -= AddStrengthButtonOnPressed;
+            _decrStrengthButton.Pressed -= DecrStrengthButtonOnPressed;
+            _addStaminaButton.Pressed -= AddStaminaButtonOnPressed;
+            _decrStaminaButton.Pressed -= DecrStaminaButtonOnPressed;
+            
+            _playerStatManager.StrengthChanged -= PlayerStatManagerOnStrengthChanged;
+            _playerStatManager.StaminaChanged -= PlayerStatManagerOnStaminaChanged;
+            _playerStatManager.StatPointsChanged -= PlayerStatManagerOnStatPointsChanged;
+            
+            _closeButton.Pressed -= CloseButtonOnPressed;
+        }
+
+        private void DecrStaminaButtonOnPressed()
+        {
+            _playerStatManager.AddStamina(-1);
+        }
+
+        private void AddStaminaButtonOnPressed()
+        {
+            _playerStatManager.AddStamina(1);
+        }
+
+        private void DecrStrengthButtonOnPressed()
+        {
+            _playerStatManager.AddStrength(-1);
+        }
+
+        private void AddStrengthButtonOnPressed()
+        {
+            _playerStatManager.AddStrength(1);
+        }
+
 
         private void PlayerStatManagerOnStatPointsChanged(int statPoints)
         {

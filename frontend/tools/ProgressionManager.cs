@@ -13,7 +13,7 @@ public partial class ProgressionManager : BaseStatManager<ProgressionManager.Pro
         base._Ready();
     }
 
-    private void OnLeveledUp(int level)
+    private void OnLeveledUp(int level, int extraLevels)
     {
         GD.Print("leveled up");
         // PackedScene statsUI = ResourceLoader.Load<PackedScene>(Paths.StatsUI);
@@ -55,7 +55,7 @@ public partial class ProgressionManager : BaseStatManager<ProgressionManager.Pro
 
     // Public API
     [Signal]
-    public delegate void LeveledUpEventHandler(int level);
+    public delegate void LeveledUpEventHandler(int level, int extraLevels);
     
     public int GetExp()
     {
@@ -75,8 +75,8 @@ public partial class ProgressionManager : BaseStatManager<ProgressionManager.Pro
         int newLevel = CalculateLevel(Data.Exp);
         if (newLevel != Data.Level)
         {
+            EmitSignal(nameof(LeveledUp), newLevel, newLevel - Data.Level);
             Data.Level = newLevel;
-            EmitSignal(nameof(LeveledUp), Data.Level);
         }
 
         NotifyDataChanged();

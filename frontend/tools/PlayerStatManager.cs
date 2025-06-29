@@ -15,9 +15,9 @@ public partial class PlayerStatManager : BaseStatManager<PlayerStatManager.Playe
         base._Ready();
     }
 
-    private void ProgressionManagerOnLeveledUp(int level)
+    private void ProgressionManagerOnLeveledUp(int level, int extraLevels)
     {
-        AddStatPoints(5);
+        AddStatPoints(5 * extraLevels);
         EmitSignal(nameof(StatPointsChanged), Data.TotalStatPoints);
     }
 

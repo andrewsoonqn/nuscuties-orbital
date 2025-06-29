@@ -10,9 +10,11 @@ public partial class Home : Control
     [Export] private Button _dailyButton;
     [Export] private Button _passiveButton;
     [Export] private Button _activeButton;
+    [Export] private Button _statsUIButton;
 
     private ProgressionManager _expManager;
 
+    private PackedScene _statsUINode;
     public override void _Ready()
     {
         _expManager = GetNode<ProgressionManager>("/root/ProgressionManager");
@@ -27,6 +29,14 @@ public partial class Home : Control
         _passiveButton.Pressed += () => switchScene(Paths.Passive);
         _activeButton.Pressed += () => switchScene(Paths.Active);
 
+        _statsUINode = ResourceLoader.Load<PackedScene>(Paths.StatsUI);
+        
+        _statsUIButton.Pressed += StatsUIButtonOnPressed;
+    }
+
+    private void StatsUIButtonOnPressed()
+    {
+        GetTree().Root.AddChild(_statsUINode.Instantiate());
     }
 
     public void switchScene(string scenePath)
