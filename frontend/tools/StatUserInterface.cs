@@ -11,6 +11,7 @@ namespace nuscutiesapp.tools
         [Export] private Label _strengthLabel;
         [Export] private Label _staminaLabel;
         [Export] private Label _remainingStatPointsLabel;
+        [Export] private Button _closeButton;
         
         private ProgressionManager _progressionManager;
         private PlayerStatManager _playerStatManager;
@@ -32,8 +33,12 @@ namespace nuscutiesapp.tools
             _decrStrengthButton.Pressed += () => _playerStatManager.AddStrength(-1);
             _addStaminaButton.Pressed += () => _playerStatManager.AddStamina(1);
             _decrStaminaButton.Pressed += () => _playerStatManager.AddStamina(-1);
+            
             _playerStatManager.StrengthChanged += PlayerStatManagerOnStrengthChanged;
             _playerStatManager.StaminaChanged += PlayerStatManagerOnStaminaChanged;
+            _playerStatManager.StatPointsChanged += PlayerStatManagerOnStatPointsChanged;
+            
+            _closeButton.Pressed += QueueFree;
         }
 
         private void InitializeUI()
@@ -43,6 +48,11 @@ namespace nuscutiesapp.tools
             UpdateRemaining();
         }
 
+        private void PlayerStatManagerOnStatPointsChanged(int statPoints)
+        {
+            UpdateRemaining();
+        }
+        
         private void PlayerStatManagerOnStaminaChanged(int stamina)
         {
             _staminaLabel.Text = stamina.ToString();

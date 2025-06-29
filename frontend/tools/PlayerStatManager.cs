@@ -18,6 +18,7 @@ public partial class PlayerStatManager : BaseStatManager<PlayerStatManager.Playe
     private void ProgressionManagerOnLeveledUp(int level)
     {
         AddStatPoints(5);
+        EmitSignal(nameof(StatPointsChanged), Data.TotalStatPoints);
     }
 
     public class PlayerStatData
@@ -25,12 +26,13 @@ public partial class PlayerStatManager : BaseStatManager<PlayerStatManager.Playe
         public int RemainingStatPoints { get; set; } = 0;
         public int TotalStatPoints { get; set; } = 0;
         public int Strength { get; set; } = 0;
-        public int Agility { get; set; } = 0;
         public int Stamina { get; set; } = 0;
     }
 
     private string _saveFilePath = "user://player_stats.json";
     protected override string SaveFilePath => _saveFilePath;
+    
+    // TODO: add check to make sure all numbers add up correctly
 
     public void SetSaveFilePath(string newFilePath)
     {
@@ -49,6 +51,9 @@ public partial class PlayerStatManager : BaseStatManager<PlayerStatManager.Playe
 
     [Signal]
     public delegate void StaminaChangedEventHandler(int stamina);
+    
+    [Signal]
+    public delegate void StatPointsChangedEventHandler(int statPoints);
 
     private void AddStatPoints(int value)
     {

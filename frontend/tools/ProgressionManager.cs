@@ -7,6 +7,19 @@ using System.Text.Json;
 
 public partial class ProgressionManager : BaseStatManager<ProgressionManager.ProgressionData>
 {
+    public override void _Ready()
+    {
+        LeveledUp += OnLeveledUp;
+        base._Ready();
+    }
+
+    private void OnLeveledUp(int level)
+    {
+        GD.Print("leveled up");
+        // PackedScene statsUI = ResourceLoader.Load<PackedScene>(Paths.StatsUI);
+        // GetTree().Root.AddChild(statsUI.Instantiate());
+    }
+
     public static readonly int BaseExp = 300;
     public static readonly double ScaleFactor = 1.2;
     public class ProgressionData
@@ -63,6 +76,7 @@ public partial class ProgressionManager : BaseStatManager<ProgressionManager.Pro
         if (newLevel != Data.Level)
         {
             Data.Level = newLevel;
+            EmitSignal(nameof(LeveledUp), Data.Level);
         }
 
         NotifyDataChanged();

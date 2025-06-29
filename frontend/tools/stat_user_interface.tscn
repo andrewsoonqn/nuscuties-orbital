@@ -2,13 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bcn1fhbulr14w" path="res://tools/StatUserInterface.cs" id="1_v6qx2"]
 
-[node name="StatUserInterface" type="Control" node_paths=PackedStringArray("_addStrengthButton", "_addStaminaButton", "_decrStrengthButton", "_decrStaminaButton", "_strengthLabel", "_staminaLabel", "_remainingStatPointsLabel")]
+[node name="StatUserInterface" type="Control" node_paths=PackedStringArray("_addStrengthButton", "_addStaminaButton", "_decrStrengthButton", "_decrStaminaButton", "_strengthLabel", "_staminaLabel", "_remainingStatPointsLabel", "_closeButton")]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_left = 0.3
+anchor_top = 0.3
+anchor_right = 0.7
+anchor_bottom = 0.486
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_v6qx2")
@@ -19,12 +18,13 @@ _decrStaminaButton = NodePath("PanelContainer/VBoxContainer/MarginContainer/VBox
 _strengthLabel = NodePath("PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Strength/Counter/HBoxContainer/Number")
 _staminaLabel = NodePath("PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Stamina/Counter/HBoxContainer/Number")
 _remainingStatPointsLabel = NodePath("PanelContainer/VBoxContainer/MarginContainer2/Remaining")
+_closeButton = NodePath("PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/Button")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.5
-anchor_bottom = 0.227
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -34,17 +34,31 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Header" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="Header" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 text = "Stat Point Allocation"
-horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+text = "Close"
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
