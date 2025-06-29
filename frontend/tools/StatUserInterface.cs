@@ -19,16 +19,21 @@ namespace nuscutiesapp.tools
         {
             _progressionManager = GetNode<ProgressionManager>("/root/ProgressionManager");
             _playerStatManager = GetNode<PlayerStatManager>("/root/PlayerStatManager");
+
+            ConnectSignals();
+            InitializeUI();
+            
+            base._Ready();
+        }
+
+        private void ConnectSignals()
+        {
             _addStrengthButton.Pressed += () => _playerStatManager.AddStrength(1);
             _decrStrengthButton.Pressed += () => _playerStatManager.AddStrength(-1);
             _addStaminaButton.Pressed += () => _playerStatManager.AddStamina(1);
             _decrStaminaButton.Pressed += () => _playerStatManager.AddStamina(-1);
             _playerStatManager.StrengthChanged += PlayerStatManagerOnStrengthChanged;
             _playerStatManager.StaminaChanged += PlayerStatManagerOnStaminaChanged;
-
-            InitializeUI();
-            
-            base._Ready();
         }
 
         private void InitializeUI()
@@ -46,7 +51,6 @@ namespace nuscutiesapp.tools
 
         private void PlayerStatManagerOnStrengthChanged(int strength)
         {
-            GD.Print("hihi");
             _strengthLabel.Text = strength.ToString();
             UpdateRemaining();
         }
