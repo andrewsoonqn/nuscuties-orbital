@@ -7,6 +7,19 @@ using System.Text.Json;
 
 public partial class PlayerStatManager : BaseStatManager<PlayerStatManager.PlayerStatData>
 {
+    private ProgressionManager _progressionManager;
+    public override void _Ready()
+    {
+        _progressionManager = GetNode<ProgressionManager>("/root/ProgressionManager");
+        _progressionManager.LeveledUp += ProgressionManagerOnLeveledUp;
+        base._Ready();
+    }
+
+    private void ProgressionManagerOnLeveledUp(int level)
+    {
+        AddStatPoints(5);
+    }
+
     public class PlayerStatData
     {
         public int RemainingStatPoints { get; set; } = 0;
@@ -31,7 +44,13 @@ public partial class PlayerStatManager : BaseStatManager<PlayerStatManager.Playe
     }
 
     // Public API
-    public void AddStatPoints(int value)
+    [Signal]
+    public delegate void StrengthChangedEventHandler(int strength);
+    
+    [Signal]
+    public delegate void StaminaChangedEventHandler(int stamina);
+    
+    private void AddStatPoints(int value)
     {
         Data.TotalStatPoints += value;
         Data.RemainingStatPoints += value;
@@ -39,25 +58,34 @@ public partial class PlayerStatManager : BaseStatManager<PlayerStatManager.Playe
     }
     public void AddStrength(int value)
     {
-        if (Data.RemainingStatPoints <= 0) return;
+        if (Data.RemainingStatPoints <= 0 && value >= 0) return;
         Data.Strength += value;
         Data.RemainingStatPoints -= value;
         NotifyDataChanged();
-    }
-
-    public void AddAgility(int value)
-    {
-        if (Data.RemainingStatPoints <= 0) return;
-        Data.Agility += value;
-        Data.RemainingStatPoints -= value;
-        NotifyDataChanged();
+        EmitSignal(nameof(StrengthChanged), Data.Strength);
     }
 
     public void AddStamina(int value)
     {
-        if (Data.RemainingStatPoints <= 0) return;
+        if (Data.RemainingStatPoints <= 0 && value >= 0) return;
         Data.Stamina += value;
         Data.RemainingStatPoints -= value;
         NotifyDataChanged();
+        EmitSignal(nameof(StaminaChanged), Data.Stamina);
+    }
+
+    public int GetRemainingStatPoints()
+    {
+        return Data.RemainingStatPoints;
+    }
+
+    public int GetStrength()
+    {
+        return Data.Strength;
+    }
+
+    public int GetStamina()
+    {
+        return Data.Stamina;
     }
 }
