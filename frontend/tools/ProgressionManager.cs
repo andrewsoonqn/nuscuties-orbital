@@ -23,7 +23,7 @@ public partial class ProgressionManager : BaseStatManager<ProgressionManager.Pro
         // Should be used for testing only!
         _saveFilePath = newFilePath;
     }
-    
+
     protected override void InitializeDefaults()
     {
         int calculatedLevel = CalculateLevel(Data.Exp);

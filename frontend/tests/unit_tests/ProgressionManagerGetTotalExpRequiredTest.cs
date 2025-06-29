@@ -9,7 +9,7 @@ public partial class ProgressionManagerGetTotalExpRequiredTest
     [TestCase(3, 660)]
     [TestCase(4, 1092)]
     [TestCase(5, 1610)]
-    [TestCase(10, 6240)]    
+    [TestCase(10, 6240)]
     public void TestGetTotalExpRequiredForLevel_KnownValues(int level, int expected)
     {
         AssertThat(ProgressionManager.GetTotalExpRequiredForLevel(level)).IsEqual(expected);
