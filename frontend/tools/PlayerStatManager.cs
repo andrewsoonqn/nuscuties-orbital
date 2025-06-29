@@ -59,6 +59,7 @@ public partial class PlayerStatManager : BaseStatManager<PlayerStatManager.Playe
     public void AddStrength(int value)
     {
         if (Data.RemainingStatPoints <= 0 && value >= 0) return;
+        if (Data.Strength == 0 && value < 0) return;
         Data.Strength += value;
         Data.RemainingStatPoints -= value;
         NotifyDataChanged();
@@ -68,6 +69,7 @@ public partial class PlayerStatManager : BaseStatManager<PlayerStatManager.Playe
     public void AddStamina(int value)
     {
         if (Data.RemainingStatPoints <= 0 && value >= 0) return;
+        if (Data.Stamina == 0 && value < 0) return;
         Data.Stamina += value;
         Data.RemainingStatPoints -= value;
         NotifyDataChanged();
