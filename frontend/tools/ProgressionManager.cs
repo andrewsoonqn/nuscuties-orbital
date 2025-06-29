@@ -38,13 +38,11 @@ public partial class ProgressionManager : BaseStatManager<ProgressionManager.Pro
     protected override void OnDataChanged()
     {
         // No need to do anything here, save handled by base class
-        // Signals handled by Godot signal logic
     }
 
     // Public API
-    public delegate void LevelChangedEventHandler(int level);
-    public delegate void ExpChangedEventHandler(int exp);
 
+    // TODO implement signals if needed
     public int GetExp()
     {
         return Data.Exp;
