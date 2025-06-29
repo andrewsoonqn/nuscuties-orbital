@@ -14,6 +14,7 @@ public partial class ActiveGameUiTest
     private Button _quitButton;
     private Node2D _gameWorld;
     private Node _parentNode;
+    private DrawHealth _healthBar;
     private ISceneRunner _runner;
 
     [BeforeTest]
@@ -30,6 +31,7 @@ public partial class ActiveGameUiTest
         _quitButton = AutoFree(new Button { Text = "Quit Game" });
         _gameWorld = AutoFree(new Node2D { Name = "GameWorld" });
         _parentNode = AutoFree(new Node());
+        _healthBar = AutoFree(new DrawHealth());
 
         // Add to scene tree
         _runner.Scene().GetTree().Root.AddChild(_parentNode);
@@ -41,6 +43,7 @@ public partial class ActiveGameUiTest
         SetPrivateField(_activeGameUi, "_pauseMenu", _pauseMenu);
         SetPrivateField(_activeGameUi, "_resumeButton", _resumeButton);
         SetPrivateField(_activeGameUi, "_quitButton", _quitButton);
+        SetPrivateField(_activeGameUi, "_healthBar", _healthBar);
 
         _activeGameUi._Ready();
     }
