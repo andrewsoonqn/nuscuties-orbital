@@ -13,14 +13,14 @@ public partial class PassiveEndScene : Node
     private Button _returnButton;
 
     private PassiveSessionInfoManager _passiveSessionInfoManager;
-    private StatsManager _statsManager;
+    private ProgressionManager _expManager;
 
     public override void _Ready()
     {
         this._passiveSessionInfoManager = this.GetNode<PassiveSessionInfoManager>("/root/PassiveSessionInfoManager");
-        this._statsManager = this.GetNode<StatsManager>("/root/StatsManager");
+        this._expManager = this.GetNode<ProgressionManager>("/root/ProgressionManager");
         int expGained = _passiveSessionInfoManager.getAccumulatedExp();
-        _statsManager.AddExp(expGained);
+        _expManager.AddExp(expGained);
 
         this._expAccumulatedLabel.Text = $"Total EXP Gained: {expGained}";
         this._totalTimeSpentLabel.Text = $"Total Time Spent: {_passiveSessionInfoManager.getTimeSpent():F0} seconds";

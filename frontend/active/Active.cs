@@ -9,12 +9,12 @@ public partial class Active : Control
     [Export]
     private Button _startGameButton;
 
-    private StatsManager _statsManager;
+    private ProgressionManager _expManager;
 
     public override void _Ready()
     {
         _backToHomeButton.Pressed += BackToHomeButtonOnPressed;
-        _statsManager = GetNode<StatsManager>("/root/StatsManager");
+        _expManager = GetNode<ProgressionManager>("/root/ProgressionManager");
         _startGameButton.Pressed += StartGameButtonOnPressed;
     }
 
@@ -25,7 +25,7 @@ public partial class Active : Control
 
     private void AddExpButtonOnPressed()
     {
-        _statsManager.AddExp(50);
+        _expManager.AddExp(50);
     }
 
     private void BackToHomeButtonOnPressed()

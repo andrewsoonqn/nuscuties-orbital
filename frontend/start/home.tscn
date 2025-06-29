@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://crjrlgdwahath" path="res://start/Home.cs" id="1_kkgq1"]
 [ext_resource type="Texture2D" uid="uid://cujamtcjya83n" path="res://assets/godot_icon.svg" id="4_4wci5"]
 
-[node name="Home" type="Control" node_paths=PackedStringArray("_expLabel", "_dailyButton", "_passiveButton", "_activeButton")]
+[node name="Home" type="Control" node_paths=PackedStringArray("_expLabel", "_levelLabel", "_remainingExpLabel", "_dailyButton", "_passiveButton", "_activeButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kkgq1")
-_expLabel = NodePath("Exp")
+_expLabel = NodePath("PanelContainer3/MarginContainer/VBoxContainer/Exp")
+_levelLabel = NodePath("PanelContainer3/MarginContainer/VBoxContainer/Level")
+_remainingExpLabel = NodePath("PanelContainer3/MarginContainer/VBoxContainer/RemainingExp")
 _dailyButton = NodePath("NavButtonsHBox/Daily")
 _passiveButton = NodePath("NavButtonsHBox/Passive")
 _activeButton = NodePath("NavButtonsHBox/Active")
@@ -64,17 +66,39 @@ grow_vertical = 2
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_4wci5")
 
-[node name="Exp" type="Label" parent="."]
+[node name="PanelContainer3" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.4
-anchor_top = 0.131
-anchor_right = 0.601
-anchor_bottom = 0.182
-offset_left = 1.0
-offset_top = -0.480011
-offset_right = 0.280029
-offset_bottom = -0.480026
+anchor_left = 0.406
+anchor_top = 0.173
+anchor_right = 0.594
+anchor_bottom = 0.258
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer3/MarginContainer"]
+layout_mode = 2
+
+[node name="Level" type="Label" parent="PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Level"
+horizontal_alignment = 1
+
+[node name="Exp" type="Label" parent="PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
 text = "EXP: 0"
 horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="RemainingExp" type="Label" parent="PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Remaining EXP"
+horizontal_alignment = 1
