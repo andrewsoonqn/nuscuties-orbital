@@ -46,10 +46,10 @@ public partial class PlayerStatManager : BaseStatManager<PlayerStatManager.Playe
     // Public API
     [Signal]
     public delegate void StrengthChangedEventHandler(int strength);
-    
+
     [Signal]
     public delegate void StaminaChangedEventHandler(int stamina);
-    
+
     private void AddStatPoints(int value)
     {
         Data.TotalStatPoints += value;

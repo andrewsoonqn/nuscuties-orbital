@@ -42,8 +42,7 @@ public partial class ProgressionManager : BaseStatManager<ProgressionManager.Pro
 
     // Public API
 
-    [Signal]
-    public delegate void LeveledUpEventHandler(int level);
+    // TODO implement signals if needed
     public int GetExp()
     {
         return Data.Exp;
@@ -63,7 +62,6 @@ public partial class ProgressionManager : BaseStatManager<ProgressionManager.Pro
         if (newLevel != Data.Level)
         {
             Data.Level = newLevel;
-            EmitSignal(nameof(LeveledUpEventHandler), Data.Level);
         }
 
         NotifyDataChanged();
