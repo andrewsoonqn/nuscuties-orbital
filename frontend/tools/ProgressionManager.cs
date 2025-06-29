@@ -80,7 +80,7 @@ public partial class ProgressionManager : BaseStatManager<ProgressionManager.Pro
         return (int)Math.Floor(level);
     }
 
-    private static int GetTotalExpRequiredForLevel(int level)
+    public static int GetTotalExpRequiredForLevel(int level)
     {
         if (level <= 1) return 0;
 
@@ -88,7 +88,7 @@ public partial class ProgressionManager : BaseStatManager<ProgressionManager.Pro
         return (int)Math.Round(totalExp);
     }
 
-    private static int GetExpRequiredForLevel(int level)
+    public static int GetExpRequiredForLevel(int level)
     {
         if (level <= 1) return BaseExp;
 
