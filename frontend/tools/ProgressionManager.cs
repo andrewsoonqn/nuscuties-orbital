@@ -7,6 +7,18 @@ using System.Text.Json;
 
 public partial class ProgressionManager : BaseStatManager<ProgressionManager.ProgressionData>
 {
+    public override void _Ready()
+    {
+        LeveledUp += OnLeveledUp;
+        base._Ready();
+    }
+
+    private void OnLeveledUp(int level, int extraLevels)
+    {
+        // PackedScene statsUI = ResourceLoader.Load<PackedScene>(Paths.StatsUI);
+        // GetTree().Root.AddChild(statsUI.Instantiate());
+    }
+
     public static readonly int BaseExp = 300;
     public static readonly double ScaleFactor = 1.2;
     public class ProgressionData
@@ -38,12 +50,11 @@ public partial class ProgressionManager : BaseStatManager<ProgressionManager.Pro
     protected override void OnDataChanged()
     {
         // No need to do anything here, save handled by base class
-        // Signals handled by Godot signal logic
     }
 
     // Public API
-    public delegate void LevelChangedEventHandler(int level);
-    public delegate void ExpChangedEventHandler(int exp);
+    [Signal]
+    public delegate void LeveledUpEventHandler(int level, int extraLevels);
 
     public int GetExp()
     {
@@ -63,6 +74,10 @@ public partial class ProgressionManager : BaseStatManager<ProgressionManager.Pro
         int newLevel = CalculateLevel(Data.Exp);
         if (newLevel != Data.Level)
         {
+            if (newLevel > Data.Level)
+            {
+                EmitSignal(nameof(LeveledUp), newLevel, newLevel - Data.Level);
+            }
             Data.Level = newLevel;
         }
 
