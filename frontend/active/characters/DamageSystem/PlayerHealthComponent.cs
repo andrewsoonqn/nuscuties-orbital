@@ -23,7 +23,7 @@ namespace nuscutiesapp.active.characters.DamageSystem
             damageAmt = float.Max(damageAmt, 0);
             return damageAmt;
         }
-        
-        
+
+
     }
 }

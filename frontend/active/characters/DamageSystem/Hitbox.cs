@@ -19,7 +19,7 @@ public partial class Hitbox : Area2D
     {
         this._collisionShape = this.GetNode<CollisionShape2D>("CollisionShape2D");
         this.BodyEntered += OnBodyEntered;
-        
+
         _derivedStatCalculator = this.GetNode<DerivedStatCalculator>("/root/DerivedStatCalculator");
     }
 
@@ -29,7 +29,7 @@ public partial class Hitbox : Area2D
         {
             this.knockbackDirection = character.GlobalPosition - Wielder.GlobalPosition; // TODO change this
             knockbackDirection = knockbackDirection.Normalized();
-            
+
             // TODO use a pattern here
             float damageAmt;
             if (Wielder is Player)
@@ -40,7 +40,7 @@ public partial class Hitbox : Area2D
             {
                 damageAmt = this.damage;
             }
-            
+
             DamageInfo damageInfo = new DamageInfo(
                 damageAmt, knockbackDirection * knockbackMagnitude
             );
