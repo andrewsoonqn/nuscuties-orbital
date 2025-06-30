@@ -13,7 +13,7 @@ namespace nuscutiesapp.tools
         {
             return 1 + strength * _strBonusPerPoint;
         }
-        
+
         public double CalcDamageReduction(int stamina)
         {
             return stamina * _staReductionPerPoint;

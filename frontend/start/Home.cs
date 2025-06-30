@@ -30,7 +30,7 @@ public partial class Home : Control
         _activeButton.Pressed += () => switchScene(Paths.Active);
 
         _statsUINode = ResourceLoader.Load<PackedScene>(Paths.StatsUI);
-        
+
         _statsUIButton.Pressed += StatsUIButtonOnPressed;
     }
 

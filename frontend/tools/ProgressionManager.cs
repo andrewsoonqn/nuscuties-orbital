@@ -56,7 +56,7 @@ public partial class ProgressionManager : BaseStatManager<ProgressionManager.Pro
     // Public API
     [Signal]
     public delegate void LeveledUpEventHandler(int level, int extraLevels);
-    
+
     public int GetExp()
     {
         return Data.Exp;

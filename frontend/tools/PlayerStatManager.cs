@@ -33,7 +33,7 @@ public partial class PlayerStatManager : BaseStatManager<PlayerStatManager.Playe
 
     private string _saveFilePath = "user://player_stats.json";
     protected override string SaveFilePath => _saveFilePath;
-    
+
     // TODO: add check to make sure all numbers add up correctly
 
     public void SetSaveFilePath(string newFilePath)
@@ -53,7 +53,7 @@ public partial class PlayerStatManager : BaseStatManager<PlayerStatManager.Playe
 
     [Signal]
     public delegate void StaminaChangedEventHandler(int stamina);
-    
+
     [Signal]
     public delegate void StatPointsChangedEventHandler(int statPoints);
 
