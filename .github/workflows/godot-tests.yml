@@ -5,13 +5,13 @@ on:
     branches:
       - '**'
     paths:
-      - '/frontend/**'
+      - 'frontend/**'
       - '.github/workflows/godot-tests.yml'
   pull_request:
     branches:
       - '**'
     paths:
-      - '/frontend/**'
+      - 'frontend/**'
 
 jobs:
   test:
