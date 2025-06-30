@@ -34,7 +34,7 @@ public partial class Hitbox : Area2D
             float damageAmt;
             if (Wielder is Player)
             {
-                damageAmt = this.damage * _derivedStatCalculator.CalcAttackDamageMultiplier();
+                damageAmt = _derivedStatCalculator.CalcDamage() * _derivedStatCalculator.CalcAttackDamageMultiplier();
             }
             else
             {

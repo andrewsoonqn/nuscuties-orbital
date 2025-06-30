@@ -6,14 +6,14 @@ namespace nuscutiesapp.active.characters.DamageSystem
 {
     public partial class HealthComponent : Node, IDamageable
     {
-        private Character _owner; // can change to not just character in the future
-        [Export] public float MaxHP = 20;
-        public float CurrentHP { get; private set; }
+        protected Character _owner; // can change to not just character in the future
+        [Export] public float MaxHP = 20; // TODO make this private
+        public float CurrentHP { get; protected set; }
 
         public event Action<float, DamageInfo> Damaged;
         public event Action<DamageInfo> Died;
 
-        private DerivedStatCalculator _derivedStatCalculator;
+        protected DerivedStatCalculator _derivedStatCalculator;
 
         public override void _Ready()
         {
@@ -22,22 +22,15 @@ namespace nuscutiesapp.active.characters.DamageSystem
             _derivedStatCalculator = GetNode<DerivedStatCalculator>("/root/DerivedStatCalculator");
         }
 
+        protected virtual float GetDamageAmt(in DamageInfo damageInfo)
+        {
+            return damageInfo.Amount;
+        }
         public void TakeDamage(in DamageInfo damageInfo)
         {
             if (CurrentHP <= 0) return;
 
-            float damageAmt;
-            if (_owner is Player)
-            {
-                damageAmt = damageInfo.Amount - _derivedStatCalculator.CalcDamageReduction();
-                damageAmt = float.Max(damageAmt, 0);
-            }
-            else
-            {
-                damageAmt = damageInfo.Amount;
-            }
-            
-            CurrentHP -= damageAmt;
+            CurrentHP -= GetDamageAmt(damageInfo);
 
             Damaged?.Invoke(CurrentHP, damageInfo);
             if (CurrentHP <= 0)

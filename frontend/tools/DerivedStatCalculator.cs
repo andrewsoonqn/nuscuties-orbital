@@ -4,11 +4,11 @@ namespace nuscutiesapp.tools
 {
     public partial class DerivedStatCalculator : Node
     {
-        private const float _strBonusPerPoint = 0.03f;
+        private const float _strBonusPerPoint = 0.02f;
         private const float _staReductionPerPoint = 0.5f;
-        private const int _HPIncreasePerLevel = 10;
+        private const int _HPIncreasePerLevel = 5;
         private const int _baseHP = 60;
-        private const int _damageIncreasePerLevel = 5;
+        private const float _damageIncreasePerLevel = 2.5f;
         private const int _baseDamage = 20;
         
         private ProgressionManager _progressionManager;
@@ -30,14 +30,14 @@ namespace nuscutiesapp.tools
             return _playerStatManager.GetStamina() * _staReductionPerPoint;
         }
 
-        public double CalcMaxHP()
+        public float CalcMaxHP()
         {
-            return _baseHP + (_progressionManager.GetLevel() * _HPIncreasePerLevel);
+            return _baseHP + ((_progressionManager.GetLevel() - 1) * _HPIncreasePerLevel);
         }
 
-        public double CalcDamage()
+        public float CalcDamage()
         {
-            return _baseDamage + (_progressionManager.GetLevel() * _damageIncreasePerLevel);
+            return _baseDamage + ((_progressionManager.GetLevel() - 1) * _damageIncreasePerLevel);
         }
     }
 }
