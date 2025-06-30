@@ -1,14 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://chi5q1ptodsaf"]
+[gd_scene load_steps=5 format=3 uid="uid://chi5q1ptodsaf"]
 
 [ext_resource type="PackedScene" uid="uid://cvf7e615kvfxq" path="res://game_world.tscn" id="1_kudwv"]
 [ext_resource type="Script" uid="uid://dv8gdccq18wng" path="res://active/characters/DrawHealth.cs" id="3_ir5f8"]
+[ext_resource type="Script" uid="uid://blw8vgyur3qig" path="res://active/characters/UIPrintHealth.cs" id="3_mp5i6"]
 [ext_resource type="Script" uid="uid://d17uqd6ssin58" path="res://active/ActiveGameUi.cs" id="5_lext4"]
 
 [node name="ActiveGame" type="Node"]
 
 [node name="GameWorld" parent="." instance=ExtResource("1_kudwv")]
 
-[node name="ActiveGameUI" type="Control" parent="." node_paths=PackedStringArray("_pauseLabel", "_pauseMenu", "_resumeButton", "_quitButton", "_healthBar")]
+[node name="ActiveGameUI" type="Control" parent="." node_paths=PackedStringArray("_pauseLabel", "_pauseMenu", "_resumeButton", "_quitButton", "_healthBar", "_healthLabel")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -19,6 +20,7 @@ _pauseMenu = NodePath("CanvasLayer/PanelContainer2")
 _resumeButton = NodePath("CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/Resume")
 _quitButton = NodePath("CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/Quit")
 _healthBar = NodePath("CanvasLayer/MarginContainer/HBoxContainer/ProgressBar")
+_healthLabel = NodePath("CanvasLayer/MarginContainer/HBoxContainer/Label")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="ActiveGameUI"]
 
@@ -97,9 +99,11 @@ layout_mode = 2
 layout_mode = 2
 text = "Health"
 horizontal_alignment = 1
+script = ExtResource("3_mp5i6")
 
 [node name="ProgressBar" type="ProgressBar" parent="ActiveGameUI/CanvasLayer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+show_percentage = false
 script = ExtResource("3_ir5f8")

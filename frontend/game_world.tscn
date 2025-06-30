@@ -128,7 +128,6 @@ vertical_alignment = 2
 script = ExtResource("6_mcbma")
 
 [node name="EnemyHealth" type="Label" parent="Enemy"]
-visible = false
 offset_left = -6.0
 offset_top = 4.0
 offset_right = 34.0
