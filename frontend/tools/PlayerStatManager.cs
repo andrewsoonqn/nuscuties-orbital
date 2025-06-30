@@ -7,23 +7,25 @@ using System.Text.Json;
 
 public partial class PlayerStatManager : BaseStatManager<PlayerStatManager.PlayerStatData>
 {
+    private readonly int _pointsPerLevel = 5;
     private ProgressionManager _progressionManager;
     public override void _Ready()
     {
         _progressionManager = GetNode<ProgressionManager>("/root/ProgressionManager");
         _progressionManager.LeveledUp += ProgressionManagerOnLeveledUp;
         base._Ready();
+        Data.TotalStatPoints = (_progressionManager.GetLevel() - 1) * _pointsPerLevel;
+        EmitSignalStatPointsChanged(Data.TotalStatPoints);
     }
 
     private void ProgressionManagerOnLeveledUp(int level, int extraLevels)
     {
-        AddStatPoints(5 * extraLevels);
+        Data.TotalStatPoints = (level - 1) * _pointsPerLevel;
         EmitSignal(nameof(StatPointsChanged), Data.TotalStatPoints);
     }
 
     public class PlayerStatData
     {
-        public int RemainingStatPoints { get; set; } = 0;
         public int TotalStatPoints { get; set; } = 0;
         public int Strength { get; set; } = 0;
         public int Stamina { get; set; } = 0;
@@ -55,35 +57,27 @@ public partial class PlayerStatManager : BaseStatManager<PlayerStatManager.Playe
     [Signal]
     public delegate void StatPointsChangedEventHandler(int statPoints);
 
-    private void AddStatPoints(int value)
-    {
-        Data.TotalStatPoints += value;
-        Data.RemainingStatPoints += value;
-        NotifyDataChanged();
-    }
     public void AddStrength(int value)
     {
-        if (Data.RemainingStatPoints <= 0 && value >= 0) return;
+        if (GetRemainingStatPoints() <= 0 && value >= 0) return;
         if (Data.Strength == 0 && value < 0) return;
         Data.Strength += value;
-        Data.RemainingStatPoints -= value;
         NotifyDataChanged();
         EmitSignal(nameof(StrengthChanged), Data.Strength);
     }
 
     public void AddStamina(int value)
     {
-        if (Data.RemainingStatPoints <= 0 && value >= 0) return;
+        if (GetRemainingStatPoints() <= 0 && value >= 0) return;
         if (Data.Stamina == 0 && value < 0) return;
         Data.Stamina += value;
-        Data.RemainingStatPoints -= value;
         NotifyDataChanged();
         EmitSignal(nameof(StaminaChanged), Data.Stamina);
     }
 
     public int GetRemainingStatPoints()
     {
-        return Data.RemainingStatPoints;
+        return Data.TotalStatPoints - Data.Stamina - Data.Strength;
     }
 
     public int GetStrength()

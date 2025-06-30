@@ -36,7 +36,10 @@ public partial class Home : Control
 
     private void StatsUIButtonOnPressed()
     {
-        GetTree().Root.AddChild(_statsUINode.Instantiate());
+        if (!GetTree().Root.HasNode("StatUserInterface"))
+        {
+            GetTree().Root.AddChild(_statsUINode.Instantiate());
+        }
     }
 
     public void switchScene(string scenePath)
