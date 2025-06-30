@@ -3,7 +3,7 @@ using System;
 
 public partial class PrintHealth : Label
 {
-    private Character _owner;
+    protected Character _owner;
 
     public override void _Ready()
     {

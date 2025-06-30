@@ -10,6 +10,7 @@ public partial class ActiveGameUi : Control
     [Export] private Button _resumeButton;
     [Export] private Button _quitButton;
     [Export] private DrawHealth _healthBar;
+    [Export] private UIPrintHealth _healthLabel;
     private Node2D _gameWorld;
 
     public override void _Ready()
@@ -21,6 +22,7 @@ public partial class ActiveGameUi : Control
         _resumeButton.Pressed += ResumeButtonOnPressed;
         _quitButton.Pressed += QuitButtonOnPressed;
         _healthBar.TargetCharacter = _gameWorld.GetNode<Character>("Player");
+        _healthLabel.TargetCharacter = _gameWorld.GetNode<Character>("Player");
     }
 
     private void QuitButtonOnPressed()
