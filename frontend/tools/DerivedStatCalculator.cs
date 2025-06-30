@@ -5,7 +5,7 @@ namespace nuscutiesapp.tools
     public partial class DerivedStatCalculator : Node
     {
         private const float _strBonusPerPoint = 0.03f;
-        private const int _staReductionPerPoint = 2;
+        private const float _staReductionPerPoint = 0.5f;
         private const int _HPIncreasePerLevel = 10;
         private const int _baseHP = 60;
         private const int _damageIncreasePerLevel = 5;
@@ -25,7 +25,7 @@ namespace nuscutiesapp.tools
             return 1 + _playerStatManager.GetStrength() * _strBonusPerPoint;
         }
 
-        public double CalcDamageReduction()
+        public float CalcDamageReduction()
         {
             return _playerStatManager.GetStamina() * _staReductionPerPoint;
         }
