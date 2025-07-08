@@ -6,11 +6,8 @@ namespace nuscutiesapp.active.characters.StateLogic
     {
         public override async void Enter(Character owner)
         {
-            // If we had a death animation, we would play it here.
             await owner.PlayDeathAnimation();
 
-            // At this point, the character is invisible. You might want to remove them
-            // from the scene entirely to free up resources.
             owner.QueueFree();
         }
 
