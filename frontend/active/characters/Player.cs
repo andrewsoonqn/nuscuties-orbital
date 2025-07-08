@@ -8,13 +8,19 @@ using System.Threading.Tasks;
 
 public partial class Player : Character
 {
-    private Weapon _sword;
+    private Weapon _weapon;
     private ActiveDungeonEventManager _eventManager;
     public override void _Ready()
     {
         base._Ready();
-        _sword = this.GetNode<Weapon>("Sword");
-        _sword.GetNode<Sprite2D>("SlashSprite").Visible = false;
+        _weapon = Weapon.CreateWeapon(
+            Weapon.WeaponType.Sword,
+            this,
+            () => 100,
+            100,
+            250
+            );
+        AddChild(_weapon);
         MovementStrategy = new PlayerMovementStrategy(this);
 
         MovementStateMachine = new StateMachine<IMovementState>(this, new IdleMovementState());
@@ -38,19 +44,19 @@ public partial class Player : Character
             AnimatedSprite.FlipH = true;
         }
 
-        _sword.Rotation = mouseDirection.Angle();
-        if (mouseDirection.X < 0 && _sword.Scale.Y > 0)
+        _weapon.Rotation = mouseDirection.Angle();
+        if (mouseDirection.X < 0 && _weapon.Scale.Y > 0)
         {
-            _sword.ApplyScale(new Vector2(1, -1));
+            _weapon.ApplyScale(new Vector2(1, -1));
         }
-        else if (mouseDirection.X > 0 && _sword.Scale.Y < 0)
+        else if (mouseDirection.X > 0 && _weapon.Scale.Y < 0)
         {
-            _sword.ApplyScale(new Vector2(1, -1));
+            _weapon.ApplyScale(new Vector2(1, -1));
         }
 
         if (Input.IsActionJustPressed("ui_attack"))
         {
-            _sword.Use();
+            _weapon.Use();
         }
     }
 
@@ -64,7 +70,7 @@ public partial class Player : Character
     }
     public override async Task PlayDeathAnimation()
     {
-        this._sword.Visible = false;
+        this._weapon.Visible = false;
         MyAnimationPlayer.Play("die");
         await ToSignal(MyAnimationPlayer, AnimationPlayer.SignalName.AnimationFinished);
     }

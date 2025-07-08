@@ -214,8 +214,6 @@ MaxHP = 50.0
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("5_vqgop")
-damage = 15.0
-knockbackMagnitude = 150.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(0, 1)

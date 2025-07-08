@@ -6,12 +6,12 @@ using System;
 public partial class Hitbox : Area2D
 {
     public bool monitoring = false;
-    [Export] private float damage;
-    public Character Wielder;
-    private Vector2 knockbackDirection;
-    [Export] private float knockbackMagnitude;
+    private Character _wielder;
+    private Vector2 _knockbackDirection;
+    private float _knockbackMagnitude;
+    private Func<float> _damageFunc;
 
-    private DerivedStatCalculator _derivedStatCalculator;
+    protected DerivedStatCalculator _derivedStatCalculator;
 
     private CollisionShape2D _collisionShape;
 
@@ -23,26 +23,23 @@ public partial class Hitbox : Area2D
         _derivedStatCalculator = this.GetNode<DerivedStatCalculator>("/root/DerivedStatCalculator");
     }
 
+    public void Initialize(Character wielder, Func<float> damageFunc, float knockbackMagnitude)
+    {
+        this._wielder = wielder;
+        this._damageFunc = damageFunc;
+        this._knockbackMagnitude = knockbackMagnitude;
+    }
+
     private void OnBodyEntered(Node2D body)
     {
         if (body is Character character && monitoring)
         {
-            this.knockbackDirection = character.GlobalPosition - Wielder.GlobalPosition; // TODO change this
-            knockbackDirection = knockbackDirection.Normalized();
+            this._knockbackDirection = character.GlobalPosition - _wielder.GlobalPosition; // TODO change this
+            _knockbackDirection = _knockbackDirection.Normalized();
 
-            // TODO use a pattern here
-            float damageAmt;
-            if (Wielder is Player)
-            {
-                damageAmt = _derivedStatCalculator.CalcDamage() * _derivedStatCalculator.CalcAttackDamageMultiplier();
-            }
-            else
-            {
-                damageAmt = this.damage;
-            }
-
+            float damageAmt = _damageFunc();
             DamageInfo damageInfo = new DamageInfo(
-                damageAmt, knockbackDirection * knockbackMagnitude
+                damageAmt, _knockbackDirection * _knockbackMagnitude
             );
             character.TakeDamage(damageInfo);
         }

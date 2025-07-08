@@ -19,7 +19,6 @@ public partial class Enemy : Character
     {
         this.CallDeferred(nameof(SeekerSetup));
         _hitbox = GetNode<Hitbox>("Hitbox");
-        _hitbox.Wielder = this;
         _hitbox.monitoring = true;
         this._navigationAgent = this.GetNode<NavigationAgent2D>("NavigationAgent2D");
         this._target = this.GetParent().GetNode<Node2D>("Player");
