@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.active.characters.ActivateWeaponStrategies;
 using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
@@ -9,12 +10,11 @@ using System.Threading.Tasks;
 
 public partial class Player : Character
 {
-    private Weapon _weapon;
     private ActiveDungeonEventManager _eventManager;
     public override void _Ready()
     {
         base._Ready();
-        _weapon = Weapon.CreateWeapon(
+        MyWeapon = Weapon.CreateWeapon(
             Weapon.WeaponType.Sword,
             this,
             () => 100,
@@ -22,12 +22,14 @@ public partial class Player : Character
             250,
             new WaitForAnimationUserStrategy()
             );
-        AddChild(_weapon);
+        AddChild(MyWeapon);
         MovementStrategy = new PlayerMovementStrategy(this);
 
         MovementStateMachine = new StateMachine<IMovementState>(this, new IdleMovementState());
         ActionStateMachine = new StateMachine<IActionState>(this, new IdleActionState());
         this._eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
+
+        ActivateWeaponStrategy = new InputActivateWeaponStrategy();
     }
 
     public override void _Process(double delta)
@@ -46,20 +48,16 @@ public partial class Player : Character
             AnimatedSprite.FlipH = true;
         }
 
-        _weapon.Rotation = mouseDirection.Angle();
-        if (mouseDirection.X < 0 && _weapon.Scale.Y > 0)
+        MyWeapon.Rotation = mouseDirection.Angle();
+        if (mouseDirection.X < 0 && MyWeapon.Scale.Y > 0)
         {
-            _weapon.ApplyScale(new Vector2(1, -1));
+            MyWeapon.ApplyScale(new Vector2(1, -1));
         }
-        else if (mouseDirection.X > 0 && _weapon.Scale.Y < 0)
+        else if (mouseDirection.X > 0 && MyWeapon.Scale.Y < 0)
         {
-            _weapon.ApplyScale(new Vector2(1, -1));
+            MyWeapon.ApplyScale(new Vector2(1, -1));
         }
-
-        if (Input.IsActionJustPressed("ui_attack"))
-        {
-            _weapon.Use();
-        }
+        base._Process(delta);
     }
 
     public override void PlayIdleAnimation()
@@ -72,7 +70,7 @@ public partial class Player : Character
     }
     public override async Task PlayDeathAnimation()
     {
-        this._weapon.Visible = false;
+        this.MyWeapon.Visible = false;
         MyAnimationPlayer.Play("die");
         await ToSignal(MyAnimationPlayer, AnimationPlayer.SignalName.AnimationFinished);
     }

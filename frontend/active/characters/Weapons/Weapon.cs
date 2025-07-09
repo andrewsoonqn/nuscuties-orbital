@@ -22,7 +22,6 @@ namespace nuscutiesapp.active.characters.Weapons
         }
         public void Use()
         {
-            GD.Print("use weap");
             _useStrategy.Use(this); // TODO: explain
         }
         

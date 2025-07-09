@@ -12,7 +12,6 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
         {
             _weapon = weapon;
             _weapon.GetHitbox().monitoring = true;
-            GD.Print("use strategy with weapon", _weapon.Name);
             // CallDeferred(MethodName.OnAttackFinished);
         }
 

@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.active.characters.ActivateWeaponStrategies;
 using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
@@ -16,7 +17,6 @@ public partial class Enemy : Character
     private Node2D _target;
     private ActiveDungeonEventManager _eventManager;
     [Export] private Area2D _area2D;
-    private Weapon _weapon;
 
     public override void _Ready()
     {
@@ -29,7 +29,7 @@ public partial class Enemy : Character
         ActionStateMachine = new StateMachine<IActionState>(this, new IdleActionState());
         this._eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
 
-        _weapon = Weapon.CreateWeapon(
+        MyWeapon = Weapon.CreateWeapon(
             Weapon.WeaponType.Fist,
             this,
             () => 10,
@@ -37,14 +37,10 @@ public partial class Enemy : Character
             100,
             new NoAnimationUseStrategy()
             );
-        AddChild(_weapon);
-    }
+        AddChild(MyWeapon);
 
-    public override void _Process(double delta)
-    {
-        _weapon.Use();
+        ActivateWeaponStrategy = new AlwaysActivateWeaponStrategy();
     }
-
 
     public async void SeekerSetup()
     {

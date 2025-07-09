@@ -1,7 +1,9 @@
 using Godot;
+using nuscutiesapp.active.characters.ActivateWeaponStrategies;
 using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
+using nuscutiesapp.active.characters.Weapons;
 using System;
 using System.ComponentModel.Design;
 using System.Runtime.InteropServices.JavaScript;
@@ -28,6 +30,9 @@ public abstract partial class Character : CharacterBody2D
 
     private ActiveDungeonEventManager _eventManager;
 
+    protected Weapon MyWeapon;
+    protected IActivateWeaponStrategy ActivateWeaponStrategy;
+
     public override void _Ready()
     {
         this._eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
@@ -49,6 +54,12 @@ public abstract partial class Character : CharacterBody2D
     }
 
     public abstract void OnDied(DamageInfo damageInfo);
+
+    public override void _Process(double delta)
+    {
+        ActivateWeaponStrategy.Activate(MyWeapon, this);
+        base._Process(delta);
+    }
 
     public override void _PhysicsProcess(double delta)
     {
