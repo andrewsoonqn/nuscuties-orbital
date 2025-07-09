@@ -16,7 +16,7 @@ namespace nuscutiesapp.active.characters.Weapons
         public override void _Ready()
         {
             Visible = true;
-            
+
             _myHitbox.monitoring = false;
 
         }
@@ -24,7 +24,7 @@ namespace nuscutiesapp.active.characters.Weapons
         {
             _useStrategy.Use(this); // TODO: explain
         }
-        
+
         public enum WeaponType { Sword, Fist } // TODO: might change
 
         private static readonly Dictionary<WeaponType, string> _scenePaths =
@@ -50,7 +50,7 @@ namespace nuscutiesapp.active.characters.Weapons
             weapon._useStrategy = useStrategy;
             return weapon;
         }
-        
+
         public AnimationPlayer GetAnimationPlayer() => _animationPlayer;
         public int GetDurationMs() => _attackDurationMs;
         public Hitbox GetHitbox() => _myHitbox;

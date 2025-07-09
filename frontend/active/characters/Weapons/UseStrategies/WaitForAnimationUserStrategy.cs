@@ -16,9 +16,9 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
             }
 
             _weapon = weapon;
-            
+
             animationPlayer.AnimationStarted += OnAnimationStarted;
-            
+
             if (!animationPlayer.IsPlaying())
             {
                 animationPlayer.Play("attack");
