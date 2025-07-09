@@ -3,6 +3,7 @@ using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
 using nuscutiesapp.active.characters.Weapons;
+using nuscutiesapp.active.characters.Weapons.UseStrategies;
 using System;
 using System.Threading.Tasks;
 
@@ -17,8 +18,9 @@ public partial class Player : Character
             Weapon.WeaponType.Sword,
             this,
             () => 100,
-            100,
-            250
+            200,
+            250,
+            new WaitForAnimationUserStrategy()
             );
         AddChild(_weapon);
         MovementStrategy = new PlayerMovementStrategy(this);

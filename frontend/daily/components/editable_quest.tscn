@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://baxp8plknhjkh"]
+[gd_scene load_steps=2 format=3 uid="uid://bt7fdsmo10ian"]
 
 [ext_resource type="Script" uid="uid://cbol3k6yy3wtk" path="res://daily/components/EditableQuestComponent.cs" id="1_1v1y2"]
 
