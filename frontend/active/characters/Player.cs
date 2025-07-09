@@ -1,25 +1,35 @@
 using Godot;
+using nuscutiesapp.active.characters.ActivateWeaponStrategies;
 using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
 using nuscutiesapp.active.characters.Weapons;
+using nuscutiesapp.active.characters.Weapons.UseStrategies;
 using System;
 using System.Threading.Tasks;
 
 public partial class Player : Character
 {
-    private Weapon _sword;
     private ActiveDungeonEventManager _eventManager;
     public override void _Ready()
     {
         base._Ready();
-        _sword = this.GetNode<Weapon>("Sword");
-        _sword.GetNode<Sprite2D>("SlashSprite").Visible = false;
+        MyWeapon = Weapon.CreateWeapon(
+            Weapon.WeaponType.Sword,
+            this,
+            () => 100,
+            200,
+            250,
+            new WaitForAnimationUserStrategy()
+            );
+        AddChild(MyWeapon);
         MovementStrategy = new PlayerMovementStrategy(this);
 
         MovementStateMachine = new StateMachine<IMovementState>(this, new IdleMovementState());
         ActionStateMachine = new StateMachine<IActionState>(this, new IdleActionState());
         this._eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
+
+        ActivateWeaponStrategy = new InputActivateWeaponStrategy();
     }
 
     public override void _Process(double delta)
@@ -38,20 +48,16 @@ public partial class Player : Character
             AnimatedSprite.FlipH = true;
         }
 
-        _sword.Rotation = mouseDirection.Angle();
-        if (mouseDirection.X < 0 && _sword.Scale.Y > 0)
+        MyWeapon.Rotation = mouseDirection.Angle();
+        if (mouseDirection.X < 0 && MyWeapon.Scale.Y > 0)
         {
-            _sword.ApplyScale(new Vector2(1, -1));
+            MyWeapon.ApplyScale(new Vector2(1, -1));
         }
-        else if (mouseDirection.X > 0 && _sword.Scale.Y < 0)
+        else if (mouseDirection.X > 0 && MyWeapon.Scale.Y < 0)
         {
-            _sword.ApplyScale(new Vector2(1, -1));
+            MyWeapon.ApplyScale(new Vector2(1, -1));
         }
-
-        if (Input.IsActionJustPressed("ui_attack"))
-        {
-            _sword.Use();
-        }
+        base._Process(delta);
     }
 
     public override void PlayIdleAnimation()
@@ -64,7 +70,7 @@ public partial class Player : Character
     }
     public override async Task PlayDeathAnimation()
     {
-        this._sword.Visible = false;
+        this.MyWeapon.Visible = false;
         MyAnimationPlayer.Play("die");
         await ToSignal(MyAnimationPlayer, AnimationPlayer.SignalName.AnimationFinished);
     }

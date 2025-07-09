@@ -37,7 +37,13 @@ namespace nuscutiesapp.tools
 
         public float CalcDamage()
         {
-            return _baseDamage + ((_progressionManager.GetLevel() - 1) * _damageIncreasePerLevel);
+            return _baseDamage;
+            // return _baseDamage + ((_progressionManager.GetLevel() - 1) * _damageIncreasePerLevel);
+        }
+
+        public float CalcTotalDamage()
+        {
+            return CalcDamage() * CalcAttackDamageMultiplier();
         }
     }
 }

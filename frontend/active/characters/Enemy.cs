@@ -1,7 +1,10 @@
 using Godot;
+using nuscutiesapp.active.characters.ActivateWeaponStrategies;
 using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
+using nuscutiesapp.active.characters.Weapons;
+using nuscutiesapp.active.characters.Weapons.UseStrategies;
 using nuscutiesapp.tools;
 using System;
 using System.Collections.Generic;
@@ -12,15 +15,12 @@ public partial class Enemy : Character
 {
     private NavigationAgent2D _navigationAgent;
     private Node2D _target;
-    private Hitbox _hitbox;
     private ActiveDungeonEventManager _eventManager;
+    [Export] private Area2D _area2D;
 
     public override void _Ready()
     {
         this.CallDeferred(nameof(SeekerSetup));
-        _hitbox = GetNode<Hitbox>("Hitbox");
-        _hitbox.Wielder = this;
-        _hitbox.monitoring = true;
         this._navigationAgent = this.GetNode<NavigationAgent2D>("NavigationAgent2D");
         this._target = this.GetParent().GetNode<Node2D>("Player");
         MovementStrategy = new SeekTargetMovementStrategy(this, _target, _navigationAgent);
@@ -28,8 +28,19 @@ public partial class Enemy : Character
         MovementStateMachine = new StateMachine<IMovementState>(this, new IdleMovementState());
         ActionStateMachine = new StateMachine<IActionState>(this, new IdleActionState());
         this._eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
-    }
 
+        MyWeapon = Weapon.CreateWeapon(
+            Weapon.WeaponType.Fist,
+            this,
+            () => 10,
+            200,
+            100,
+            new NoAnimationUseStrategy()
+            );
+        AddChild(MyWeapon);
+
+        ActivateWeaponStrategy = new AlwaysActivateWeaponStrategy();
+    }
 
     public async void SeekerSetup()
     {

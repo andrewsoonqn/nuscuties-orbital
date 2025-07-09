@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmnjqsj25crvm"]
+[gd_scene load_steps=2 format=3 uid="uid://c327dfp3ia41j"]
 
 [ext_resource type="Script" uid="uid://b5njal2rif361" path="res://daily/components/CompletableQuestComponent.cs" id="1_ldowt"]
 
