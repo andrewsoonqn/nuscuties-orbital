@@ -14,14 +14,7 @@ public partial class Player : Character
     public override void _Ready()
     {
         base._Ready();
-        MyWeapon = Weapon.CreateWeapon(
-            Weapon.WeaponType.Staff,
-            this,
-            () => 100,
-            200,
-            250,
-            new WaitForAnimationUserStrategy()
-            );
+        MyWeapon = WeaponCreator.CreateStaff(this);
         AddChild(MyWeapon);
         MovementStrategy = new PlayerMovementStrategy(this);
 
