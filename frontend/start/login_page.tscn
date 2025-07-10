@@ -1,52 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyd6qmgulbmvb"]
+[gd_scene load_steps=9 format=3 uid="uid://cyd6qmgulbmvb"]
 
-[ext_resource type="Script" uid="uid://eat1hh4arcc8" path="res://start/LoginPage.cs" id="1_k63q7"]
-[ext_resource type="FontFile" uid="uid://rwnkixcmaiax" path="res://assets/Jacquard_24/Jacquard24-Regular.ttf" id="2_vyq1t"]
-[ext_resource type="FontFile" uid="uid://ddeedgsucej03" path="res://assets/Inter_18pt-Bold.ttf" id="3_vkbrv"]
+[ext_resource type="Script" uid="uid://c0t7ju8ximpc0" path="res://start/LoginPage.cs" id="1_k63q7"]
+[ext_resource type="FontFile" uid="uid://btl32kohj5kp0" path="res://assets/Jacquard_24/Jacquard24-Regular.ttf" id="2_vyq1t"]
+[ext_resource type="FontFile" uid="uid://bwtnw0suqnqdx" path="res://assets/Inter_18pt-Bold.ttf" id="3_vkbrv"]
 [ext_resource type="Script" uid="uid://nowpcvxa8n51" path="res://start/line_edit.gd" id="4_vkbrv"]
-[ext_resource type="Script" uid="uid://dqw41tlhj2pue" path="res://start/line_edit_2.gd" id="5_6ekl0"]
+[ext_resource type="FontFile" uid="uid://jhd7a6wicpuu" path="res://assets/Inter_18pt-Regular.ttf" id="5_6ekl0"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="6_pp1sg"]
+[ext_resource type="Script" uid="uid://dqw41tlhj2pue" path="res://start/line_edit_2.gd" id="7_c8fcd"]
+[ext_resource type="AudioStream" uid="uid://b6866y628dwvo" path="res://assets/PSX - Press Button Sound Effects (Download Sound) [9wiI5iio-fc].mp3" id="9_ksaad"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vyq1t"]
-content_margin_left = 20.0
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_top = 10.0
-expand_margin_bottom = 10.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkbrv"]
-content_margin_left = 20.0
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_top = 10.0
-expand_margin_bottom = 10.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ekl0"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_top = 20.0
-expand_margin_bottom = 20.0
-
-[node name="LoginPage" type="Control" node_paths=PackedStringArray("SubmitLogin")]
+[node name="LoginPage" type="Control" node_paths=PackedStringArray("Username", "SubmitLogin")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,6 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k63q7")
+Username = NodePath("ColorRect/MarginContainer/VBoxContainer/HBoxContainer/LineEdit")
 SubmitLogin = NodePath("ColorRect/MarginContainer/VBoxContainer/Button")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -63,22 +27,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.049
+anchor_top = 0.05
 anchor_right = 0.5
-anchor_bottom = 0.951
+anchor_bottom = 0.95
 offset_top = -0.280003
 offset_bottom = 0.279968
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 100
+theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 100
+theme_override_constants/margin_bottom = 50
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
 layout_mode = 2
@@ -103,8 +69,8 @@ horizontal_alignment = 1
 [node name="Label3" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 15
-text = "Enter your desired username and password to create an account"
+theme_override_font_sizes/font_size = 20
+text = "Enter your desired username and password "
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
@@ -117,15 +83,13 @@ alignment = 1
 [node name="LineEdit" type="LineEdit" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("6_pp1sg")
 theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_vkbrv")
+theme_override_fonts/font = ExtResource("5_6ekl0")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_vyq1t")
+placeholder_text = "Username"
+caret_blink = true
 script = ExtResource("4_vkbrv")
-
-[node name="Separator10" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
@@ -137,29 +101,20 @@ alignment = 1
 [node name="LineEdit2" type="LineEdit" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("6_pp1sg")
 theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_vkbrv")
+theme_override_fonts/font = ExtResource("5_6ekl0")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_vkbrv")
-script = ExtResource("5_6ekl0")
-
-[node name="Separator11" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Separator12" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Separator13" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
+placeholder_text = "Password"
+caret_blink = true
+script = ExtResource("7_c8fcd")
 
 [node name="Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_6ekl0")
-text = "Continue
-"
-
-[node name="Button2" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
 theme = ExtResource("6_pp1sg")
 text = "Continue"
+
+[node name="ClickSoundEffect" type="AudioStreamPlayer" parent="ColorRect/MarginContainer/VBoxContainer"]
+stream = ExtResource("9_ksaad")
+volume_db = 24.0
