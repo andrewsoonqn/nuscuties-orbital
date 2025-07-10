@@ -25,12 +25,13 @@ namespace nuscutiesapp.active.characters.Weapons
             _useStrategy.Use(this); // TODO: explain
         }
 
-        public enum WeaponType { Sword, Fist } // TODO: might change
+        public enum WeaponType { Sword, Fist, Staff } // TODO: might change
 
         private static readonly Dictionary<WeaponType, string> _scenePaths =
             new()
             {
                 { WeaponType.Sword, "res://active/characters/Weapons/sword.tscn" },
+                { WeaponType.Staff, "res://active/characters/Weapons/staff.tscn" },
                 { WeaponType.Fist, "res://active/characters/Weapons/fist.tscn" },
             };
 

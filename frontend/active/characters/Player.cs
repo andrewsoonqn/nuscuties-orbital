@@ -15,7 +15,7 @@ public partial class Player : Character
     {
         base._Ready();
         MyWeapon = Weapon.CreateWeapon(
-            Weapon.WeaponType.Sword,
+            Weapon.WeaponType.Staff,
             this,
             () => 100,
             200,
