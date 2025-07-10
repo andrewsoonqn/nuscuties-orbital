@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvgq472ir4wln"]
+
+[ext_resource type="Texture2D" uid="uid://cst7fs6b4apks" path="res://assets/dawn_like/Objects/Effect0.png" id="1_omaob"]
+
+[node name="StaffProjectile" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_omaob")
+region_enabled = true
+region_rect = Rect2(64, 336, 16, 16)
+region_filter_clip_enabled = true
