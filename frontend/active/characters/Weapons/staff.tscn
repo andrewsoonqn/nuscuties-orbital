@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://wmtpuvh3l2yj"]
+[gd_scene load_steps=8 format=3 uid="uid://wmtpuvh3l2yj"]
 
 [ext_resource type="Script" uid="uid://dn4keoqyjsifd" path="res://active/characters/Weapons/Weapon.cs" id="1_etp5m"]
 [ext_resource type="Texture2D" uid="uid://dc2hn8jmwn2og" path="res://assets/dawn_like/Items/Wand.png" id="2_di34s"]
 [ext_resource type="PackedScene" uid="uid://bpw4yse16dpmd" path="res://active/characters/DamageSystem/hitbox.tscn" id="3_jgvq6"]
-[ext_resource type="PackedScene" uid="uid://cvgq472ir4wln" path="res://active/characters/Weapons/staff_projectile.tscn" id="3_tx4wv"]
 
 [sub_resource type="Animation" id="Animation_s54qp"]
 length = 0.001
@@ -91,9 +90,6 @@ region_rect = Rect2(34, 50, 12, 12)
 libraries = {
 &"": SubResource("AnimationLibrary_e5a7i")
 }
-
-[node name="StaffProjectile" parent="." instance=ExtResource("3_tx4wv")]
-position = Vector2(18, 0)
 
 [node name="PlaceholderHitbox" parent="." instance=ExtResource("3_jgvq6")]
 collision_layer = 0

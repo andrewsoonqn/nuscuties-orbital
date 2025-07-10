@@ -9,7 +9,6 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
     public partial class ProjectileUseStrategy : Node, IUseStrategy
     {
         private Weapon _weapon;
-        private List<Projectile> _projectiles;
         private bool _locked = false;
         private Projectile _baseProjectile;
 
@@ -20,11 +19,21 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
         
         public void Use(Weapon weapon)
         {
+            AnimationPlayer animationPlayer = weapon.GetAnimationPlayer();
+            if (animationPlayer == null)
+            {
+                throw new ArgumentException("Weapon does not have an animation player.");
+            }
+            
+            if (!animationPlayer.IsPlaying())
+            {
+                animationPlayer.Play("attack");
+            }
+            
             if (_locked) return;
             _weapon = weapon;
             Projectile projectile = (Projectile) _baseProjectile.Duplicate();
             _weapon.AddChild(projectile);
-            _projectiles.Add(projectile);
             
             CallDeferred(MethodName.OnAttackFinished);
         }
