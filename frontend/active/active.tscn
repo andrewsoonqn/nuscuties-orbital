@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4al34vyos4fy"]
+[gd_scene load_steps=5 format=3 uid="uid://b4al34vyos4fy"]
 
 [ext_resource type="Script" uid="uid://cu0ik6y6n8qhl" path="res://active/Active.cs" id="1_o7aax"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_axlrc"]
+[ext_resource type="Texture2D" uid="uid://cy7uc54fnsfy" path="res://assets/dungeon_art/tiles/wall/door_closed.png" id="3_rmj27"]
+[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="4_rmj27"]
 
 [node name="Active" type="Control" node_paths=PackedStringArray("_backToHomeButton", "_startGameButton")]
 layout_mode = 3
@@ -11,20 +14,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o7aax")
 _backToHomeButton = NodePath("MarginContainer/BackToHome")
-_startGameButton = NodePath("Start")
+_startGameButton = NodePath("VBoxContainer/Start")
 
-[node name="Label" type="Label" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.2
-anchor_right = 0.5
-anchor_bottom = 0.2
-offset_left = -48.5
-offset_right = 48.5
-offset_bottom = 23.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-text = "Active Dungeons"
+grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -35,19 +33,52 @@ theme_override_constants/margin_top = 20
 
 [node name="BackToHome" type="Button" parent="MarginContainer"]
 layout_mode = 2
+theme = ExtResource("2_axlrc")
 text = "Back to Home"
 
-[node name="Start" type="Button" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.378
-anchor_top = 0.486
-anchor_right = 0.622
-anchor_bottom = 0.514
-offset_left = 0.339996
-offset_top = -0.380005
-offset_right = -0.340027
-offset_bottom = 0.380005
+anchor_left = 0.5
+anchor_top = 0.45
+anchor_right = 0.5
+anchor_bottom = 0.45
+offset_left = -159.5
+offset_top = -64.68
+offset_right = 159.5
+offset_bottom = 109.32
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("2_axlrc")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 0
+text = "Active Dungeons"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("3_rmj27")
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_rmj27")
 text = "Enter Active Dungeon"
