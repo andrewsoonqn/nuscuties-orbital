@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.Weapons.UseStrategies;
 using nuscutiesapp.tools;
 
@@ -10,13 +11,13 @@ namespace nuscutiesapp.active.characters.Weapons
         {
             Projectile projectile = ResourceLoader.
                 Load<PackedScene>(Paths.StaffProjectile).Instantiate<Projectile>();
-            projectile.InitializeHitbox(wielder, () => 100, 200);
+            projectile.InitializeHitbox(wielder, new DamageFunction(() => 10), 200);
             return Weapon.CreateWeapon(
                 Weapon.WeaponType.Staff,
                 wielder,
-                () => 100,
-                200,
-                75,
+                null,
+                0,
+                0,
                 new ProjectileUseStrategy(projectile)
             );
         }
@@ -25,7 +26,7 @@ namespace nuscutiesapp.active.characters.Weapons
             return Weapon.CreateWeapon(
                 Weapon.WeaponType.Sword,
                 wielder,
-                () => 100,
+                new DamageFunction(() => 10),
                 200,
                 250,
                 new WaitForAnimationUserStrategy()

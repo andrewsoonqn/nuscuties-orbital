@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.active.characters.DamageSystem;
 using System;
 using System.Threading.Tasks;
 
@@ -29,7 +30,7 @@ namespace nuscutiesapp.active.characters.Weapons
             GlobalRotation = dir.Angle();
         }
 
-        public void InitializeHitbox(Character wielder, Func<float> damageFunc, int knockbackMagnitude)
+        public void InitializeHitbox(Character wielder, DamageFunction damageFunc, int knockbackMagnitude)
         {
             _projectileHitbox.Initialize(wielder, damageFunc, knockbackMagnitude);
         }

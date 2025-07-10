@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.Weapons.UseStrategies;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace nuscutiesapp.active.characters.Weapons
         public static Weapon CreateWeapon(
             WeaponType type,
             Character wielder,
-            Func<float> damageFunc,
+            DamageFunction damageFunc,
             float knockbackMagnitude,
             int attackDurationMs,
             IUseStrategy useStrategy

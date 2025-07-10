@@ -35,7 +35,6 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
             Projectile projectile = (Projectile) _baseProjectile.Duplicate();
             Vector2 shootingAngle = weapon.GetGlobalMousePosition() - weapon.GlobalPosition;
             shootingAngle = shootingAngle.Normalized();
-            GD.Print(shootingAngle);
             
             await Task.Delay(95);
             

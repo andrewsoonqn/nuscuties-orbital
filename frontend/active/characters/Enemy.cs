@@ -32,7 +32,7 @@ public partial class Enemy : Character
         MyWeapon = Weapon.CreateWeapon(
             Weapon.WeaponType.Fist,
             this,
-            () => 10,
+            new DamageFunction(() => 10),
             200,
             100,
             new NoAnimationUseStrategy()
