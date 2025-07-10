@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.Threading.Tasks;
 
 namespace nuscutiesapp.active.characters.Weapons
@@ -28,6 +29,10 @@ namespace nuscutiesapp.active.characters.Weapons
             GlobalRotation = dir.Angle();
         }
 
+        public void InitializeHitbox(Character wielder, Func<float> damageFunc, int knockbackMagnitude)
+        {
+            _projectileHitbox.Initialize(wielder, damageFunc, knockbackMagnitude);
+        }
         public override void _PhysicsProcess(double delta)
         {
             GlobalPosition += _direction * _speed * (float) delta;
