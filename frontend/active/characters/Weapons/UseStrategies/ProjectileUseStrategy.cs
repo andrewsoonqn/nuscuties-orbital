@@ -17,7 +17,7 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
             _baseProjectile = projectile;
         }
         
-        public void Use(Weapon weapon)
+        public async void Use(Weapon weapon)
         {
             AnimationPlayer animationPlayer = weapon.GetAnimationPlayer();
             if (animationPlayer == null)
@@ -36,9 +36,12 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
             Vector2 shootingAngle = weapon.GetGlobalMousePosition() - weapon.GlobalPosition;
             shootingAngle = shootingAngle.Normalized();
             GD.Print(shootingAngle);
-            projectile.Initialize((Marker2D)weapon.FindChild("Marker2D"), shootingAngle);
-            _weapon.GetParent().GetParent().AddChild(projectile);
             
+            await Task.Delay(95);
+            
+            projectile.Initialize((Marker2D)weapon.FindChild("Marker2D"), shootingAngle);
+
+            _weapon.GetParent().GetParent().AddChild(projectile);
             CallDeferred(MethodName.OnAttackFinished);
         }
 

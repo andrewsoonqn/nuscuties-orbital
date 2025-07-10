@@ -10,7 +10,7 @@ namespace nuscutiesapp.active.characters.Weapons
         [Export] private int _lifetimeMs = 5000;
 
         private Vector2 _direction;
-        private readonly int _speed = 10;
+        private readonly int _speed = 100;
 
         public override void _Ready()
         {
