@@ -1,6 +1,49 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyd6qmgulbmvb"]
+[gd_scene load_steps=9 format=3 uid="uid://cyd6qmgulbmvb"]
 
-[ext_resource type="Script" uid="uid://eat1hh4arcc8" path="res://start/LoginPage.cs" id="1_k63q7"]
+[ext_resource type="Script" uid="uid://c0t7ju8ximpc0" path="res://start/LoginPage.cs" id="1_k63q7"]
+[ext_resource type="FontFile" uid="uid://btl32kohj5kp0" path="res://assets/Jacquard_24/Jacquard24-Regular.ttf" id="2_vyq1t"]
+[ext_resource type="FontFile" uid="uid://bwtnw0suqnqdx" path="res://assets/Inter_18pt-Bold.ttf" id="3_vkbrv"]
+[ext_resource type="Script" uid="uid://nowpcvxa8n51" path="res://start/line_edit.gd" id="4_vkbrv"]
+[ext_resource type="Script" uid="uid://dqw41tlhj2pue" path="res://start/line_edit_2.gd" id="5_6ekl0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vyq1t"]
+content_margin_left = 20.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkbrv"]
+content_margin_left = 20.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ekl0"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 20.0
+expand_margin_bottom = 20.0
 
 [node name="LoginPage" type="Control" node_paths=PackedStringArray("Username", "SubmitLogin")]
 layout_mode = 3
@@ -10,30 +53,131 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k63q7")
-Username = NodePath("VBoxContainer/HBoxContainer/LineEdit")
-SubmitLogin = NodePath("VBoxContainer/HBoxContainer/Button")
+Username = NodePath("")
+SubmitLogin = NodePath("ColorRect/MarginContainer/VBoxContainer/Button")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.323
-anchor_top = 0.395
-anchor_right = 0.677
-anchor_bottom = 0.395
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Username:"
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 100
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Separator" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+[node name="Separator2" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator3" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator7" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator8" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator9" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_vyq1t")
+theme_override_font_sizes/font_size = 120
+text = "Solo Scaling"
+horizontal_alignment = 1
+
+[node name="Separator4" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator5" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator6" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vkbrv")
+theme_override_font_sizes/font_size = 30
+text = "Create an Account"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Enter your desired username and password to create an account"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vkbrv")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_vyq1t")
+script = ExtResource("4_vkbrv")
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Separator10" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "OK"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+alignment = 1
+
+[node name="LineEdit2" type="LineEdit" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vkbrv")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_vkbrv")
+script = ExtResource("5_6ekl0")
+
+[node name="Separator11" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator12" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator13" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ekl0")
+text = "Continue
+"
