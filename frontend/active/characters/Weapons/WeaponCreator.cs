@@ -1,4 +1,6 @@
+using Godot;
 using nuscutiesapp.active.characters.Weapons.UseStrategies;
+using nuscutiesapp.tools;
 
 namespace nuscutiesapp.active.characters.Weapons
 {
@@ -6,13 +8,15 @@ namespace nuscutiesapp.active.characters.Weapons
     {
         public static Weapon CreateStaff(Character wielder)
         {
+            Projectile projectile = ResourceLoader.
+                Load<PackedScene>(Paths.StaffProjectile).Instantiate<Projectile>();
             return Weapon.CreateWeapon(
                 Weapon.WeaponType.Staff,
                 wielder,
                 () => 100,
                 200,
                 75,
-                new WaitForAnimationUserStrategy()
+                new ProjectileUseStrategy(projectile)
             );
         }
         public static Weapon CreateSword(Character wielder)

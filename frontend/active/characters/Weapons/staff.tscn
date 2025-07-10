@@ -5,9 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://bpw4yse16dpmd" path="res://active/characters/DamageSystem/hitbox.tscn" id="3_jgvq6"]
 [ext_resource type="PackedScene" uid="uid://cvgq472ir4wln" path="res://active/characters/Weapons/staff_projectile.tscn" id="3_tx4wv"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_y6ffq"]
-radius = 3.16228
-
 [sub_resource type="Animation" id="Animation_s54qp"]
 length = 0.001
 tracks/0/type = "value"
@@ -70,9 +67,12 @@ _data = {
 &"attack": SubResource("Animation_guxn7")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tx4wv"]
+radius = 0.0
+
 [node name="Staff" type="Node2D" node_paths=PackedStringArray("_myHitbox", "_animationPlayer")]
 script = ExtResource("1_etp5m")
-_myHitbox = NodePath("Node2D/Sprite2D/Hitbox")
+_myHitbox = NodePath("PlaceholderHitbox")
 _animationPlayer = NodePath("AnimationPlayer")
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -87,14 +87,6 @@ offset = Vector2(-10, -10)
 region_enabled = true
 region_rect = Rect2(34, 50, 12, 12)
 
-[node name="Hitbox" parent="Node2D/Sprite2D" instance=ExtResource("3_jgvq6")]
-position = Vector2(-4.54957, 2.35278)
-rotation = -0.191986
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/Hitbox"]
-position = Vector2(-1, -10)
-shape = SubResource("CircleShape2D_y6ffq")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_e5a7i")
@@ -102,3 +94,10 @@ libraries = {
 
 [node name="StaffProjectile" parent="." instance=ExtResource("3_tx4wv")]
 position = Vector2(18, 0)
+
+[node name="PlaceholderHitbox" parent="." instance=ExtResource("3_jgvq6")]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaceholderHitbox"]
+shape = SubResource("CircleShape2D_tx4wv")
