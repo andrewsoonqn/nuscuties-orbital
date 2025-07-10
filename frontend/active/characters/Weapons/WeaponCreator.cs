@@ -10,6 +10,7 @@ namespace nuscutiesapp.active.characters.Weapons
         {
             Projectile projectile = ResourceLoader.
                 Load<PackedScene>(Paths.StaffProjectile).Instantiate<Projectile>();
+            projectile.InitializeHitbox(wielder, () => 100, 200);
             return Weapon.CreateWeapon(
                 Weapon.WeaponType.Staff,
                 wielder,
