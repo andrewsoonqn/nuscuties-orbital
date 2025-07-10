@@ -33,7 +33,11 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
             if (_locked) return;
             _weapon = weapon;
             Projectile projectile = (Projectile) _baseProjectile.Duplicate();
-            _weapon.AddChild(projectile);
+            Vector2 shootingAngle = weapon.GetGlobalMousePosition() - weapon.GlobalPosition;
+            shootingAngle = shootingAngle.Normalized();
+            GD.Print(shootingAngle);
+            projectile.Initialize((Marker2D)weapon.FindChild("Marker2D"), shootingAngle);
+            _weapon.GetParent().GetParent().AddChild(projectile);
             
             CallDeferred(MethodName.OnAttackFinished);
         }

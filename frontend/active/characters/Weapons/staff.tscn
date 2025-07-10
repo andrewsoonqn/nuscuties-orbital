@@ -86,6 +86,10 @@ offset = Vector2(-10, -10)
 region_enabled = true
 region_rect = Rect2(34, 50, 12, 12)
 
+[node name="Marker2D" type="Marker2D" parent="Node2D/Sprite2D"]
+position = Vector2(-7.98793, -8.05634)
+rotation = -2.06531
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_e5a7i")
