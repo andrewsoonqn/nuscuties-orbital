@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://chi5q1ptodsaf"]
+[gd_scene load_steps=11 format=3 uid="uid://chi5q1ptodsaf"]
 
 [ext_resource type="PackedScene" uid="uid://cvf7e615kvfxq" path="res://game_world.tscn" id="1_kudwv"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_6k8in"]
+[ext_resource type="Texture2D" uid="uid://ean5rq8mka0d" path="res://assets/Keyboard & Mouse/Default/keyboard_escape.png" id="3_dem6s"]
 [ext_resource type="Script" uid="uid://dv8gdccq18wng" path="res://active/characters/DrawHealth.cs" id="3_ir5f8"]
 [ext_resource type="Script" uid="uid://blw8vgyur3qig" path="res://active/characters/UIPrintHealth.cs" id="3_mp5i6"]
+[ext_resource type="Texture2D" uid="uid://caxi8vx23pt4w" path="res://assets/dungeon_art/ui (new)/progress bar.png" id="4_7kwek"]
+[ext_resource type="Texture2D" uid="uid://bokei0x2xhtqh" path="res://assets/dungeon_art/ui (new)/health_ui.png" id="4_lext4"]
 [ext_resource type="Script" uid="uid://d17uqd6ssin58" path="res://active/ActiveGameUi.cs" id="5_lext4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v3mdj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dem6s"]
 
 [node name="ActiveGame" type="Node"]
 
@@ -15,34 +23,41 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_lext4")
-_pauseLabel = NodePath("CanvasLayer/PanelContainer")
+_pauseLabel = NodePath("CanvasLayer/MarginContainer2/PanelContainer")
 _pauseMenu = NodePath("CanvasLayer/PanelContainer2")
 _resumeButton = NodePath("CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/Resume")
 _quitButton = NodePath("CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/Quit")
-_healthBar = NodePath("CanvasLayer/MarginContainer/HBoxContainer/ProgressBar")
-_healthLabel = NodePath("CanvasLayer/MarginContainer/HBoxContainer/Label")
+_healthBar = NodePath("CanvasLayer/MarginContainer/HBoxContainer2/TextureProgressBar")
+_healthLabel = NodePath("CanvasLayer/MarginContainer/HBoxContainer2/Label")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="ActiveGameUI"]
 
-[node name="PanelContainer" type="PanelContainer" parent="ActiveGameUI/CanvasLayer"]
-anchors_preset = -1
-anchor_left = 0.4
-anchor_top = 0.049
-anchor_right = 0.6
-anchor_bottom = 0.089
-offset_bottom = -19.44
+[node name="MarginContainer2" type="MarginContainer" parent="ActiveGameUI/CanvasLayer"]
+offset_right = 221.0
+offset_bottom = 84.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
 
-[node name="MarginContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer2"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_styles/panel = SubResource("StyleBoxTexture_v3mdj")
 
-[node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer2/PanelContainer"]
 layout_mode = 2
-text = "Pause with ESC"
-horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer2/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_dem6s")
+
+[node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_6k8in")
+theme_override_font_sizes/font_size = 32
+text = "Pause"
 
 [node name="PanelContainer2" type="PanelContainer" parent="ActiveGameUI/CanvasLayer"]
 anchors_preset = -1
@@ -85,25 +100,43 @@ text = "Resume"
 
 [node name="MarginContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer"]
 anchors_preset = -1
-anchor_left = 0.2
-anchor_top = 0.925
-anchor_right = 0.8
-anchor_bottom = 0.964
-grow_horizontal = 2
-grow_vertical = 0
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -504.0
+offset_bottom = 84.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
 
-[node name="HBoxContainer" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer"]
 layout_mode = 2
+alignment = 2
 
-[node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer/HBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("3_6k8in")
+theme_override_font_sizes/font_size = 32
 text = "Health"
 horizontal_alignment = 1
 script = ExtResource("3_mp5i6")
 
-[node name="ProgressBar" type="ProgressBar" parent="ActiveGameUI/CanvasLayer/MarginContainer/HBoxContainer"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="ActiveGameUI/CanvasLayer/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(320, 64)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-show_percentage = false
+size_flags_horizontal = 8
+size_flags_vertical = 4
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_7kwek")
+texture_over = ExtResource("4_lext4")
+texture_progress = ExtResource("4_7kwek")
+tint_under = Color(0, 0, 0, 1)
+tint_progress = Color(0.74902, 0.215686, 0.215686, 1)
 script = ExtResource("3_ir5f8")
+
+[node name="Panel" type="Panel" parent="ActiveGameUI/CanvasLayer"]
+custom_minimum_size = Vector2(800, 0)
+offset_right = 700.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dem6s")
