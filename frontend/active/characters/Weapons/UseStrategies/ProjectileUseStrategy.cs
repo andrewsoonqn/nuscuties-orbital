@@ -31,6 +31,7 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
             }
             
             if (_locked) return;
+            _locked = true;
             _weapon = weapon;
             Projectile projectile = (Projectile) _baseProjectile.Duplicate();
             Vector2 shootingAngle = weapon.GetGlobalMousePosition() - weapon.GlobalPosition;

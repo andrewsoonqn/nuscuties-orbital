@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://wmtpuvh3l2yj"]
+[gd_scene load_steps=8 format=3 uid="uid://dspkspxqwftsk"]
 
 [ext_resource type="Script" uid="uid://dn4keoqyjsifd" path="res://active/characters/Weapons/Weapon.cs" id="1_etp5m"]
 [ext_resource type="Texture2D" uid="uid://dc2hn8jmwn2og" path="res://assets/dawn_like/Items/Wand.png" id="2_di34s"]
@@ -101,4 +101,3 @@ shape = SubResource("CircleShape2D_tx4wv")
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(18.411, 0)
 rotation = 0.203622
-scale = Vector2(1, 1)

@@ -8,6 +8,7 @@ namespace nuscutiesapp.active.characters.DamageSystem
         private Func<float> _damage;
         
         public DamageFunction(Func<float> damage) => _damage = damage;
+        public DamageFunction(float damage) => _damage = () => damage;
 
         public float CalculateDamage()
         {

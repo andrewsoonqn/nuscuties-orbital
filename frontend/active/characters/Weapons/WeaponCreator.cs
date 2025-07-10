@@ -7,26 +7,27 @@ namespace nuscutiesapp.active.characters.Weapons
 {
     public class WeaponCreator
     {
-        public static Weapon CreateStaff(Character wielder)
+        public static Weapon CreateStaff(Character wielder, DamageFunction damageFunction)
         {
             Projectile projectile = ResourceLoader.
                 Load<PackedScene>(Paths.StaffProjectile).Instantiate<Projectile>();
-            projectile.InitializeHitbox(wielder, new DamageFunction(() => 10), 200);
+            
+            projectile.InitializeHitbox(wielder, damageFunction, 200);
             return Weapon.CreateWeapon(
                 Weapon.WeaponType.Staff,
                 wielder,
                 null,
                 0,
-                0,
+                750,
                 new ProjectileUseStrategy(projectile)
             );
         }
-        public static Weapon CreateSword(Character wielder)
+        public static Weapon CreateSword(Character wielder, DamageFunction damageFunction)
         {
             return Weapon.CreateWeapon(
                 Weapon.WeaponType.Sword,
                 wielder,
-                new DamageFunction(() => 10),
+                damageFunction,
                 200,
                 250,
                 new WaitForAnimationUserStrategy()
