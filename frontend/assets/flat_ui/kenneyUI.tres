@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=34 format=3 uid="uid://6shp5ck1tnja"]
+[gd_resource type="Theme" load_steps=35 format=3 uid="uid://6shp5ck1tnja"]
 
 [ext_resource type="Texture2D" uid="uid://d00ws7wljnit4" path="res://assets/flat_ui/UIpack_vector.svg" id="1"]
 [ext_resource type="FontFile" uid="uid://c8o3xmuk6ni8m" path="res://assets/flat_ui/kenvector_future.ttf" id="2"]
@@ -51,6 +51,8 @@ cache/0/30/0/descent = 0.0
 cache/0/30/0/underline_position = 0.0
 cache/0/30/0/underline_thickness = 0.0
 cache/0/30/0/scale = 1.0
+[ext_resource type="FontFile" uid="uid://db7byayhdbwy3" path="res://assets/Inter_18pt-Regular.ttf" id="1_wf8p6"]
+[ext_resource type="FontFile" uid="uid://c8o3xmuk6ni8m" path="res://assets/flat_ui/kenvector_future.ttf" id="2"]
 
 [sub_resource type="StyleBoxTexture" id="1"]
 texture = ExtResource("1")
@@ -85,6 +87,15 @@ texture_margin_top = 10.0349
 texture_margin_right = 8.78053
 texture_margin_bottom = 14.2161
 region_rect = Rect2(421, 4, 190, 45)
+
+[sub_resource type="FontFile" id="31"]
+fallbacks = Array[Font]([ExtResource("2")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="AtlasTexture" id="6"]
 atlas = ExtResource("1")
@@ -224,7 +235,7 @@ Button/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
 Button/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
 Button/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
 Button/constants/h_separation = 2
-Button/fonts/font = SubResource("31")
+Button/fonts/font = ExtResource("1_wf8p6")
 Button/styles/disabled = SubResource("1")
 Button/styles/focus = SubResource("2")
 Button/styles/hover = SubResource("3")

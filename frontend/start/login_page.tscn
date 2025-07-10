@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cyd6qmgulbmvb"]
 
-[ext_resource type="Script" uid="uid://c0t7ju8ximpc0" path="res://start/LoginPage.cs" id="1_k63q7"]
-[ext_resource type="FontFile" uid="uid://btl32kohj5kp0" path="res://assets/Jacquard_24/Jacquard24-Regular.ttf" id="2_vyq1t"]
-[ext_resource type="FontFile" uid="uid://bwtnw0suqnqdx" path="res://assets/Inter_18pt-Bold.ttf" id="3_vkbrv"]
+[ext_resource type="Script" uid="uid://eat1hh4arcc8" path="res://start/LoginPage.cs" id="1_k63q7"]
+[ext_resource type="FontFile" uid="uid://rwnkixcmaiax" path="res://assets/Jacquard_24/Jacquard24-Regular.ttf" id="2_vyq1t"]
+[ext_resource type="FontFile" uid="uid://ddeedgsucej03" path="res://assets/Inter_18pt-Bold.ttf" id="3_vkbrv"]
 [ext_resource type="Script" uid="uid://nowpcvxa8n51" path="res://start/line_edit.gd" id="4_vkbrv"]
 [ext_resource type="Script" uid="uid://dqw41tlhj2pue" path="res://start/line_edit_2.gd" id="5_6ekl0"]
 
@@ -45,7 +45,7 @@ corner_radius_bottom_left = 10
 expand_margin_top = 20.0
 expand_margin_bottom = 20.0
 
-[node name="LoginPage" type="Control" node_paths=PackedStringArray("Username", "SubmitLogin")]
+[node name="LoginPage" type="Control" node_paths=PackedStringArray("SubmitLogin")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,7 +53,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k63q7")
-Username = NodePath("")
 SubmitLogin = NodePath("ColorRect/MarginContainer/VBoxContainer/Button")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -66,9 +65,13 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.049
+anchor_right = 0.6
+anchor_bottom = 0.951
+offset_top = -0.280003
+offset_bottom = 0.279968
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 50
@@ -80,24 +83,6 @@ theme_override_constants/margin_bottom = 100
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Separator" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Separator2" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Separator3" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Separator7" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Separator8" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Separator9" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
 [node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -105,15 +90,6 @@ theme_override_fonts/font = ExtResource("2_vyq1t")
 theme_override_font_sizes/font_size = 120
 text = "Solo Scaling"
 horizontal_alignment = 1
-
-[node name="Separator4" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Separator5" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Separator6" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
 
 [node name="Label2" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
