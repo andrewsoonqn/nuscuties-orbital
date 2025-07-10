@@ -17,7 +17,7 @@ public partial class Player : Character
     {
         base._Ready();
         _statCalculator = GetNode<DerivedStatCalculator>("/root/DerivedStatCalculator");
-        MyWeapon = WeaponCreator.CreateStaff(this, new DamageFunction(_statCalculator.CalcAttackDamageMultiplier() * 10f));
+        MyWeapon = WeaponCreator.CreateSword(this, new DamageFunction(_statCalculator.CalcAttackDamageMultiplier() * 10f));
         AddChild(MyWeapon);
         MovementStrategy = new PlayerMovementStrategy(this);
 

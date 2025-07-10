@@ -16,7 +16,7 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
         {
             _baseProjectile = projectile;
         }
-        
+
         public async void Use(Weapon weapon)
         {
             AnimationPlayer animationPlayer = weapon.GetAnimationPlayer();
@@ -24,21 +24,21 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
             {
                 throw new ArgumentException("Weapon does not have an animation player.");
             }
-            
+
             if (!animationPlayer.IsPlaying())
             {
                 animationPlayer.Play("attack");
             }
-            
+
             if (_locked) return;
             _locked = true;
             _weapon = weapon;
-            Projectile projectile = (Projectile) _baseProjectile.Duplicate();
+            Projectile projectile = (Projectile)_baseProjectile.Duplicate();
             Vector2 shootingAngle = weapon.GetGlobalMousePosition() - weapon.GlobalPosition;
             shootingAngle = shootingAngle.Normalized();
-            
+
             await Task.Delay(95);
-            
+
             projectile.Initialize((Marker2D)weapon.FindChild("Marker2D"), shootingAngle);
 
             _weapon.GetParent().GetParent().AddChild(projectile);

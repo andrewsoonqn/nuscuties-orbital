@@ -16,10 +16,10 @@ namespace nuscutiesapp.active.characters.Weapons
 
         public override void _Ready()
         {
-            if (_timer == null) _timer = (Timer) FindChild("Timer");
+            if (_timer == null) _timer = (Timer)FindChild("Timer");
             _timer.OneShot = true;
-            _timer.Start((float)_lifetimeMs/1000);
-            
+            _timer.Start((float)_lifetimeMs / 1000);
+
             _timer.Timeout += TimerOnTimeout;
             base._Ready();
         }
@@ -35,13 +35,13 @@ namespace nuscutiesapp.active.characters.Weapons
         {
             if (_projectileHitbox == null)
             {
-                _projectileHitbox = (Hitbox) FindChild("Hitbox");
+                _projectileHitbox = (Hitbox)FindChild("Hitbox");
             }
             _projectileHitbox.Initialize(wielder, damageFunc, knockbackMagnitude);
         }
         public override void _PhysicsProcess(double delta)
         {
-            GlobalPosition += _direction * _speed * (float) delta;
+            GlobalPosition += _direction * _speed * (float)delta;
             base._PhysicsProcess(delta);
         }
 

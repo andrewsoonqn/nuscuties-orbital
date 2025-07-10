@@ -32,7 +32,6 @@ public partial class Hitbox : Area2D
 
     private void OnBodyEntered(Node2D body)
     {
-        GD.Print(monitoring);
         if (body is Character character && monitoring)
         {
             this._knockbackDirection = character.GlobalPosition - _wielder.GlobalPosition; // TODO change this
