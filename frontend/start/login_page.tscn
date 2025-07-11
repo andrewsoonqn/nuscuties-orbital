@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://cyd6qmgulbmvb"]
 
-[ext_resource type="Script" uid="uid://c0t7ju8ximpc0" path="res://start/LoginPage.cs" id="1_k63q7"]
-[ext_resource type="FontFile" uid="uid://btl32kohj5kp0" path="res://assets/Jacquard_24/Jacquard24-Regular.ttf" id="2_vyq1t"]
-[ext_resource type="FontFile" uid="uid://bwtnw0suqnqdx" path="res://assets/Inter_18pt-Bold.ttf" id="3_vkbrv"]
-[ext_resource type="Script" uid="uid://nowpcvxa8n51" path="res://start/line_edit.gd" id="4_vkbrv"]
-[ext_resource type="FontFile" uid="uid://jhd7a6wicpuu" path="res://assets/Inter_18pt-Regular.ttf" id="5_6ekl0"]
+[ext_resource type="Script" uid="uid://eat1hh4arcc8" path="res://start/LoginPage.cs" id="1_k63q7"]
+[ext_resource type="FontFile" uid="uid://rwnkixcmaiax" path="res://assets/Jacquard_24/Jacquard24-Regular.ttf" id="2_vyq1t"]
+[ext_resource type="FontFile" uid="uid://ddeedgsucej03" path="res://assets/Inter_18pt-Bold.ttf" id="3_vkbrv"]
+[ext_resource type="Script" path="res://start/line_edit.gd" id="4_vkbrv"]
+[ext_resource type="FontFile" uid="uid://db7byayhdbwy3" path="res://assets/Inter_18pt-Regular.ttf" id="5_6ekl0"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="6_pp1sg"]
-[ext_resource type="Script" uid="uid://dqw41tlhj2pue" path="res://start/line_edit_2.gd" id="7_c8fcd"]
-[ext_resource type="AudioStream" uid="uid://b6866y628dwvo" path="res://assets/PSX - Press Button Sound Effects (Download Sound) [9wiI5iio-fc].mp3" id="9_ksaad"]
+[ext_resource type="Script" path="res://start/line_edit_2.gd" id="7_c8fcd"]
+[ext_resource type="AudioStream" uid="uid://c578riix3nmnc" path="res://assets/PSX - Press Button Sound Effects (Download Sound) [9wiI5iio-fc].mp3" id="9_ksaad"]
 
 [node name="LoginPage" type="Control" node_paths=PackedStringArray("Username", "SubmitLogin")]
 layout_mode = 3
@@ -33,11 +33,9 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.05
+anchor_top = 0.45
 anchor_right = 0.5
-anchor_bottom = 0.95
-offset_top = -0.280003
-offset_bottom = 0.279968
+anchor_bottom = 0.45
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 50
@@ -112,6 +110,7 @@ script = ExtResource("7_c8fcd")
 
 [node name="Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("6_pp1sg")
 text = "Continue"
 
