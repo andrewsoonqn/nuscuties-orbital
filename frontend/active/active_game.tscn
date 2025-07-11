@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://chi5q1ptodsaf"]
+[gd_scene load_steps=22 format=3 uid="uid://chi5q1ptodsaf"]
 
 [ext_resource type="PackedScene" uid="uid://cvf7e615kvfxq" path="res://game_world.tscn" id="1_kudwv"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_6k8in"]
@@ -7,12 +7,25 @@
 [ext_resource type="Script" uid="uid://blw8vgyur3qig" path="res://active/characters/UIPrintHealth.cs" id="3_mp5i6"]
 [ext_resource type="Texture2D" uid="uid://caxi8vx23pt4w" path="res://assets/dungeon_art/ui (new)/progress bar.png" id="4_7kwek"]
 [ext_resource type="Texture2D" uid="uid://bokei0x2xhtqh" path="res://assets/dungeon_art/ui (new)/health_ui.png" id="4_lext4"]
+[ext_resource type="Texture2D" uid="uid://dlgymkxkwptry" path="res://assets/kenney_ui-pack-pixel-adventure/Tiles/Large tiles/Thin outline/tile_0018.png" id="5_2vtgd"]
 [ext_resource type="Texture2D" uid="uid://2mef3pbmf8gq" path="res://assets/flat_ui/PNG/Extra/Double/button_rectangle_depth_line.png" id="5_hfto2"]
 [ext_resource type="Script" uid="uid://d17uqd6ssin58" path="res://active/ActiveGameUi.cs" id="5_lext4"]
+[ext_resource type="Texture2D" uid="uid://bfejfb4gdis4i" path="res://assets/Keyboard & Mouse/Vector/keyboard_1.svg" id="5_sxw8e"]
+[ext_resource type="Texture2D" uid="uid://bmd6bnudrqldm" path="res://assets/dungeon_art/heroes/knight/weapon_sword_1.png" id="6_lq7bx"]
 [ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="6_sahrs"]
 [ext_resource type="Theme" uid="uid://bb6vwl0h1flws" path="res://assets/flat_ui/kenneyUI-blue.tres" id="7_gepbl"]
+[ext_resource type="Texture2D" uid="uid://dc2hn8jmwn2og" path="res://assets/dawn_like/Items/Wand.png" id="7_jm1vr"]
+[ext_resource type="Texture2D" uid="uid://b6kei1exly834" path="res://assets/Keyboard & Mouse/Vector/keyboard_2.svg" id="8_bbdxb"]
+[ext_resource type="Texture2D" uid="uid://bjti66qm6xawi" path="res://assets/Keyboard & Mouse/Vector/keyboard_3.svg" id="10_hj30a"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v3mdj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sxw8e"]
+texture = ExtResource("5_2vtgd")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbdxb"]
+atlas = ExtResource("7_jm1vr")
+region = Rect2(32, 48, 16, 16)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2vtgd"]
 texture = ExtResource("5_hfto2")
@@ -62,6 +75,107 @@ layout_mode = 2
 theme = ExtResource("3_6k8in")
 theme_override_font_sizes/font_size = 32
 text = "Pause"
+
+[node name="MarginContainer3" type="MarginContainer" parent="ActiveGameUI/CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -148.0
+offset_right = 412.0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_v3mdj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="BoxContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer/VBoxContainer/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_sxw8e")
+
+[node name="MarginContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_sxw8e")
+
+[node name="MarginContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer/VBoxContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("6_lq7bx")
+stretch_mode = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="BoxContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer/VBoxContainer2/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_bbdxb")
+
+[node name="MarginContainer2" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer2"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_sxw8e")
+
+[node name="MarginContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer2/PanelContainer/MarginContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_bbdxb")
+stretch_mode = 5
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="BoxContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer/VBoxContainer3/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_hj30a")
+
+[node name="MarginContainer3" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/PanelContainer/HBoxContainer/VBoxContainer3/MarginContainer3"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_sxw8e")
 
 [node name="PanelContainer2" type="PanelContainer" parent="ActiveGameUI/CanvasLayer"]
 anchors_preset = -1
@@ -115,7 +229,7 @@ theme = ExtResource("7_gepbl")
 text = "Resume"
 
 [node name="MarginContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer"]
-anchors_preset = -1
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -504.0
