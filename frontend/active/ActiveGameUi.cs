@@ -34,7 +34,7 @@ public partial class ActiveGameUi : Control
     private void ResumeButtonOnPressed()
     {
         _gameWorld.GetTree().SetPause(false);
-        _pauseLabel.Show();
+        // _pauseLabel.Show();
         _pauseMenu.Hide();
     }
 
@@ -45,7 +45,7 @@ public partial class ActiveGameUi : Control
             if (inputEvent.Keycode == Key.Escape && inputEvent.IsPressed())
             {
                 _gameWorld.GetTree().SetPause(true);
-                _pauseLabel.Hide();
+                // _pauseLabel.Hide();
                 _pauseMenu.Show();
             }
         }
