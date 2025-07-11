@@ -1,4 +1,5 @@
 using System.Numerics;
+using System.Threading.Tasks;
 
 namespace nuscutiesapp.active
 {
@@ -9,28 +10,66 @@ namespace nuscutiesapp.active
     {
         [Export]
         public PackedScene EnemyScene { get; set; } 
-
-        [Export]
-        public Timer SpawnTimer { get; set; } 
         
         [Export]
         public NavigationRegion2D NavigationRegion { get; set; }
         
         [Export]
         public Marker2D TopLeftMarker { get; set; }
+        
+        [Export]
+        public float WaveLength { get; set; }
+        
+        [Export]
+        public int EnemiesPerWave { get; set; }
+        
+        [Export]
+        public float TimeBetweenWaves { get; set; }
+        
+        [Export]
+        public int Waves { get; set; }
+
+        private Timer _spawnTimer;
+        private int _enemiesSpawnedDuringWave = 0;
+        private int _totalEnemiesSpawned = 0;
+        private int _totalWavesDone = 0;
 
         public override void _Ready()
         {
-            if (SpawnTimer != null)
-            {
-                SpawnTimer.Timeout += OnSpawnTimerTimeout;
-                SpawnTimer.Start();
-            }
+            _spawnTimer = new Timer();
+            _spawnTimer.WaitTime = WaveLength / EnemiesPerWave;
+            AddChild(_spawnTimer);
+            
+            _spawnTimer.Timeout += OnSpawnTimerTimeout;
+            WaveCycle();
         }
 
-        private void OnSpawnTimerTimeout()
+        private async Task WaveCycle()
+        {
+            if (_totalWavesDone >= Waves)
+            {
+                _spawnTimer.Stop();
+                return;
+            }
+
+            _totalWavesDone++;
+            _spawnTimer.Stop();
+            await Task.Delay((int)(TimeBetweenWaves * 1000));
+            _enemiesSpawnedDuringWave = 0;
+            _spawnTimer.Start();
+        }
+
+        private async void OnSpawnTimerTimeout()
         {
             SpawnEnemy();
+            GD.Print("total ", _totalEnemiesSpawned, " wave ", _enemiesSpawnedDuringWave, "waves dun", _totalWavesDone);
+            _enemiesSpawnedDuringWave++;
+            _totalEnemiesSpawned++;
+
+            if (_enemiesSpawnedDuringWave == EnemiesPerWave)
+            {
+                await WaveCycle();
+            }
         }
 
         private void SpawnEnemy()

@@ -356,12 +356,15 @@ script = ExtResource("1_e08lw")
 [node name="TopLeft" type="Marker2D" parent="."]
 position = Vector2(-328, -184)
 
-[node name="EnemySpawner" type="Node2D" parent="." node_paths=PackedStringArray("SpawnTimer", "NavigationRegion", "TopLeftMarker")]
+[node name="EnemySpawner" type="Node2D" parent="." node_paths=PackedStringArray("NavigationRegion", "TopLeftMarker")]
 script = ExtResource("2_e7o6u")
 EnemyScene = ExtResource("4_ik71a")
-SpawnTimer = NodePath("SpawnTimer")
 NavigationRegion = NodePath("../GameWorldNavigationRegion")
 TopLeftMarker = NodePath("../TopLeft")
+WaveLength = 0.5
+EnemiesPerWave = 5
+TimeBetweenWaves = 1.0
+Waves = 2
 
 [node name="SpawnTimer" type="Timer" parent="EnemySpawner"]
 
