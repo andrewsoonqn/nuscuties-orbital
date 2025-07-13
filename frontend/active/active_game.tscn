@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://chi5q1ptodsaf"]
+[gd_scene load_steps=26 format=3 uid="uid://chi5q1ptodsaf"]
 
 [ext_resource type="PackedScene" uid="uid://cvf7e615kvfxq" path="res://game_world.tscn" id="1_kudwv"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_6k8in"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bjti66qm6xawi" path="res://assets/Keyboard & Mouse/Vector/keyboard_3.svg" id="10_hj30a"]
 [ext_resource type="Texture2D" uid="uid://453frowrrtj1" path="res://assets/dungeon_art/props_itens/bomb_anim_f0.png" id="12_hj30a"]
 [ext_resource type="Script" uid="uid://c0f263hwc1rs8" path="res://active/WaveInformation.cs" id="20_5rjfj"]
+[ext_resource type="Script" uid="uid://trv4qpxml7vi" path="res://active/EnemyTracker.cs" id="22_3tek5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v3mdj"]
 
@@ -329,3 +330,6 @@ color = Color(0.0687983, 0.0687983, 0.0687983, 1)
 script = ExtResource("20_5rjfj")
 _wavesLabel = NodePath("../ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer/Wave")
 _enemiesSpawnedLabel = NodePath("../ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer/RemainingEnemies")
+
+[node name="EnemyTracker" type="Node" parent="."]
+script = ExtResource("22_3tek5")

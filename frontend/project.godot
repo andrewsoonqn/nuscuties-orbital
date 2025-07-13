@@ -28,6 +28,7 @@ GameTerminationManager="*res://active/GameTerminationManager.cs"
 ProgressionManager="*res://tools/ProgressionManager.cs"
 PlayerStatManager="*res://tools/PlayerStatManager.cs"
 DerivedStatCalculator="*res://tools/DerivedStatCalculator.cs"
+EnemyTracker="*res://active/EnemyTracker.cs"
 
 [display]
 

@@ -45,6 +45,8 @@ namespace nuscutiesapp.active
         private ActiveDungeonEventManager _eventManager;
         private List<Vector2I> _navigatableCells;
 
+        private EnemyTracker _enemyTracker;
+
         public override void _Ready()
         {
             _spawnTimer = new Timer();
@@ -55,6 +57,7 @@ namespace nuscutiesapp.active
 
             _eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
 
+            _enemyTracker = GetNode<EnemyTracker>("/root/EnemyTracker");
             CalculateNavigatableCells();
 
             WaveCycle();
@@ -133,8 +136,11 @@ namespace nuscutiesapp.active
             GD.Print("val ", randomCell.Value);
 
             GetParent().AddChild(enemy);
-            
+
             enemy.Position = spawnPosition;
+
+            // Register enemy with the tracker
+            _enemyTracker.RegisterEnemy(enemy);
 
             _eventManager.EnemySpawned();
         }

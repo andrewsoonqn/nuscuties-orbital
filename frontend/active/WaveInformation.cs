@@ -8,7 +8,7 @@ public partial class WaveInformation : Node
     [Export] private Label _wavesLabel;
     [Export] private Label _enemiesSpawnedLabel;
     
-    private int _enemiesSpawned;
+    private int _enemiesRemaining;
     private int _waves;
 
     public override void _Ready()
@@ -19,14 +19,25 @@ public partial class WaveInformation : Node
         
         _eventManager.EnemySpawnedEvent += OnEnemySpawned;
         _eventManager.WaveElapsedEvent += OnWaveElapsed;
+        _eventManager.EnemyDiedEvent += OnEnemyDied;
         
         base._Ready();
     }
 
+    public void OnEnemyDied()
+    {
+        _enemiesRemaining--;
+        _enemiesSpawnedLabel.Text = $"{_enemiesRemaining} enemies remaining";
+
+        if (_enemiesRemaining <= 0)
+        {
+            _eventManager.GameWon();
+        }
+    }
     public void OnEnemySpawned()
     {
-        _enemiesSpawned++;
-        _enemiesSpawnedLabel.Text = $"{_enemiesSpawned} enemies remaining";
+        _enemiesRemaining++;
+        _enemiesSpawnedLabel.Text = $"{_enemiesRemaining} enemies remaining";
     }
 
     public void OnWaveElapsed()
