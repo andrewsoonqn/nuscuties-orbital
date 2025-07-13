@@ -88,7 +88,6 @@ namespace nuscutiesapp.active
             if (_totalWavesDone >= Waves)
             {
                 _spawnTimer.Stop();
-                // _eventManager.GameWon();
                 return;
             }
 
@@ -97,6 +96,7 @@ namespace nuscutiesapp.active
             await Task.Delay((int)(TimeBetweenWaves * 1000));
             _enemiesSpawnedDuringWave = 0;
             _spawnTimer.Start();
+            _eventManager.WaveElapsed();
         }
 
         private async void OnSpawnTimerTimeout()
@@ -136,7 +136,7 @@ namespace nuscutiesapp.active
             
             enemy.Position = spawnPosition;
 
-            GD.Print("enemy pos ", enemy.Position, " global ", enemy.GlobalPosition);
+            _eventManager.EnemySpawned();
         }
     }
 }

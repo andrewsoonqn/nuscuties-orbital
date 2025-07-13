@@ -32,10 +32,13 @@ namespace nuscutiesapp.active.characters.DamageSystem
 
             CurrentHP = float.Max(CurrentHP - GetDamageAmt(damageInfo), 0);
 
-            Damaged?.Invoke(CurrentHP, damageInfo);
             if (CurrentHP <= 0)
             {
                 Died?.Invoke(damageInfo);
+            }
+            else
+            {
+                Damaged?.Invoke(CurrentHP, damageInfo);
             }
         }
     }

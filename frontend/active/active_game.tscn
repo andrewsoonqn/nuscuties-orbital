@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://chi5q1ptodsaf"]
+[gd_scene load_steps=25 format=3 uid="uid://chi5q1ptodsaf"]
 
 [ext_resource type="PackedScene" uid="uid://cvf7e615kvfxq" path="res://game_world.tscn" id="1_kudwv"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_6k8in"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://b6kei1exly834" path="res://assets/Keyboard & Mouse/Vector/keyboard_2.svg" id="8_bbdxb"]
 [ext_resource type="Texture2D" uid="uid://bjti66qm6xawi" path="res://assets/Keyboard & Mouse/Vector/keyboard_3.svg" id="10_hj30a"]
 [ext_resource type="Texture2D" uid="uid://453frowrrtj1" path="res://assets/dungeon_art/props_itens/bomb_anim_f0.png" id="12_hj30a"]
+[ext_resource type="Script" uid="uid://c0f263hwc1rs8" path="res://active/WaveInformation.cs" id="20_5rjfj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v3mdj"]
 
@@ -46,8 +47,8 @@ _pauseLabel = NodePath("CanvasLayer/MarginContainer2/PanelContainer")
 _pauseMenu = NodePath("CanvasLayer/PanelContainer2")
 _resumeButton = NodePath("CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/Resume")
 _quitButton = NodePath("CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/Quit")
-_healthBar = NodePath("CanvasLayer/MarginContainer/HBoxContainer2/TextureProgressBar")
-_healthLabel = NodePath("CanvasLayer/MarginContainer/HBoxContainer2/Label")
+_healthBar = NodePath("CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2/TextureProgressBar")
+_healthLabel = NodePath("CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2/Label")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="ActiveGameUI"]
 
@@ -268,11 +269,14 @@ grow_horizontal = 0
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 8
 theme = ExtResource("3_6k8in")
@@ -281,7 +285,7 @@ text = "Health"
 horizontal_alignment = 1
 script = ExtResource("3_mp5i6")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="ActiveGameUI/CanvasLayer/MarginContainer/HBoxContainer2"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(320, 64)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -295,6 +299,23 @@ tint_under = Color(0, 0, 0, 1)
 tint_progress = Color(0.74902, 0.215686, 0.215686, 1)
 script = ExtResource("3_ir5f8")
 
+[node name="VBoxContainer" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Wave" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_6k8in")
+theme_override_font_sizes/font_size = 32
+text = "Wave 1"
+horizontal_alignment = 2
+
+[node name="RemainingEnemies" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_6k8in")
+theme_override_font_sizes/font_size = 32
+text = "50 enemies remaining"
+horizontal_alignment = 2
+
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -2
 anchors_preset = 15
@@ -303,3 +324,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0687983, 0.0687983, 0.0687983, 1)
+
+[node name="WaveInformation" type="Node" parent="." node_paths=PackedStringArray("_wavesLabel", "_enemiesSpawnedLabel")]
+script = ExtResource("20_5rjfj")
+_wavesLabel = NodePath("../ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer/Wave")
+_enemiesSpawnedLabel = NodePath("../ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer/RemainingEnemies")
