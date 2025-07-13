@@ -1,5 +1,7 @@
 using System.Numerics;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace nuscutiesapp.active
 {
@@ -9,23 +11,29 @@ namespace nuscutiesapp.active
     public partial class EnemySpawner : Node2D
     {
         [Export]
-        public PackedScene EnemyScene { get; set; } 
-        
+        public PackedScene EnemyScene { get; set; }
+
         [Export]
         public NavigationRegion2D NavigationRegion { get; set; }
-        
+
         [Export]
         public Marker2D TopLeftMarker { get; set; }
-        
+
+        [Export]
+        public TileMapLayer FloorTileMap { get; set; }
+
+        [Export]
+        public TileMapLayer WallTileMap { get; set; }
+
         [Export]
         public float WaveLength { get; set; }
-        
+
         [Export]
         public int EnemiesPerWave { get; set; }
-        
+
         [Export]
         public float TimeBetweenWaves { get; set; }
-        
+
         [Export]
         public int Waves { get; set; }
 
@@ -34,14 +42,45 @@ namespace nuscutiesapp.active
         private int _totalEnemiesSpawned = 0;
         private int _totalWavesDone = 0;
 
+        private ActiveDungeonEventManager _eventManager;
+        private List<Vector2I> _navigatableCells;
+
         public override void _Ready()
         {
             _spawnTimer = new Timer();
             _spawnTimer.WaitTime = WaveLength / EnemiesPerWave;
             AddChild(_spawnTimer);
-            
+
             _spawnTimer.Timeout += OnSpawnTimerTimeout;
+
+            _eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
+
+            CalculateNavigatableCells();
+
             WaveCycle();
+        }
+
+        private void CalculateNavigatableCells()
+        {
+            var floorCells = FloorTileMap.GetUsedCells();
+            var wallCells = WallTileMap.GetUsedCells();
+
+            var wallCellsSet = new HashSet<Vector2I>(wallCells);
+
+            _navigatableCells = floorCells.Where(cell => !wallCellsSet.Contains(cell)).ToList();
+        }
+
+        private Vector2I? GetRandomNavigatableCell()
+        {
+            if (_navigatableCells == null || _navigatableCells.Count == 0)
+            {
+                GD.PrintErr("No navigatable cells available for spawning");
+                return null;
+            }
+
+            var random = new Random();
+            int randomIndex = random.Next(0, _navigatableCells.Count);
+            return _navigatableCells[randomIndex];
         }
 
         private async Task WaveCycle()
@@ -49,6 +88,7 @@ namespace nuscutiesapp.active
             if (_totalWavesDone >= Waves)
             {
                 _spawnTimer.Stop();
+                // _eventManager.GameWon();
                 return;
             }
 
@@ -62,7 +102,6 @@ namespace nuscutiesapp.active
         private async void OnSpawnTimerTimeout()
         {
             SpawnEnemy();
-            GD.Print("total ", _totalEnemiesSpawned, " wave ", _enemiesSpawnedDuringWave, "waves dun", _totalWavesDone);
             _enemiesSpawnedDuringWave++;
             _totalEnemiesSpawned++;
 
@@ -82,11 +121,22 @@ namespace nuscutiesapp.active
 
             Node2D enemy = EnemyScene.Instantiate<Node2D>();
 
-            Rid rid = NavigationRegion.GetRid();
-            Vector2 randPoint = NavigationServer2D.RegionGetRandomPoint(rid, 0, false);
-            Vector2 spawnPosition = randPoint;
+            Vector2I? randomCell = GetRandomNavigatableCell();
+            if (randomCell == null)
+            {
+                GD.PrintErr("Could not find a navigatable cell for enemy spawning");
+                enemy.QueueFree();
+                return;
+            }
 
-            GetParent().AddChild(enemy); 
-            enemy.GlobalPosition = spawnPosition;
+            Vector2 spawnPosition = FloorTileMap.MapToLocal(randomCell.Value);
+            GD.Print("val ", randomCell.Value);
+
+            GetParent().AddChild(enemy);
+            
+            enemy.Position = spawnPosition;
+
+            GD.Print("enemy pos ", enemy.Position, " global ", enemy.GlobalPosition);
         }
-    }}
+    }
+}

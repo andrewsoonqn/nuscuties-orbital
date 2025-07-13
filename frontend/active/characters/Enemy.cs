@@ -69,7 +69,6 @@ public partial class Enemy : Character
     {
         ActionStateMachine.SetState(new DeadState());
         _eventManager.EnemyDied();
-        _eventManager.GameWon();
     }
 
 }
