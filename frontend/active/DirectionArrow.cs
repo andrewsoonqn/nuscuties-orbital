@@ -1,4 +1,5 @@
 using Godot;
+using System.Collections.Generic;
 
 namespace nuscutiesapp.active
 {
@@ -13,6 +14,10 @@ namespace nuscutiesapp.active
         private bool _isVisible = false;
 
         private EnemyTracker _enemyTracker;
+        
+        private ActiveDungeonEventManager _eventManager;
+
+        private HashSet<Node2D> _deadEnemies = new HashSet<Node2D>();
 
         public override void _Ready()
         {
@@ -21,6 +26,14 @@ namespace nuscutiesapp.active
 
             // If ArrowTexture is not assigned, try to find it as a child
             _enemyTracker = GetNode<EnemyTracker>("/root/EnemyTracker");
+            
+            _eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
+            _eventManager.EnemyDiedEvent += () =>
+            {
+                _deadEnemies.Add(_enemyTracker.GetNearestEnemy(Player.GlobalPosition));
+                HideArrow();
+                UpdateArrowDirection();
+            };
         }
 
         public override void _Process(double delta)
@@ -35,13 +48,11 @@ namespace nuscutiesapp.active
         {
             var nearestEnemy = _enemyTracker.GetNearestEnemy(Player.GlobalPosition);
 
-            if (nearestEnemy == null)
+            if (nearestEnemy == null || _deadEnemies.Contains(nearestEnemy))
             {
                 HideArrow();
                 return;
             }
-
-            ShowArrow();
 
             // Calculate direction from player to enemy
             Vector2 directionToEnemy = (nearestEnemy.GlobalPosition - Player.GlobalPosition).Normalized();
@@ -55,6 +66,7 @@ namespace nuscutiesapp.active
             // Rotate arrow to point toward enemy
             float angle = directionToEnemy.Angle();
             Rotation = angle;
+            ShowArrow();
         }
 
         private void ShowArrow()

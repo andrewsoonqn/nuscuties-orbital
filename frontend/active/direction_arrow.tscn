@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://2pc16ix5rt11"]
 
 [ext_resource type="Script" uid="uid://qifs0g6rg6o0" path="res://active/DirectionArrow.cs" id="1"]
-[ext_resource type="Texture2D" uid="uid://do7ayku6yrj28" path="res://assets/flat_ui/PNG/Red/Double/arrow_decorative_e_small.png" id="2_vo7pc"]
+[ext_resource type="Texture2D" uid="uid://c7nsraflxn2vx" path="res://assets/flat_ui/PNG/Grey/Default/arrow_decorative_e_small.png" id="2_vo7pc"]
 
 [node name="DirectionArrow" type="Control"]
 layout_mode = 3
@@ -14,11 +14,12 @@ mouse_filter = 2
 script = ExtResource("1")
 
 [node name="ArrowTexture" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.313726)
 layout_mode = 1
-offset_left = -4.0
-offset_top = -5.0
-offset_right = 44.0
-offset_bottom = 43.0
+offset_left = -4.5
+offset_top = -4.7
+offset_right = 43.5
+offset_bottom = 43.3
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_vo7pc")
 stretch_mode = 3
