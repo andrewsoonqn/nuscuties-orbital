@@ -60,7 +60,15 @@ namespace nuscutiesapp.active
             _enemyTracker = GetNode<EnemyTracker>("/root/EnemyTracker");
             CalculateNavigatableCells();
 
+            InitializeSpawner();
             WaveCycle();
+        }
+
+        public void InitializeSpawner()
+        {
+            _enemiesSpawnedDuringWave = 0;
+            _totalEnemiesSpawned = 0;
+            _totalWavesDone = 0;
         }
 
         private void CalculateNavigatableCells()
