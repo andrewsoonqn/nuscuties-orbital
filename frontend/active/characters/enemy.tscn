@@ -187,8 +187,7 @@ collision_layer = 4
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("2_htnh5")
-_acceleration = 0.15
-_maxSpeed = 25.0
+_acceleration = 0.2
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_krth2")
