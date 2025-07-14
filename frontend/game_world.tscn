@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://cal5ppvm3euy2" path="res://active/ActiveGame.cs" id="1_e08lw"]
 [ext_resource type="Texture2D" uid="uid://3jb08ef7rxbq" path="res://assets/dungeon_art/full tilemap.png" id="2_e3xe6"]
 [ext_resource type="Script" uid="uid://dn5jybypvw8oc" path="res://active/EnemySpawner.cs" id="2_e7o6u"]
-[ext_resource type="Script" uid="uid://c24gt0ltm72y4" path="res://GameWorldNavigationRegion.cs" id="2_ik71a"]
+[ext_resource type="Script" uid="uid://derjrd1dagat0" path="res://GameWorldNavigationRegion.cs" id="2_ik71a"]
 [ext_resource type="PackedScene" uid="uid://d4ukkagofjxm" path="res://active/characters/player.tscn" id="3_mcbma"]
 [ext_resource type="PackedScene" uid="uid://dmweiqk1jxob0" path="res://active/characters/enemy.tscn" id="4_ik71a"]
 [ext_resource type="Script" uid="uid://be06ish7ytgcl" path="res://active/characters/PrintHealth.cs" id="5_mcbma"]
 [ext_resource type="Script" uid="uid://cs0lwru51xgnf" path="res://active/characters/PrintState.cs" id="6_mcbma"]
-[ext_resource type="PackedScene" uid="uid://2pc16ix5rt11" path="res://active/direction_arrow.tscn" id="9_15365"]
+[ext_resource type="PackedScene" uid="uid://dqegj0i8eeutb" path="res://active/direction_arrow.tscn" id="9_15365"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_e7o6u"]
 agent_radius = 4.0
@@ -352,6 +352,38 @@ y_sort_enabled = true
 position = Vector2(540, 360)
 script = ExtResource("1_e08lw")
 
+[node name="Player" parent="." instance=ExtResource("3_mcbma")]
+position = Vector2(0, 0)
+collision_mask = 1
+_acceleration = 0.15
+
+[node name="PlayerStates" type="Label" parent="Player"]
+visible = false
+offset_left = -5.0
+offset_top = -16.0
+offset_right = 35.0
+offset_bottom = 7.0
+scale = Vector2(0.3, 0.3)
+text = "State"
+vertical_alignment = 2
+script = ExtResource("6_mcbma")
+
+[node name="PlayerHealth" type="Label" parent="Player"]
+visible = false
+offset_left = -5.0
+offset_top = 6.0
+offset_right = 35.0
+offset_bottom = 29.0
+scale = Vector2(0.3, 0.3)
+text = "State"
+vertical_alignment = 2
+script = ExtResource("5_mcbma")
+
+[node name="DirectionArrow" parent="Player" node_paths=PackedStringArray("Player") instance=ExtResource("9_15365")]
+z_index = 1
+ArrowDistance = 10.0
+Player = NodePath("..")
+
 [node name="TopLeft" type="Marker2D" parent="."]
 position = Vector2(-328, -184)
 
@@ -401,35 +433,3 @@ tile_set = SubResource("TileSet_ik71a")
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AADk//z/AAAFAAEAAADl//z/AAACAAAAAADn//r/AAAFAAEAAADo//7/AAAAAAEAAADp//7/AAABAAEAAADp//r/AAAEAAAAAADr//L/AAAAAAEAAADs//L/AAABAAEAAADu/+//AAAAAAEAAADv/+//AAABAAEAAADt/+7/AAAEAAEAAADv//H/AAABAAAAAAD0//D/AAABAAAAAADy/+3/AAABAAAAAAAFAPP/AAACAAAAAAAGAPP/AAACAAAAAAAIAPb/AAACAAAAAAABAPX/AAACAAAAAAAbAPL/AAAAAAEAAAAcAPL/AAABAAEAAAAdAPX/AAAAAAEAAAAeAPX/AAABAAEAAAAXAPT/AAAFAAEAAAAaAPD/AAAEAAAAAAAeAPH/AAAEAAAAAAAdAPD/AAAEAAEAAAD3////AAAAAAEAAAD4////AAABAAEAAAD5/wIAAAAAAAEAAAD6/wIAAAABAAEAAADp/wcAAAAFAAEAAADr/wYAAAAFAAEAAADs/wkAAAACAAAAAADm/wgAAAABAAAAAADk/wYAAAABAAAAAAD6/woAAAABAAAAAAD+/wsAAAABAAAAAAD3/wwAAAABAAAAAAD6/wwAAAAFAAEAAAD+/w0AAAAAAAEAAAD//w0AAAABAAEAAAANAAcAAAAAAAEAAAAOAAcAAAABAAEAAAAPAAgAAAAAAAEAAAAQAAgAAAABAAEAAAASAAgAAAAEAAEAAAAQAAYAAAAEAAEAAAAcAAkAAAAEAAEAAAAdAAkAAAAEAAAAAAAaAAoAAAACAAAAAAARAPr/AAABAAAAAAARAPv/AAABAAAAAAAXAPn/AAABAAAAAAAPAP3/AAABAAAAAAAWAP3/AAABAAAAAAAUAPn/AAAEAAAAAAAWAPv/AAAEAAAAAADp/wUAAAADAAAAAAD9/wkAAAADAAAAAAAOAAsAAAAAAAEAAAAPAAsAAAABAAEAAAAFAPL/AAADAAAAAAADAPL/AAADAAAAAADk//r/AAAEAAAAAAA=")
 tile_set = SubResource("TileSet_ik71a")
-
-[node name="Player" parent="." instance=ExtResource("3_mcbma")]
-position = Vector2(0, 0)
-collision_mask = 1
-_acceleration = 0.15
-
-[node name="PlayerStates" type="Label" parent="Player"]
-visible = false
-offset_left = -5.0
-offset_top = -16.0
-offset_right = 35.0
-offset_bottom = 7.0
-scale = Vector2(0.3, 0.3)
-text = "State"
-vertical_alignment = 2
-script = ExtResource("6_mcbma")
-
-[node name="PlayerHealth" type="Label" parent="Player"]
-visible = false
-offset_left = -5.0
-offset_top = 6.0
-offset_right = 35.0
-offset_bottom = 29.0
-scale = Vector2(0.3, 0.3)
-text = "State"
-vertical_alignment = 2
-script = ExtResource("5_mcbma")
-
-[node name="DirectionArrow" parent="Player" node_paths=PackedStringArray("Player") instance=ExtResource("9_15365")]
-z_index = 1
-ArrowDistance = 10.0
-Player = NodePath("..")

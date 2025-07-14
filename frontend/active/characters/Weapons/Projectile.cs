@@ -26,7 +26,7 @@ namespace nuscutiesapp.active.characters.Weapons
 
         public void Initialize(Marker2D marker, Vector2 dir)
         {
-            Position = marker.GlobalPosition;
+            GlobalPosition = marker.GlobalPosition;
             _direction = dir;
             GlobalRotation = dir.Angle();
         }

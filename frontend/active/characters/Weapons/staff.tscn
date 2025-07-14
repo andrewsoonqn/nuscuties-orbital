@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dspkspxqwftsk"]
+[gd_scene load_steps=8 format=3 uid="uid://cckhyvnmyxfhe"]
 
 [ext_resource type="Script" uid="uid://dn4keoqyjsifd" path="res://active/characters/Weapons/Weapon.cs" id="1_etp5m"]
 [ext_resource type="Texture2D" uid="uid://dc2hn8jmwn2og" path="res://assets/dawn_like/Items/Wand.png" id="2_di34s"]
