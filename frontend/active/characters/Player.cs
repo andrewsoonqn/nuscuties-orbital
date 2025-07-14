@@ -5,23 +5,19 @@ using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
 using nuscutiesapp.active.characters.Weapons;
 using nuscutiesapp.active.characters.Weapons.UseStrategies;
+using nuscutiesapp.tools;
 using System;
 using System.Threading.Tasks;
 
 public partial class Player : Character
 {
     private ActiveDungeonEventManager _eventManager;
+    private DerivedStatCalculator _statCalculator;
     public override void _Ready()
     {
         base._Ready();
-        MyWeapon = Weapon.CreateWeapon(
-            Weapon.WeaponType.Sword,
-            this,
-            () => 100,
-            200,
-            250,
-            new WaitForAnimationUserStrategy()
-            );
+        _statCalculator = GetNode<DerivedStatCalculator>("/root/DerivedStatCalculator");
+        MyWeapon = WeaponCreator.CreateSword(this, new DamageFunction(_statCalculator.CalcAttackDamageMultiplier() * 10f));
         AddChild(MyWeapon);
         MovementStrategy = new PlayerMovementStrategy(this);
 
