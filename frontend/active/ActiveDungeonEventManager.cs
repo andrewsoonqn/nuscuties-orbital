@@ -52,4 +52,12 @@ public partial class ActiveDungeonEventManager : Node
 
     [Signal]
     public delegate void GameStartedEventEventHandler();
+
+    public void WaveStart(int wave)
+    {
+        EmitSignalWaveStartEvent(wave);
+    }
+
+    [Signal]
+    public delegate void WaveStartEventEventHandler(int wave);
 }

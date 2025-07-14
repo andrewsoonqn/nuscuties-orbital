@@ -6,15 +6,17 @@ using nuscutiesapp.active.characters.StateLogic;
 using nuscutiesapp.active.characters.Weapons;
 using nuscutiesapp.active.characters.Weapons.UseStrategies;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 public partial class Player : Character
 {
     private ActiveDungeonEventManager _eventManager;
+    private Dictionary<WeaponClass, Weapon> _weapons;
     public override void _Ready()
     {
         base._Ready();
-        MyWeapon = Weapon.CreateWeapon(
+        Weapon sword = Weapon.CreateWeapon(
             Weapon.WeaponType.Sword,
             this,
             () => 100,
@@ -22,6 +24,11 @@ public partial class Player : Character
             250,
             new WaitForAnimationUserStrategy()
             );
+        Weapon staff = Weapon.CreateWeapon(
+            Weapon.WeaponType.Staff,
+            this,
+            
+            )
         AddChild(MyWeapon);
         MovementStrategy = new PlayerMovementStrategy(this);
 
@@ -79,5 +86,10 @@ public partial class Player : Character
     {
         ActionStateMachine.SetState(new DeadState());
         _eventManager.GameLost();
+    }
+
+    public void SwitchWeapon(WeaponClass weaponClass)
+    {
+        MyWeapon = 
     }
 }

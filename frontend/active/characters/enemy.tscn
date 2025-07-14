@@ -181,6 +181,7 @@ _data = {
 }
 
 [node name="Enemy" instance=ExtResource("1_8ah4a")]
+y_sort_enabled = true
 position = Vector2(360, 540)
 collision_layer = 4
 motion_mode = 1

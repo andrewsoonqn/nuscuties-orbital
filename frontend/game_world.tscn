@@ -362,14 +362,15 @@ NavigationRegion = NodePath("../GameWorldNavigationRegion")
 TopLeftMarker = NodePath("../TopLeft")
 FloorTileMap = NodePath("../GameWorldNavigationRegion/Ground")
 WallTileMap = NodePath("../GameWorldNavigationRegion/Structures")
-WaveLength = 0.5
+WaveLength = 10.0
 EnemiesPerWave = 5
-TimeBetweenWaves = 1.0
+TimeBetweenWaves = 5.0
 Waves = 3
 
 [node name="SpawnTimer" type="Timer" parent="EnemySpawner"]
 
 [node name="GameWorldNavigationRegion" type="NavigationRegion2D" parent="."]
+y_sort_enabled = true
 navigation_polygon = SubResource("NavigationPolygon_e7o6u")
 script = ExtResource("2_ik71a")
 
@@ -402,7 +403,6 @@ tile_map_data = PackedByteArray("AADk//z/AAAFAAEAAADl//z/AAACAAAAAADn//r/AAAFAAE
 tile_set = SubResource("TileSet_ik71a")
 
 [node name="Player" parent="." instance=ExtResource("3_mcbma")]
-y_sort_enabled = true
 position = Vector2(0, 0)
 collision_mask = 1
 _acceleration = 0.15
@@ -430,5 +430,6 @@ vertical_alignment = 2
 script = ExtResource("5_mcbma")
 
 [node name="DirectionArrow" parent="Player" node_paths=PackedStringArray("Player") instance=ExtResource("9_15365")]
+z_index = 1
 ArrowDistance = 10.0
 Player = NodePath("..")

@@ -18,4 +18,9 @@ public partial class ActiveGame : Node2D
         
         base._Ready();
     }
+
+    public int GetMaxWaves()
+    {
+        return GetNode<EnemySpawner>("EnemySpawner").Waves;
+    }
 }

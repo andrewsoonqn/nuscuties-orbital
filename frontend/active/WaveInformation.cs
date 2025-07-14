@@ -5,16 +5,21 @@ using System;
 public partial class WaveInformation : Node
 {
     private ActiveDungeonEventManager _eventManager;
+    private EnemySpawner _enemySpawner;
     [Export] private Label _wavesLabel;
     [Export] private Label _enemiesSpawnedLabel;
     
     private int _enemiesRemaining;
     private int _waves;
 
+    private int _totalWaves;
+
     public override void _Ready()
     {
         _eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
-        _wavesLabel.Text = $"Wave 0";
+
+        _totalWaves = GetParent().GetNode<ActiveGame>("GameWorld").GetMaxWaves();
+        _wavesLabel.Text = $"Wave 0/{_totalWaves}";
         _enemiesSpawnedLabel.Text = $"Enemies Spawning...";
         
         _eventManager.EnemySpawnedEvent += OnEnemySpawned;
@@ -43,6 +48,6 @@ public partial class WaveInformation : Node
     public void OnWaveElapsed()
     {
         _waves++;
-        _wavesLabel.Text = $"Wave {_waves}";
+        _wavesLabel.Text = $"Wave {_waves}/{_totalWaves}";
     }
 }

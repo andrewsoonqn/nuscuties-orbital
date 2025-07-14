@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://chi5q1ptodsaf"]
+[gd_scene load_steps=27 format=3 uid="uid://chi5q1ptodsaf"]
 
 [ext_resource type="PackedScene" uid="uid://cvf7e615kvfxq" path="res://game_world.tscn" id="1_kudwv"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_6k8in"]
 [ext_resource type="Texture2D" uid="uid://ean5rq8mka0d" path="res://assets/Keyboard & Mouse/Default/keyboard_escape.png" id="3_dem6s"]
 [ext_resource type="Script" uid="uid://dv8gdccq18wng" path="res://active/characters/DrawHealth.cs" id="3_ir5f8"]
+[ext_resource type="PackedScene" uid="uid://bgq1yalj1vnc2" path="res://active/wave_display.tscn" id="3_lyh32"]
 [ext_resource type="Script" uid="uid://blw8vgyur3qig" path="res://active/characters/UIPrintHealth.cs" id="3_mp5i6"]
 [ext_resource type="Texture2D" uid="uid://caxi8vx23pt4w" path="res://assets/dungeon_art/ui (new)/progress bar.png" id="4_7kwek"]
 [ext_resource type="Texture2D" uid="uid://bokei0x2xhtqh" path="res://assets/dungeon_art/ui (new)/health_ui.png" id="4_lext4"]
@@ -36,8 +37,6 @@ texture = ExtResource("5_hfto2")
 
 [node name="ActiveGame" type="Node"]
 
-[node name="GameWorld" parent="." instance=ExtResource("1_kudwv")]
-
 [node name="ActiveGameUI" type="Control" parent="." node_paths=PackedStringArray("_pauseLabel", "_pauseMenu", "_resumeButton", "_quitButton", "_healthBar", "_healthLabel")]
 layout_mode = 3
 anchors_preset = 0
@@ -52,6 +51,8 @@ _healthBar = NodePath("CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2/
 _healthLabel = NodePath("CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2/Label")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="ActiveGameUI"]
+
+[node name="WaveDisplay" parent="ActiveGameUI/CanvasLayer" instance=ExtResource("3_lyh32")]
 
 [node name="MarginContainer2" type="MarginContainer" parent="ActiveGameUI/CanvasLayer"]
 offset_right = 221.0
@@ -316,6 +317,8 @@ theme = ExtResource("3_6k8in")
 theme_override_font_sizes/font_size = 32
 text = "50 enemies remaining"
 horizontal_alignment = 2
+
+[node name="GameWorld" parent="." instance=ExtResource("1_kudwv")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -2

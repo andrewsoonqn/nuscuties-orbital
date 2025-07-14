@@ -95,6 +95,7 @@ namespace nuscutiesapp.active
             }
 
             _totalWavesDone++;
+            _eventManager.WaveStart(_totalWavesDone);
             _spawnTimer.Stop();
             await Task.Delay((int)(TimeBetweenWaves * 1000));
             _enemiesSpawnedDuringWave = 0;
