@@ -255,6 +255,8 @@ position = Vector2(360, 540)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("2_x55qg")
+_acceleration = 0.4
+_maxSpeed = 70.0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 scale = Vector2(1, 0.813)
