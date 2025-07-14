@@ -28,7 +28,7 @@ public partial class Enemy : Character
         MovementStateMachine = new StateMachine<IMovementState>(this, new IdleMovementState());
         ActionStateMachine = new StateMachine<IActionState>(this, new IdleActionState());
         this._eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
-        
+
         MyWeapon = Weapon.CreateWeapon(
             Weapon.WeaponType.Fist,
             this,

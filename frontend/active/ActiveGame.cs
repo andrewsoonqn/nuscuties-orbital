@@ -15,7 +15,7 @@ public partial class ActiveGame : Node2D
 
         _eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
         _eventManager.GameStarted();
-        
+
         base._Ready();
     }
 

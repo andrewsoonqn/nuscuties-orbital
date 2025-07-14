@@ -14,7 +14,7 @@ namespace nuscutiesapp.active
         private bool _isVisible = false;
 
         private EnemyTracker _enemyTracker;
-        
+
         private ActiveDungeonEventManager _eventManager;
 
         private HashSet<Node2D> _deadEnemies = new HashSet<Node2D>();
@@ -26,7 +26,7 @@ namespace nuscutiesapp.active
 
             // If ArrowTexture is not assigned, try to find it as a child
             _enemyTracker = GetNode<EnemyTracker>("/root/EnemyTracker");
-            
+
             _eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
             _eventManager.EnemyDiedEvent += () =>
             {

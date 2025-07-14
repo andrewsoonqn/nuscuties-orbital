@@ -11,7 +11,7 @@ namespace nuscutiesapp.active.characters.MovementStrategies
         {
             this._target = target;
             this._agent = agent;
-            
+
             _agent.VelocityComputed += AgentOnVelocityComputed;
             _safeVelocity = Vector2.Zero;
         }

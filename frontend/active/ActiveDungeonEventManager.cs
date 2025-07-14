@@ -33,7 +33,7 @@ public partial class ActiveDungeonEventManager : Node
     {
         EmitSignal(SignalName.GameStartedEvent);
     }
-    
+
     [Signal]
     public delegate void EnemySpawnedEventEventHandler();
 
@@ -41,7 +41,7 @@ public partial class ActiveDungeonEventManager : Node
     {
         EmitSignalEnemySpawnedEvent();
     }
-    
+
     [Signal]
     public delegate void WaveElapsedEventEventHandler();
 
