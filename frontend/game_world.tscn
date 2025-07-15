@@ -379,10 +379,9 @@ text = "State"
 vertical_alignment = 2
 script = ExtResource("5_mcbma")
 
-[node name="DirectionArrow" parent="Player" node_paths=PackedStringArray("Player") instance=ExtResource("9_15365")]
+[node name="DirectionArrow" parent="Player" instance=ExtResource("9_15365")]
 z_index = 1
 ArrowDistance = 10.0
-Player = NodePath("..")
 
 [node name="TopLeft" type="Marker2D" parent="."]
 position = Vector2(-328, -184)

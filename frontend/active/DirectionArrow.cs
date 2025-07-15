@@ -7,8 +7,7 @@ namespace nuscutiesapp.active
     {
         [Export]
         public float ArrowDistance { get; set; } = 100.0f; // Distance from center of screen
-
-        [Export]
+        
         public Character Player { get; set; }
 
         private bool _isVisible = false;
@@ -21,6 +20,7 @@ namespace nuscutiesapp.active
 
         public override void _Ready()
         {
+            Player = GetParent() as Character;
             // Initially hide the arrow
             Visible = false;
 
