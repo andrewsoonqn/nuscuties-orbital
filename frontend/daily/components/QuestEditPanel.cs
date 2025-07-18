@@ -9,28 +9,32 @@ public partial class QuestEditPanel : Control
     [Export] private LineEdit _titleEdit;
     [Export] private LineEdit _descriptionEdit;
     [Export] private Button _editButton;
-    [Export] private Button _saveButton;
     [Export] private Button _deleteButton;
     [Export] private Button _doneButton;
+
+    [Export] private Button _okButton;
+    [Export] private Button _cancelButton;
 
     private Quest _quest;
     private QuestManager _questManager;
     private QuestLogManager _questLogManager;
     private bool _isEditMode = false;
+    private string _originalTitle;
+    private string _originalDescription;
 
     public override void _Ready()
     {
         _questManager = GetNode<QuestManager>("/root/QuestManager");
         _questLogManager = GetNode<QuestLogManager>("/root/QuestLogManager");
-        
+
         _editButton.Pressed += OnEditPressed;
-        _saveButton.Pressed += OnSavePressed;
+        _okButton.Pressed += OnOkPressed;
+        _cancelButton.Pressed += OnCancelPressed;
         _deleteButton.Pressed += OnDeletePressed;
         _doneButton.Pressed += OnDonePressed;
 
         _titleEdit.TextChanged += OnTextChanged;
         _descriptionEdit.TextChanged += OnTextChanged;
-
     }
 
     public override void _Input(InputEvent @event)
@@ -39,7 +43,14 @@ public partial class QuestEditPanel : Control
         {
             if (keyEvent.Keycode == Key.Escape)
             {
-                OnDonePressed();
+                if (_isEditMode)
+                {
+                    OnCancelPressed();
+                }
+                else
+                {
+                    OnDonePressed();
+                }
             }
         }
     }
@@ -69,12 +80,18 @@ public partial class QuestEditPanel : Control
         _descriptionEdit.Visible = false;
 
         _editButton.Visible = true;
-        _saveButton.Visible = false;
+        _deleteButton.Visible = true;
+        _doneButton.Visible = true;
+        _okButton.Visible = false;
+        _cancelButton.Visible = false;
     }
 
     private void SetEditMode()
     {
         _isEditMode = true;
+
+        _originalTitle = _quest.Title;
+        _originalDescription = _quest.Description;
 
         _titleLabel.Visible = false;
         _descriptionLabel.Visible = false;
@@ -82,9 +99,12 @@ public partial class QuestEditPanel : Control
         _descriptionEdit.Visible = true;
 
         _editButton.Visible = false;
-        _saveButton.Visible = true;
+        _deleteButton.Visible = false;
+        _doneButton.Visible = false;
+        _okButton.Visible = true;
+        _cancelButton.Visible = true;
 
-        UpdateSaveButtonState();
+        UpdateOkButtonState();
         _titleEdit.GrabFocus();
     }
 
@@ -93,7 +113,7 @@ public partial class QuestEditPanel : Control
         SetEditMode();
     }
 
-    private void OnSavePressed()
+    private void OnOkPressed()
     {
         if (ValidateInputs())
         {
@@ -102,6 +122,14 @@ public partial class QuestEditPanel : Control
             RefreshUI();
             SetViewMode();
         }
+    }
+
+    private void OnCancelPressed()
+    {
+        _titleEdit.Text = _originalTitle;
+        _descriptionEdit.Text = _originalDescription;
+        RefreshUI();
+        SetViewMode();
     }
 
     private void OnDeletePressed()
@@ -131,12 +159,12 @@ public partial class QuestEditPanel : Control
     {
         if (_isEditMode)
         {
-            UpdateSaveButtonState();
+            UpdateOkButtonState();
         }
     }
 
-    private void UpdateSaveButtonState()
+    private void UpdateOkButtonState()
     {
-        _saveButton.Disabled = !ValidateInputs();
+        _okButton.Disabled = !ValidateInputs();
     }
 }

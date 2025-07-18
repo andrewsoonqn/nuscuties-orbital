@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bx8k5jp2n7qvy"]
+[gd_scene load_steps=8 format=3 uid="uid://bx8k5jp2n7qvy"]
 
-[ext_resource type="Script" uid="uid://c5mj8nq4x2bpw" path="res://daily/components/QuestEditPanel.cs" id="1_modal"]
+[ext_resource type="Script" uid="uid://dukex43y0p27s" path="res://daily/components/QuestEditPanel.cs" id="1_modal"]
+[ext_resource type="Texture2D" uid="uid://bkhw1akgv0fou" path="res://assets/flat_ui/PNG/Grey/Double/button_square_depth_gradient.png" id="2_ljexo"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_gua5t"]
+[ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://assets/flat_ui/kenneyUI-green.tres" id="4_ka370"]
+[ext_resource type="Theme" uid="uid://bb6vwl0h1flws" path="res://assets/flat_ui/kenneyUI-blue.tres" id="5_6rhgm"]
+[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="6_qn7sr"]
 
-[node name="QuestEditPanel" type="Control" node_paths=PackedStringArray("_titleLabel", "_descriptionLabel", "_titleEdit", "_descriptionEdit", "_editButton", "_saveButton", "_deleteButton", "_doneButton")]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v6dkc"]
+texture = ExtResource("2_ljexo")
+
+[node name="QuestEditPanel" type="Control" node_paths=PackedStringArray("_titleLabel", "_descriptionLabel", "_titleEdit", "_descriptionEdit", "_editButton", "_deleteButton", "_doneButton", "_okButton", "_cancelButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,14 +18,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_modal")
-_titleLabel = NodePath("CenterContainer/PanelContainer/VBoxContainer/ContentContainer/TitleLabel")
-_descriptionLabel = NodePath("CenterContainer/PanelContainer/VBoxContainer/ContentContainer/DescriptionLabel")
-_titleEdit = NodePath("CenterContainer/PanelContainer/VBoxContainer/ContentContainer/TitleEdit")
-_descriptionEdit = NodePath("CenterContainer/PanelContainer/VBoxContainer/ContentContainer/DescriptionEdit")
-_editButton = NodePath("CenterContainer/PanelContainer/VBoxContainer/ButtonContainer/EditButton")
-_saveButton = NodePath("CenterContainer/PanelContainer/VBoxContainer/ButtonContainer/SaveButton")
-_deleteButton = NodePath("CenterContainer/PanelContainer/VBoxContainer/ButtonContainer/DeleteButton")
-_doneButton = NodePath("CenterContainer/PanelContainer/VBoxContainer/ButtonContainer/DoneButton")
+_titleLabel = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ContentContainer/TitleLabel")
+_descriptionLabel = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ContentContainer/DescriptionLabel")
+_titleEdit = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ContentContainer/TitleEdit")
+_descriptionEdit = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ContentContainer/DescriptionEdit")
+_editButton = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/EditButton")
+_deleteButton = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/DeleteButton")
+_doneButton = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/DoneButton")
+_okButton = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/OkButton")
+_cancelButton = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/CancelButton")
 
 [node name="ModalBackground" type="Panel" parent="."]
 layout_mode = 1
@@ -27,7 +36,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.5)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -41,61 +49,92 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_v6dkc")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 15
 
-[node name="HeaderLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="HeaderLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_gua5t")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 text = "Quest Details"
 horizontal_alignment = 1
 
-[node name="ContentContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="ContentContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/ContentContainer"]
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ContentContainer"]
 layout_mode = 2
+theme = ExtResource("3_gua5t")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
 text = "Quest Title"
 autowrap_mode = 2
 
-[node name="TitleEdit" type="LineEdit" parent="CenterContainer/PanelContainer/VBoxContainer/ContentContainer"]
-layout_mode = 2
+[node name="TitleEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ContentContainer"]
 visible = false
+layout_mode = 2
+theme = ExtResource("3_gua5t")
+theme_override_font_sizes/font_size = 24
 placeholder_text = "Enter quest title"
 
-[node name="DescriptionLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/ContentContainer"]
+[node name="DescriptionLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ContentContainer"]
 layout_mode = 2
+theme = ExtResource("3_gua5t")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
 text = "Quest Description"
-autowrap_mode = 2
+autowrap_mode = 3
 
-[node name="DescriptionEdit" type="LineEdit" parent="CenterContainer/PanelContainer/VBoxContainer/ContentContainer"]
-layout_mode = 2
+[node name="DescriptionEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ContentContainer"]
 visible = false
+layout_mode = 2
+theme = ExtResource("3_gua5t")
+theme_override_font_sizes/font_size = 24
 placeholder_text = "Enter quest description"
 
-[node name="ButtonContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="ButtonContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-alignment = 1
 theme_override_constants/separation = 10
+alignment = 1
 
-[node name="EditButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/ButtonContainer"]
+[node name="EditButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
+theme = ExtResource("4_ka370")
 text = "Edit"
 
-[node name="SaveButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/ButtonContainer"]
-layout_mode = 2
+[node name="OkButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
 visible = false
-text = "Save"
-
-[node name="DeleteButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
+theme = ExtResource("5_6rhgm")
+text = "OK"
+
+[node name="CancelButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("6_qn7sr")
+text = "Cancel"
+
+[node name="DeleteButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+theme = ExtResource("6_qn7sr")
 text = "Delete"
 
-[node name="DoneButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/ButtonContainer"]
+[node name="DoneButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
+theme = ExtResource("5_6rhgm")
 text = "Done"

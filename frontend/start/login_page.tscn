@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://13hnbl0ktyhc"]
 
 [ext_resource type="Script" uid="uid://eat1hh4arcc8" path="res://start/LoginPage.cs" id="1_k63q7"]
-[ext_resource type="Script" path="res://start/login_page_sound.gd" id="2_ksaad"]
+[ext_resource type="Script" uid="uid://brgkj5lx3sxo7" path="res://start/login_page_sound.gd" id="2_ksaad"]
 [ext_resource type="FontFile" uid="uid://dkjdxog3b4fl4" path="res://assets/Jacquard24-Regular.ttf" id="2_vyq1t"]
 [ext_resource type="FontFile" uid="uid://ddeedgsucej03" path="res://assets/Inter_18pt-Bold.ttf" id="3_vkbrv"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="4_c8fcd"]
 [ext_resource type="FontFile" uid="uid://db7byayhdbwy3" path="res://assets/Inter_18pt-Regular.ttf" id="5_ijs5t"]
-[ext_resource type="Script" path="res://start/line_edit.gd" id="6_yh6mp"]
-[ext_resource type="Script" path="res://start/line_edit_2.gd" id="7_ksaad"]
+[ext_resource type="Script" uid="uid://cckuednhqn3dp" path="res://start/line_edit.gd" id="6_yh6mp"]
+[ext_resource type="Script" uid="uid://bityu2qt2mu56" path="res://start/line_edit_2.gd" id="7_ksaad"]
 [ext_resource type="AudioStream" uid="uid://bvkiimk6elfc7" path="res://assets/Audio/click3.ogg" id="9_ksaad"]
 [ext_resource type="AudioStream" uid="uid://dne0dt8t06vcs" path="res://assets/Audio/[EVANO.COM] Jinwoo vs Igris The Bloodred _ Solo Leveling EP 11 OST _ 俺だけレベルアップな件 OST Cover-HQ.ogg" id="10_ksaad"]
 
