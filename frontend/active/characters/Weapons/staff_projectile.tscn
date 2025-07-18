@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://y1y7mac4db2v"]
+[gd_scene load_steps=5 format=3 uid="uid://dqauk8slv5ro2"]
 
 [ext_resource type="Texture2D" uid="uid://cst7fs6b4apks" path="res://assets/dawn_like/Objects/Effect0.png" id="1_omaob"]
 [ext_resource type="Script" uid="uid://bs8qqy3d6xtbt" path="res://active/characters/Weapons/Projectile.cs" id="1_xiupn"]
@@ -7,10 +7,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pdby3"]
 size = Vector2(6, 2)
 
-[node name="StaffProjectile" type="Node2D" node_paths=PackedStringArray("_projectileHitbox", "_timer")]
+[node name="StaffProjectile" type="Node2D"]
 script = ExtResource("1_xiupn")
-_projectileHitbox = NodePath("Hitbox")
-_timer = NodePath("Timer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
@@ -22,7 +20,7 @@ region_filter_clip_enabled = true
 
 [node name="Hitbox" parent="." instance=ExtResource("3_s7n5m")]
 collision_layer = 8
-collision_mask = 5
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_pdby3")

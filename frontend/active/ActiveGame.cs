@@ -1,5 +1,4 @@
 using Godot;
-using nuscutiesapp.active;
 using System;
 
 public partial class ActiveGame : Node2D
@@ -15,12 +14,6 @@ public partial class ActiveGame : Node2D
 
         _eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
         _eventManager.GameStarted();
-
         base._Ready();
-    }
-
-    public int GetMaxWaves()
-    {
-        return GetNode<EnemySpawner>("EnemySpawner").Waves;
     }
 }

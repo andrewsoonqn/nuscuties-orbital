@@ -39,8 +39,9 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
 
             await Task.Delay(95);
 
-            _weapon.GetParent().GetParent().AddChild(projectile);
             projectile.Initialize((Marker2D)weapon.FindChild("Marker2D"), shootingAngle);
+
+            _weapon.GetParent().GetParent().AddChild(projectile);
             CallDeferred(MethodName.OnAttackFinished);
         }
 

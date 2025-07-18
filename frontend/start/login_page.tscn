@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyd6qmgulbmvb"]
+[gd_scene load_steps=11 format=3 uid="uid://cyd6qmgulbmvb"]
 
 [ext_resource type="Script" uid="uid://eat1hh4arcc8" path="res://start/LoginPage.cs" id="1_k63q7"]
+[ext_resource type="Script" path="res://start/login_page_sound.gd" id="2_ksaad"]
+[ext_resource type="FontFile" uid="uid://dkjdxog3b4fl4" path="res://assets/Jacquard24-Regular.ttf" id="2_vyq1t"]
+[ext_resource type="FontFile" uid="uid://ddeedgsucej03" path="res://assets/Inter_18pt-Bold.ttf" id="3_vkbrv"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="4_c8fcd"]
+[ext_resource type="FontFile" uid="uid://db7byayhdbwy3" path="res://assets/Inter_18pt-Regular.ttf" id="5_ijs5t"]
+[ext_resource type="Script" path="res://start/line_edit.gd" id="6_yh6mp"]
+[ext_resource type="Script" path="res://start/line_edit_2.gd" id="7_ksaad"]
+[ext_resource type="AudioStream" uid="uid://bvkiimk6elfc7" path="res://assets/Audio/click3.ogg" id="9_ksaad"]
+[ext_resource type="AudioStream" uid="uid://dne0dt8t06vcs" path="res://assets/Audio/[EVANO.COM] Jinwoo vs Igris The Bloodred _ Solo Leveling EP 11 OST _ 俺だけレベルアップな件 OST Cover-HQ.ogg" id="10_ksaad"]
 
 [node name="LoginPage" type="Control" node_paths=PackedStringArray("Username", "SubmitLogin")]
 layout_mode = 3
@@ -10,30 +19,89 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k63q7")
-Username = NodePath("VBoxContainer/HBoxContainer/LineEdit")
-SubmitLogin = NodePath("VBoxContainer/HBoxContainer/Button")
+Username = NodePath("ColorRect/MarginContainer/VBoxContainer/LineEdit")
+SubmitLogin = NodePath("ColorRect/MarginContainer/VBoxContainer/Button")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.323
-anchor_top = 0.395
-anchor_right = 0.677
-anchor_bottom = 0.395
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Username:"
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 250
+theme_override_constants/margin_bottom = 100
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 30
+script = ExtResource("2_ksaad")
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_vyq1t")
+theme_override_font_sizes/font_size = 100
+text = "Solo Scaling"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vkbrv")
+theme_override_font_sizes/font_size = 20
+text = "Sign in or Create a New Account"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("4_c8fcd")
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_ijs5t")
+max_length = 15
+caret_blink = true
+script = ExtResource("6_yh6mp")
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="LineEdit2" type="LineEdit" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "OK"
+theme = ExtResource("4_c8fcd")
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_ijs5t")
+caret_blink = true
+secret = true
+script = ExtResource("7_ksaad")
+
+[node name="Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_c8fcd")
+theme_override_fonts/font = ExtResource("2_vyq1t")
+theme_override_font_sizes/font_size = 50
+text = "Continue"
+
+[node name="Label3" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_ijs5t")
+text = "By clicking continue, you agree to our Terms of Service and Privacy Policy"
+horizontal_alignment = 1
+
+[node name="ClickSoundEffect" type="AudioStreamPlayer" parent="ColorRect/MarginContainer/VBoxContainer"]
+stream = ExtResource("9_ksaad")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ksaad")
+volume_db = -40.0
+autoplay = true
+
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Button" to="ColorRect/MarginContainer/VBoxContainer" method="_on_button_pressed"]

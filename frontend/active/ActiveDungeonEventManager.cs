@@ -35,29 +35,5 @@ public partial class ActiveDungeonEventManager : Node
     }
 
     [Signal]
-    public delegate void EnemySpawnedEventEventHandler();
-
-    public void EnemySpawned()
-    {
-        EmitSignalEnemySpawnedEvent();
-    }
-
-    [Signal]
-    public delegate void WaveElapsedEventEventHandler();
-
-    public void WaveElapsed()
-    {
-        EmitSignalWaveElapsedEvent();
-    }
-
-    [Signal]
     public delegate void GameStartedEventEventHandler();
-
-    public void WaveStart(int wave)
-    {
-        EmitSignalWaveStartEvent(wave);
-    }
-
-    [Signal]
-    public delegate void WaveStartEventEventHandler(int wave);
 }

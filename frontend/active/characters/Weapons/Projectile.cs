@@ -21,23 +21,12 @@ namespace nuscutiesapp.active.characters.Weapons
             _timer.Start((float)_lifetimeMs / 1000);
 
             _timer.Timeout += TimerOnTimeout;
-
-            _projectileHitbox.BodyEntered += ProjectileHitboxOnBodyEntered;
-
             base._Ready();
-        }
-
-        private void ProjectileHitboxOnBodyEntered(Node2D body)
-        {
-            if (body.IsInGroup("projectile_collision"))
-            {
-                QueueFree();
-            }
         }
 
         public void Initialize(Marker2D marker, Vector2 dir)
         {
-            GlobalPosition = marker.GlobalPosition;
+            Position = marker.GlobalPosition;
             _direction = dir;
             GlobalRotation = dir.Angle();
         }

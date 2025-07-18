@@ -12,7 +12,6 @@ public partial class ActiveGameUi : Control
     [Export] private DrawHealth _healthBar;
     [Export] private UIPrintHealth _healthLabel;
     private Node2D _gameWorld;
-    private ActiveDungeonEventManager _eventManager;
 
     public override void _Ready()
     {
@@ -24,14 +23,12 @@ public partial class ActiveGameUi : Control
         _quitButton.Pressed += QuitButtonOnPressed;
         _healthBar.TargetCharacter = _gameWorld.GetNode<Character>("Player");
         _healthLabel.TargetCharacter = _gameWorld.GetNode<Character>("Player");
-
-        _eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
     }
 
     private void QuitButtonOnPressed()
     {
         _gameWorld.GetTree().SetPause(false);
-        _eventManager.GameLost();
+        this.GetTree().ChangeSceneToFile(Paths.Active);
     }
 
     private void ResumeButtonOnPressed()
