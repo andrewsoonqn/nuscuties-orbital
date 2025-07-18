@@ -7,6 +7,10 @@ public partial class CompletableQuestComponent : HBoxContainer
     [Export] private Label _title;
     [Export] private Label _description;
     [Export] private CheckBox _checkbox;
+    [Export] private Button _editButton;
+
+    [Signal]
+    public delegate void QuestRowEditRequestedEventHandler(int id);
 
     private Quest _quest; // TODO: only id needed, quest manager takes care of the quest storing
     private QuestManager _questManager;
@@ -17,6 +21,7 @@ public partial class CompletableQuestComponent : HBoxContainer
         _questManager = GetNode<QuestManager>("/root/QuestManager");
         _expManager = GetNode<ProgressionManager>("/root/ProgressionManager");
         _checkbox.Toggled += CheckboxOnToggled;
+        _editButton.Pressed += OnEditButtonPressed;
     }
 
     private void CheckboxOnToggled(bool toggledOn)
@@ -31,6 +36,11 @@ public partial class CompletableQuestComponent : HBoxContainer
             _expManager.AddExp(-100);
         }
         new QuestLogManager().SaveQuestLog(_questManager.GetQuests().Values.ToList());
+    }
+
+    private void OnEditButtonPressed()
+    {
+        EmitSignal(SignalName.QuestRowEditRequested, _quest.Id);
     }
 
     public void Initialize(Quest quest)

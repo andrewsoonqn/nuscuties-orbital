@@ -1,13 +1,13 @@
 [gd_scene load_steps=90 format=3 uid="uid://d10077bwug3rs"]
 
-[ext_resource type="Script" uid="uid://0wn4u4ysyr8w" path="res://start/Home.cs" id="1_kkgq1"]
-[ext_resource type="Script" uid="uid://dqetec54tdgno" path="res://start/HomeUsername.cs" id="2_da3js"]
-[ext_resource type="FontFile" uid="uid://d0bxndqe8b5pt" path="res://assets/Inter_18pt-Regular.ttf" id="3_0vnw0"]
-[ext_resource type="FontFile" uid="uid://dxbhlgo7cwgu5" path="res://assets/Jacquard24-Regular.ttf" id="3_g8cuh"]
-[ext_resource type="Texture2D" uid="uid://cwrmrnr7t4ln5" path="res://assets/_comission__sung_jin_woo_sprites___solo_leveling_by_soulfiresprites_df43h3g-ezgif.com-gif-to-sprite-converter.png" id="5_fv4no"]
+[ext_resource type="Script" uid="uid://crjrlgdwahath" path="res://start/Home.cs" id="1_kkgq1"]
+[ext_resource type="Script" uid="uid://badj37twaxr25" path="res://start/HomeUsername.cs" id="2_da3js"]
+[ext_resource type="FontFile" uid="uid://db7byayhdbwy3" path="res://assets/Inter_18pt-Regular.ttf" id="3_0vnw0"]
+[ext_resource type="FontFile" uid="uid://dkjdxog3b4fl4" path="res://assets/Jacquard24-Regular.ttf" id="3_g8cuh"]
+[ext_resource type="Texture2D" uid="uid://b5fq4n1gbmtan" path="res://assets/_comission__sung_jin_woo_sprites___solo_leveling_by_soulfiresprites_df43h3g-ezgif.com-gif-to-sprite-converter.png" id="5_fv4no"]
 [ext_resource type="Script" uid="uid://bvjboup7bbgws" path="res://start/home_page_sound_2.gd" id="6_25uge"]
 [ext_resource type="Script" uid="uid://dpdwoi777ti6k" path="res://start/home_page_sound_1.gd" id="7_3dgxr"]
-[ext_resource type="AudioStream" uid="uid://bptvt5h0o1cpc" path="res://assets/Audio/click3.ogg" id="7_e7cx7"]
+[ext_resource type="AudioStream" uid="uid://bvkiimk6elfc7" path="res://assets/Audio/click3.ogg" id="7_e7cx7"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_a4xa2"]
 
