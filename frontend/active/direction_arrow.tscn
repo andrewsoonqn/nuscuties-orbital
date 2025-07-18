@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqegj0i8eeutb"]
+[gd_scene load_steps=3 format=3 uid="uid://ouonxefnapm8"]
 
-[ext_resource type="Script" uid="uid://qifs0g6rg6o0" path="res://active/DirectionArrow.cs" id="1"]
+[ext_resource type="Script" path="res://active/DirectionArrow.cs" id="1"]
 [ext_resource type="Texture2D" uid="uid://c7nsraflxn2vx" path="res://assets/flat_ui/PNG/Grey/Default/arrow_decorative_e_small.png" id="2_vo7pc"]
 
 [node name="DirectionArrow" type="Control"]
