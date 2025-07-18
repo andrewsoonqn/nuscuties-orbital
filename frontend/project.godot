@@ -49,6 +49,10 @@ enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
 
 settings/test/test_discovery=true
 
+[global_group]
+
+projectile_collision=""
+
 [input]
 
 ui_attack={
