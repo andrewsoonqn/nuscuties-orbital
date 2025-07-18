@@ -7,15 +7,12 @@ using System.Linq;
 public partial class DailyQuestUi : Control
 {
     [Export]
-    private Button _editQuestsButton;
-
-    [Export]
     private VBoxContainer _questList;
 
     [Export]
     private Button _backToHomeButton;
 
-    private PackedScene _questEditor = ResourceLoader.Load<PackedScene>(Paths.QuestEditor);
+    private PackedScene _questEditPanel = ResourceLoader.Load<PackedScene>(Paths.QuestEditPanel);
 
     private Godot.Collections.Dictionary<int, CompletableQuestComponent> _completableQuestComponents = new Godot.Collections.Dictionary<int, CompletableQuestComponent>();
 
@@ -25,23 +22,24 @@ public partial class DailyQuestUi : Control
     {
         LoadQuests();
 
-        _editQuestsButton.Pressed += OnEditQuestsButtonPressed;
         _backToHomeButton.Pressed += OnBackToHomeButtonPressed;
         _questManager = this.GetNode<QuestManager>("/root/QuestManager");
 
         this.ConnectSignals();
     }
 
-    private void OnEditQuestsButtonPressed()
+    private void OnRowEditRequested(int id)
     {
-        Node questEditorInstance = _questEditor.Instantiate();
-        GetTree().GetRoot().AddChild(questEditorInstance);
+        QuestEditPanel questEditPanelInstance = (QuestEditPanel)_questEditPanel.Instantiate();
+        GetTree().GetRoot().AddChild(questEditPanelInstance);
+        questEditPanelInstance.Initialize(id);
     }
 
     private void OnManagerQuestAdded(int id)
     {
         CompletableQuestComponent newComp = (CompletableQuestComponent)ResourceLoader.Load<PackedScene>(Paths.CompletableQuestComponent).Instantiate<HBoxContainer>();
         newComp.Initialize(_questManager.Get(id));
+        newComp.QuestRowEditRequested += OnRowEditRequested;
         this._completableQuestComponents[id] = newComp;
 
         this._questList.AddChild(newComp);
@@ -92,6 +90,7 @@ public partial class DailyQuestUi : Control
             CompletableQuestComponent newComp = (CompletableQuestComponent)ResourceLoader
                 .Load<PackedScene>(Paths.CompletableQuestComponent).Instantiate<HBoxContainer>();
             newComp.Initialize(quest);
+            newComp.QuestRowEditRequested += OnRowEditRequested;
             this._completableQuestComponents[quest.Id] = newComp;
             this._questList.AddChild(newComp);
         }
