@@ -22,6 +22,14 @@ public partial class LoginPage : Control
     private void OnUsernameSubmitted(string username)
     {
         _accountManager.SetUsername(username);
-        this.GetTree().ChangeSceneToFile(Paths.Home);
+
+        var transition = GetNode("/root/TransitionLoginToHome") as Node;
+
+        transition.Connect("on_transition_finished", Callable.From(() =>
+        {
+            this.GetTree().ChangeSceneToFile(Paths.Home);
+        }));
+
+        transition.Call("transition");
     }
 }

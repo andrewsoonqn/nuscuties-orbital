@@ -29,6 +29,7 @@ ProgressionManager="*res://tools/ProgressionManager.cs"
 PlayerStatManager="*res://tools/PlayerStatManager.cs"
 DerivedStatCalculator="*res://tools/DerivedStatCalculator.cs"
 EnemyTracker="*res://active/EnemyTracker.cs"
+TransitionLoginToHome="*res://start/transition_login_to_home.tscn"
 
 [display]
 

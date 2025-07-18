@@ -6,7 +6,7 @@ public partial class Home : Control
 {
     [Export] private Label _expLabel;
     [Export] private Label _levelLabel;
-    [Export] private Label _remainingExpLabel;
+    [Export] private ProgressBar _expProgressBar;
     [Export] private Button _dailyButton;
     [Export] private Button _passiveButton;
     [Export] private Button _activeButton;
@@ -23,7 +23,9 @@ public partial class Home : Control
         int totalExpNeeded = ProgressionManager.GetTotalExpRequiredForLevel(level + 1);
         _levelLabel.Text = $"Level {level}";
         _expLabel.Text = $"EXP: {exp} / {totalExpNeeded}";
-        _remainingExpLabel.Text = $"{totalExpNeeded - exp} EXP to next level";
+        _expProgressBar.MinValue = 0;
+        _expProgressBar.MaxValue = totalExpNeeded;
+        _expProgressBar.Value = exp;
 
         _dailyButton.Pressed += () => switchScene(Paths.Daily);
         _passiveButton.Pressed += () => switchScene(Paths.Passive);
@@ -32,6 +34,7 @@ public partial class Home : Control
         _statsUINode = ResourceLoader.Load<PackedScene>(Paths.StatsUI);
 
         _statsUIButton.Pressed += StatsUIButtonOnPressed;
+
     }
 
     private void StatsUIButtonOnPressed()
