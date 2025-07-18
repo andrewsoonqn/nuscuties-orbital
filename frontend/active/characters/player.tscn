@@ -278,4 +278,3 @@ script = ExtResource("7_s54qp")
 MaxHP = 60.0
 
 [node name="DirectionArrow" parent="." index="4" instance=ExtResource("7_e5a7i")]
-z_index = 1

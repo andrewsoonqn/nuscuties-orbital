@@ -24,7 +24,7 @@ public partial class ActiveGameUi : Control
         _quitButton.Pressed += QuitButtonOnPressed;
         _healthBar.TargetCharacter = _gameWorld.GetNode<Character>("Player");
         _healthLabel.TargetCharacter = _gameWorld.GetNode<Character>("Player");
-        
+
         _eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
     }
 

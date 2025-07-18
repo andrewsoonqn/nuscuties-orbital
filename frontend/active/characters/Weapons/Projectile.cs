@@ -13,7 +13,7 @@ namespace nuscutiesapp.active.characters.Weapons
 
         private Vector2 _direction;
         private readonly int _speed = 100;
-        
+
         public override void _Ready()
         {
             if (_timer == null) _timer = (Timer)FindChild("Timer");
@@ -21,9 +21,9 @@ namespace nuscutiesapp.active.characters.Weapons
             _timer.Start((float)_lifetimeMs / 1000);
 
             _timer.Timeout += TimerOnTimeout;
-            
+
             _projectileHitbox.BodyEntered += ProjectileHitboxOnBodyEntered;
-            
+
             base._Ready();
         }
 
