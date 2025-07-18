@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://chi5q1ptodsaf"]
+[gd_scene load_steps=28 format=3 uid="uid://chi5q1ptodsaf"]
 
 [ext_resource type="PackedScene" uid="uid://cvf7e615kvfxq" path="res://game_world.tscn" id="1_kudwv"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_6k8in"]
 [ext_resource type="Texture2D" uid="uid://ean5rq8mka0d" path="res://assets/Keyboard & Mouse/Default/keyboard_escape.png" id="3_dem6s"]
 [ext_resource type="Script" uid="uid://dv8gdccq18wng" path="res://active/characters/DrawHealth.cs" id="3_ir5f8"]
+[ext_resource type="PackedScene" uid="uid://ecv60eugvlay" path="res://active/wave_display.tscn" id="3_lyh32"]
 [ext_resource type="Script" uid="uid://blw8vgyur3qig" path="res://active/characters/UIPrintHealth.cs" id="3_mp5i6"]
 [ext_resource type="Texture2D" uid="uid://caxi8vx23pt4w" path="res://assets/dungeon_art/ui (new)/progress bar.png" id="4_7kwek"]
 [ext_resource type="Texture2D" uid="uid://bokei0x2xhtqh" path="res://assets/dungeon_art/ui (new)/health_ui.png" id="4_lext4"]
@@ -18,6 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://dc2hn8jmwn2og" path="res://assets/dawn_like/Items/Wand.png" id="7_jm1vr"]
 [ext_resource type="Texture2D" uid="uid://b6kei1exly834" path="res://assets/Keyboard & Mouse/Vector/keyboard_2.svg" id="8_bbdxb"]
 [ext_resource type="Texture2D" uid="uid://bjti66qm6xawi" path="res://assets/Keyboard & Mouse/Vector/keyboard_3.svg" id="10_hj30a"]
+[ext_resource type="Texture2D" uid="uid://453frowrrtj1" path="res://assets/dungeon_art/props_itens/bomb_anim_f0.png" id="12_hj30a"]
+[ext_resource type="Script" uid="uid://c0f263hwc1rs8" path="res://active/WaveInformation.cs" id="20_5rjfj"]
+[ext_resource type="Script" uid="uid://trv4qpxml7vi" path="res://active/EnemyTracker.cs" id="22_3tek5"]
+[ext_resource type="Script" uid="uid://bd1grego0dljs" path="res://active/WeaponSwitcher.cs" id="23_3tek5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v3mdj"]
 
@@ -33,8 +38,6 @@ texture = ExtResource("5_hfto2")
 
 [node name="ActiveGame" type="Node"]
 
-[node name="GameWorld" parent="." instance=ExtResource("1_kudwv")]
-
 [node name="ActiveGameUI" type="Control" parent="." node_paths=PackedStringArray("_pauseLabel", "_pauseMenu", "_resumeButton", "_quitButton", "_healthBar", "_healthLabel")]
 layout_mode = 3
 anchors_preset = 0
@@ -45,10 +48,12 @@ _pauseLabel = NodePath("CanvasLayer/MarginContainer2/PanelContainer")
 _pauseMenu = NodePath("CanvasLayer/PanelContainer2")
 _resumeButton = NodePath("CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/Resume")
 _quitButton = NodePath("CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/Quit")
-_healthBar = NodePath("CanvasLayer/MarginContainer/HBoxContainer2/TextureProgressBar")
-_healthLabel = NodePath("CanvasLayer/MarginContainer/HBoxContainer2/Label")
+_healthBar = NodePath("CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2/TextureProgressBar")
+_healthLabel = NodePath("CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2/Label")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="ActiveGameUI"]
+
+[node name="WaveDisplay" parent="ActiveGameUI/CanvasLayer" instance=ExtResource("3_lyh32")]
 
 [node name="MarginContainer2" type="MarginContainer" parent="ActiveGameUI/CanvasLayer"]
 offset_right = 221.0
@@ -194,6 +199,18 @@ custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_sxw8e")
 
+[node name="MarginContainer2" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/MarginContainer3/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/MarginContainer3/PanelContainer/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("12_hj30a")
+stretch_mode = 5
+
 [node name="PanelContainer2" type="PanelContainer" parent="ActiveGameUI/CanvasLayer"]
 anchors_preset = -1
 anchor_left = 0.5
@@ -255,11 +272,14 @@ grow_horizontal = 0
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 8
 theme = ExtResource("3_6k8in")
@@ -268,7 +288,7 @@ text = "Health"
 horizontal_alignment = 1
 script = ExtResource("3_mp5i6")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="ActiveGameUI/CanvasLayer/MarginContainer/HBoxContainer2"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(320, 64)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -281,3 +301,40 @@ texture_progress = ExtResource("4_7kwek")
 tint_under = Color(0, 0, 0, 1)
 tint_progress = Color(0.74902, 0.215686, 0.215686, 1)
 script = ExtResource("3_ir5f8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Wave" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_6k8in")
+theme_override_font_sizes/font_size = 32
+text = "Wave 1"
+horizontal_alignment = 2
+
+[node name="RemainingEnemies" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_6k8in")
+theme_override_font_sizes/font_size = 32
+text = "50 enemies remaining"
+horizontal_alignment = 2
+
+[node name="GameWorld" parent="." instance=ExtResource("1_kudwv")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0687983, 0.0687983, 0.0687983, 1)
+
+[node name="WaveInformation" type="Node" parent="."]
+script = ExtResource("20_5rjfj")
+
+[node name="EnemyTracker" type="Node" parent="."]
+script = ExtResource("22_3tek5")
+
+[node name="WeaponSwitcher" type="Node" parent="."]
+script = ExtResource("23_3tek5")

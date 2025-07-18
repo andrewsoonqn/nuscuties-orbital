@@ -7,17 +7,27 @@ using nuscutiesapp.active.characters.Weapons;
 using nuscutiesapp.active.characters.Weapons.UseStrategies;
 using nuscutiesapp.tools;
 using System;
+using System.Collections.Generic;
+using System.Runtime.Versioning;
 using System.Threading.Tasks;
 
 public partial class Player : Character
 {
     private ActiveDungeonEventManager _eventManager;
     private DerivedStatCalculator _statCalculator;
+
+    private Dictionary<WeaponClass, Weapon> _weapons = new Dictionary<WeaponClass, Weapon>();
     public override void _Ready()
     {
         base._Ready();
         _statCalculator = GetNode<DerivedStatCalculator>("/root/DerivedStatCalculator");
-        MyWeapon = WeaponCreator.CreateSword(this, new DamageFunction(_statCalculator.CalcAttackDamageMultiplier() * 10f));
+        Weapon sword = WeaponCreator.CreateSword(this, new DamageFunction(_statCalculator.CalcAttackDamageMultiplier() * 10f));
+        _weapons[WeaponClass.Melee] = sword;
+        Weapon staff =
+            WeaponCreator.CreateStaff(this, new DamageFunction(_statCalculator.CalcAttackDamageMultiplier() * 10f));
+        _weapons[WeaponClass.Ranged] = staff;
+        // EquipWeapon(staff);
+        MyWeapon = staff;
         AddChild(MyWeapon);
         MovementStrategy = new PlayerMovementStrategy(this);
 
@@ -75,5 +85,19 @@ public partial class Player : Character
     {
         ActionStateMachine.SetState(new DeadState());
         _eventManager.GameLost();
+    }
+
+    public void EquipWeapon(Weapon weapon)
+    {
+        RemoveChild(MyWeapon);
+        MyWeapon = weapon;
+        AddChild(MyWeapon);
+    }
+    public void SwitchWeapon(WeaponClass weaponClass)
+    {
+        if (_weapons[weaponClass] != null)
+        {
+            EquipWeapon(_weapons[weaponClass]);
+        }
     }
 }
