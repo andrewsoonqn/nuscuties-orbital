@@ -68,7 +68,7 @@ _data = {
 &"show_and_fade": SubResource("Animation_eoccg")
 }
 
-[node name="WaveDisplay" type="Control" node_paths=PackedStringArray("_label", "_animationPlayer")]
+[node name="WaveDisplay" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,8 +76,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cqr5r")
-_label = NodePath("PanelContainer/MarginContainer/Label")
-_animationPlayer = NodePath("AnimationPlayer")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

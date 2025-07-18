@@ -17,7 +17,6 @@ public partial class GameTerminationManager : Node
 
     private async void EventManagerOnGameEndEvent()
     {
-        await Task.Delay(1000);
         GetTree().ChangeSceneToFile(Paths.ActiveEndScene);
     }
 }

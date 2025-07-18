@@ -330,10 +330,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0687983, 0.0687983, 0.0687983, 1)
 
-[node name="WaveInformation" type="Node" parent="." node_paths=PackedStringArray("_wavesLabel", "_enemiesSpawnedLabel")]
+[node name="WaveInformation" type="Node" parent="."]
 script = ExtResource("20_5rjfj")
-_wavesLabel = NodePath("../ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer/Wave")
-_enemiesSpawnedLabel = NodePath("../ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer/RemainingEnemies")
 
 [node name="EnemyTracker" type="Node" parent="."]
 script = ExtResource("22_3tek5")
