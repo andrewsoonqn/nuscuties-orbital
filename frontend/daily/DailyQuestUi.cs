@@ -12,6 +12,9 @@ public partial class DailyQuestUi : Control
     [Export]
     private Button _backToHomeButton;
 
+    [Export]
+    private Button _addQuestButton;
+
     private PackedScene _questEditPanel = ResourceLoader.Load<PackedScene>(Paths.QuestEditPanel);
 
     private Godot.Collections.Dictionary<int, CompletableQuestComponent> _completableQuestComponents = new Godot.Collections.Dictionary<int, CompletableQuestComponent>();
@@ -23,6 +26,7 @@ public partial class DailyQuestUi : Control
         LoadQuests();
 
         _backToHomeButton.Pressed += OnBackToHomeButtonPressed;
+        _addQuestButton.Pressed += OnAddQuestButtonPressed;
         _questManager = this.GetNode<QuestManager>("/root/QuestManager");
 
         this.ConnectSignals();
@@ -66,6 +70,13 @@ public partial class DailyQuestUi : Control
     {
         DisconnectSignals();
         GetTree().ChangeSceneToFile(Paths.Home);
+    }
+
+    private void OnAddQuestButtonPressed()
+    {
+        QuestEditPanel questEditPanelInstance = (QuestEditPanel)_questEditPanel.Instantiate();
+        GetTree().GetRoot().AddChild(questEditPanelInstance);
+        questEditPanelInstance.InitializeForNewQuest();
     }
 
     private void ConnectSignals()

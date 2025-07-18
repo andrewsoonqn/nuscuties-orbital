@@ -10,11 +10,13 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v6dkc"]
 texture = ExtResource("2_ljexo")
 
-[node name="QuestEditPanel" type="Control" node_paths=PackedStringArray("_titleLabel", "_descriptionLabel", "_titleEdit", "_descriptionEdit", "_editButton", "_deleteButton", "_doneButton", "_okButton", "_cancelButton")]
+[node name="QuestEditPanel" type="Control" node_paths=PackedStringArray("_titleLabel", "_descriptionLabel", "_titleEdit", "_descriptionEdit", "_editButton", "_deleteButton", "_doneButton", "_okButton", "_cancelButton", "_headerLabel")]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.4
+anchor_right = 0.5
+anchor_bottom = 0.4
+offset_top = 43.92
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_modal")
@@ -27,15 +29,7 @@ _deleteButton = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxCon
 _doneButton = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/DoneButton")
 _okButton = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/OkButton")
 _cancelButton = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/CancelButton")
-
-[node name="ModalBackground" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+_headerLabel = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderLabel")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -89,7 +83,7 @@ visible = false
 layout_mode = 2
 theme = ExtResource("3_gua5t")
 theme_override_font_sizes/font_size = 24
-placeholder_text = "Enter quest title"
+placeholder_text = "Title"
 
 [node name="DescriptionLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ContentContainer"]
 layout_mode = 2
@@ -104,7 +98,7 @@ visible = false
 layout_mode = 2
 theme = ExtResource("3_gua5t")
 theme_override_font_sizes/font_size = 24
-placeholder_text = "Enter quest description"
+placeholder_text = "Description"
 
 [node name="ButtonContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

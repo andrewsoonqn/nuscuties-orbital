@@ -15,10 +15,13 @@ public partial class QuestEditPanel : Control
     [Export] private Button _okButton;
     [Export] private Button _cancelButton;
 
+    [Export] private Label _headerLabel;
+
     private Quest _quest;
     private QuestManager _questManager;
     private QuestLogManager _questLogManager;
     private bool _isEditMode = false;
+    private bool _isNewQuest = false;
     private string _originalTitle;
     private string _originalDescription;
 
@@ -26,6 +29,7 @@ public partial class QuestEditPanel : Control
     {
         _questManager = GetNode<QuestManager>("/root/QuestManager");
         _questLogManager = GetNode<QuestLogManager>("/root/QuestLogManager");
+        _headerLabel = GetNode<Label>("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderLabel");
 
         _editButton.Pressed += OnEditPressed;
         _okButton.Pressed += OnOkPressed;
@@ -58,8 +62,32 @@ public partial class QuestEditPanel : Control
     public void Initialize(int questId)
     {
         _quest = _questManager.Get(questId);
+        _headerLabel.Text = "Quest Details";
         RefreshUI();
         SetViewMode();
+    }
+
+    public void InitializeForNewQuest()
+    {
+        if (_questManager == null)
+        {
+            _questManager = GetNode<QuestManager>("/root/QuestManager");
+        }
+        if (_questLogManager == null)
+        {
+            _questLogManager = GetNode<QuestLogManager>("/root/QuestLogManager");
+        }
+        if (_headerLabel == null)
+        {
+            _headerLabel = GetNode<Label>("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderLabel");
+        }
+
+        _isNewQuest = true;
+        _quest = new Quest("", "");
+        _headerLabel.Text = "Add New Quest";
+
+        RefreshUI();
+        SetEditMode();
     }
 
     private void RefreshUI()
@@ -117,19 +145,35 @@ public partial class QuestEditPanel : Control
     {
         if (ValidateInputs())
         {
-            _questManager.Edit(_quest.Id, _titleEdit.Text.Trim(), _descriptionEdit.Text.Trim());
-            SaveQuests();
-            RefreshUI();
-            SetViewMode();
+            if (_isNewQuest)
+            {
+                _questManager.Submit(_titleEdit.Text.Trim(), _descriptionEdit.Text.Trim());
+                SaveQuests();
+                QueueFree();
+            }
+            else
+            {
+                _questManager.Edit(_quest.Id, _titleEdit.Text.Trim(), _descriptionEdit.Text.Trim());
+                SaveQuests();
+                RefreshUI();
+                SetViewMode();
+            }
         }
     }
 
     private void OnCancelPressed()
     {
-        _titleEdit.Text = _originalTitle;
-        _descriptionEdit.Text = _originalDescription;
-        RefreshUI();
-        SetViewMode();
+        if (_isNewQuest)
+        {
+            QueueFree();
+        }
+        else
+        {
+            _titleEdit.Text = _originalTitle;
+            _descriptionEdit.Text = _originalDescription;
+            RefreshUI();
+            SetViewMode();
+        }
     }
 
     private void OnDeletePressed()
