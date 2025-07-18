@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="nuscuties app"
-run/main_scene="res://start/login_page.tscn"
+run/main_scene="uid://13hnbl0ktyhc"
 config/features=PackedStringArray("4.4", "C#", "Mobile")
 config/icon="res://assets/godot_icon.svg"
 
@@ -28,6 +28,7 @@ GameTerminationManager="*res://active/GameTerminationManager.cs"
 ProgressionManager="*res://tools/ProgressionManager.cs"
 PlayerStatManager="*res://tools/PlayerStatManager.cs"
 DerivedStatCalculator="*res://tools/DerivedStatCalculator.cs"
+TransitionLoginToHome="*res://start/transition_login_to_home.tscn"
 
 [display]
 
@@ -59,6 +60,7 @@ ui_attack={
 2d_physics/layer_1="World"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
+2d_physics/layer_4="Projectiles"
 
 [rendering]
 

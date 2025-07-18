@@ -1,9 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://chi5q1ptodsaf"]
+[gd_scene load_steps=23 format=3 uid="uid://chi5q1ptodsaf"]
 
 [ext_resource type="PackedScene" uid="uid://cvf7e615kvfxq" path="res://game_world.tscn" id="1_kudwv"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_6k8in"]
+[ext_resource type="Texture2D" uid="uid://ean5rq8mka0d" path="res://assets/Keyboard & Mouse/Default/keyboard_escape.png" id="3_dem6s"]
 [ext_resource type="Script" uid="uid://dv8gdccq18wng" path="res://active/characters/DrawHealth.cs" id="3_ir5f8"]
 [ext_resource type="Script" uid="uid://blw8vgyur3qig" path="res://active/characters/UIPrintHealth.cs" id="3_mp5i6"]
+[ext_resource type="Texture2D" uid="uid://caxi8vx23pt4w" path="res://assets/dungeon_art/ui (new)/progress bar.png" id="4_7kwek"]
+[ext_resource type="Texture2D" uid="uid://bokei0x2xhtqh" path="res://assets/dungeon_art/ui (new)/health_ui.png" id="4_lext4"]
+[ext_resource type="Texture2D" uid="uid://dlgymkxkwptry" path="res://assets/kenney_ui-pack-pixel-adventure/Tiles/Large tiles/Thin outline/tile_0018.png" id="5_2vtgd"]
+[ext_resource type="Texture2D" uid="uid://disku7an8uvq" path="res://assets/Keyboard & Mouse/Default/keyboard_e.png" id="5_bbdxb"]
+[ext_resource type="Texture2D" uid="uid://2mef3pbmf8gq" path="res://assets/flat_ui/PNG/Extra/Double/button_rectangle_depth_line.png" id="5_hfto2"]
 [ext_resource type="Script" uid="uid://d17uqd6ssin58" path="res://active/ActiveGameUi.cs" id="5_lext4"]
+[ext_resource type="Texture2D" uid="uid://bfejfb4gdis4i" path="res://assets/Keyboard & Mouse/Vector/keyboard_1.svg" id="5_sxw8e"]
+[ext_resource type="Texture2D" uid="uid://bmd6bnudrqldm" path="res://assets/dungeon_art/heroes/knight/weapon_sword_1.png" id="6_lq7bx"]
+[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="6_sahrs"]
+[ext_resource type="Theme" uid="uid://bb6vwl0h1flws" path="res://assets/flat_ui/kenneyUI-blue.tres" id="7_gepbl"]
+[ext_resource type="Texture2D" uid="uid://dc2hn8jmwn2og" path="res://assets/dawn_like/Items/Wand.png" id="7_jm1vr"]
+[ext_resource type="Texture2D" uid="uid://b6kei1exly834" path="res://assets/Keyboard & Mouse/Vector/keyboard_2.svg" id="8_bbdxb"]
+[ext_resource type="Texture2D" uid="uid://bjti66qm6xawi" path="res://assets/Keyboard & Mouse/Vector/keyboard_3.svg" id="10_hj30a"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v3mdj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sxw8e"]
+texture = ExtResource("5_2vtgd")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbdxb"]
+atlas = ExtResource("7_jm1vr")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2vtgd"]
+texture = ExtResource("5_hfto2")
 
 [node name="ActiveGame" type="Node"]
 
@@ -15,95 +41,243 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_lext4")
-_pauseLabel = NodePath("CanvasLayer/PanelContainer")
+_pauseLabel = NodePath("CanvasLayer/MarginContainer2/PanelContainer")
 _pauseMenu = NodePath("CanvasLayer/PanelContainer2")
 _resumeButton = NodePath("CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/Resume")
 _quitButton = NodePath("CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/Quit")
-_healthBar = NodePath("CanvasLayer/MarginContainer/HBoxContainer/ProgressBar")
-_healthLabel = NodePath("CanvasLayer/MarginContainer/HBoxContainer/Label")
+_healthBar = NodePath("CanvasLayer/MarginContainer/HBoxContainer2/TextureProgressBar")
+_healthLabel = NodePath("CanvasLayer/MarginContainer/HBoxContainer2/Label")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="ActiveGameUI"]
 
-[node name="PanelContainer" type="PanelContainer" parent="ActiveGameUI/CanvasLayer"]
-anchors_preset = -1
-anchor_left = 0.4
-anchor_top = 0.049
-anchor_right = 0.6
-anchor_bottom = 0.089
-offset_bottom = -19.44
+[node name="MarginContainer2" type="MarginContainer" parent="ActiveGameUI/CanvasLayer"]
+offset_right = 221.0
+offset_bottom = 84.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
 
-[node name="MarginContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer2"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_styles/panel = SubResource("StyleBoxTexture_v3mdj")
 
-[node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer2/PanelContainer"]
 layout_mode = 2
-text = "Pause with ESC"
-horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer2/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_dem6s")
+
+[node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_6k8in")
+theme_override_font_sizes/font_size = 32
+text = "Pause"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer2/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer2/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("5_bbdxb")
+
+[node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer2/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_6k8in")
+theme_override_font_sizes/font_size = 32
+text = "Inventory"
+
+[node name="MarginContainer3" type="MarginContainer" parent="ActiveGameUI/CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -148.0
+offset_right = 412.0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_v3mdj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="BoxContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_sxw8e")
+
+[node name="MarginContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_sxw8e")
+
+[node name="MarginContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("6_lq7bx")
+stretch_mode = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="BoxContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_bbdxb")
+
+[node name="MarginContainer2" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer2"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_sxw8e")
+
+[node name="MarginContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer2/PanelContainer/MarginContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_bbdxb")
+stretch_mode = 5
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="BoxContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_hj30a")
+
+[node name="MarginContainer3" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/MarginContainer3"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_sxw8e")
 
 [node name="PanelContainer2" type="PanelContainer" parent="ActiveGameUI/CanvasLayer"]
 anchors_preset = -1
-anchor_left = 0.371
-anchor_top = 0.464
-anchor_right = 0.629
-anchor_bottom = 0.536
-offset_left = -0.120026
-offset_top = -0.120026
-offset_right = 0.119995
-offset_bottom = 0.119995
+anchor_left = 0.5
+anchor_top = 0.45
+anchor_right = 0.5
+anchor_bottom = 0.45
+offset_left = -93.0
+offset_top = -0.119995
+offset_right = 93.0
+offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_2vtgd")
 
 [node name="MarginContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/PanelContainer2"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 60
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_6k8in")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 text = "Game Paused"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Quit" type="Button" parent="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("6_sahrs")
 text = "Quit Game"
 
 [node name="Resume" type="Button" parent="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("7_gepbl")
 text = "Resume"
 
 [node name="MarginContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer"]
-anchors_preset = -1
-anchor_left = 0.2
-anchor_top = 0.925
-anchor_right = 0.8
-anchor_bottom = 0.964
-grow_horizontal = 2
-grow_vertical = 0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -504.0
+offset_bottom = 84.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
 
-[node name="HBoxContainer" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer"]
 layout_mode = 2
+alignment = 2
 
-[node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer/HBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("3_6k8in")
+theme_override_font_sizes/font_size = 32
 text = "Health"
 horizontal_alignment = 1
 script = ExtResource("3_mp5i6")
 
-[node name="ProgressBar" type="ProgressBar" parent="ActiveGameUI/CanvasLayer/MarginContainer/HBoxContainer"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="ActiveGameUI/CanvasLayer/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(320, 64)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-show_percentage = false
+size_flags_horizontal = 8
+size_flags_vertical = 4
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_7kwek")
+texture_over = ExtResource("4_lext4")
+texture_progress = ExtResource("4_7kwek")
+tint_under = Color(0, 0, 0, 1)
+tint_progress = Color(0.74902, 0.215686, 0.215686, 1)
 script = ExtResource("3_ir5f8")

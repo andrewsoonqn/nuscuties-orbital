@@ -75,7 +75,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vqgop"]
-radius = 1.0
+radius = 3.0
 
 [sub_resource type="Animation" id="Animation_vqgop"]
 length = 0.001

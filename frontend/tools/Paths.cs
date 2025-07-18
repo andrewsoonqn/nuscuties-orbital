@@ -7,6 +7,7 @@ public partial class Paths : Node
 	public static readonly string ActiveGame = "res://active/active_game.tscn";
 	public static readonly string ActiveGamePlayer = "res://active/characters/player.tscn";
 	public static readonly string ActiveEndScene = "res://active/active_end_scene.tscn";
+	public static readonly string StaffProjectile = "res://active/characters/Weapons/staff_projectile.tscn";
 
 	public static readonly string Home = "res://start/home.tscn";
 	public static readonly string Daily = "res://daily/daily.tscn";
