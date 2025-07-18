@@ -10,8 +10,8 @@ public partial class WaveDisplay : Control
 
     public override void _Ready()
     {
-        _label = (Label) FindChild("Label");
-        _animationPlayer = (AnimationPlayer) FindChild("AnimationPlayer");
+        _label = (Label)FindChild("Label");
+        _animationPlayer = (AnimationPlayer)FindChild("AnimationPlayer");
         Hide();
         _eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
         _eventManager.WaveStartEvent += Animate;

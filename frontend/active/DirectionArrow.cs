@@ -7,7 +7,7 @@ namespace nuscutiesapp.active
     {
         [Export]
         public float ArrowDistance { get; set; } = 100.0f; // Distance from center of screen
-        
+
         public Character Player { get; set; }
 
         private bool _isVisible = false;
@@ -20,7 +20,7 @@ namespace nuscutiesapp.active
 
         public override void _Ready()
         {
-            Player = GetParent() as Character;
+            Player = (Character)GetParent();
             // Initially hide the arrow
             Visible = false;
 
@@ -28,17 +28,40 @@ namespace nuscutiesapp.active
             _enemyTracker = GetNode<EnemyTracker>("/root/EnemyTracker");
 
             _eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
-            _eventManager.EnemyDiedEvent += () =>
+            _eventManager.EnemyDiedEvent += OnEnemyDied;
+        }
+
+        public override void _ExitTree()
+        {
+            // Unsubscribe from events to prevent callbacks after object disposal
+            if (_eventManager != null)
             {
-                _deadEnemies.Add(_enemyTracker.GetNearestEnemy(Player.GlobalPosition));
-                HideArrow();
-                UpdateArrowDirection();
-            };
+                _eventManager.EnemyDiedEvent -= OnEnemyDied;
+            }
+            base._ExitTree();
+        }
+
+        private void OnEnemyDied()
+        {
+            // Check if Player is still valid before accessing
+            if (Player == null || !IsInstanceValid(Player))
+            {
+                return;
+            }
+
+            var nearestEnemy = _enemyTracker?.GetNearestEnemy(Player.GlobalPosition);
+            if (nearestEnemy != null)
+            {
+                _deadEnemies.Add(nearestEnemy);
+            }
+
+            HideArrow();
+            UpdateArrowDirection();
         }
 
         public override void _Process(double delta)
         {
-            if (Player == null)
+            if (Player == null || !IsInstanceValid(Player))
                 return;
 
             UpdateArrowDirection();
@@ -46,7 +69,10 @@ namespace nuscutiesapp.active
 
         private void UpdateArrowDirection()
         {
-            var nearestEnemy = _enemyTracker.GetNearestEnemy(Player.GlobalPosition);
+            if (Player == null || !IsInstanceValid(Player))
+                return;
+
+            var nearestEnemy = _enemyTracker?.GetNearestEnemy(Player.GlobalPosition);
 
             if (nearestEnemy == null || _deadEnemies.Contains(nearestEnemy))
             {

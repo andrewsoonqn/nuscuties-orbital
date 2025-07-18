@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cvf7e615kvfxq"]
+[gd_scene load_steps=14 format=4 uid="uid://cvf7e615kvfxq"]
 
 [ext_resource type="Script" uid="uid://cal5ppvm3euy2" path="res://active/ActiveGame.cs" id="1_e08lw"]
 [ext_resource type="Texture2D" uid="uid://3jb08ef7rxbq" path="res://assets/dungeon_art/full tilemap.png" id="2_e3xe6"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dmweiqk1jxob0" path="res://active/characters/enemy.tscn" id="4_ik71a"]
 [ext_resource type="Script" uid="uid://be06ish7ytgcl" path="res://active/characters/PrintHealth.cs" id="5_mcbma"]
 [ext_resource type="Script" uid="uid://cs0lwru51xgnf" path="res://active/characters/PrintState.cs" id="6_mcbma"]
-[ext_resource type="PackedScene" uid="uid://dqegj0i8eeutb" path="res://active/direction_arrow.tscn" id="9_15365"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_e7o6u"]
 agent_radius = 4.0
@@ -378,10 +377,6 @@ scale = Vector2(0.3, 0.3)
 text = "State"
 vertical_alignment = 2
 script = ExtResource("5_mcbma")
-
-[node name="DirectionArrow" parent="Player" instance=ExtResource("9_15365")]
-z_index = 1
-ArrowDistance = 10.0
 
 [node name="TopLeft" type="Marker2D" parent="."]
 position = Vector2(-328, -184)

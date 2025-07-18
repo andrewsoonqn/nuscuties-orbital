@@ -142,7 +142,6 @@ namespace nuscutiesapp.active
             }
 
             Vector2 spawnPosition = FloorTileMap.MapToLocal(randomCell.Value);
-            GD.Print("val ", randomCell.Value);
 
             GetParent().AddChild(enemy);
 
