@@ -23,9 +23,16 @@ namespace nuscutiesapp.active.characters.Weapons
                 return null;
             }
 
-            if (!_categoryToWeaponType.TryGetValue(itemDef.Category, out Weapon.WeaponType weaponType))
+            if (string.IsNullOrEmpty(itemDef.ScenePath))
             {
-                GD.PrintErr($"Unsupported weapon category: {itemDef.Category}");
+                GD.PrintErr($"No scene path specified for item: {itemId}");
+                return null;
+            }
+
+            var weapon = ResourceLoader.Load<PackedScene>(itemDef.ScenePath)?.Instantiate<Weapon>();
+            if (weapon == null)
+            {
+                GD.PrintErr($"Failed to load weapon scene: {itemDef.ScenePath}");
                 return null;
             }
 
@@ -35,32 +42,22 @@ namespace nuscutiesapp.active.characters.Weapons
             {
                 case "melee":
                     var damage = GetStatValue(statsPayload, "damage", 200);
-                    var range = GetStatValue(statsPayload, "range", 250);
-                    return Weapon.CreateWeapon(
-                        weaponType,
-                        wielder,
-                        damageFunction,
-                        damage,
-                        range,
-                        new WaitForAnimationUserStrategy()
-                    );
+                    var attackDuration = GetStatValue(statsPayload, "attackDuration", 200);
+                    var knockback = GetStatValue(statsPayload, "knockback", 200);
+                    weapon.Initialize(wielder, damageFunction, knockback, attackDuration, new WaitForAnimationUserStrategy());
+                    return weapon;
 
                 case "projectile":
                     var projectileSpeed = GetStatValue(statsPayload, "projectileSpeed", 200);
                     var cooldown = GetStatValue(statsPayload, "cooldown", 750);
+                    var projectileKnockback = GetStatValue(statsPayload, "knockback", 150);
 
                     Projectile projectile = ResourceLoader.
                         Load<PackedScene>(Paths.StaffProjectile).Instantiate<Projectile>();
-                    projectile.InitializeHitbox(wielder, damageFunction, projectileSpeed);
+                    projectile.InitializeHitbox(wielder, damageFunction, projectileKnockback);
 
-                    return Weapon.CreateWeapon(
-                        weaponType,
-                        wielder,
-                        null,
-                        0,
-                        cooldown,
-                        new ProjectileUseStrategy(projectile)
-                    );
+                    weapon.Initialize(wielder, null, 0, cooldown, new ProjectileUseStrategy(projectile));
+                    return weapon;
 
                 default:
                     GD.PrintErr($"Unhandled weapon category: {itemDef.Category}");

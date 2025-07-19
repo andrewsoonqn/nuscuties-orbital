@@ -56,5 +56,12 @@ namespace nuscutiesapp.active.characters.Weapons
         public AnimationPlayer GetAnimationPlayer() => _animationPlayer;
         public int GetDurationMs() => _attackDurationMs;
         public Hitbox GetHitbox() => _myHitbox;
+
+        public void Initialize(Character wielder, DamageFunction damageFunc, float knockbackMagnitude, int attackDurationMs, IUseStrategy useStrategy)
+        {
+            _myHitbox.Initialize(wielder, damageFunc, knockbackMagnitude);
+            _attackDurationMs = attackDurationMs;
+            _useStrategy = useStrategy;
+        }
     }
 }

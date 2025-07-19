@@ -6,6 +6,12 @@ namespace nuscutiesapp.tools
 {
     public partial class PlayerInventoryManager : BaseStatManager<PlayerInventoryData>
     {
+        public override void _Ready()
+        {
+            GD.Print(OS.GetUserDataDir());
+            base._Ready();
+        }
+
         [Signal]
         public delegate void CoinsChangedEventHandler(int newTotal);
 

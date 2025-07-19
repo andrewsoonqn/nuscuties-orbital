@@ -26,6 +26,8 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
         }
         private async void OnAttackFinished(StringName animName)
         {
+            // Use the weapon's specified attack duration (from catalog) for hitbox timing
+            // This represents only the attack phase, not the full animation (attack + recovery)
             await Task.Delay(_weapon.GetDurationMs());
             _weapon.GetHitbox().monitoring = false;
         }
