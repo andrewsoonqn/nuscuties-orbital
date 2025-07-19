@@ -32,15 +32,17 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.5
+offset_top = -226.5
+offset_right = 275.5
+offset_bottom = 226.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 250
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 250
-theme_override_constants/margin_bottom = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
 layout_mode = 2
@@ -57,6 +59,7 @@ horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_vkbrv")
 theme_override_font_sizes/font_size = 20
@@ -64,8 +67,9 @@ text = "Sign in or Create a New Account"
 horizontal_alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 theme = ExtResource("4_c8fcd")
 theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_ijs5t")
@@ -74,7 +78,10 @@ caret_blink = true
 script = ExtResource("6_yh6mp")
 
 [node name="LineEdit2" type="LineEdit" parent="ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("4_c8fcd")
 theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_ijs5t")
@@ -84,6 +91,7 @@ script = ExtResource("7_ksaad")
 
 [node name="Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("4_c8fcd")
 theme_override_fonts/font = ExtResource("2_vyq1t")
 theme_override_font_sizes/font_size = 50
@@ -91,6 +99,7 @@ text = "Continue"
 
 [node name="Label3" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_ijs5t")
 text = "By clicking continue, you agree to our Terms of Service and Privacy Policy"
