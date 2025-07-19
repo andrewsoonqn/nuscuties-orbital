@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cckhyvnmyxfhe"]
+[gd_scene load_steps=8 format=3 uid="uid://dxje1y7g8xo47"]
 
-[ext_resource type="Script" uid="uid://dn4keoqyjsifd" path="res://active/characters/Weapons/Weapon.cs" id="1_etp5m"]
-[ext_resource type="Texture2D" uid="uid://dc2hn8jmwn2og" path="res://assets/dawn_like/Items/Wand.png" id="2_di34s"]
-[ext_resource type="PackedScene" uid="uid://bpw4yse16dpmd" path="res://active/characters/DamageSystem/hitbox.tscn" id="3_jgvq6"]
+[ext_resource type="Script" uid="uid://dn4keoqyjsifd" path="res://active/characters/Weapons/Weapon.cs" id="1_bab8m"]
+[ext_resource type="Texture2D" uid="uid://dc2hn8jmwn2og" path="res://assets/dawn_like/Items/Wand.png" id="2_igtnb"]
+[ext_resource type="PackedScene" uid="uid://bpw4yse16dpmd" path="res://active/characters/DamageSystem/hitbox.tscn" id="3_ohqwl"]
 
 [sub_resource type="Animation" id="Animation_s54qp"]
 length = 0.001
@@ -28,7 +28,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.0472]
+"values": [-1.0472]
 }
 
 [sub_resource type="Animation" id="Animation_guxn7"]
@@ -57,7 +57,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.75),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [1.0472, 3.49066, 1.0472]
+"values": [-1.0472, 2.44346, -1.0472]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e5a7i"]
@@ -70,7 +70,7 @@ _data = {
 radius = 0.0
 
 [node name="Staff" type="Node2D" node_paths=PackedStringArray("_myHitbox", "_animationPlayer")]
-script = ExtResource("1_etp5m")
+script = ExtResource("1_bab8m")
 _myHitbox = NodePath("PlaceholderHitbox")
 _animationPlayer = NodePath("AnimationPlayer")
 
@@ -78,20 +78,20 @@ _animationPlayer = NodePath("AnimationPlayer")
 rotation = -0.610865
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
-position = Vector2(4.85285, 1.6383)
-rotation = 1.0472
-texture = ExtResource("2_di34s")
+position = Vector2(4.66934, 2.04873)
+rotation = -1.0472
+texture = ExtResource("2_igtnb")
 centered = false
-offset = Vector2(-10, -10)
+offset = Vector2(-4, -12)
 region_enabled = true
-region_rect = Rect2(34, 50, 12, 12)
+region_rect = Rect2(0, 48, 16, 16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_e5a7i")
 }
 
-[node name="PlaceholderHitbox" parent="." instance=ExtResource("3_jgvq6")]
+[node name="PlaceholderHitbox" parent="." instance=ExtResource("3_ohqwl")]
 collision_layer = 0
 collision_mask = 0
 

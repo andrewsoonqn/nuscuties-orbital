@@ -49,8 +49,7 @@ namespace nuscutiesapp.tools
                 return CreateDefaultMeleeWeapon(targetCharacter);
             }
 
-            var damageFunction = new DamageFunction(() => _statCalculator.CalcTotalDamage());
-            var weapon = WeaponCreator.CreateFromCatalog(equippedMeleeId, targetCharacter, damageFunction);
+            var weapon = WeaponCreator.CreateFromCatalog(equippedMeleeId, targetCharacter, (dmg) => dmg * _statCalculator.CalcAttackDamageMultiplier());
 
             if (weapon == null)
             {
@@ -69,8 +68,7 @@ namespace nuscutiesapp.tools
                 return null;
             }
 
-            var damageFunction = new DamageFunction(() => _statCalculator.CalcTotalDamage());
-            var weapon = WeaponCreator.CreateFromCatalog(equippedProjectileId, targetCharacter, damageFunction);
+            var weapon = WeaponCreator.CreateFromCatalog(equippedProjectileId, targetCharacter, (dmg) => dmg * _statCalculator.CalcAttackDamageMultiplier());
 
             if (weapon == null)
             {

@@ -2,19 +2,14 @@ using Godot;
 using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.Weapons.UseStrategies;
 using nuscutiesapp.tools;
+using System;
 using System.Collections.Generic;
 
 namespace nuscutiesapp.active.characters.Weapons
 {
     public class WeaponCreator
     {
-        private static readonly Dictionary<string, Weapon.WeaponType> _categoryToWeaponType = new()
-        {
-            { "melee", Weapon.WeaponType.Sword },
-            { "projectile", Weapon.WeaponType.Staff }
-        };
-
-        public static Weapon CreateFromCatalog(string itemId, Character wielder, DamageFunction damageFunction)
+        public static Weapon CreateFromCatalog(string itemId, Character wielder, Func<float, float> damageMultiplier)
         {
             var itemDef = ItemCatalog.Instance?.Get(itemId);
             if (itemDef == null)
@@ -41,28 +36,53 @@ namespace nuscutiesapp.active.characters.Weapons
             switch (itemDef.Category)
             {
                 case "melee":
-                    var damage = GetStatValue(statsPayload, "damage", 200);
+                    var damage = GetStatValue(statsPayload, "damage", 20);
                     var attackDuration = GetStatValue(statsPayload, "attackDuration", 200);
                     var knockback = GetStatValue(statsPayload, "knockback", 200);
-                    weapon.Initialize(wielder, damageFunction, knockback, attackDuration, new WaitForAnimationUserStrategy());
+
+                    var meleeDamageFunction = new DamageFunction(() => damageMultiplier(damage));
+
+                    weapon.Initialize(wielder, meleeDamageFunction, knockback, attackDuration, new WaitForAnimationUserStrategy());
                     return weapon;
 
                 case "projectile":
-                    var projectileSpeed = GetStatValue(statsPayload, "projectileSpeed", 200);
-                    var cooldown = GetStatValue(statsPayload, "cooldown", 750);
+                    var projectileDamage = GetStatValue(statsPayload, "damage", 20);
                     var projectileKnockback = GetStatValue(statsPayload, "knockback", 150);
+                    var cooldown = GetStatValue(statsPayload, "cooldown", 750);
 
-                    Projectile projectile = ResourceLoader.
-                        Load<PackedScene>(Paths.StaffProjectile).Instantiate<Projectile>();
-                    projectile.InitializeHitbox(wielder, damageFunction, projectileKnockback);
+                    var projectileDamageFunction = new DamageFunction(() => damageMultiplier(projectileDamage));
+                    var useStrategy = new ProjectileUseStrategy(
+                        itemDef.StatsPayload["projectileScenePath"].ToString(),
+                        wielder,
+                        projectileDamageFunction,
+                        projectileKnockback
+                    );
 
-                    weapon.Initialize(wielder, null, 0, cooldown, new ProjectileUseStrategy(projectile));
+                    weapon.Initialize(wielder, null, 0, cooldown, useStrategy);
                     return weapon;
 
                 default:
                     GD.PrintErr($"Unhandled weapon category: {itemDef.Category}");
                     return null;
             }
+        }
+
+        public static Weapon CreateSword(Character wielder, DamageFunction damageFunction)
+        {
+            var weapon = CreateFromCatalog("sword", wielder, (dmg) => dmg); // Pass a dummy multiplier
+            if (weapon == null)
+            {
+                GD.PrintErr("Failed to create sword from catalog, falling back to hardcoded creation");
+                return Weapon.CreateWeapon(
+                    Weapon.WeaponType.Sword,
+                    wielder,
+                    damageFunction,
+                    200,
+                    250,
+                    new WaitForAnimationUserStrategy()
+                );
+            }
+            return weapon;
         }
 
         private static int GetStatValue(Dictionary<string, object> statsPayload, string key, int defaultValue)
@@ -79,45 +99,6 @@ namespace nuscutiesapp.active.characters.Weapons
                 }
             }
             return defaultValue;
-        }
-        public static Weapon CreateStaff(Character wielder, DamageFunction damageFunction)
-        {
-            var weapon = CreateFromCatalog("staff", wielder, damageFunction);
-            if (weapon == null)
-            {
-                GD.PrintErr("Failed to create staff from catalog, falling back to hardcoded creation");
-                Projectile projectile = ResourceLoader.
-                    Load<PackedScene>(Paths.StaffProjectile).Instantiate<Projectile>();
-
-                projectile.InitializeHitbox(wielder, damageFunction, 200);
-                return Weapon.CreateWeapon(
-                    Weapon.WeaponType.Staff,
-                    wielder,
-                    null,
-                    0,
-                    750,
-                    new ProjectileUseStrategy(projectile)
-                );
-            }
-            return weapon;
-        }
-
-        public static Weapon CreateSword(Character wielder, DamageFunction damageFunction)
-        {
-            var weapon = CreateFromCatalog("sword", wielder, damageFunction);
-            if (weapon == null)
-            {
-                GD.PrintErr("Failed to create sword from catalog, falling back to hardcoded creation");
-                return Weapon.CreateWeapon(
-                    Weapon.WeaponType.Sword,
-                    wielder,
-                    damageFunction,
-                    200,
-                    250,
-                    new WaitForAnimationUserStrategy()
-                );
-            }
-            return weapon;
         }
     }
 }

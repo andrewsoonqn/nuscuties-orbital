@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.active.characters.DamageSystem;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -8,13 +9,18 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
 {
     public partial class ProjectileUseStrategy : Node, IUseStrategy
     {
-        private Weapon _weapon;
         private bool _locked = false;
-        private Projectile _baseProjectile;
+        private readonly string _projectileScenePath;
+        private readonly Character _wielder;
+        private readonly DamageFunction _damageFunction;
+        private readonly int _knockback;
 
-        public ProjectileUseStrategy(Projectile projectile)
+        public ProjectileUseStrategy(string projectileScenePath, Character wielder, DamageFunction damageFunction, int knockback)
         {
-            _baseProjectile = projectile;
+            _projectileScenePath = projectileScenePath;
+            _wielder = wielder;
+            _damageFunction = damageFunction;
+            _knockback = knockback;
         }
 
         public async void Use(Weapon weapon)
@@ -32,21 +38,24 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
 
             if (_locked) return;
             _locked = true;
-            _weapon = weapon;
-            Projectile projectile = (Projectile)_baseProjectile.Duplicate();
+
+            var projectileScene = GD.Load<PackedScene>(_projectileScenePath);
+            var projectile = projectileScene.Instantiate<Projectile>();
+            projectile.InitializeHitbox(_wielder, _damageFunction, _knockback);
+
             Vector2 shootingAngle = weapon.GetGlobalMousePosition() - weapon.GlobalPosition;
             shootingAngle = shootingAngle.Normalized();
 
             await Task.Delay(95);
 
-            _weapon.GetParent().GetParent().AddChild(projectile);
+            weapon.GetParent().GetParent().AddChild(projectile);
             projectile.Initialize((Marker2D)weapon.FindChild("Marker2D"), shootingAngle);
-            CallDeferred(MethodName.OnAttackFinished);
+            CallDeferred(nameof(OnAttackFinished), weapon);
         }
 
-        public async void OnAttackFinished()
+        public async void OnAttackFinished(Weapon weapon)
         {
-            await Task.Delay(_weapon.GetDurationMs());
+            await Task.Delay(weapon.GetDurationMs());
             _locked = false;
         }
     }

@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cckhyvnmyxfhe"]
+[gd_scene load_steps=8 format=3 uid="uid://cs6aa0hl708an"]
 
-[ext_resource type="Script" uid="uid://dn4keoqyjsifd" path="res://active/characters/Weapons/Weapon.cs" id="1_etp5m"]
-[ext_resource type="Texture2D" uid="uid://dc2hn8jmwn2og" path="res://assets/dawn_like/Items/Wand.png" id="2_di34s"]
-[ext_resource type="PackedScene" uid="uid://bpw4yse16dpmd" path="res://active/characters/DamageSystem/hitbox.tscn" id="3_jgvq6"]
+[ext_resource type="Script" uid="uid://dn4keoqyjsifd" path="res://active/characters/Weapons/Weapon.cs" id="1_tinxt"]
+[ext_resource type="Texture2D" uid="uid://dc2hn8jmwn2og" path="res://assets/dawn_like/Items/Wand.png" id="2_t1qp3"]
+[ext_resource type="PackedScene" uid="uid://bpw4yse16dpmd" path="res://active/characters/DamageSystem/hitbox.tscn" id="3_pv2u2"]
 
 [sub_resource type="Animation" id="Animation_s54qp"]
 length = 0.001
@@ -70,7 +70,7 @@ _data = {
 radius = 0.0
 
 [node name="Staff" type="Node2D" node_paths=PackedStringArray("_myHitbox", "_animationPlayer")]
-script = ExtResource("1_etp5m")
+script = ExtResource("1_tinxt")
 _myHitbox = NodePath("PlaceholderHitbox")
 _animationPlayer = NodePath("AnimationPlayer")
 
@@ -80,18 +80,18 @@ rotation = -0.610865
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
 position = Vector2(4.85285, 1.6383)
 rotation = 1.0472
-texture = ExtResource("2_di34s")
+texture = ExtResource("2_t1qp3")
 centered = false
-offset = Vector2(-10, -10)
+offset = Vector2(-12, -12)
 region_enabled = true
-region_rect = Rect2(34, 50, 12, 12)
+region_rect = Rect2(32, 0, 16, 16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_e5a7i")
 }
 
-[node name="PlaceholderHitbox" parent="." instance=ExtResource("3_jgvq6")]
+[node name="PlaceholderHitbox" parent="." instance=ExtResource("3_pv2u2")]
 collision_layer = 0
 collision_mask = 0
 
