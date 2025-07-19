@@ -59,6 +59,10 @@ settings/test/test_discovery=true
 
 projectile_collision=""
 
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+
 [input]
 
 ui_attack={

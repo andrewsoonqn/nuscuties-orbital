@@ -30,6 +30,7 @@ public abstract partial class Character : CharacterBody2D
     public HealthComponent Health;
 
     private ActiveDungeonEventManager _eventManager;
+    private DamageNumberManager _damageNumberManager;
 
     protected Weapon MyWeapon;
     protected IActivateWeaponStrategy ActivateWeaponStrategy;
@@ -46,15 +47,17 @@ public abstract partial class Character : CharacterBody2D
 
         this.PlayIdleAnimation();
         this.Visible = true;
+        _damageNumberManager = GetNode<DamageNumberManager>("/root/DamageNumberManager");
     }
 
     public void OnDamaged(float currentHP, DamageInfo damageInfo)
     {
         ChangeMovementState(new HurtState());
         Velocity += damageInfo.Knockback;
-
-        var damageNumberManager = GetNode<DamageNumberManager>("/root/DamageNumberManager");
-        damageNumberManager.Show(damageInfo.Amount, GlobalPosition);
+        if (this is Enemy)
+        {
+            _damageNumberManager.Show(damageInfo.Amount, Position, GetParent<Node2D>());
+        }
     }
 
     public abstract void OnDied(DamageInfo damageInfo);

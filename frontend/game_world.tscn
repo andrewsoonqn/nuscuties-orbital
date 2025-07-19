@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=4 uid="uid://cvf7e615kvfxq"]
+[gd_scene load_steps=15 format=4 uid="uid://cvf7e615kvfxq"]
 
 [ext_resource type="Script" uid="uid://cal5ppvm3euy2" path="res://active/ActiveGame.cs" id="1_e08lw"]
+[ext_resource type="PackedScene" uid="uid://d3x7bmvn76h8w" path="res://active/ui/damage_number.tscn" id="2_15365"]
 [ext_resource type="Texture2D" uid="uid://3jb08ef7rxbq" path="res://assets/dungeon_art/full tilemap.png" id="2_e3xe6"]
 [ext_resource type="Script" uid="uid://dn5jybypvw8oc" path="res://active/EnemySpawner.cs" id="2_e7o6u"]
-[ext_resource type="Script" uid="uid://derjrd1dagat0" path="res://GameWorldNavigationRegion.cs" id="2_ik71a"]
+[ext_resource type="Script" uid="uid://dy5ohxsnxl4ym" path="res://GameWorldNavigationRegion.cs" id="2_ik71a"]
 [ext_resource type="PackedScene" uid="uid://d4ukkagofjxm" path="res://active/characters/player.tscn" id="3_mcbma"]
 [ext_resource type="PackedScene" uid="uid://dmweiqk1jxob0" path="res://active/characters/enemy.tscn" id="4_ik71a"]
 [ext_resource type="Script" uid="uid://be06ish7ytgcl" path="res://active/characters/PrintHealth.cs" id="5_mcbma"]
@@ -350,6 +351,9 @@ pattern_0 = SubResource("TileMapPattern_mcbma")
 y_sort_enabled = true
 position = Vector2(540, 360)
 script = ExtResource("1_e08lw")
+
+[node name="DamageNumber" parent="." instance=ExtResource("2_15365")]
+z_index = 1
 
 [node name="Player" parent="." instance=ExtResource("3_mcbma")]
 position = Vector2(0, 0)

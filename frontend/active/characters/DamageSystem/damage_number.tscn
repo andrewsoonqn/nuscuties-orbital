@@ -1,13 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://x7de3o6olf12"]
+[gd_scene load_steps=2 format=3 uid="uid://b45aj48hbtfay"]
 
-[ext_resource type="Script" uid="uid://c5wgllcb6kc0p" path="res://active/characters/DamageSystem/DamageNumber.cs" id="1_damage_script"]
+[sub_resource type="CSharpScript" id="CSharpScript_pu8v2"]
+script/source = "using Godot;
+using System;
+
+public partial class DamageNumber : Node2D
+{
+}
+"
 
 [node name="DamageNumber" type="Node2D"]
-script = ExtResource("1_damage_script")
-_fadeTime = null
-_floatDistance = null
-_floatSpeed = null
-_fadeDelay = null
+script = SubResource("CSharpScript_pu8v2")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 8

@@ -2,19 +2,14 @@ using Godot;
 
 namespace nuscutiesapp.active.ui
 {
-    [ScriptPath("res://frontend/active/ui/DamageNumber.cs")]
-    public partial class DamageNumber : Label
+    public partial class DamageNumber : Node2D
     {
-        private AnimationPlayer _animationPlayer;
-
-        public override void _Ready()
-        {
-            _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-        }
+        [Export] private AnimationPlayer _animationPlayer;
+        [Export] private Label _label;
 
         public void Show(string text)
         {
-            Text = text;
+            _label.Text = text;
             _animationPlayer.Play("show");
         }
     }
