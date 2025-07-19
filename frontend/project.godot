@@ -34,7 +34,7 @@ TransitionLoginToHome="*res://start/transition_login_to_home.tscn"
 ItemCatalog="*res://tools/ItemCatalog.cs"
 PlayerInventoryManager="*res://tools/PlayerInventoryManager.cs"
 LoadoutSpawner="*res://tools/LoadoutSpawner.cs"
-DamageNumberManager="*res://active/characters/DamageSystem/DamageNumberManager.cs"
+DamageNumberManager="*res://tools/DamageNumberManager.cs"
 
 [display]
 

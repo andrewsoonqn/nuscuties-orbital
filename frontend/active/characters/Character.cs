@@ -4,6 +4,7 @@ using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
 using nuscutiesapp.active.characters.Weapons;
+using nuscutiesapp.active.ui;
 using System;
 using System.ComponentModel.Design;
 using System.Runtime.InteropServices.JavaScript;
@@ -51,6 +52,9 @@ public abstract partial class Character : CharacterBody2D
     {
         ChangeMovementState(new HurtState());
         Velocity += damageInfo.Knockback;
+
+        var damageNumberManager = GetNode<DamageNumberManager>("/root/DamageNumberManager");
+        damageNumberManager.Show(damageInfo.Amount, GlobalPosition);
     }
 
     public abstract void OnDied(DamageInfo damageInfo);
