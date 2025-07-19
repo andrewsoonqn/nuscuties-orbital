@@ -11,6 +11,7 @@ public partial class Home : Control
     [Export] private Button _passiveButton;
     [Export] private Button _activeButton;
     [Export] private Button _statsUIButton;
+    [Export] private Button _storeButton;
 
     private ProgressionManager _expManager;
 
@@ -30,6 +31,7 @@ public partial class Home : Control
         _dailyButton.Pressed += () => switchScene(Paths.Daily);
         _passiveButton.Pressed += () => switchScene(Paths.Passive);
         _activeButton.Pressed += () => switchScene(Paths.Active);
+        _storeButton.Pressed += () => switchScene(Paths.Shop);
 
         _statsUINode = ResourceLoader.Load<PackedScene>(Paths.StatsUI);
 

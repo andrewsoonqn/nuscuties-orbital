@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://d10077bwug3rs"]
+[gd_scene load_steps=89 format=3 uid="uid://d10077bwug3rs"]
 
 [ext_resource type="Script" uid="uid://crjrlgdwahath" path="res://start/Home.cs" id="1_kkgq1"]
 [ext_resource type="Texture2D" uid="uid://cwy2ry5wij5uf" path="res://assets/white-circle.png" id="2_8rh7u"]
@@ -502,20 +502,6 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhlcw"]
-bg_color = Color(0.815686, 0.815686, 0.815686, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ypj6t"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwqmo"]
 bg_color = Color(0.815686, 0.815686, 0.815686, 1)
 corner_radius_top_left = 10
@@ -572,7 +558,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="Home" type="Control" node_paths=PackedStringArray("_expLabel", "_levelLabel", "_expProgressBar", "_dailyButton", "_passiveButton", "_activeButton", "_statsUIButton")]
+[node name="Home" type="Control" node_paths=PackedStringArray("_expLabel", "_levelLabel", "_expProgressBar", "_dailyButton", "_passiveButton", "_activeButton", "_statsUIButton", "_storeButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -587,6 +573,7 @@ _dailyButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/
 _passiveButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/Passive")
 _activeButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/Active")
 _statsUIButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/StatsUI")
+_storeButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Store")
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -789,16 +776,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_m5nrr")
 theme_override_styles/normal = SubResource("StyleBoxFlat_8pn3w")
 text = "Status Screen"
 
-[node name="Inventory" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(250, 50)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_g8cuh")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dhlcw")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ypj6t")
-text = "Inventory"
-
 [node name="Store" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
@@ -850,7 +827,6 @@ text = "Active Dungeon"
 [node name="ClickSoundEffect2" type="AudioStreamPlayer" parent="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer"]
 stream = ExtResource("7_e7cx7")
 
-[connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Inventory" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" method="_on_inventory_pressed"]
 [connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Store" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" method="_on_store_pressed"]
 [connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/Daily" to="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer" method="_on_daily_pressed"]
 [connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/Passive" to="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer" method="_on_passive_pressed"]

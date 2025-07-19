@@ -19,4 +19,5 @@ public partial class Paths : Node
     public static readonly string PassiveOngoing = "res://passive/passive_ongoing.tscn";
     public static readonly string PassiveEndScene = "res://passive/passive_end_scene.tscn";
     public static readonly string QuestEditPanel = "res://daily/components/quest_edit_panel.tscn";
+    public static readonly string Shop = "res://ui/shop/shop.tscn";
 }
