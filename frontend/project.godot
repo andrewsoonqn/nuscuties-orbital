@@ -28,12 +28,13 @@ RewardManager="*res://active/RewardManager.cs"
 GameTerminationManager="*res://active/GameTerminationManager.cs"
 ProgressionManager="*res://tools/ProgressionManager.cs"
 PlayerStatManager="*res://tools/PlayerStatManager.cs"
-PlayerInventoryManager="*res://tools/PlayerInventoryManager.cs"
-ItemCatalog="*res://tools/ItemCatalog.cs"
 DerivedStatCalculator="*res://tools/DerivedStatCalculator.cs"
-LoadoutSpawner="*res://tools/LoadoutSpawner.cs"
 EnemyTracker="*res://active/EnemyTracker.cs"
 TransitionLoginToHome="*res://start/transition_login_to_home.tscn"
+ItemCatalog="*res://tools/ItemCatalog.cs"
+PlayerInventoryManager="*res://tools/PlayerInventoryManager.cs"
+LoadoutSpawner="*res://tools/LoadoutSpawner.cs"
+DamageNumberManager="*res://active/characters/DamageSystem/DamageNumberManager.cs"
 
 [display]
 
@@ -67,7 +68,7 @@ ui_attack={
 }
 dash={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
 ]
 }
 

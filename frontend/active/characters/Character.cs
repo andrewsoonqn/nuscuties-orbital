@@ -26,7 +26,7 @@ public abstract partial class Character : CharacterBody2D
     protected StateMachine<IMovementState> MovementStateMachine;
     protected StateMachine<IActionState> ActionStateMachine;
 
-    protected HealthComponent Health;
+    public HealthComponent Health;
 
     private ActiveDungeonEventManager _eventManager;
 

@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://x7de3o6olf12"]
+
+[ext_resource type="Script" uid="uid://c5wgllcb6kc0p" path="res://active/characters/DamageSystem/DamageNumber.cs" id="1_damage_script"]
+
+[node name="DamageNumber" type="Node2D"]
+script = ExtResource("1_damage_script")
+_fadeTime = null
+_floatDistance = null
+_floatSpeed = null
+_fadeDelay = null
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -10.0
+offset_right = 25.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
