@@ -15,20 +15,36 @@ public partial class Player : Character
 {
     private ActiveDungeonEventManager _eventManager;
     private DerivedStatCalculator _statCalculator;
+    private LoadoutSpawner _loadoutSpawner;
+    private LoadoutSpawner.LoadoutData _currentLoadout;
 
     private Dictionary<WeaponClass, Weapon> _weapons = new Dictionary<WeaponClass, Weapon>();
     public override void _Ready()
     {
         base._Ready();
         _statCalculator = GetNode<DerivedStatCalculator>("/root/DerivedStatCalculator");
-        Weapon sword = WeaponCreator.CreateSword(this, new DamageFunction(_statCalculator.CalcAttackDamageMultiplier() * 10f));
-        _weapons[WeaponClass.Melee] = sword;
-        Weapon staff =
-            WeaponCreator.CreateStaff(this, new DamageFunction(_statCalculator.CalcAttackDamageMultiplier() * 10f));
-        _weapons[WeaponClass.Ranged] = staff;
-        // EquipWeapon(staff);
-        MyWeapon = staff;
-        AddChild(MyWeapon);
+        _loadoutSpawner = GetNode<LoadoutSpawner>("/root/LoadoutSpawner");
+
+        _currentLoadout = _loadoutSpawner.SpawnLoadout(this);
+
+        if (_currentLoadout.MeleeWeapon != null)
+        {
+            _weapons[WeaponClass.Melee] = _currentLoadout.MeleeWeapon;
+        }
+
+        if (_currentLoadout.ProjectileWeapon != null)
+        {
+            _weapons[WeaponClass.Ranged] = _currentLoadout.ProjectileWeapon;
+        }
+
+        MyWeapon = _currentLoadout.MeleeWeapon ?? _currentLoadout.ProjectileWeapon;
+        if (MyWeapon != null)
+        {
+            AddChild(MyWeapon);
+        }
+
+        _loadoutSpawner.ApplyLoadout(this, _currentLoadout);
+
         MovementStrategy = new PlayerMovementStrategy(this);
 
         MovementStateMachine = new StateMachine<IMovementState>(this, new IdleMovementState());
@@ -54,16 +70,36 @@ public partial class Player : Character
             AnimatedSprite.FlipH = true;
         }
 
-        MyWeapon.Rotation = mouseDirection.Angle();
-        if (mouseDirection.X < 0 && MyWeapon.Scale.Y > 0)
+        if (MyWeapon != null)
         {
-            MyWeapon.ApplyScale(new Vector2(1, -1));
+            MyWeapon.Rotation = mouseDirection.Angle();
+            if (mouseDirection.X < 0 && MyWeapon.Scale.Y > 0)
+            {
+                MyWeapon.ApplyScale(new Vector2(1, -1));
+            }
+            else if (mouseDirection.X > 0 && MyWeapon.Scale.Y < 0)
+            {
+                MyWeapon.ApplyScale(new Vector2(1, -1));
+            }
         }
-        else if (mouseDirection.X > 0 && MyWeapon.Scale.Y < 0)
-        {
-            MyWeapon.ApplyScale(new Vector2(1, -1));
-        }
+
+        HandleActiveAbilityInput();
         base._Process(delta);
+    }
+
+    private void HandleActiveAbilityInput()
+    {
+        if (Input.IsActionJustPressed("dash") && _currentLoadout?.ActiveAbilities != null)
+        {
+            foreach (var ability in _currentLoadout.ActiveAbilities)
+            {
+                if (ability != null)
+                {
+                    ability.Activate();
+                    break;
+                }
+            }
+        }
     }
 
     public override void PlayIdleAnimation()
@@ -99,5 +135,49 @@ public partial class Player : Character
         {
             EquipWeapon(_weapons[weaponClass]);
         }
+    }
+
+    public void ReloadLoadout()
+    {
+        if (_currentLoadout != null)
+        {
+            _loadoutSpawner.RemoveLoadout(this, _currentLoadout);
+        }
+
+        _currentLoadout = _loadoutSpawner.SpawnLoadout(this);
+
+        _weapons.Clear();
+
+        if (_currentLoadout.MeleeWeapon != null)
+        {
+            _weapons[WeaponClass.Melee] = _currentLoadout.MeleeWeapon;
+        }
+
+        if (_currentLoadout.ProjectileWeapon != null)
+        {
+            _weapons[WeaponClass.Ranged] = _currentLoadout.ProjectileWeapon;
+        }
+
+        if (MyWeapon != null)
+        {
+            RemoveChild(MyWeapon);
+        }
+
+        MyWeapon = _currentLoadout.MeleeWeapon ?? _currentLoadout.ProjectileWeapon;
+        if (MyWeapon != null)
+        {
+            AddChild(MyWeapon);
+        }
+
+        _loadoutSpawner.ApplyLoadout(this, _currentLoadout);
+    }
+
+    public override void _ExitTree()
+    {
+        if (_currentLoadout != null && _loadoutSpawner != null)
+        {
+            _loadoutSpawner.RemoveLoadout(this, _currentLoadout);
+        }
+        base._ExitTree();
     }
 }
