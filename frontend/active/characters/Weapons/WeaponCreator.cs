@@ -49,13 +49,15 @@ namespace nuscutiesapp.active.characters.Weapons
                     var projectileDamage = GetStatValue(statsPayload, "damage", 20);
                     var projectileKnockback = GetStatValue(statsPayload, "knockback", 150);
                     var cooldown = GetStatValue(statsPayload, "cooldown", 750);
+                    var statusEffect = statsPayload.ContainsKey("statusEffect") ? statsPayload["statusEffect"].ToString() : null;
 
                     var projectileDamageFunction = new DamageFunction(() => damageMultiplier(projectileDamage));
                     var useStrategy = new ProjectileUseStrategy(
                         itemDef.StatsPayload["projectileScenePath"].ToString(),
                         wielder,
                         projectileDamageFunction,
-                        projectileKnockback
+                        projectileKnockback,
+                        statusEffect
                     );
 
                     weapon.Initialize(wielder, null, 0, cooldown, useStrategy);

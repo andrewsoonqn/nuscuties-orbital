@@ -14,13 +14,15 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
         private readonly Character _wielder;
         private readonly DamageFunction _damageFunction;
         private readonly int _knockback;
+        private readonly string _statusEffect;
 
-        public ProjectileUseStrategy(string projectileScenePath, Character wielder, DamageFunction damageFunction, int knockback)
+        public ProjectileUseStrategy(string projectileScenePath, Character wielder, DamageFunction damageFunction, int knockback, string statusEffect = null)
         {
             _projectileScenePath = projectileScenePath;
             _wielder = wielder;
             _damageFunction = damageFunction;
             _knockback = knockback;
+            _statusEffect = statusEffect;
         }
 
         public async void Use(Weapon weapon)
@@ -41,7 +43,7 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
 
             var projectileScene = GD.Load<PackedScene>(_projectileScenePath);
             var projectile = projectileScene.Instantiate<Projectile>();
-            projectile.InitializeHitbox(_wielder, _damageFunction, _knockback);
+            projectile.InitializeHitbox(_wielder, _damageFunction, _knockback, _statusEffect);
 
             Vector2 shootingAngle = weapon.GetGlobalMousePosition() - weapon.GlobalPosition;
             shootingAngle = shootingAngle.Normalized();
