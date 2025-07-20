@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvxmkr1l2u3hq"]
+
+[ext_resource type="Script" uid="uid://yxsy5wwvq3dm" path="res://active/characters/EnemyHealthBar.cs" id="1_b4m2x"]
+[ext_resource type="Texture2D" uid="uid://4t2678db82ee" path="res://assets/health_bar_texture.png" id="2_as5m5"]
+
+[sub_resource type="Animation" id="Animation_as5m5"]
+resource_name = "hide"
+length = 0.2
+
+[sub_resource type="Animation" id="Animation_f3wsv"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3mafr"]
+_data = {
+&"RESET": SubResource("Animation_f3wsv"),
+&"hide": SubResource("Animation_as5m5")
+}
+
+[node name="EnemyHealthBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_b4m2x")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -6.0
+offset_top = -7.0
+offset_right = 6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+texture_under = ExtResource("2_as5m5")
+texture_progress = ExtResource("2_as5m5")
+tint_under = Color(0, 0, 0, 1)
+tint_progress = Color(0.950931, 4.33177e-06, 1.15514e-06, 1)
+
+[node name="HideTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3mafr")
+}

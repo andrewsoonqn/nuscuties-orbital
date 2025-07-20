@@ -353,7 +353,6 @@ position = Vector2(540, 360)
 script = ExtResource("1_e08lw")
 
 [node name="DamageNumber" parent="." instance=ExtResource("2_15365")]
-z_index = 1
 
 [node name="Player" parent="." instance=ExtResource("3_mcbma")]
 position = Vector2(0, 0)
