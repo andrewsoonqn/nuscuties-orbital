@@ -3,6 +3,7 @@ using nuscutiesapp.active.characters.ActivateWeaponStrategies;
 using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
+using nuscutiesapp.active.characters.StatusEffects;
 using nuscutiesapp.active.characters.Weapons;
 using nuscutiesapp.active.ui;
 using System;
@@ -28,6 +29,7 @@ public abstract partial class Character : CharacterBody2D
     protected StateMachine<IActionState> ActionStateMachine;
 
     public HealthComponent Health;
+    public StatusEffectManager StatusEffects;
 
     private ActiveDungeonEventManager _eventManager;
     private DamageNumberManager _damageNumberManager;
@@ -41,6 +43,7 @@ public abstract partial class Character : CharacterBody2D
         this.AnimatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         this.MyAnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         this.Health = GetNode<HealthComponent>("Health");
+        this.StatusEffects = GetNode<StatusEffectManager>("StatusEffectManager");
 
         Health.Damaged += OnDamaged;
         Health.Died += OnDied;

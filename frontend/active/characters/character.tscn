@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2aoax7gfqdq6"]
+[gd_scene load_steps=3 format=3 uid="uid://c2aoax7gfqdq6"]
 
 [ext_resource type="Script" uid="uid://g6fvaxfdi51w" path="res://active/characters/DamageSystem/HealthComponent.cs" id="1_kqxnq"]
+[ext_resource type="Script" path="res://active/characters/StatusEffects/StatusEffectManager.cs" id="2_status"]
 
 [node name="Character" type="CharacterBody2D"]
 
@@ -12,3 +13,6 @@
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("1_kqxnq")
+
+[node name="StatusEffectManager" type="Node" parent="."]
+script = ExtResource("2_status")
