@@ -1,68 +1,81 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8k7yj2vm5n1w"]
+[gd_scene load_steps=5 format=3 uid="uid://c8k7yj2vm5n1w"]
 
-[ext_resource type="Script" path="res://ui/shop/ItemCard.cs" id="1_card"]
-[ext_resource type="FontFile" uid="uid://db7byayhdbwy3" path="res://assets/Inter_18pt-Regular.ttf" id="2_font"]
-[ext_resource type="FontFile" uid="uid://dkjdxog3b4fl4" path="res://assets/Jacquard24-Regular.ttf" id="3_font"]
+[ext_resource type="Script" uid="uid://dyrr8somcblff" path="res://ui/shop/ItemCard.cs" id="1_card"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_8k1by"]
+[ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://assets/flat_ui/kenneyUI-green.tres" id="3_y8kyc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
 bg_color = Color(0.2, 0.2, 0.2, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="ItemCard" type="PanelContainer" node_paths=PackedStringArray("_iconTexture", "_titleLabel", "_descriptionLabel", "_actionButton")]
-custom_minimum_size = Vector2(250, 300)
-layout_mode = 2
+custom_minimum_size = Vector2(200, 200)
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 script = ExtResource("1_card")
-_iconTexture = NodePath("VBoxContainer/IconContainer/Icon")
-_titleLabel = NodePath("VBoxContainer/ContentContainer/Title")
-_descriptionLabel = NodePath("VBoxContainer/ContentContainer/Description")
-_actionButton = NodePath("VBoxContainer/ContentContainer/ActionButton")
+_iconTexture = NodePath("MarginContainer/VBoxContainer/IconContainer/Icon")
+_titleLabel = NodePath("MarginContainer/VBoxContainer/ContentContainer/Title")
+_descriptionLabel = NodePath("MarginContainer/VBoxContainer/ContentContainer/Description")
+_actionButton = NodePath("MarginContainer/VBoxContainer/ContentContainer/ActionButton")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
 
-[node name="IconContainer" type="CenterContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="IconContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Icon" type="TextureRect" parent="VBoxContainer/IconContainer"]
+[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/IconContainer"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 expand_mode = 3
 stretch_mode = 5
 
-[node name="ContentContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="ContentContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 theme_override_constants/separation = 8
 
-[node name="Title" type="Label" parent="VBoxContainer/ContentContainer"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/ContentContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_font")
+theme = ExtResource("2_8k1by")
 theme_override_font_sizes/font_size = 18
 text = "Item Name"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Description" type="RichTextLabel" parent="VBoxContainer/ContentContainer"]
+[node name="Description" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ContentContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("2_font")
+theme = ExtResource("2_8k1by")
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
 text = "Item description goes here"
 fit_content = true
 scroll_active = false
+horizontal_alignment = 1
 
-[node name="ActionButton" type="Button" parent="VBoxContainer/ContentContainer"]
+[node name="ActionButton" type="Button" parent="MarginContainer/VBoxContainer/ContentContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_font")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_y8kyc")
 theme_override_font_sizes/font_size = 16
 text = "Buy for 500 coins"
