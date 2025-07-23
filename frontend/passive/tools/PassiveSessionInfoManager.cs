@@ -5,6 +5,7 @@ public partial class PassiveSessionInfoManager : Node
     private double _totalTime;
     private double _timeSpent;
     private int _accumulatedExp;
+    private int _accumulatedCoins;
 
     public void setTotalTime(double totalTime)
     {
@@ -34,5 +35,15 @@ public partial class PassiveSessionInfoManager : Node
     public int getAccumulatedExp()
     {
         return _accumulatedExp;
+    }
+
+    public void setAccumulatedCoins(int accumulatedCoins)
+    {
+        _accumulatedCoins = accumulatedCoins;
+    }
+
+    public int getAccumulatedCoins()
+    {
+        return _accumulatedCoins;
     }
 }
