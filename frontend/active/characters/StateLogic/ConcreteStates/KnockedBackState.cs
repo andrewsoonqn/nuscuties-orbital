@@ -1,13 +1,11 @@
 using Godot;
 using System;
-using System.Timers;
-using Timer = System.Timers.Timer;
 
 namespace nuscutiesapp.active.characters.StateLogic
 {
-    public class HurtState : State, IMovementState
+    public class KnockedBackState : State, IMovementState
     {
-        private const double _hurtTime = 0.5f;
+        private const double _knockbackTime = 0.5f;
         private double _totalTime = 0f;
 
         public override void Enter(Character owner)
@@ -18,7 +16,7 @@ namespace nuscutiesapp.active.characters.StateLogic
         {
             _totalTime += delta;
 
-            if (_totalTime >= _hurtTime)
+            if (_totalTime >= _knockbackTime)
             {
                 if (owner.Velocity.Length() >= 10)
                 {
@@ -33,7 +31,7 @@ namespace nuscutiesapp.active.characters.StateLogic
 
         public override string ToString()
         {
-            return "hurt";
+            return "knocked_back";
         }
     }
 }

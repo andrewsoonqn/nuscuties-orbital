@@ -26,11 +26,14 @@ namespace nuscutiesapp.active.characters.DamageSystem
         {
             return damageInfo.Amount;
         }
+
         public void TakeDamage(in DamageInfo damageInfo)
         {
             if (CurrentHP <= 0) return;
 
             CurrentHP = float.Max(CurrentHP - GetDamageAmt(damageInfo), 0);
+
+            ApplyDamageModulation();
 
             if (CurrentHP <= 0)
             {
@@ -40,6 +43,15 @@ namespace nuscutiesapp.active.characters.DamageSystem
             {
                 Damaged?.Invoke(CurrentHP, damageInfo);
             }
+        }
+
+        private async void ApplyDamageModulation()
+        {
+            _owner.AnimatedSprite.Modulate = new Color(1, 0.5f, 0.5f);
+
+            await _owner.ToSignal(_owner.GetTree().CreateTimer(0.3f), SceneTreeTimer.SignalName.Timeout);
+
+            _owner.AnimatedSprite.Modulate = new Color(1, 1, 1, 1);
         }
     }
 }

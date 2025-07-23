@@ -18,6 +18,9 @@ public partial class Enemy : Character
     private ActiveDungeonEventManager _eventManager;
     [Export] private Area2D _area2D;
 
+    private EnemyHealthBar _healthBar;
+    private static readonly PackedScene _healthBarScene = GD.Load<PackedScene>("res://active/characters/enemy_health_bar.tscn");
+
     public override void _Ready()
     {
         this.CallDeferred(nameof(SeekerSetup));
@@ -40,6 +43,15 @@ public partial class Enemy : Character
         AddChild(MyWeapon);
 
         ActivateWeaponStrategy = new AlwaysActivateWeaponStrategy();
+
+        SetupHealthBar();
+    }
+
+    private void SetupHealthBar()
+    {
+        _healthBar = _healthBarScene.Instantiate<EnemyHealthBar>();
+        AddChild(_healthBar);
+        _healthBar.Initialize(this);
     }
 
     public async void SeekerSetup()

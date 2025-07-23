@@ -42,13 +42,13 @@ namespace nuscutiesapp.active.characters.Weapons
             GlobalRotation = dir.Angle();
         }
 
-        public void InitializeHitbox(Character wielder, DamageFunction damageFunc, int knockbackMagnitude)
+        public void InitializeHitbox(Character wielder, DamageFunction damageFunc, int knockbackMagnitude, string statusEffect = null)
         {
             if (_projectileHitbox == null)
             {
                 _projectileHitbox = (Hitbox)FindChild("Hitbox");
             }
-            _projectileHitbox.Initialize(wielder, damageFunc, knockbackMagnitude);
+            _projectileHitbox.Initialize(wielder, damageFunc, knockbackMagnitude, statusEffect);
         }
         public override void _PhysicsProcess(double delta)
         {

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgh7k2m3x8vh5"]
+
+[ext_resource type="Script" uid="uid://cfk5bbsuow1so" path="res://active/characters/PassiveEffects/HealthBoostEffect.cs" id="1_health_boost"]
+
+[node name="HealthBoostEffect" type="Node"]
+script = ExtResource("1_health_boost")

@@ -1,0 +1,124 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdqyj4tvm3k8h"]
+
+[ext_resource type="Script" path="res://ui/shop/ShopController.cs" id="1_shop"]
+[ext_resource type="FontFile" uid="uid://dkjdxog3b4fl4" path="res://assets/Jacquard24-Regular.ttf" id="2_font"]
+[ext_resource type="FontFile" uid="uid://db7byayhdbwy3" path="res://assets/Inter_18pt-Regular.ttf" id="3_font"]
+
+[node name="Shop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_shop")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="VBoxContainer/Header"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 20
+text = "← Back"
+
+[node name="Title" type="Label" parent="VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 40
+text = "ITEM SHOP"
+horizontal_alignment = 1
+
+[node name="CoinsDisplay" type="HBoxContainer" parent="VBoxContainer/Header"]
+layout_mode = 2
+
+[node name="CoinsIcon" type="Label" parent="VBoxContainer/Header/CoinsDisplay"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 24
+text = "💰"
+
+[node name="CoinsLabel" type="Label" parent="VBoxContainer/Header/CoinsDisplay"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 24
+text = "0 Coins"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Melee" type="ScrollContainer" parent="VBoxContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_name = "Melee Weapons"
+
+[node name="MeleeGrid" type="GridContainer" parent="VBoxContainer/TabContainer/Melee"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="Projectile" type="ScrollContainer" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_name = "Projectile Weapons"
+
+[node name="ProjectileGrid" type="GridContainer" parent="VBoxContainer/TabContainer/Projectile"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="Utility" type="ScrollContainer" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_name = "Utility Items"
+
+[node name="UtilityGrid" type="GridContainer" parent="VBoxContainer/TabContainer/Utility"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="Passive Necklaces" type="ScrollContainer" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_name = "Passive Necklaces"
+
+[node name="PassiveGrid" type="GridContainer" parent="VBoxContainer/TabContainer/Passive Necklaces"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="Active Necklaces" type="ScrollContainer" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_name = "Active Necklaces"
+
+[node name="ActiveGrid" type="GridContainer" parent="VBoxContainer/TabContainer/Active Necklaces"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3

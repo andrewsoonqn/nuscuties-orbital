@@ -3,7 +3,9 @@ using nuscutiesapp.active.characters.ActivateWeaponStrategies;
 using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
+using nuscutiesapp.active.characters.StatusEffects;
 using nuscutiesapp.active.characters.Weapons;
+using nuscutiesapp.active.ui;
 using System;
 using System.ComponentModel.Design;
 using System.Runtime.InteropServices.JavaScript;
@@ -14,7 +16,7 @@ public abstract partial class Character : CharacterBody2D
     public const float Friction = 0.15f;
 
     [Export] private float _acceleration = 0.30f;
-    [Export] private float _maxSpeed = 50;
+    [Export] public float MaxSpeed = 50;
 
     public AnimatedSprite2D AnimatedSprite;
     public AnimationPlayer MyAnimationPlayer;
@@ -26,9 +28,11 @@ public abstract partial class Character : CharacterBody2D
     protected StateMachine<IMovementState> MovementStateMachine;
     protected StateMachine<IActionState> ActionStateMachine;
 
-    protected HealthComponent Health;
+    public HealthComponent Health;
+    public StatusEffectManager StatusEffects;
 
     private ActiveDungeonEventManager _eventManager;
+    private DamageNumberManager _damageNumberManager;
 
     protected Weapon MyWeapon;
     protected IActivateWeaponStrategy ActivateWeaponStrategy;
@@ -39,18 +43,28 @@ public abstract partial class Character : CharacterBody2D
         this.AnimatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         this.MyAnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         this.Health = GetNode<HealthComponent>("Health");
+        this.StatusEffects = GetNode<StatusEffectManager>("StatusEffectManager");
 
         Health.Damaged += OnDamaged;
         Health.Died += OnDied;
 
         this.PlayIdleAnimation();
         this.Visible = true;
+        _damageNumberManager = GetNode<DamageNumberManager>("/root/DamageNumberManager");
     }
 
     public void OnDamaged(float currentHP, DamageInfo damageInfo)
     {
-        ChangeMovementState(new HurtState());
+        if (damageInfo.Knockback.LengthSquared() > 0.1f)
+        {
+            ChangeMovementState(new KnockedBackState());
+        }
+
         Velocity += damageInfo.Knockback;
+        if (this is Enemy)
+        {
+            _damageNumberManager.Show(damageInfo.Amount, Position, GetParent<Node2D>());
+        }
     }
 
     public abstract void OnDied(DamageInfo damageInfo);
@@ -80,9 +94,9 @@ public abstract partial class Character : CharacterBody2D
     public void Move()
     {
         MovDirection = MovDirection.Normalized();
-        Velocity = Velocity.Lerp(_maxSpeed * MovDirection, _acceleration);
+        Velocity = Velocity.Lerp(MaxSpeed * MovDirection, _acceleration);
         // Velocity += MovDirection * _acceleration;
-        Velocity = Velocity.LimitLength(_maxSpeed);
+        Velocity = Velocity.LimitLength(MaxSpeed);
     }
 
     public void GetDirection()

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbx4bca6notbe"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_pu8v2"]
+script/source = "using Godot;
+using System;
+
+public partial class DamageNumber : Node2D
+{
+}
+"
+
+[node name="DamageNumber" type="Node2D"]
+script = SubResource("CSharpScript_pu8v2")

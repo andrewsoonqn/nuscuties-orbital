@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8k7yj2vm5n1w"]
+
+[ext_resource type="Script" path="res://ui/shop/ItemCard.cs" id="1_card"]
+[ext_resource type="FontFile" uid="uid://db7byayhdbwy3" path="res://assets/Inter_18pt-Regular.ttf" id="2_font"]
+[ext_resource type="FontFile" uid="uid://dkjdxog3b4fl4" path="res://assets/Jacquard24-Regular.ttf" id="3_font"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="ItemCard" type="PanelContainer" node_paths=PackedStringArray("_iconTexture", "_titleLabel", "_descriptionLabel", "_actionButton")]
+custom_minimum_size = Vector2(250, 300)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+script = ExtResource("1_card")
+_iconTexture = NodePath("VBoxContainer/IconContainer/Icon")
+_titleLabel = NodePath("VBoxContainer/ContentContainer/Title")
+_descriptionLabel = NodePath("VBoxContainer/ContentContainer/Description")
+_actionButton = NodePath("VBoxContainer/ContentContainer/ActionButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="IconContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/IconContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ContentContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="VBoxContainer/ContentContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 18
+text = "Item Name"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Description" type="RichTextLabel" parent="VBoxContainer/ContentContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_font")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Item description goes here"
+fit_content = true
+scroll_active = false
+
+[node name="ActionButton" type="Button" parent="VBoxContainer/ContentContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+text = "Buy for 500 coins"

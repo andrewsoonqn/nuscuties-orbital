@@ -1,0 +1,162 @@
+[gd_scene load_steps=10 format=3 uid="uid://dk1trq6edf413"]
+
+[ext_resource type="Script" uid="uid://dn4keoqyjsifd" path="res://active/characters/Weapons/Weapon.cs" id="1_dagger"]
+[ext_resource type="Texture2D" uid="uid://b1b6d21ae67lu" path="res://assets/dawn_like/Items/ShortWep.png" id="1_dagger_texture"]
+[ext_resource type="Texture2D" uid="uid://lhs3t4hmjk04" path="res://assets/dungeon_art/effects (new)/slash_effect_anim_spritesheet.png" id="2_dagger"]
+[ext_resource type="Script" uid="uid://dce3d7qkegp" path="res://active/characters/DamageSystem/Hitbox.cs" id="4_dagger"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yek4j"]
+atlas = ExtResource("1_dagger_texture")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dagger"]
+radius = 1.5
+height = 8.0
+
+[sub_resource type="Animation" id="Animation_dagger_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.785398]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SlashSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SlashSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_dagger_attack"]
+resource_name = "attack"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-1.5708, 0.551524, 1.25489, -1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.785398, 1.24966, 1.41895, -0.785398]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SlashSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SlashSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.05, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dagger"]
+_data = {
+&"RESET": SubResource("Animation_dagger_reset"),
+&"attack": SubResource("Animation_dagger_attack")
+}
+
+[node name="Dagger" type="Node2D" node_paths=PackedStringArray("_myHitbox", "_animationPlayer")]
+script = ExtResource("1_dagger")
+_myHitbox = NodePath("Node2D/Sprite2D/Hitbox")
+_animationPlayer = NodePath("AnimationPlayer")
+
+[node name="Node2D" type="Node2D" parent="."]
+rotation = -1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(1.78814e-07, 1.99999)
+rotation = -0.785398
+texture = SubResource("AtlasTexture_yek4j")
+centered = false
+offset = Vector2(-1, -8)
+
+[node name="Hitbox" type="Area2D" parent="Node2D/Sprite2D"]
+position = Vector2(-0.5, -4)
+rotation = 2.3562
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("4_dagger")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/Hitbox"]
+position = Vector2(-4.52515, -9.18197)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_dagger")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dagger")
+}
+
+[node name="SlashSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(10, 0)
+texture = ExtResource("2_dagger")
+hframes = 3
