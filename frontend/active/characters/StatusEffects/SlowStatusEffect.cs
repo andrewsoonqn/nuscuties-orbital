@@ -11,47 +11,50 @@ namespace nuscutiesapp.active.characters.StatusEffects
 
         public override string StatusName => "Slow";
 
+        public override void _Ready()
+        {
+            _duration = 8.0f;
+            base._Ready();
+        }
+
         protected override void OnApplied()
         {
             if (_target != null)
             {
-                var maxSpeedField = _target.GetType().GetField("_maxSpeed",
-                    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                _originalMaxSpeed = _target.MaxSpeed;
+                float newMaxSpeed = _originalMaxSpeed * _speedMultiplier;
+                _target.MaxSpeed = newMaxSpeed;
+                _speedModified = true;
 
-                if (maxSpeedField != null)
-                {
-                    _originalMaxSpeed = (float)maxSpeedField.GetValue(_target);
-                    float newMaxSpeed = _originalMaxSpeed * _speedMultiplier;
-                    maxSpeedField.SetValue(_target, newMaxSpeed);
-                    _speedModified = true;
-
-                    GD.Print($"Slowed {_target.Name}: {_originalMaxSpeed} -> {newMaxSpeed}");
-                }
-
-                if (_target.AnimatedSprite != null)
-                {
-                    _target.AnimatedSprite.Modulate = new Color(0.7f, 0.7f, 1.0f);
-                }
+                GD.Print($"Slowed {_target.Name}: {_originalMaxSpeed} -> {newMaxSpeed}");
+                ApplyBlueModulation();
             }
+        }
+
+        protected override void OnTick()
+        {
+            ApplyBlueModulation();
         }
 
         protected override void OnRemoved()
         {
             if (_target != null && _speedModified)
             {
-                var maxSpeedField = _target.GetType().GetField("_maxSpeed",
-                    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-
-                if (maxSpeedField != null)
-                {
-                    maxSpeedField.SetValue(_target, _originalMaxSpeed);
-                    GD.Print($"Restored speed for {_target.Name}: {_originalMaxSpeed}");
-                }
+                _target.MaxSpeed = _originalMaxSpeed;
+                GD.Print($"Restored speed for {_target.Name}: {_originalMaxSpeed}");
 
                 if (_target.AnimatedSprite != null)
                 {
                     _target.AnimatedSprite.Modulate = new Color(1.0f, 1.0f, 1.0f);
                 }
+            }
+        }
+
+        private void ApplyBlueModulation()
+        {
+            if (_target?.AnimatedSprite != null)
+            {
+                _target.AnimatedSprite.Modulate = new Color(0.7f, 0.7f, 1.0f);
             }
         }
     }
