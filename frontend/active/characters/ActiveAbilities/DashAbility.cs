@@ -56,7 +56,7 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
 
         public float GetCooldownRemaining()
         {
-            return (float) _cooldownTimer.TimeLeft;
+            return (float)_cooldownTimer.TimeLeft;
         }
 
         public override void _PhysicsProcess(double delta)

@@ -1,7 +1,7 @@
 using Godot;
+using nuscutiesapp.tools;
 using System.Collections.Generic;
 using System.Linq;
-using nuscutiesapp.tools;
 
 namespace nuscutiesapp.ui.shop
 {
