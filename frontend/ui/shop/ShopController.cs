@@ -7,9 +7,9 @@ namespace nuscutiesapp.ui.shop
 {
     public partial class ShopController : Control
     {
-        private Button _backButton;
-        private Label _coinsLabel;
-        private TabContainer _tabContainer;
+        [Export] private Button _backButton;
+        [Export] private Label _coinsLabel;
+        [Export] private TabContainer _tabContainer;
 
         private Dictionary<string, GridContainer> _categoryGrids;
         private List<ItemCard> _itemCards = new();
@@ -34,17 +34,13 @@ namespace nuscutiesapp.ui.shop
 
         private void SetupUI()
         {
-            _backButton = GetNode<Button>("VBoxContainer/Header/BackButton");
-            _coinsLabel = GetNode<Label>("VBoxContainer/Header/CoinsDisplay/CoinsLabel");
-            _tabContainer = GetNode<TabContainer>("VBoxContainer/TabContainer");
-
             _categoryGrids = new Dictionary<string, GridContainer>
             {
-                { "melee", GetNode<GridContainer>("VBoxContainer/TabContainer/Melee/MeleeGrid") },
-                { "projectile", GetNode<GridContainer>("VBoxContainer/TabContainer/Projectile/ProjectileGrid") },
-                { "utility", GetNode<GridContainer>("VBoxContainer/TabContainer/Utility/UtilityGrid") },
-                { "necklace_passive", GetNode<GridContainer>("VBoxContainer/TabContainer/Passive Necklaces/PassiveGrid") },
-                { "necklace_active", GetNode<GridContainer>("VBoxContainer/TabContainer/Active Necklaces/ActiveGrid") }
+                { "melee", _tabContainer.GetNode<GridContainer>("Melee/MeleeGrid") },
+                { "projectile", _tabContainer.GetNode<GridContainer>("Projectile/ProjectileGrid") },
+                { "utility", _tabContainer.GetNode<GridContainer>("Utility/UtilityGrid") },
+                { "necklace_passive", _tabContainer.GetNode<GridContainer>("Passive Necklaces/PassiveGrid") },
+                { "necklace_active", _tabContainer.GetNode<GridContainer>("Active Necklaces/ActiveGrid") }
             };
         }
 

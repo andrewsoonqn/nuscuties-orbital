@@ -786,6 +786,17 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_xwqmo")
 theme_override_styles/normal = SubResource("StyleBoxFlat_fbjbd")
 text = "Store"
 
+[node name="Settings" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_g8cuh")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xwqmo")
+theme_override_styles/normal = SubResource("StyleBoxFlat_fbjbd")
+text = "Settings
+"
+
 [node name="ClickSoundEffect3" type="AudioStreamPlayer" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 stream = ExtResource("7_e7cx7")
 
@@ -828,6 +839,7 @@ text = "Active Dungeon"
 stream = ExtResource("7_e7cx7")
 
 [connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Store" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" method="_on_store_pressed"]
+[connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Settings" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" method="_on_store_pressed"]
 [connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/Daily" to="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer" method="_on_daily_pressed"]
 [connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/Passive" to="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer" method="_on_passive_pressed"]
 [connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/Active" to="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer" method="_on_active_pressed"]
