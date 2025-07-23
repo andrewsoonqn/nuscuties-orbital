@@ -55,7 +55,11 @@ public abstract partial class Character : CharacterBody2D
 
     public void OnDamaged(float currentHP, DamageInfo damageInfo)
     {
-        ChangeMovementState(new HurtState());
+        if (damageInfo.Knockback.LengthSquared() > 0.1f)
+        {
+            ChangeMovementState(new KnockedBackState());
+        }
+
         Velocity += damageInfo.Knockback;
         if (this is Enemy)
         {

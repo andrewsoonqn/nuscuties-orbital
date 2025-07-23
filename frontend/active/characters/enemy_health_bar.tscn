@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://yxsy5wwvq3dm" path="res://active/characters/EnemyHealthBar.cs" id="1_b4m2x"]
 [ext_resource type="Texture2D" uid="uid://4t2678db82ee" path="res://assets/health_bar_texture.png" id="2_as5m5"]
 
+[sub_resource type="Animation" id="Animation_f3wsv"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_as5m5"]
 resource_name = "hide"
 length = 0.2
-
-[sub_resource type="Animation" id="Animation_f3wsv"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3mafr"]
 _data = {
