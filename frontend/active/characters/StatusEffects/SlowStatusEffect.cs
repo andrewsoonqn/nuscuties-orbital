@@ -10,7 +10,7 @@ namespace nuscutiesapp.active.characters.StatusEffects
         private bool _speedModified = false;
 
         public override string StatusName => "Slow";
-        
+
         public override void _Process(double delta)
         {
             base._Process(delta);
