@@ -77,5 +77,6 @@ namespace nuscutiesapp.active.characters.StatusEffects
         {
             _activeEffects.Remove(effect);
         }
+
     }
 }
