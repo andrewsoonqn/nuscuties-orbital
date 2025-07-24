@@ -1,5 +1,4 @@
 using Godot;
-using nuscutiesapp.active.ui;
 using nuscutiesapp.tools;
 
 namespace nuscutiesapp.active.drops
@@ -24,10 +23,10 @@ namespace nuscutiesapp.active.drops
         {
             _inventoryManager.AddCoins(_coinValue);
 
-            var numberManager = GetNode<DamageNumberManager>("/root/DamageNumberManager");
+            var numberManager = GetNode<BaseNumberManager>("/root/BaseNumberManager");
             if (numberManager != null)
             {
-                numberManager.ShowCoinGain(_coinValue, GlobalPosition, GetParent<Node2D>());
+                numberManager.ShowCoinGain(_coinValue, player.Position, GetParent<Node2D>());
             }
         }
     }

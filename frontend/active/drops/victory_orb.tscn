@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://56pxw8nebw80"]
+[gd_scene load_steps=14 format=3 uid="uid://56pxw8nebw80"]
 
 [ext_resource type="Script" uid="uid://37cqkhf5rq8" path="res://active/drops/VictoryOrb.cs" id="1_victory"]
 [ext_resource type="Texture2D" uid="uid://dfnmy1ccfy63w" path="res://assets/dungeon_art/props_itens/torch_anim_f0.png" id="2_u1h0d"]
@@ -7,26 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://bcy2m2kmy1wj4" path="res://assets/dungeon_art/props_itens/torch_anim_f3.png" id="5_3iken"]
 [ext_resource type="Texture2D" uid="uid://cridr5wym83fq" path="res://assets/dungeon_art/props_itens/torch_anim_f4.png" id="6_7krwm"]
 [ext_resource type="Texture2D" uid="uid://chaob074ghc31" path="res://assets/dungeon_art/props_itens/torch_anim_f5.png" id="7_js23p"]
+[ext_resource type="FontFile" uid="uid://c8o3xmuk6ni8m" path="res://assets/flat_ui/kenvector_future.ttf" id="8_3cnib"]
+[ext_resource type="Texture2D" uid="uid://dis40quhdb3x0" path="res://assets/flat_ui/PNG/Extra/Default/icon_arrow_down_light.png" id="9_3iken"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_victory"]
 radius = 12.0
-
-[sub_resource type="Animation" id="Animation_3axu8"]
-resource_name = "idle"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("2_u1h0d"), ExtResource("3_ch10m"), ExtResource("4_3cnib"), ExtResource("5_3iken"), ExtResource("6_7krwm"), ExtResource("7_js23p")]
-}
 
 [sub_resource type="Animation" id="Animation_6f5f7"]
 length = 0.001
@@ -41,6 +26,47 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("2_u1h0d")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3axu8"]
+resource_name = "idle"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_u1h0d"), ExtResource("3_ch10m"), ExtResource("4_3cnib"), ExtResource("5_3iken"), ExtResource("6_7krwm"), ExtResource("7_js23p"), ExtResource("2_u1h0d"), ExtResource("3_ch10m"), ExtResource("4_3cnib"), ExtResource("5_3iken"), ExtResource("6_7krwm"), ExtResource("7_js23p")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nb6kd"]
@@ -68,3 +94,28 @@ shape = SubResource("CircleShape2D_victory")
 libraries = {
 &"": SubResource("AnimationLibrary_nb6kd")
 }
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+offset_left = -82.0
+offset_top = -40.0
+offset_right = 82.0
+offset_bottom = -17.6667
+theme_override_fonts/font = ExtResource("8_3cnib")
+theme_override_font_sizes/font_size = 8
+text = "collect to win"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+offset_left = -2.0
+offset_top = -17.0
+offset_right = 38.0
+offset_bottom = 23.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("9_3iken")

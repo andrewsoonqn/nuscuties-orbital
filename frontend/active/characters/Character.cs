@@ -5,7 +5,7 @@ using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
 using nuscutiesapp.active.characters.StatusEffects;
 using nuscutiesapp.active.characters.Weapons;
-using nuscutiesapp.active.ui;
+using nuscutiesapp.tools;
 using System;
 using System.ComponentModel.Design;
 using System.Runtime.InteropServices.JavaScript;
@@ -32,7 +32,7 @@ public abstract partial class Character : CharacterBody2D
     public StatusEffectManager StatusEffects;
 
     private ActiveDungeonEventManager _eventManager;
-    private DamageNumberManager _damageNumberManager;
+    private BaseNumberManager _numberManager;
 
     protected Weapon MyWeapon;
     protected IActivateWeaponStrategy ActivateWeaponStrategy;
@@ -50,7 +50,7 @@ public abstract partial class Character : CharacterBody2D
 
         this.PlayIdleAnimation();
         this.Visible = true;
-        _damageNumberManager = GetNode<DamageNumberManager>("/root/DamageNumberManager");
+        _numberManager = GetNode<BaseNumberManager>("/root/BaseNumberManager");
     }
 
     public void OnDamaged(float currentHP, DamageInfo damageInfo)
@@ -63,7 +63,7 @@ public abstract partial class Character : CharacterBody2D
         Velocity += damageInfo.Knockback;
         if (this is Enemy)
         {
-            _damageNumberManager.Show(damageInfo.Amount, Position, GetParent<Node2D>());
+            _numberManager.ShowDamage(damageInfo.Amount, Position, GetParent<Node2D>());
         }
     }
 

@@ -1,6 +1,6 @@
 using Godot;
 using nuscutiesapp.active.characters.DamageSystem;
-using nuscutiesapp.active.ui;
+using nuscutiesapp.tools;
 
 namespace nuscutiesapp.active.drops
 {
@@ -18,10 +18,10 @@ namespace nuscutiesapp.active.drops
 
                 player.Health.CurrentHP = Mathf.Min(currentHP + actualHeal, maxHP);
 
-                var numberManager = GetNode<DamageNumberManager>("/root/DamageNumberManager");
+                var numberManager = GetNode<BaseNumberManager>("/root/BaseNumberManager");
                 if (numberManager != null)
                 {
-                    numberManager.ShowHealthGain(actualHeal, GlobalPosition, GetParent<Node2D>());
+                    numberManager.ShowHealthGain(actualHeal, Position, GetParent<Node2D>());
                 }
             }
         }
