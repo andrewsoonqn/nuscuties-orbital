@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bcy2m2kmy1wj4" path="res://assets/dungeon_art/props_itens/torch_anim_f3.png" id="5_3iken"]
 [ext_resource type="Texture2D" uid="uid://cridr5wym83fq" path="res://assets/dungeon_art/props_itens/torch_anim_f4.png" id="6_7krwm"]
 [ext_resource type="Texture2D" uid="uid://chaob074ghc31" path="res://assets/dungeon_art/props_itens/torch_anim_f5.png" id="7_js23p"]
-[ext_resource type="FontFile" uid="uid://c8o3xmuk6ni8m" path="res://assets/flat_ui/kenvector_future.ttf" id="8_3cnib"]
+[ext_resource type="FontFile" uid="uid://cp6228syr8hh3" path="res://assets/kenney_kenney-fonts/Fonts/Kenney Mini Square.ttf" id="8_3cnib"]
 [ext_resource type="Texture2D" uid="uid://dis40quhdb3x0" path="res://assets/flat_ui/PNG/Extra/Default/icon_arrow_down_light.png" id="9_3iken"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_victory"]
