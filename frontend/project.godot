@@ -35,6 +35,7 @@ ItemCatalog="*res://tools/ItemCatalog.cs"
 PlayerInventoryManager="*res://tools/PlayerInventoryManager.cs"
 LoadoutSpawner="*res://tools/LoadoutSpawner.cs"
 DamageNumberManager="*res://tools/DamageNumberManager.cs"
+DropManager="*res://active/drops/DropManager.cs"
 
 [display]
 
@@ -82,6 +83,7 @@ dash={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Projectiles"
+2d_physics/layer_5="Drops"
 
 [rendering]
 

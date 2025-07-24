@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq8v7x5r8tdj1"]
+
+[ext_resource type="Script" uid="uid://c72ad7ui5xpgc" path="res://active/drops/CoinDrop.cs" id="1_coin"]
+[ext_resource type="Texture2D" uid="uid://blnr63uhfavdd" path="res://assets/dungeon_art/props_itens/bag_coins.png" id="2_megxn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_coin"]
+radius = 8.0
+
+[node name="CoinDrop" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_coin")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -2)
+texture = ExtResource("2_megxn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_coin")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

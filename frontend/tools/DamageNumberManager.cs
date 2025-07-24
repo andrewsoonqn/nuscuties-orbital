@@ -19,5 +19,21 @@ namespace nuscutiesapp.active.ui
             damageNumber.Position = worldPosition;
             damageNumber.Show(amount.ToString());
         }
+
+        public void ShowHealthGain(float amount, Vector2 worldPosition, Node2D world)
+        {
+            var damageNumber = _damageNumberScene.Instantiate<DamageNumber>();
+            world.AddChild(damageNumber);
+            damageNumber.Position = worldPosition;
+            damageNumber.Show("+" + amount.ToString());
+        }
+
+        public void ShowCoinGain(int amount, Vector2 worldPosition, Node2D world)
+        {
+            var damageNumber = _damageNumberScene.Instantiate<DamageNumber>();
+            world.AddChild(damageNumber);
+            damageNumber.Position = worldPosition;
+            damageNumber.Show("+" + amount.ToString() + " coins");
+        }
     }
 }

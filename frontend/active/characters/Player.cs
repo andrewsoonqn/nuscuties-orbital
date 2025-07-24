@@ -21,6 +21,7 @@ public partial class Player : Character
     private Dictionary<WeaponClass, Weapon> _weapons = new Dictionary<WeaponClass, Weapon>();
     public override void _Ready()
     {
+        AddToGroup("player");
         base._Ready();
         _statCalculator = GetNode<DerivedStatCalculator>("/root/DerivedStatCalculator");
         _loadoutSpawner = GetNode<LoadoutSpawner>("/root/LoadoutSpawner");

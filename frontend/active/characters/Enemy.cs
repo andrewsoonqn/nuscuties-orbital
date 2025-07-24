@@ -5,6 +5,7 @@ using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
 using nuscutiesapp.active.characters.Weapons;
 using nuscutiesapp.active.characters.Weapons.UseStrategies;
+using nuscutiesapp.active.drops;
 using nuscutiesapp.tools;
 using System;
 using System.Collections.Generic;
@@ -80,6 +81,13 @@ public partial class Enemy : Character
     public override void OnDied(DamageInfo damageInfo)
     {
         ActionStateMachine.SetState(new DeadState());
+
+        var dropManager = GetNode<DropManager>("/root/DropManager");
+        if (dropManager != null)
+        {
+            dropManager.SpawnDropsFromEnemyDeath(GlobalPosition, GetParent<Node2D>());
+        }
+
         _eventManager.EnemyDied();
     }
 

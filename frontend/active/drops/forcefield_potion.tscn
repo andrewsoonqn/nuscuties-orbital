@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq8v7x5r8tdj4"]
+
+[ext_resource type="Script" uid="uid://dv814o1lb7gw7" path="res://active/drops/ForcefieldPotion.cs" id="1_forcefield"]
+[ext_resource type="Texture2D" uid="uid://c5242g0xpme4x" path="res://assets/dawn_like/Items/Potion.png" id="2_forcefield"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_forcefield"]
+radius = 8.0
+
+[node name="ForcefieldPotion" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_forcefield")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_forcefield")
+region_enabled = true
+region_rect = Rect2(84, 34, 9, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_forcefield")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
