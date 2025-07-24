@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.active;
 using nuscutiesapp.tools;
 using System;
 using System.Collections.Generic;
@@ -29,10 +30,17 @@ namespace nuscutiesapp.active.drops
             _dropScenes[typeof(HealthPotion)] = GD.Load<PackedScene>("res://active/drops/health_potion.tscn");
             _dropScenes[typeof(BuffPotion)] = GD.Load<PackedScene>("res://active/drops/buff_potion.tscn");
             _dropScenes[typeof(ForcefieldPotion)] = GD.Load<PackedScene>("res://active/drops/forcefield_potion.tscn");
+            _dropScenes[typeof(VictoryOrb)] = GD.Load<PackedScene>("res://active/drops/victory_orb.tscn");
         }
 
-        public void SpawnDropsFromEnemyDeath(Vector2 position, Node2D world)
+        public void SpawnDropsFromEnemyDeath(Vector2 position, Node2D world, bool isLastEnemy = false)
         {
+            if (isLastEnemy)
+            {
+                SpawnVictoryOrb(position, world);
+                return;
+            }
+
             SpawnCoinDrop(position, world);
 
             if (_random.NextDouble() < HEALTH_POTION_CHANCE)
@@ -71,6 +79,17 @@ namespace nuscutiesapp.active.drops
                 var drop = dropScene.Instantiate<T>();
                 world.AddChild(drop);
                 drop.GlobalPosition = position + GetRandomOffset();
+            }
+        }
+
+        private void SpawnVictoryOrb(Vector2 position, Node2D world)
+        {
+            if (_dropScenes.TryGetValue(typeof(VictoryOrb), out PackedScene victoryScene))
+            {
+                var victoryOrb = victoryScene.Instantiate<VictoryOrb>();
+                world.AddChild(victoryOrb);
+                victoryOrb.GlobalPosition = position;
+                GD.Print("Victory Orb spawned for the last enemy!");
             }
         }
 

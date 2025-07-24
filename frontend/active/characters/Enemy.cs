@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.active;
 using nuscutiesapp.active.characters.ActivateWeaponStrategies;
 using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
@@ -82,10 +83,15 @@ public partial class Enemy : Character
     {
         ActionStateMachine.SetState(new DeadState());
 
+        var enemyTracker = GetNode<EnemyTracker>("/root/EnemyTracker");
         var dropManager = GetNode<DropManager>("/root/DropManager");
-        if (dropManager != null)
+
+        if (dropManager != null && enemyTracker != null)
         {
-            dropManager.SpawnDropsFromEnemyDeath(GlobalPosition, GetParent<Node2D>());
+            int remainingEnemies = enemyTracker.GetEnemyCount() - 1;
+            bool isLastEnemy = remainingEnemies <= 0;
+
+            dropManager.SpawnDropsFromEnemyDeath(GlobalPosition, GetParent<Node2D>(), isLastEnemy);
         }
 
         _eventManager.EnemyDied();

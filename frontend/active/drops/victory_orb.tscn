@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=3 uid="uid://56pxw8nebw80"]
+
+[ext_resource type="Script" uid="uid://37cqkhf5rq8" path="res://active/drops/VictoryOrb.cs" id="1_victory"]
+[ext_resource type="Texture2D" uid="uid://dfnmy1ccfy63w" path="res://assets/dungeon_art/props_itens/torch_anim_f0.png" id="2_u1h0d"]
+[ext_resource type="Texture2D" uid="uid://dtmvj14shpqeu" path="res://assets/dungeon_art/props_itens/torch_anim_f1.png" id="3_ch10m"]
+[ext_resource type="Texture2D" uid="uid://c2h3l753boa2e" path="res://assets/dungeon_art/props_itens/torch_anim_f2.png" id="4_3cnib"]
+[ext_resource type="Texture2D" uid="uid://bcy2m2kmy1wj4" path="res://assets/dungeon_art/props_itens/torch_anim_f3.png" id="5_3iken"]
+[ext_resource type="Texture2D" uid="uid://cridr5wym83fq" path="res://assets/dungeon_art/props_itens/torch_anim_f4.png" id="6_7krwm"]
+[ext_resource type="Texture2D" uid="uid://chaob074ghc31" path="res://assets/dungeon_art/props_itens/torch_anim_f5.png" id="7_js23p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_victory"]
+radius = 12.0
+
+[sub_resource type="Animation" id="Animation_3axu8"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_u1h0d"), ExtResource("3_ch10m"), ExtResource("4_3cnib"), ExtResource("5_3iken"), ExtResource("6_7krwm"), ExtResource("7_js23p")]
+}
+
+[sub_resource type="Animation" id="Animation_6f5f7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_u1h0d")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nb6kd"]
+_data = {
+&"RESET": SubResource("Animation_6f5f7"),
+&"idle": SubResource("Animation_3axu8")
+}
+
+[node name="VictoryOrb" type="Area2D" node_paths=PackedStringArray("_sprite", "_collisionShape", "_animationPlayer")]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_victory")
+_sprite = NodePath("Sprite2D")
+_collisionShape = NodePath("CollisionShape2D")
+_animationPlayer = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1.2, 1.2, 1.5, 1)
+texture = ExtResource("2_u1h0d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_victory")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nb6kd")
+}

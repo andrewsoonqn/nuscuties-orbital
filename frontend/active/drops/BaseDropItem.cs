@@ -9,7 +9,7 @@ namespace nuscutiesapp.active.drops
         [Export] protected AnimationPlayer _animationPlayer;
 
         protected bool _isPickedUp = false;
-        protected const float PICKUP_RANGE = 30.0f;
+        protected const float PICKUP_RANGE = 15.0f;
 
         public override void _Ready()
         {
