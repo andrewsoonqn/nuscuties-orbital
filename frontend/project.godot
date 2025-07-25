@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="nuscuties app"
-run/main_scene="res://start/user_selection_page.tscn"
+run/main_scene="uid://13hnbl0ktyhc"
 config/features=PackedStringArray("4.4", "C#", "Mobile")
 config/icon="res://assets/godot_icon.svg"
 Mobile)config/icon="res://assets/godot_icon.svg"
@@ -21,6 +21,7 @@ Mobile)config/icon="res://assets/godot_icon.svg"
 QuestManager="*res://daily/tools/QuestManager.cs"
 QuestLogManager="*res://daily/tools/QuestLogManager.cs"
 Paths="*res://tools/Paths.cs"
+AccountManager="*res://tools/AccountManager.cs"
 PassiveSessionInfoManager="*res://passive/tools/PassiveSessionInfoManager.cs"
 ActiveDungeonEventManager="*res://active/ActiveDungeonEventManager.cs"
 RewardManager="*res://active/RewardManager.cs"

@@ -31,7 +31,7 @@ theme_override_constants/separation = 30
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Select Player"
+text = "Select Player/Session"
 horizontal_alignment = 1
 vertical_alignment = 1
 
