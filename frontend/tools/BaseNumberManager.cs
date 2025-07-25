@@ -16,7 +16,7 @@ namespace nuscutiesapp.tools
             _coinGainNumberScene = GD.Load<PackedScene>("res://active/ui/coin_gain_number.tscn");
         }
 
-        public void ShowDamage(float amount, Vector2 worldPosition, Node2D world)
+        public void ShowDamage(float amount, Vector2 worldPosition, Node world)
         {
             var damageNumber = _damageNumberScene.Instantiate<DamageNumber>();
             world.AddChild(damageNumber);
@@ -24,7 +24,7 @@ namespace nuscutiesapp.tools
             damageNumber.Show(amount.ToString());
         }
 
-        public void ShowHealthGain(float amount, Vector2 worldPosition, Node2D world)
+        public void ShowHealthGain(float amount, Vector2 worldPosition, Node world)
         {
             var healthNumber = _healthGainNumberScene.Instantiate<HealthGainNumber>();
             world.AddChild(healthNumber);
@@ -32,15 +32,21 @@ namespace nuscutiesapp.tools
             healthNumber.Show(amount.ToString());
         }
 
-        public void ShowCoinGain(int amount, Vector2 worldPosition, Node2D world)
-        { 
+        public void ShowCoinGain(int amount, Vector2 worldPosition, Node world)
+        {
+            ShowCoinGain(amount, worldPosition, world, 1.0f);
+        }
+
+        public void ShowCoinGain(int amount, Vector2 worldPosition, Node world, float scale)
+        {
             var coinNumber = _coinGainNumberScene.Instantiate<CoinGainNumber>();
             world.AddChild(coinNumber);
             coinNumber.Position = worldPosition;
+            coinNumber.Scale = Vector2.One * scale;
             coinNumber.Show(amount.ToString());
         }
 
-        public void Show(float amount, Vector2 worldPosition, Node2D world)
+        public void Show(float amount, Vector2 worldPosition, Node world)
         {
             ShowDamage(amount, worldPosition, world);
         }

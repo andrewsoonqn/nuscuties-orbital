@@ -11,14 +11,14 @@ public partial class QuestLogManager : Node
     {
         var userManager = GetNode<UserManager>("/root/UserManager");
         string username = userManager?.GetCurrentUser() ?? "DefaultUser";
-        return $"user://{username}_quest_saves/quest_log.json";
+        return $"user://saves/{username}/quest_saves/quest_log.json";
     }
 
     private string GetSaveDirectory()
     {
         var userManager = GetNode<UserManager>("/root/UserManager");
         string username = userManager?.GetCurrentUser() ?? "DefaultUser";
-        return $"user://{username}_quest_saves";
+        return $"user://saves/{username}/quest_saves";
     }
 
     public void SaveQuestLog(List<Quest> quests)

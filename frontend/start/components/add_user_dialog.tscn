@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c5x8qhv1kwp2s"]
 
-[ext_resource type="Script" path="res://start/components/AddUserDialog.cs" id="1_dialog"]
+[ext_resource type="Script" uid="uid://bnk72jumw4xhb" path="res://start/components/AddUserDialog.cs" id="1_dialog"]
 
 [node name="AddUserDialog" type="AcceptDialog" node_paths=PackedStringArray("_usernameInput", "_createButton", "_errorLabel")]
 initial_position = 1
@@ -30,11 +30,11 @@ horizontal_alignment = 1
 [node name="UsernameInput" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
 placeholder_text = "Username (3-20 characters)"
-max_length = 20
+max_length = 15
 
 [node name="ErrorLabel" type="Label" parent="VBoxContainer"]
-layout_mode = 2
 custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 

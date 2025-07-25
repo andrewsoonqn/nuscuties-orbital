@@ -7,7 +7,6 @@ namespace nuscutiesapp.tools
     public abstract partial class BaseStatManager<TData> : Node where TData : class, new()
     {
         protected TData Data;
-        protected string SaveFilePath => GetUserPrefixedPath();
         protected abstract string BaseSaveFileName { get; }
         protected abstract void OnDataChanged();
 
@@ -26,6 +25,11 @@ namespace nuscutiesapp.tools
 
             try
             {
+                var dir = DirAccess.Open(GetUserDirectory());
+                if (dir == null)
+                {
+                    DirAccess.MakeDirRecursiveAbsolute(GetUserDirectory());
+                }
                 using var file = FileAccess.Open(SaveFilePath, FileAccess.ModeFlags.Write);
                 if (file != null)
                 {
@@ -85,12 +89,19 @@ namespace nuscutiesapp.tools
             InitializeDefaults();
         }
 
-        private string GetUserPrefixedPath()
+        private string GetUserDirectory()
         {
             var userManager = GetNode<UserManager>("/root/UserManager");
             string username = userManager?.GetCurrentUser() ?? "DefaultUser";
-            return $"user://{username}_{BaseSaveFileName}";
+            return $"user://saves/{username}";
         }
+
+        private string GetUserFilePath()
+        {
+            return $"{GetUserDirectory()}/{BaseSaveFileName}";
+        }
+
+        protected string SaveFilePath => GetUserFilePath();
 
         // Save stats automatically when game window closed
         public override void _Notification(int what)

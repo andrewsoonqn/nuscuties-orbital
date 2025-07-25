@@ -1,6 +1,7 @@
 using Godot;
 using nuscutiesapp.tools;
 using System;
+using System.Linq;
 
 public partial class Home : Control
 {
@@ -12,10 +13,13 @@ public partial class Home : Control
     [Export] private Button _activeButton;
     [Export] private Button _statsUIButton;
     [Export] private Button _storeButton;
+    [Export] private Button _settingsButton;
 
     private ProgressionManager _expManager;
 
     private PackedScene _statsUINode;
+    private PackedScene _settingsPopupScene;
+    private SettingsPopup _settingsPopupInstance;
     public override void _Ready()
     {
         _expManager = GetNode<ProgressionManager>("/root/ProgressionManager");
@@ -32,11 +36,13 @@ public partial class Home : Control
         _passiveButton.Pressed += () => switchScene(Paths.Passive);
         _activeButton.Pressed += () => switchScene(Paths.Active);
         _storeButton.Pressed += () => switchScene(Paths.Shop);
+        _settingsButton.Pressed += OnSettingsButtonPressed;
 
         _statsUINode = ResourceLoader.Load<PackedScene>(Paths.StatsUI);
 
         _statsUIButton.Pressed += StatsUIButtonOnPressed;
 
+        _settingsPopupScene = ResourceLoader.Load<PackedScene>(Paths.SettingsPopup);
     }
 
     private void StatsUIButtonOnPressed()
@@ -45,6 +51,38 @@ public partial class Home : Control
         {
             GetTree().Root.AddChild(_statsUINode.Instantiate());
         }
+    }
+
+    private void OnSettingsButtonPressed()
+    {
+        if (_settingsPopupInstance == null)
+        {
+            _settingsPopupInstance = _settingsPopupScene.Instantiate<SettingsPopup>();
+            _settingsPopupInstance.LogoutRequested += OnLogoutRequested;
+            GetTree().Root.AddChild(_settingsPopupInstance);
+        }
+        _settingsPopupInstance.PopupCentered();
+    }
+
+    private void OnLogoutRequested()
+    {
+        var userManager = GetNode<UserManager>("/root/UserManager");
+        var progressionManager = GetNode<ProgressionManager>("/root/ProgressionManager");
+        var playerStatManager = GetNode<PlayerStatManager>("/root/PlayerStatManager");
+        var inventoryManager = GetNode<PlayerInventoryManager>("/root/PlayerInventoryManager");
+        var questLogManager = GetNode<QuestLogManager>("/root/QuestLogManager");
+
+        progressionManager?.NotifyDataChanged();
+        playerStatManager?.NotifyDataChanged();
+        inventoryManager?.NotifyDataChanged();
+        if (questLogManager != null)
+        {
+            var questManager = GetNode<QuestManager>("/root/QuestManager");
+            questLogManager.SaveQuestLog(questManager.GetQuests().Values.ToList());
+        }
+
+        userManager.SetCurrentUser("");
+        GetTree().ChangeSceneToFile(Paths.UserSelection);
     }
 
     public void switchScene(string scenePath)

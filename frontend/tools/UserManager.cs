@@ -21,28 +21,24 @@ public partial class UserManager : Node
     public List<string> GetAllUsers()
     {
         var users = new List<string>();
-        var dir = DirAccess.Open("user://");
+        var dir = DirAccess.Open("user://saves");
 
         if (dir == null)
         {
-            GD.PrintErr("Failed to open user directory");
+            GD.PrintErr("Failed to open saves directory");
             return users;
         }
 
         dir.ListDirBegin();
-        string fileName = dir.GetNext();
+        string entry = dir.GetNext();
 
-        while (fileName != "")
+        while (entry != "")
         {
-            if (fileName.EndsWith("_player_progression.json"))
+            if (dir.CurrentIsDir() && entry != "." && entry != "..")
             {
-                string username = fileName.Replace("_player_progression.json", "");
-                if (!users.Contains(username))
-                {
-                    users.Add(username);
-                }
+                users.Add(entry);
             }
-            fileName = dir.GetNext();
+            entry = dir.GetNext();
         }
 
         dir.ListDirEnd();
@@ -81,11 +77,6 @@ public partial class UserManager : Node
 
     public void SetCurrentUser(string username)
     {
-        if (string.IsNullOrWhiteSpace(username))
-        {
-            throw new ArgumentException("Username cannot be empty");
-        }
-
         _currentUsername = username;
 
         ReloadAllManagerData();
