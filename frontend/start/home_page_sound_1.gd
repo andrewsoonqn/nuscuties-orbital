@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends VBoxContainer
 
 
 func _on_daily_pressed() -> void:

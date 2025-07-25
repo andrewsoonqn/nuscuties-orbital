@@ -390,7 +390,7 @@ FloorTileMap = NodePath("../GameWorldNavigationRegion/Ground")
 WallTileMap = NodePath("../GameWorldNavigationRegion/Structures")
 WaveLength = 10.0
 EnemiesPerWave = 5
-TimeBetweenWaves = 5.0
+TimeBetweenWaves = 1.0
 Waves = 3
 
 [node name="SpawnTimer" type="Timer" parent="EnemySpawner"]

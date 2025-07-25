@@ -1,10 +1,12 @@
 using Godot;
+using nuscutiesapp.active;
 using nuscutiesapp.active.characters.ActivateWeaponStrategies;
 using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
 using nuscutiesapp.active.characters.Weapons;
 using nuscutiesapp.active.characters.Weapons.UseStrategies;
+using nuscutiesapp.active.drops;
 using nuscutiesapp.tools;
 using System;
 using System.Collections.Generic;
@@ -80,6 +82,18 @@ public partial class Enemy : Character
     public override void OnDied(DamageInfo damageInfo)
     {
         ActionStateMachine.SetState(new DeadState());
+
+        var enemyTracker = GetNode<EnemyTracker>("/root/EnemyTracker");
+        var dropManager = GetNode<DropManager>("/root/DropManager");
+
+        if (dropManager != null && enemyTracker != null)
+        {
+            int remainingEnemies = enemyTracker.GetEnemyCount() - 1;
+            bool isLastEnemy = remainingEnemies <= 0;
+
+            dropManager.SpawnDropsFromEnemyDeath(GlobalPosition, GetParent<Node2D>(), isLastEnemy);
+        }
+
         _eventManager.EnemyDied();
     }
 

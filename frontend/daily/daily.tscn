@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dt1g5mbwpw6iq"]
+[gd_scene load_steps=9 format=3 uid="uid://dt1g5mbwpw6iq"]
 
 [ext_resource type="Script" uid="uid://dbl1r6xtyhm83" path="res://daily/DailyQuestUi.cs" id="1_xdnnp"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_21omx"]
 [ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="3_twbhc"]
 [ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://assets/flat_ui/kenneyUI-green.tres" id="4_21omx"]
+[ext_resource type="PackedScene" uid="uid://d3x7bmvn76h0w" path="res://active/ui/coin_gain_number.tscn" id="5_twbhc"]
 
 [sub_resource type="Gradient" id="Gradient_21omx"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.831373, 1, 1)
@@ -123,3 +124,5 @@ theme = ExtResource("3_twbhc")
 [node name="QuestsContainer" type="VBoxContainer" parent="MarginContainer2/QuestsMargin/VBoxContainer/PanelContainer/MarginContainer/QuestsScroll"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Node2D" parent="." instance=ExtResource("5_twbhc")]

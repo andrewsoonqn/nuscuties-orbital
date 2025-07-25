@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw7c5frsgu7tn"]
+
+[ext_resource type="Script" path="res://start/components/SettingsPopup.cs" id="1_settings"]
+
+[node name="SettingsPopup" type="Popup" node_paths=PackedStringArray("_logoutButton")]
+size = Vector2i(300, 200)
+script = ExtResource("1_settings")
+_logoutButton = NodePath("VBoxContainer/LogoutButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="LogoutButton" type="Button" parent="VBoxContainer"]
+text = "Logout"
+size_flags_horizontal = 3
+size_flags_vertical = 1

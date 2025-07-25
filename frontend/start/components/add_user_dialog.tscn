@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5x8qhv1kwp2s"]
+
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="1_brd0s"]
+[ext_resource type="Script" uid="uid://bnk72jumw4xhb" path="res://start/components/AddUserDialog.cs" id="1_dialog"]
+[ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://assets/flat_ui/kenneyUI-green.tres" id="3_ur4f2"]
+
+[node name="AddUserDialog" type="AcceptDialog" node_paths=PackedStringArray("_usernameInput", "_createButton", "_errorLabel")]
+initial_position = 1
+size = Vector2i(440, 250)
+visible = true
+theme = ExtResource("1_brd0s")
+ok_button_text = "Cancel"
+script = ExtResource("1_dialog")
+_usernameInput = NodePath("VBoxContainer/HBoxContainer/UsernameInput")
+_createButton = NodePath("VBoxContainer/HBoxContainer/CreateButton")
+_errorLabel = NodePath("VBoxContainer/ErrorLabel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 432.0
+offset_bottom = 190.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="UsernameInput" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_brd0s")
+placeholder_text = "Username (3-20 characters)"
+max_length = 15
+
+[node name="CreateButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("3_ur4f2")
+text = "Create"
+
+[node name="ErrorLabel" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+text = "error"
+horizontal_alignment = 1
+vertical_alignment = 1

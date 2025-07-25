@@ -4,32 +4,16 @@ using nuscutiesapp.tools;
 public partial class LoginPage : Control
 {
     [Export]
-    private LineEdit Username { get; set; }
-
-    [Export]
-    private Button SubmitLogin { get; set; }
-
-    private AccountManager _accountManager;
+    private Button _loginButton;
 
     public override void _Ready()
     {
-        Username.TextSubmitted += OnUsernameSubmitted;
-        SubmitLogin.Pressed += () => OnUsernameSubmitted(Username.Text);
-
-        this._accountManager = this.GetNode<AccountManager>("/root/AccountManager");
+        _loginButton.Pressed += LoginButtonOnPressed;
+        base._Ready();
     }
 
-    private void OnUsernameSubmitted(string username)
+    private void LoginButtonOnPressed()
     {
-        _accountManager.SetUsername(username);
-
-        var transition = GetNode("/root/TransitionLoginToHome") as Node;
-
-        transition.Connect("on_transition_finished", Callable.From(() =>
-        {
-            this.GetTree().ChangeSceneToFile(Paths.Home);
-        }));
-
-        transition.Call("transition");
+        GetTree().ChangeSceneToFile(Paths.UserSelection);
     }
 }

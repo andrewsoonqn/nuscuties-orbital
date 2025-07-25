@@ -8,7 +8,7 @@ namespace nuscutiesapp.active.characters.DamageSystem
     {
         protected Character _owner; // can change to not just character in the future
         [Export] public float MaxHP = 20; // TODO make this private
-        public float CurrentHP { get; protected set; }
+        public float CurrentHP { get; set; }
 
         public event Action<float, DamageInfo> Damaged;
         public event Action<DamageInfo> Died;
@@ -27,7 +27,7 @@ namespace nuscutiesapp.active.characters.DamageSystem
             return damageInfo.Amount;
         }
 
-        public void TakeDamage(in DamageInfo damageInfo)
+        public virtual void TakeDamage(in DamageInfo damageInfo)
         {
             if (CurrentHP <= 0) return;
 

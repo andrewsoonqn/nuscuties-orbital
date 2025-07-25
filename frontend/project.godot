@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="nuscuties app"
-run/main_scene="res://start/login_page.tscn"
+run/main_scene="uid://13hnbl0ktyhc"
 config/features=PackedStringArray("4.4", "C#", "Mobile")
 config/icon="res://assets/godot_icon.svg"
 Mobile)config/icon="res://assets/godot_icon.svg"
@@ -21,7 +21,6 @@ Mobile)config/icon="res://assets/godot_icon.svg"
 QuestManager="*res://daily/tools/QuestManager.cs"
 QuestLogManager="*res://daily/tools/QuestLogManager.cs"
 Paths="*res://tools/Paths.cs"
-AccountManager="*res://tools/AccountManager.cs"
 PassiveSessionInfoManager="*res://passive/tools/PassiveSessionInfoManager.cs"
 ActiveDungeonEventManager="*res://active/ActiveDungeonEventManager.cs"
 RewardManager="*res://active/RewardManager.cs"
@@ -34,7 +33,9 @@ TransitionLoginToHome="*res://start/transition_login_to_home.tscn"
 ItemCatalog="*res://tools/ItemCatalog.cs"
 PlayerInventoryManager="*res://tools/PlayerInventoryManager.cs"
 LoadoutSpawner="*res://tools/LoadoutSpawner.cs"
-DamageNumberManager="*res://tools/DamageNumberManager.cs"
+BaseNumberManager="*res://tools/BaseNumberManager.cs"
+DropManager="*res://active/drops/DropManager.cs"
+UserManager="*res://tools/UserManager.cs"
 
 [display]
 
@@ -82,6 +83,7 @@ dash={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Projectiles"
+2d_physics/layer_5="Drops"
 
 [rendering]
 

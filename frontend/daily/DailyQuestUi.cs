@@ -20,14 +20,18 @@ public partial class DailyQuestUi : Control
     private Godot.Collections.Dictionary<int, CompletableQuestComponent> _completableQuestComponents = new Godot.Collections.Dictionary<int, CompletableQuestComponent>();
 
     private QuestManager _questManager;
+    private BaseNumberManager _baseNumberManager;
+    private QuestLogManager _questLogManager;
 
     public override void _Ready()
     {
-        LoadQuests();
-
         _backToHomeButton.Pressed += OnBackToHomeButtonPressed;
         _addQuestButton.Pressed += OnAddQuestButtonPressed;
         _questManager = this.GetNode<QuestManager>("/root/QuestManager");
+        _baseNumberManager = this.GetNode<BaseNumberManager>("/root/BaseNumberManager");
+        _questLogManager = this.GetNode<QuestLogManager>("/root/QuestLogManager");
+        LoadQuests();
+
 
         this.ConnectSignals();
     }
@@ -39,11 +43,17 @@ public partial class DailyQuestUi : Control
         questEditPanelInstance.Initialize(id);
     }
 
+    private void OnQuestCompleted(int coinReward, Vector2 position)
+    {
+        _baseNumberManager.ShowCoinGain(coinReward, position, this, 6.0f);
+    }
+
     private void OnManagerQuestAdded(int id)
     {
         CompletableQuestComponent newComp = (CompletableQuestComponent)ResourceLoader.Load<PackedScene>(Paths.CompletableQuestComponent).Instantiate<HBoxContainer>();
         newComp.Initialize(_questManager.Get(id));
         newComp.QuestRowEditRequested += OnRowEditRequested;
+        newComp.QuestCompleted += OnQuestCompleted;
         this._completableQuestComponents[id] = newComp;
 
         this._questList.AddChild(newComp);
@@ -62,7 +72,7 @@ public partial class DailyQuestUi : Control
     {
         CompletableQuestComponent toRemove = this._completableQuestComponents.GetValueOrDefault(id);
         toRemove.QueueFree();
-        // this.RemoveChild(toRemove);
+        this.RemoveChild(toRemove);
         this._completableQuestComponents.Remove(id);
     }
 
@@ -95,13 +105,18 @@ public partial class DailyQuestUi : Control
 
     private void LoadQuests()
     {
-        List<Quest> quests = new QuestLogManager().LoadQuestLog();
-        foreach (Quest quest in quests)
+        foreach (Node child in _questList.GetChildren())
+        {
+            child.QueueFree();
+        }
+        _completableQuestComponents.Clear();
+        foreach (var quest in _questManager.GetQuests().Values)
         {
             CompletableQuestComponent newComp = (CompletableQuestComponent)ResourceLoader
                 .Load<PackedScene>(Paths.CompletableQuestComponent).Instantiate<HBoxContainer>();
             newComp.Initialize(quest);
             newComp.QuestRowEditRequested += OnRowEditRequested;
+            newComp.QuestCompleted += OnQuestCompleted;
             this._completableQuestComponents[quest.Id] = newComp;
             this._questList.AddChild(newComp);
         }

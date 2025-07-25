@@ -71,12 +71,14 @@ public partial class WaveInformation : Node
 
         if (_enemiesSpawnedLabel != null)
         {
-            _enemiesSpawnedLabel.Text = $"{_enemiesRemaining} enemies remaining";
-        }
-
-        if (_enemiesRemaining <= 0)
-        {
-            _eventManager.GameWon();
+            if (_enemiesRemaining <= 0)
+            {
+                _enemiesSpawnedLabel.Text = "Find the Victory Orb!";
+            }
+            else
+            {
+                _enemiesSpawnedLabel.Text = $"{_enemiesRemaining} enemies remaining";
+            }
         }
     }
 

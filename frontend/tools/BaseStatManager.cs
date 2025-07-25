@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.IO;
 using System.Text.Json;
 
 namespace nuscutiesapp.tools
@@ -8,7 +7,7 @@ namespace nuscutiesapp.tools
     public abstract partial class BaseStatManager<TData> : Node where TData : class, new()
     {
         protected TData Data;
-        protected abstract string SaveFilePath { get; }
+        protected abstract string BaseSaveFileName { get; }
         protected abstract void OnDataChanged();
 
         public override void _Ready()
@@ -26,12 +25,21 @@ namespace nuscutiesapp.tools
 
             try
             {
-                var dirPath = Path.GetDirectoryName(SaveFilePath);
-                if (!Directory.Exists(dirPath))
-                    Directory.CreateDirectory(dirPath);
-
-                File.WriteAllText(SaveFilePath, jsonString);
-                GD.Print($"Saved data to {SaveFilePath}");
+                var dir = DirAccess.Open(GetUserDirectory());
+                if (dir == null)
+                {
+                    DirAccess.MakeDirRecursiveAbsolute(GetUserDirectory());
+                }
+                using var file = FileAccess.Open(SaveFilePath, FileAccess.ModeFlags.Write);
+                if (file != null)
+                {
+                    file.StoreString(jsonString);
+                    GD.Print($"Saved data to {SaveFilePath}");
+                }
+                else
+                {
+                    GD.PrintErr($"Error saving to {SaveFilePath}: Could not open file for writing");
+                }
             }
             catch (Exception e)
             {
@@ -43,15 +51,24 @@ namespace nuscutiesapp.tools
         {
             try
             {
-                if (!File.Exists(SaveFilePath))
+                if (!FileAccess.FileExists(SaveFilePath))
                 {
                     Data = new TData();
                     return;
                 }
 
-                string jsonString = File.ReadAllText(SaveFilePath);
-                Data = JsonSerializer.Deserialize<TData>(jsonString) ?? new TData();
-                GD.Print($"Loaded data from {SaveFilePath}");
+                using var file = FileAccess.Open(SaveFilePath, FileAccess.ModeFlags.Read);
+                if (file != null)
+                {
+                    string jsonString = file.GetAsText();
+                    Data = JsonSerializer.Deserialize<TData>(jsonString) ?? new TData();
+                    GD.Print($"Loaded data from {SaveFilePath}");
+                }
+                else
+                {
+                    GD.PrintErr($"Error loading from {SaveFilePath}: Could not open file for reading");
+                    Data = new TData();
+                }
             }
             catch (Exception e)
             {
@@ -60,11 +77,31 @@ namespace nuscutiesapp.tools
             }
         }
 
-        protected void NotifyDataChanged()
+        public void NotifyDataChanged()
         {
             OnDataChanged();
             SaveData();
         }
+
+        public void ReloadData()
+        {
+            LoadData();
+            InitializeDefaults();
+        }
+
+        private string GetUserDirectory()
+        {
+            var userManager = GetNode<UserManager>("/root/UserManager");
+            string username = userManager?.GetCurrentUser() ?? "DefaultUser";
+            return $"user://saves/{username}";
+        }
+
+        private string GetUserFilePath()
+        {
+            return $"{GetUserDirectory()}/{BaseSaveFileName}";
+        }
+
+        protected string SaveFilePath => GetUserFilePath();
 
         // Save stats automatically when game window closed
         public override void _Notification(int what)
