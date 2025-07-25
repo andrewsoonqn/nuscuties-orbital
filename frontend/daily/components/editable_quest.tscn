@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bt7fdsmo10ian"]
 
-[ext_resource type="Script" uid="uid://cbol3k6yy3wtk" path="res://daily/components/EditableQuestComponent.cs" id="1_1v1y2"]
+[ext_resource type="Script" uid="uid://dpqc55dvfekg7" path="res://daily/components/EditableQuestComponent.cs" id="1_1v1y2"]
 
 [node name="EditableQuest" type="HBoxContainer" node_paths=PackedStringArray("_title", "_description", "_saveButton", "_deleteButton")]
 anchors_preset = 15

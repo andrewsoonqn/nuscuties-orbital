@@ -1,0 +1,116 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhykg05dh0fft"]
+
+[ext_resource type="Script" uid="uid://rayyrab4gnsl" path="res://ui/Tutorial.cs" id="1_nyfxi"]
+[ext_resource type="FontFile" uid="uid://dehx31qk1ng6l" path="res://assets/Jacquard24-Regular.ttf" id="2_yqfsc"]
+[ext_resource type="FontFile" uid="uid://csvfntck88xn4" path="res://assets/Inter_18pt-Bold.ttf" id="3_vparn"]
+[ext_resource type="FontFile" uid="uid://d2d3upcj5jlbk" path="res://assets/Inter_18pt-Regular.ttf" id="4_2cmmd"]
+[ext_resource type="Script" uid="uid://dj4r547hfpoll" path="res://ui/margin_container_tutorial.gd" id="5_r5h7v"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="6_ptnva"]
+[ext_resource type="AudioStream" uid="uid://coxmk7l7jkne5" path="res://assets/Audio/click3.ogg" id="7_udit8"]
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nyfxi")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_yqfsc")
+theme_override_font_sizes/font_size = 100
+text = "Tutorial"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vparn")
+theme_override_font_sizes/font_size = 40
+text = "1) Daily Quests"
+
+[node name="Label3" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_2cmmd")
+theme_override_font_sizes/font_size = 20
+text = "You can customise and edit your own daily quests! Rewards will be given upon completion."
+
+[node name="Label4" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vparn")
+theme_override_font_sizes/font_size = 40
+text = "2) Passive Dungeon"
+
+[node name="Label5" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_2cmmd")
+theme_override_font_sizes/font_size = 20
+text = "You can set a timer to enter a state of deep focus to complete your tasks at hand. Rewards wil be given 
+upon completion."
+
+[node name="Label6" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vparn")
+theme_override_font_sizes/font_size = 40
+text = "3) Active Dungeon"
+
+[node name="Label7" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_2cmmd")
+theme_override_font_sizes/font_size = 20
+text = "You can use your upgraded stats and equipment to fight waves of monsters! Rewards will be given 
+upon completion."
+
+[node name="MarginContainer2" type="MarginContainer" parent="ColorRect"]
+custom_minimum_size = Vector2(180, 80)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+script = ExtResource("5_r5h7v")
+
+[node name="Button" type="Button" parent="ColorRect/MarginContainer2"]
+layout_mode = 2
+theme = ExtResource("6_ptnva")
+theme_override_fonts/font = ExtResource("2_yqfsc")
+theme_override_font_sizes/font_size = 30
+text = "Back to Settings"
+
+[node name="ClickSoundEffect" type="AudioStreamPlayer" parent="ColorRect/MarginContainer2"]
+stream = ExtResource("7_udit8")
+bus = &"SFX"
+
+[connection signal="pressed" from="ColorRect/MarginContainer2/Button" to="ColorRect/MarginContainer2" method="_on_button_pressed"]

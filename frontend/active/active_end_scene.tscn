@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3gajuaurr0n6"]
+[gd_scene load_steps=10 format=3 uid="uid://c3gajuaurr0n6"]
 
-[ext_resource type="Script" uid="uid://58r80g24p8rj" path="res://active/ActiveEndScene.cs" id="1_3vdbn"]
-[ext_resource type="Texture2D" uid="uid://2mef3pbmf8gq" path="res://assets/flat_ui/PNG/Extra/Double/button_rectangle_depth_line.png" id="2_ls4rd"]
+[ext_resource type="Script" uid="uid://bideliw7tunii" path="res://active/ActiveEndScene.cs" id="1_3vdbn"]
+[ext_resource type="Texture2D" uid="uid://dfow4b4yp1r63" path="res://assets/flat_ui/PNG/Extra/Double/button_rectangle_depth_line.png" id="2_ls4rd"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_smfae"]
+[ext_resource type="FontFile" uid="uid://csvfntck88xn4" path="res://assets/Inter_18pt-Bold.ttf" id="4_b72xs"]
+[ext_resource type="FontFile" uid="uid://d2d3upcj5jlbk" path="res://assets/Inter_18pt-Regular.ttf" id="5_kx3m6"]
+[ext_resource type="Script" uid="uid://wyqqtessk03f" path="res://active/margin_container_active.gd" id="6_akcht"]
+[ext_resource type="FontFile" uid="uid://dehx31qk1ng6l" path="res://assets/Jacquard24-Regular.ttf" id="6_kx3m6"]
+[ext_resource type="AudioStream" uid="uid://coxmk7l7jkne5" path="res://assets/Audio/click3.ogg" id="8_d71e7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b72xs"]
 texture = ExtResource("2_ls4rd")
@@ -57,26 +62,36 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_smfae")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_b72xs")
 theme_override_font_sizes/font_size = 32
-text = "Congrats!"
+text = "Congratulations!"
 
 [node name="Rewards" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_smfae")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_kx3m6")
 theme_override_font_sizes/font_size = 32
-text = "You have won x EXP"
+text = "You have gained x EXP!"
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
+script = ExtResource("6_akcht")
 
 [node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_smfae")
-theme_override_font_sizes/font_size = 32
-text = "Back to Menu"
+theme_override_fonts/font = ExtResource("6_kx3m6")
+theme_override_font_sizes/font_size = 30
+text = "Back to Active Dungeon"
+
+[node name="ClickSoundEffect" type="AudioStreamPlayer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+stream = ExtResource("8_d71e7")
+bus = &"SFX"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Button" to="PanelContainer/MarginContainer/VBoxContainer/MarginContainer" method="_on_button_pressed"]

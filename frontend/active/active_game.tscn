@@ -1,28 +1,30 @@
-[gd_scene load_steps=28 format=3 uid="uid://chi5q1ptodsaf"]
+[gd_scene load_steps=30 format=3 uid="uid://chi5q1ptodsaf"]
 
 [ext_resource type="PackedScene" uid="uid://cvf7e615kvfxq" path="res://game_world.tscn" id="1_kudwv"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_6k8in"]
-[ext_resource type="Texture2D" uid="uid://ean5rq8mka0d" path="res://assets/Keyboard & Mouse/Default/keyboard_escape.png" id="3_dem6s"]
-[ext_resource type="Script" uid="uid://dv8gdccq18wng" path="res://active/characters/DrawHealth.cs" id="3_ir5f8"]
+[ext_resource type="Texture2D" uid="uid://bg4telqdpad8t" path="res://assets/Keyboard & Mouse/Default/keyboard_escape.png" id="3_dem6s"]
+[ext_resource type="Script" uid="uid://c0m6mq6upvai1" path="res://active/characters/DrawHealth.cs" id="3_ir5f8"]
 [ext_resource type="PackedScene" uid="uid://ecv60eugvlay" path="res://active/wave_display.tscn" id="3_lyh32"]
-[ext_resource type="Script" uid="uid://blw8vgyur3qig" path="res://active/characters/UIPrintHealth.cs" id="3_mp5i6"]
-[ext_resource type="Texture2D" uid="uid://caxi8vx23pt4w" path="res://assets/dungeon_art/ui (new)/progress bar.png" id="4_7kwek"]
-[ext_resource type="Texture2D" uid="uid://bokei0x2xhtqh" path="res://assets/dungeon_art/ui (new)/health_ui.png" id="4_lext4"]
-[ext_resource type="Texture2D" uid="uid://dlgymkxkwptry" path="res://assets/kenney_ui-pack-pixel-adventure/Tiles/Large tiles/Thin outline/tile_0018.png" id="5_2vtgd"]
-[ext_resource type="Texture2D" uid="uid://disku7an8uvq" path="res://assets/Keyboard & Mouse/Default/keyboard_e.png" id="5_bbdxb"]
-[ext_resource type="Texture2D" uid="uid://2mef3pbmf8gq" path="res://assets/flat_ui/PNG/Extra/Double/button_rectangle_depth_line.png" id="5_hfto2"]
-[ext_resource type="Script" uid="uid://d17uqd6ssin58" path="res://active/ActiveGameUi.cs" id="5_lext4"]
-[ext_resource type="Texture2D" uid="uid://bfejfb4gdis4i" path="res://assets/Keyboard & Mouse/Vector/keyboard_1.svg" id="5_sxw8e"]
-[ext_resource type="Texture2D" uid="uid://bmd6bnudrqldm" path="res://assets/dungeon_art/heroes/knight/weapon_sword_1.png" id="6_lq7bx"]
-[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="6_sahrs"]
-[ext_resource type="Theme" uid="uid://bb6vwl0h1flws" path="res://assets/flat_ui/kenneyUI-blue.tres" id="7_gepbl"]
-[ext_resource type="Texture2D" uid="uid://dc2hn8jmwn2og" path="res://assets/dawn_like/Items/Wand.png" id="7_jm1vr"]
-[ext_resource type="Texture2D" uid="uid://b6kei1exly834" path="res://assets/Keyboard & Mouse/Vector/keyboard_2.svg" id="8_bbdxb"]
-[ext_resource type="Texture2D" uid="uid://bjti66qm6xawi" path="res://assets/Keyboard & Mouse/Vector/keyboard_3.svg" id="10_hj30a"]
-[ext_resource type="Texture2D" uid="uid://453frowrrtj1" path="res://assets/dungeon_art/props_itens/bomb_anim_f0.png" id="12_hj30a"]
-[ext_resource type="Script" uid="uid://c0f263hwc1rs8" path="res://active/WaveInformation.cs" id="20_5rjfj"]
-[ext_resource type="Script" uid="uid://trv4qpxml7vi" path="res://active/EnemyTracker.cs" id="22_3tek5"]
-[ext_resource type="Script" uid="uid://bd1grego0dljs" path="res://active/WeaponSwitcher.cs" id="23_3tek5"]
+[ext_resource type="Script" uid="uid://3nckrc3m7blo" path="res://active/characters/UIPrintHealth.cs" id="3_mp5i6"]
+[ext_resource type="Texture2D" uid="uid://ysq0yeo1c8o5" path="res://assets/dungeon_art/ui (new)/progress bar.png" id="4_7kwek"]
+[ext_resource type="Texture2D" uid="uid://dyw14g6533esr" path="res://assets/dungeon_art/ui (new)/health_ui.png" id="4_lext4"]
+[ext_resource type="Texture2D" uid="uid://dgwsxwxkfpbhb" path="res://assets/kenney_ui-pack-pixel-adventure/Tiles/Large tiles/Thin outline/tile_0018.png" id="5_2vtgd"]
+[ext_resource type="FontFile" uid="uid://dehx31qk1ng6l" path="res://assets/Jacquard24-Regular.ttf" id="5_3lnur"]
+[ext_resource type="Texture2D" uid="uid://dr74jujmdkvm1" path="res://assets/Keyboard & Mouse/Default/keyboard_e.png" id="5_bbdxb"]
+[ext_resource type="Texture2D" uid="uid://dfow4b4yp1r63" path="res://assets/flat_ui/PNG/Extra/Double/button_rectangle_depth_line.png" id="5_hfto2"]
+[ext_resource type="Script" uid="uid://egprya50vqge" path="res://active/ActiveGameUi.cs" id="5_lext4"]
+[ext_resource type="Texture2D" uid="uid://cfhkcu55sit2v" path="res://assets/Keyboard & Mouse/Vector/keyboard_1.svg" id="5_sxw8e"]
+[ext_resource type="Texture2D" uid="uid://dsj3m7niyniqq" path="res://assets/dungeon_art/heroes/knight/weapon_sword_1.png" id="6_lq7bx"]
+[ext_resource type="Texture2D" uid="uid://elckfdqfyrrt" path="res://assets/dawn_like/Items/Wand.png" id="7_jm1vr"]
+[ext_resource type="Texture2D" uid="uid://b40g2hjc1n4k6" path="res://assets/Keyboard & Mouse/Vector/keyboard_2.svg" id="8_bbdxb"]
+[ext_resource type="Texture2D" uid="uid://cux2iqx2fpont" path="res://assets/Keyboard & Mouse/Vector/keyboard_3.svg" id="10_hj30a"]
+[ext_resource type="Texture2D" uid="uid://dtuwcb6xwqaum" path="res://assets/dungeon_art/props_itens/bomb_anim_f0.png" id="12_hj30a"]
+[ext_resource type="Script" uid="uid://cf0wv0ldej68o" path="res://active/h_box_container.gd" id="15_3lnur"]
+[ext_resource type="AudioStream" uid="uid://coxmk7l7jkne5" path="res://assets/Audio/click3.ogg" id="16_8ilgl"]
+[ext_resource type="FontFile" uid="uid://csvfntck88xn4" path="res://assets/Inter_18pt-Bold.ttf" id="16_qe8f5"]
+[ext_resource type="Script" uid="uid://sdrdfom2f8tf" path="res://active/WaveInformation.cs" id="20_5rjfj"]
+[ext_resource type="Script" uid="uid://he1qpowp5g8v" path="res://active/EnemyTracker.cs" id="22_3tek5"]
+[ext_resource type="Script" uid="uid://8lfvqsn75p1t" path="res://active/WeaponSwitcher.cs" id="23_3tek5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v3mdj"]
 
@@ -79,7 +81,8 @@ texture = ExtResource("3_dem6s")
 [node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_6k8in")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("5_3lnur")
+theme_override_font_sizes/font_size = 40
 text = "Pause"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer2/PanelContainer/VBoxContainer"]
@@ -92,7 +95,8 @@ texture = ExtResource("5_bbdxb")
 [node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer2/PanelContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("3_6k8in")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("5_3lnur")
+theme_override_font_sizes/font_size = 40
 text = "Inventory"
 
 [node name="MarginContainer3" type="MarginContainer" parent="ActiveGameUI/CanvasLayer"]
@@ -243,7 +247,8 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 theme = ExtResource("3_6k8in")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("5_3lnur")
+theme_override_font_sizes/font_size = 50
 text = "Game Paused"
 horizontal_alignment = 1
 
@@ -251,16 +256,25 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("15_3lnur")
 
 [node name="Quit" type="Button" parent="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("6_sahrs")
+theme = ExtResource("3_6k8in")
+theme_override_fonts/font = ExtResource("5_3lnur")
+theme_override_font_sizes/font_size = 30
 text = "Quit Game"
 
 [node name="Resume" type="Button" parent="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("7_gepbl")
+theme = ExtResource("3_6k8in")
+theme_override_fonts/font = ExtResource("5_3lnur")
+theme_override_font_sizes/font_size = 30
 text = "Resume"
+
+[node name="ClickSoundEffect" type="AudioStreamPlayer" parent="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+stream = ExtResource("16_8ilgl")
+bus = &"SFX"
 
 [node name="MarginContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer"]
 anchors_preset = 1
@@ -283,8 +297,9 @@ alignment = 2
 layout_mode = 2
 size_flags_horizontal = 8
 theme = ExtResource("3_6k8in")
-theme_override_font_sizes/font_size = 32
-text = "Health"
+theme_override_fonts/font = ExtResource("16_qe8f5")
+theme_override_font_sizes/font_size = 50
+text = "HP"
 horizontal_alignment = 1
 script = ExtResource("3_mp5i6")
 
@@ -308,14 +323,16 @@ layout_mode = 2
 [node name="Wave" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_6k8in")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("5_3lnur")
+theme_override_font_sizes/font_size = 40
 text = "Wave 1"
 horizontal_alignment = 2
 
 [node name="RemainingEnemies" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_6k8in")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("5_3lnur")
+theme_override_font_sizes/font_size = 40
 text = "50 enemies remaining"
 horizontal_alignment = 2
 
@@ -338,3 +355,6 @@ script = ExtResource("22_3tek5")
 
 [node name="WeaponSwitcher" type="Node" parent="."]
 script = ExtResource("23_3tek5")
+
+[connection signal="pressed" from="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/Quit" to="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" method="_on_quit_pressed"]
+[connection signal="pressed" from="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/Resume" to="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" method="_on_resume_pressed"]

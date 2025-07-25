@@ -1,14 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://bx8k5jp2n7qvy"]
+[gd_scene load_steps=12 format=3 uid="uid://bx8k5jp2n7qvy"]
 
-[ext_resource type="Script" uid="uid://dukex43y0p27s" path="res://daily/components/QuestEditPanel.cs" id="1_modal"]
-[ext_resource type="Texture2D" uid="uid://bkhw1akgv0fou" path="res://assets/flat_ui/PNG/Grey/Double/button_square_depth_gradient.png" id="2_ljexo"]
+[ext_resource type="Script" uid="uid://dsyrncnxno7wr" path="res://daily/components/QuestEditPanel.cs" id="1_modal"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_gua5t"]
+[ext_resource type="FontFile" uid="uid://csvfntck88xn4" path="res://assets/Inter_18pt-Bold.ttf" id="4_gua5t"]
 [ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://assets/flat_ui/kenneyUI-green.tres" id="4_ka370"]
 [ext_resource type="Theme" uid="uid://bb6vwl0h1flws" path="res://assets/flat_ui/kenneyUI-blue.tres" id="5_6rhgm"]
+[ext_resource type="FontFile" uid="uid://d2d3upcj5jlbk" path="res://assets/Inter_18pt-Regular.ttf" id="5_ka370"]
+[ext_resource type="Script" uid="uid://cabr2l2t2c43w" path="res://daily/components/button_container.gd" id="5_qn7sr"]
 [ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="6_qn7sr"]
+[ext_resource type="FontFile" uid="uid://dehx31qk1ng6l" path="res://assets/Jacquard24-Regular.ttf" id="7_6rhgm"]
+[ext_resource type="AudioStream" uid="uid://coxmk7l7jkne5" path="res://assets/Audio/click3.ogg" id="10_v6dkc"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v6dkc"]
-texture = ExtResource("2_ljexo")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ka370"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="QuestEditPanel" type="Control" node_paths=PackedStringArray("_titleLabel", "_descriptionLabel", "_titleEdit", "_descriptionEdit", "_editButton", "_deleteButton", "_doneButton", "_okButton", "_cancelButton", "_headerLabel")]
 layout_mode = 3
@@ -43,7 +56,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxTexture_v6dkc")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ka370")
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
 layout_mode = 2
@@ -61,6 +74,7 @@ theme_override_constants/separation = 15
 layout_mode = 2
 theme = ExtResource("3_gua5t")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_gua5t")
 theme_override_font_sizes/font_size = 32
 text = "Quest Details"
 horizontal_alignment = 1
@@ -74,6 +88,7 @@ theme_override_constants/separation = 10
 layout_mode = 2
 theme = ExtResource("3_gua5t")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_ka370")
 theme_override_font_sizes/font_size = 24
 text = "Quest Title"
 autowrap_mode = 2
@@ -82,6 +97,7 @@ autowrap_mode = 2
 visible = false
 layout_mode = 2
 theme = ExtResource("3_gua5t")
+theme_override_fonts/font = ExtResource("4_gua5t")
 theme_override_font_sizes/font_size = 24
 placeholder_text = "Title"
 
@@ -89,6 +105,7 @@ placeholder_text = "Title"
 layout_mode = 2
 theme = ExtResource("3_gua5t")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_ka370")
 theme_override_font_sizes/font_size = 24
 text = "Quest Description"
 autowrap_mode = 3
@@ -97,6 +114,7 @@ autowrap_mode = 3
 visible = false
 layout_mode = 2
 theme = ExtResource("3_gua5t")
+theme_override_fonts/font = ExtResource("5_ka370")
 theme_override_font_sizes/font_size = 24
 placeholder_text = "Description"
 
@@ -105,30 +123,49 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 alignment = 1
+script = ExtResource("5_qn7sr")
 
 [node name="EditButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("4_ka370")
+theme_override_fonts/font = ExtResource("7_6rhgm")
 text = "Edit"
 
 [node name="OkButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
 visible = false
 layout_mode = 2
-theme = ExtResource("5_6rhgm")
+theme = ExtResource("4_ka370")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_6rhgm")
+theme_override_font_sizes/font_size = 20
 text = "OK"
 
 [node name="CancelButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
 visible = false
 layout_mode = 2
 theme = ExtResource("6_qn7sr")
+theme_override_fonts/font = ExtResource("7_6rhgm")
+theme_override_font_sizes/font_size = 20
 text = "Cancel"
 
 [node name="DeleteButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("6_qn7sr")
+theme_override_fonts/font = ExtResource("7_6rhgm")
 text = "Delete"
 
 [node name="DoneButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("5_6rhgm")
+theme_override_fonts/font = ExtResource("7_6rhgm")
 text = "Done"
+
+[node name="ClickSoundEffect" type="AudioStreamPlayer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+stream = ExtResource("10_v6dkc")
+bus = &"SFX"
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/EditButton" to="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer" method="_on_edit_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/OkButton" to="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer" method="_on_ok_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/CancelButton" to="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer" method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/DeleteButton" to="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer" method="_on_delete_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/DoneButton" to="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer" method="_on_done_button_pressed"]

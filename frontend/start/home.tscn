@@ -1,15 +1,15 @@
 [gd_scene load_steps=89 format=3 uid="uid://d10077bwug3rs"]
 
-[ext_resource type="Script" uid="uid://crjrlgdwahath" path="res://start/Home.cs" id="1_kkgq1"]
-[ext_resource type="Texture2D" uid="uid://cwy2ry5wij5uf" path="res://assets/white-circle.png" id="2_8rh7u"]
-[ext_resource type="Script" uid="uid://badj37twaxr25" path="res://start/HomeUsername.cs" id="2_da3js"]
-[ext_resource type="FontFile" uid="uid://db7byayhdbwy3" path="res://assets/Inter_18pt-Regular.ttf" id="3_0vnw0"]
-[ext_resource type="FontFile" uid="uid://dkjdxog3b4fl4" path="res://assets/Jacquard24-Regular.ttf" id="3_g8cuh"]
-[ext_resource type="Texture2D" uid="uid://copqunclqj85v" path="res://assets/sung-jinwoo.jpg" id="3_y7uvk"]
-[ext_resource type="Texture2D" uid="uid://b5fq4n1gbmtan" path="res://assets/_comission__sung_jin_woo_sprites___solo_leveling_by_soulfiresprites_df43h3g-ezgif.com-gif-to-sprite-converter.png" id="5_fv4no"]
+[ext_resource type="Script" uid="uid://cmgmki6fg40b1" path="res://start/Home.cs" id="1_kkgq1"]
+[ext_resource type="Texture2D" uid="uid://b85jet7l85skb" path="res://assets/white-circle.png" id="2_8rh7u"]
+[ext_resource type="Script" uid="uid://b15oyw8m61keh" path="res://start/HomeUsername.cs" id="2_da3js"]
+[ext_resource type="FontFile" uid="uid://d2d3upcj5jlbk" path="res://assets/Inter_18pt-Regular.ttf" id="3_0vnw0"]
+[ext_resource type="FontFile" uid="uid://dehx31qk1ng6l" path="res://assets/Jacquard24-Regular.ttf" id="3_g8cuh"]
+[ext_resource type="Texture2D" uid="uid://c4ijn4ds4spke" path="res://assets/sung-jinwoo.jpg" id="3_y7uvk"]
+[ext_resource type="Texture2D" uid="uid://bjb14x4rcq75l" path="res://assets/_comission__sung_jin_woo_sprites___solo_leveling_by_soulfiresprites_df43h3g-ezgif.com-gif-to-sprite-converter.png" id="5_fv4no"]
 [ext_resource type="Script" uid="uid://bvjboup7bbgws" path="res://start/home_page_sound_2.gd" id="6_25uge"]
 [ext_resource type="Script" uid="uid://dpdwoi777ti6k" path="res://start/home_page_sound_1.gd" id="7_3dgxr"]
-[ext_resource type="AudioStream" uid="uid://bvkiimk6elfc7" path="res://assets/Audio/click3.ogg" id="7_e7cx7"]
+[ext_resource type="AudioStream" uid="uid://coxmk7l7jkne5" path="res://assets/Audio/click3.ogg" id="7_e7cx7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dgxr"]
 bg_color = Color(1, 1, 1, 1)
@@ -558,7 +558,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="Home" type="Control" node_paths=PackedStringArray("_expLabel", "_levelLabel", "_expProgressBar", "_dailyButton", "_passiveButton", "_activeButton", "_statsUIButton", "_storeButton")]
+[node name="Home" type="Control" node_paths=PackedStringArray("_expLabel", "_levelLabel", "_expProgressBar", "_dailyButton", "_passiveButton", "_activeButton", "_statsUIButton", "_storeButton", "_settingsButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -574,6 +574,7 @@ _passiveButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/HBoxContaine
 _activeButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/Active")
 _statsUIButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/StatsUI")
 _storeButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Store")
+_settingsButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Settings")
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -720,6 +721,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ColorRect2/MarginContainer/CenterContainer"]
+position = Vector2(9, -1)
 scale = Vector2(2.47727, 2.52)
 sprite_frames = SubResource("SpriteFrames_tiqgu")
 autoplay = "default"
@@ -799,6 +801,7 @@ text = "Settings
 
 [node name="ClickSoundEffect3" type="AudioStreamPlayer" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 stream = ExtResource("7_e7cx7")
+bus = &"SFX"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect3/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -837,9 +840,11 @@ text = "Active Dungeon"
 
 [node name="ClickSoundEffect2" type="AudioStreamPlayer" parent="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer"]
 stream = ExtResource("7_e7cx7")
+bus = &"SFX"
 
+[connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/StatsUI" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" method="_on_stats_ui_pressed"]
 [connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Store" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" method="_on_store_pressed"]
-[connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Settings" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" method="_on_store_pressed"]
+[connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Settings" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" method="_on_settings_pressed"]
 [connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/Daily" to="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer" method="_on_daily_pressed"]
 [connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/Passive" to="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer" method="_on_passive_pressed"]
 [connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/Active" to="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer" method="_on_active_pressed"]

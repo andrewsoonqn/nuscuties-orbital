@@ -1,24 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://c327dfp3ia41j"]
+[gd_scene load_steps=10 format=3 uid="uid://c327dfp3ia41j"]
 
-[ext_resource type="Script" uid="uid://b5njal2rif361" path="res://daily/components/CompletableQuestComponent.cs" id="1_ldowt"]
+[ext_resource type="Script" uid="uid://dcfrnhtsggimf" path="res://daily/components/CompletableQuestComponent.cs" id="1_ldowt"]
+[ext_resource type="FontFile" uid="uid://dehx31qk1ng6l" path="res://assets/Jacquard24-Regular.ttf" id="3_aovvg"]
 [ext_resource type="Theme" uid="uid://bb6vwl0h1flws" path="res://assets/flat_ui/kenneyUI-blue.tres" id="3_j6wo2"]
-[ext_resource type="FontFile" uid="uid://c8o3xmuk6ni8m" path="res://assets/flat_ui/kenvector_future.ttf" id="4_j6wo2"]
+[ext_resource type="FontFile" uid="uid://d2d3upcj5jlbk" path="res://assets/Inter_18pt-Regular.ttf" id="4_bpkir"]
+[ext_resource type="Script" uid="uid://xx73y2d5qf87" path="res://daily/components/h_box_container.gd" id="4_ejcx4"]
+[ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://assets/flat_ui/kenneyUI-green.tres" id="5_ejcx4"]
+[ext_resource type="FontFile" uid="uid://csvfntck88xn4" path="res://assets/Inter_18pt-Bold.ttf" id="6_7tcct"]
+[ext_resource type="AudioStream" uid="uid://coxmk7l7jkne5" path="res://assets/Audio/click3.ogg" id="8_7tcct"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrehb"]
-bg_color = Color(0.6, 1, 1, 1)
+bg_color = Color(1, 1, 1, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(7.21961e-07, 0.495699, 0.439351, 1)
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
-
-[sub_resource type="FontVariation" id="FontVariation_ex3v5"]
-base_font = ExtResource("4_j6wo2")
-variation_embolden = 0.5
 
 [node name="CompletableQuest" type="HBoxContainer" node_paths=PackedStringArray("_title", "_description", "_checkbox", "_editButton")]
 anchors_preset = 8
@@ -62,20 +63,22 @@ layout_mode = 2
 size_flags_vertical = 6
 theme = ExtResource("3_j6wo2")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = SubResource("FontVariation_ex3v5")
-theme_override_font_sizes/font_size = 22
+theme_override_fonts/font = ExtResource("6_7tcct")
+theme_override_font_sizes/font_size = 40
 text = "Quest Title"
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
+script = ExtResource("4_ejcx4")
 
 [node name="Description" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_j6wo2")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_bpkir")
 theme_override_font_sizes/font_size = 20
 text = "Description"
 autowrap_mode = 3
@@ -90,5 +93,14 @@ theme = ExtResource("3_j6wo2")
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-theme = ExtResource("3_j6wo2")
+theme = ExtResource("5_ejcx4")
+theme_override_fonts/font = ExtResource("3_aovvg")
+theme_override_font_sizes/font_size = 25
 text = "Edit"
+
+[node name="ClickSoundEffect" type="AudioStreamPlayer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+stream = ExtResource("8_7tcct")
+bus = &"SFX"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CheckBox" to="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" method="_on_check_box_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/EditButton" to="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" method="_on_edit_button_pressed"]

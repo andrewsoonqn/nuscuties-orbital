@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bnbn7cbnngtli"]
 
-[ext_resource type="Script" uid="uid://dk5cvxldnpjvf" path="res://passive/PassiveOngoing.cs" id="1_xw3ot"]
+[ext_resource type="Script" uid="uid://bwrfj4v4xbpbk" path="res://passive/PassiveOngoing.cs" id="1_xw3ot"]
 
 [node name="PassiveOngoing" type="Control" node_paths=PackedStringArray("_timeSpentLabel", "_totalTimeLabel", "_timeProgressBar", "_expAccumulatedLabel", "_quitButton")]
 layout_mode = 3

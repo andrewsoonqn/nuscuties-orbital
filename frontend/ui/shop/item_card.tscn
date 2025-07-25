@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8k7yj2vm5n1w"]
+[gd_scene load_steps=10 format=3 uid="uid://c8k7yj2vm5n1w"]
 
-[ext_resource type="Script" uid="uid://dyrr8somcblff" path="res://ui/shop/ItemCard.cs" id="1_card"]
+[ext_resource type="Script" uid="uid://yk0n6ydhg4jv" path="res://ui/shop/ItemCard.cs" id="1_card"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_8k1by"]
+[ext_resource type="Script" uid="uid://ce7w25q6wog55" path="res://ui/shop/content_container.gd" id="2_mpydf"]
+[ext_resource type="FontFile" uid="uid://csvfntck88xn4" path="res://assets/Inter_18pt-Bold.ttf" id="3_5oyru"]
 [ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://assets/flat_ui/kenneyUI-green.tres" id="3_y8kyc"]
+[ext_resource type="FontFile" uid="uid://d2d3upcj5jlbk" path="res://assets/Inter_18pt-Regular.ttf" id="4_l60li"]
+[ext_resource type="FontFile" uid="uid://dehx31qk1ng6l" path="res://assets/Jacquard24-Regular.ttf" id="6_mpydf"]
+[ext_resource type="AudioStream" uid="uid://coxmk7l7jkne5" path="res://assets/Audio/click3.ogg" id="8_bl3pd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
 bg_color = Color(0.2, 0.2, 0.2, 1)
@@ -52,11 +57,13 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 8
+script = ExtResource("2_mpydf")
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/ContentContainer"]
 layout_mode = 2
 theme = ExtResource("2_8k1by")
-theme_override_font_sizes/font_size = 18
+theme_override_fonts/font = ExtResource("3_5oyru")
+theme_override_font_sizes/font_size = 30
 text = "Item Name"
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -65,7 +72,8 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme = ExtResource("2_8k1by")
-theme_override_font_sizes/normal_font_size = 12
+theme_override_fonts/normal_font = ExtResource("4_l60li")
+theme_override_font_sizes/normal_font_size = 15
 bbcode_enabled = true
 text = "Item description goes here"
 fit_content = true
@@ -77,5 +85,12 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_y8kyc")
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("6_mpydf")
+theme_override_font_sizes/font_size = 30
 text = "Buy for 500 coins"
+
+[node name="ClickSoundEffect" type="AudioStreamPlayer" parent="MarginContainer/VBoxContainer/ContentContainer"]
+stream = ExtResource("8_bl3pd")
+bus = &"SFX"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ContentContainer/ActionButton" to="MarginContainer/VBoxContainer/ContentContainer" method="_on_action_button_pressed"]

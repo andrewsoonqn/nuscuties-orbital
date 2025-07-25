@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dht2ibnfr51fe"]
 
-[ext_resource type="Script" uid="uid://bqwso72aowxl" path="res://passive/PassiveEndScene.cs" id="1_nld5h"]
+[ext_resource type="Script" uid="uid://djv4r2rxaot3y" path="res://passive/PassiveEndScene.cs" id="1_nld5h"]
 
 [node name="PassiveEndScene" type="Control" node_paths=PackedStringArray("_expAccumulatedLabel", "_totalTimeSpentLabel", "_returnButton")]
 layout_mode = 3

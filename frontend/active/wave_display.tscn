@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ecv60eugvlay"]
+[gd_scene load_steps=9 format=3 uid="uid://ecv60eugvlay"]
 
-[ext_resource type="Script" uid="uid://nppfsq5y662c" path="res://active/WaveDisplay.cs" id="1_cqr5r"]
-[ext_resource type="Texture2D" uid="uid://cwmfbmlkblr1m" path="res://assets/flat_ui/PNG/Red/Default/button_rectangle_depth_border.png" id="1_u2tej"]
+[ext_resource type="Script" uid="uid://qm2dmuycsjk" path="res://active/WaveDisplay.cs" id="1_cqr5r"]
+[ext_resource type="Texture2D" uid="uid://bc8k5k6c4pffk" path="res://assets/flat_ui/PNG/Red/Default/button_rectangle_depth_border.png" id="1_u2tej"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_cqr5r"]
+[ext_resource type="FontFile" uid="uid://dehx31qk1ng6l" path="res://assets/Jacquard24-Regular.ttf" id="4_eoccg"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eoccg"]
 texture = ExtResource("1_u2tej")
@@ -101,7 +102,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_cqr5r")
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("4_eoccg")
+theme_override_font_sizes/font_size = 50
 text = "WAVE X Incoming..."
 horizontal_alignment = 1
 

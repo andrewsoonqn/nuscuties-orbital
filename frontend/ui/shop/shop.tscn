@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdqyj4tvm3k8h"]
+[gd_scene load_steps=8 format=3 uid="uid://bdqyj4tvm3k8h"]
 
-[ext_resource type="Script" uid="uid://bnjrvbe5uuyvn" path="res://ui/shop/ShopController.cs" id="1_shop"]
+[ext_resource type="Script" uid="uid://bm3n5nubpanbc" path="res://ui/shop/ShopController.cs" id="1_shop"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_fre4r"]
-[ext_resource type="Texture2D" uid="uid://blnr63uhfavdd" path="res://assets/dungeon_art/props_itens/bag_coins.png" id="4_kcwo1"]
+[ext_resource type="Script" uid="uid://b6pw0vgc3wrax" path="res://ui/shop/header.gd" id="2_kcwo1"]
+[ext_resource type="FontFile" uid="uid://dehx31qk1ng6l" path="res://assets/Jacquard24-Regular.ttf" id="3_n5hkn"]
+[ext_resource type="Texture2D" uid="uid://c6g2lwo50uvct" path="res://assets/dungeon_art/props_itens/bag_coins.png" id="4_kcwo1"]
+[ext_resource type="AudioStream" uid="uid://coxmk7l7jkne5" path="res://assets/Audio/click3.ogg" id="5_kcwo1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5wpfl"]
 atlas = ExtResource("4_kcwo1")
@@ -47,13 +50,20 @@ theme_override_constants/margin_bottom = 20
 [node name="Header" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+script = ExtResource("2_kcwo1")
 
 [node name="BackButton" type="Button" parent="VBoxContainer/MarginContainer/Header"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme = ExtResource("2_fre4r")
-text = "Back"
+theme_override_fonts/font = ExtResource("3_n5hkn")
+theme_override_font_sizes/font_size = 20
+text = "Back to Home"
+
+[node name="ClickSoundEffect" type="AudioStreamPlayer" parent="VBoxContainer/MarginContainer/Header"]
+stream = ExtResource("5_kcwo1")
+bus = &"SFX"
 
 [node name="CoinsDisplay" type="HBoxContainer" parent="VBoxContainer/MarginContainer/Header"]
 layout_mode = 2
@@ -72,14 +82,15 @@ stretch_mode = 4
 layout_mode = 2
 size_flags_horizontal = 10
 theme = ExtResource("2_fre4r")
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("3_n5hkn")
+theme_override_font_sizes/font_size = 40
 text = "0 Coins"
 
 [node name="Title" type="Label" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 theme = ExtResource("2_fre4r")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 60
 text = "ITEM SHOP"
 horizontal_alignment = 1
 
@@ -159,3 +170,5 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 3
 columns = 3
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer/Header/BackButton" to="VBoxContainer/MarginContainer/Header" method="_on_back_button_pressed"]

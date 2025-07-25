@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b3ntp2ie2kncm"]
 
-[ext_resource type="Script" uid="uid://d32fw17quc76o" path="res://passive/Passive.cs" id="1_hlllf"]
+[ext_resource type="Script" uid="uid://cf0n5pxo7i5i8" path="res://passive/Passive.cs" id="1_hlllf"]
 
 [node name="Passive" type="Control" node_paths=PackedStringArray("_backToHomeButton", "_timeInfoLabel", "_timeSlider", "_startButton")]
 layout_mode = 3
