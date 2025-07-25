@@ -25,7 +25,7 @@ namespace nuscutiesapp.tools
         [Signal]
         public delegate void LoadoutChangedEventHandler(string category, string equippedId);
 
-        protected override string SaveFilePath => Path.Combine(OS.GetUserDataDir(), "player_inventory.json");
+        protected override string BaseSaveFileName => "player_inventory.json";
 
         public int Coins => Data.Coins;
 

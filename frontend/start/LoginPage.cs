@@ -9,27 +9,23 @@ public partial class LoginPage : Control
     [Export]
     private Button SubmitLogin { get; set; }
 
-    private AccountManager _accountManager;
+    private UserManager _userManager;
 
     public override void _Ready()
     {
         Username.TextSubmitted += OnUsernameSubmitted;
         SubmitLogin.Pressed += () => OnUsernameSubmitted(Username.Text);
-
-        this._accountManager = this.GetNode<AccountManager>("/root/AccountManager");
+        _userManager = GetNode<UserManager>("/root/UserManager");
     }
 
     private void OnUsernameSubmitted(string username)
     {
-        _accountManager.SetUsername(username);
-
+        _userManager.SetCurrentUser(username);
         var transition = GetNode("/root/TransitionLoginToHome") as Node;
-
         transition.Connect("on_transition_finished", Callable.From(() =>
         {
             this.GetTree().ChangeSceneToFile(Paths.Home);
         }));
-
         transition.Call("transition");
     }
 }

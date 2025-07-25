@@ -31,15 +31,13 @@ public partial class PlayerStatManager : BaseStatManager<PlayerStatManager.Playe
         public int Stamina { get; set; } = 0;
     }
 
-    private string _saveFilePath = "user://player_stats.json";
-    protected override string SaveFilePath => _saveFilePath;
+    protected override string BaseSaveFileName => "player_stats.json";
 
     // TODO: add check to make sure all numbers add up correctly
 
     public void SetSaveFilePath(string newFilePath)
     {
-        // Should be used for testing only!
-        _saveFilePath = newFilePath;
+        // Should be used for testing only! - Note: This method is now obsolete with user-prefixed paths
     }
 
     protected override void OnDataChanged()

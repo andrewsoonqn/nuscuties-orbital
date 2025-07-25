@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5x8qhv1kwp2s"]
+
+[ext_resource type="Script" path="res://start/components/AddUserDialog.cs" id="1_dialog"]
+
+[node name="AddUserDialog" type="AcceptDialog" node_paths=PackedStringArray("_usernameInput", "_createButton", "_errorLabel")]
+initial_position = 1
+size = Vector2i(400, 250)
+script = ExtResource("1_dialog")
+_usernameInput = NodePath("VBoxContainer/UsernameInput")
+_createButton = NodePath("VBoxContainer/CreateButton")
+_errorLabel = NodePath("VBoxContainer/ErrorLabel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="InstructionLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Enter a username for the new player:"
+horizontal_alignment = 1
+
+[node name="UsernameInput" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Username (3-20 characters)"
+max_length = 20
+
+[node name="ErrorLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 30)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreateButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Create User"

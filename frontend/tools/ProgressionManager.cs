@@ -27,13 +27,12 @@ public partial class ProgressionManager : BaseStatManager<ProgressionManager.Pro
         public int Level { get; set; } = 1;
     }
 
-    private string _saveFilePath = "user://player_progression.json";
-    protected override string SaveFilePath => _saveFilePath;
+    protected override string BaseSaveFileName => "player_progression.json";
 
     public void SetSaveFilePath(string newFilePath)
     {
-        // Should be used for testing only!
-        _saveFilePath = newFilePath;
+        // Should be used for testing only! - Note: This method is now obsolete with user-prefixed paths
+        GD.PrintErr("SetSaveFilePath is obsolete with user-prefixed save system");
     }
 
     protected override void InitializeDefaults()

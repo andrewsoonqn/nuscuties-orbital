@@ -7,17 +7,31 @@ using FileAccess = Godot.FileAccess;
 
 public partial class QuestLogManager : Node
 {
-    public string savePath = "user://quest_saves/quest_log.json";
+    private string GetSavePath()
+    {
+        var userManager = GetNode<UserManager>("/root/UserManager");
+        string username = userManager?.GetCurrentUser() ?? "DefaultUser";
+        return $"user://{username}_quest_saves/quest_log.json";
+    }
+
+    private string GetSaveDirectory()
+    {
+        var userManager = GetNode<UserManager>("/root/UserManager");
+        string username = userManager?.GetCurrentUser() ?? "DefaultUser";
+        return $"user://{username}_quest_saves";
+    }
 
     public void SaveQuestLog(List<Quest> quests)
     {
         var options = new JsonSerializerOptions { WriteIndented = true };
         string jsonString = JsonSerializer.Serialize(quests, options);
+        string saveDirectory = GetSaveDirectory();
+        string savePath = GetSavePath();
 
-        var dir = DirAccess.Open("user://quest_saves");
+        var dir = DirAccess.Open(saveDirectory);
         if (dir == null)
         {
-            DirAccess.MakeDirRecursiveAbsolute("user://quest_saves");
+            DirAccess.MakeDirRecursiveAbsolute(saveDirectory);
         }
 
         using var file = FileAccess.Open(savePath, FileAccess.ModeFlags.Write);
@@ -34,6 +48,8 @@ public partial class QuestLogManager : Node
     public List<Quest> LoadQuestLog()
     {
         List<Quest> quests = new List<Quest>();
+        string savePath = GetSavePath();
+
         if (FileAccess.FileExists(savePath))
         {
             using var file = FileAccess.Open(savePath, FileAccess.ModeFlags.Read);
