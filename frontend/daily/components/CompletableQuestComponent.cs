@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.tools;
 using System;
 using System.Linq;
 
@@ -15,11 +16,13 @@ public partial class CompletableQuestComponent : HBoxContainer
     private Quest _quest; // TODO: only id needed, quest manager takes care of the quest storing
     private QuestManager _questManager;
     private ProgressionManager _expManager;
+    private PlayerInventoryManager _inventoryManager;
 
     public override void _Ready()
     {
         _questManager = GetNode<QuestManager>("/root/QuestManager");
         _expManager = GetNode<ProgressionManager>("/root/ProgressionManager");
+        _inventoryManager = GetNode<PlayerInventoryManager>("/root/PlayerInventoryManager");
         _checkbox.Toggled += CheckboxOnToggled;
         _editButton.Pressed += OnEditButtonPressed;
     }
@@ -30,10 +33,23 @@ public partial class CompletableQuestComponent : HBoxContainer
         if (toggledOn)
         {
             _expManager.AddExp(100);
+            int coinReward = _inventoryManager.CalculateDailyQuestCoinReward();
+            _inventoryManager.AddCoins(coinReward);
+            GD.Print($"Daily quest completed! Gained {coinReward} coins");
         }
         else
         {
             _expManager.AddExp(-100);
+            int coinPenalty = _inventoryManager.CalculateDailyQuestCoinReward();
+            bool success = _inventoryManager.SpendCoins(coinPenalty);
+            if (success)
+            {
+                GD.Print($"Daily quest uncompleted! Lost {coinPenalty} coins");
+            }
+            else
+            {
+                GD.Print($"Daily quest uncompleted! Not enough coins to deduct {coinPenalty}");
+            }
         }
         new QuestLogManager().SaveQuestLog(_questManager.GetQuests().Values.ToList());
     }

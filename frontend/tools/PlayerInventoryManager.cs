@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -6,10 +7,13 @@ namespace nuscutiesapp.tools
 {
     public partial class PlayerInventoryManager : BaseStatManager<PlayerInventoryData>
     {
+        private ProgressionManager _progressionManager;
+
         public override void _Ready()
         {
             GD.Print(OS.GetUserDataDir());
             base._Ready();
+            _progressionManager = GetNode<ProgressionManager>("/root/ProgressionManager");
         }
 
         [Signal]
@@ -27,6 +31,43 @@ namespace nuscutiesapp.tools
 
         protected override void OnDataChanged()
         {
+        }
+
+        public int CalculateDailyQuestCoinReward()
+        {
+            int level = _progressionManager.GetLevel();
+            int baseCoinReward = 50;
+            double scaleFactor = 1.15;
+
+            int reward = (int)(baseCoinReward * Math.Pow(scaleFactor, level - 1));
+            return Math.Max(reward, baseCoinReward);
+        }
+
+        public int CalculatePassiveDungeonCoinReward(double timeSpentMinutes)
+        {
+            int level = _progressionManager.GetLevel();
+            double baseCoinRate = 5.0;
+            double levelMultiplier = 1.0 + (level * 0.1);
+            double exponentialMultiplier = Math.Pow(timeSpentMinutes, 1.2);
+
+            Random random = new Random();
+            double variance = 0.85 + (random.NextDouble() * 0.3);
+
+            int coins = (int)(baseCoinRate * levelMultiplier * exponentialMultiplier * variance);
+            return Math.Max(coins, 1);
+        }
+
+        public int CalculateActiveDungeonEnemyCoinReward()
+        {
+            int level = _progressionManager.GetLevel();
+            int baseCoinReward = 15;
+            double scaleFactor = 1.12;
+
+            Random random = new Random();
+            double variance = 0.8 + (random.NextDouble() * 0.4);
+
+            int reward = (int)(baseCoinReward * Math.Pow(scaleFactor, level - 1) * variance);
+            return Math.Max(reward, baseCoinReward);
         }
 
         public bool AddCoins(int amount)
