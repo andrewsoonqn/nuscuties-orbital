@@ -7,24 +7,22 @@ public partial class UserSelectionPage : Control
     [Export] private VBoxContainer _userContainer;
     [Export] private Button _addUserButton;
     [Export] private Label _titleLabel;
-    [Export] private AddUserDialog _addUserDialog;
-    [Export] private ConfirmationDialog _deleteUserDialog;
-    [Export] private EditUserDialog _editUserDialog;
-    private string _pendingDeleteUser;
-    private string _pendingEditUser;
 
     private UserManager _userManager;
     private PackedScene _userCardScene;
+    private PackedScene _userAddPanelScene;
+    private PackedScene _userEditPanelScene;
+    private PackedScene _userDeletePanelScene;
 
     public override void _Ready()
     {
         _userManager = GetNode<UserManager>("/root/UserManager");
         _userCardScene = ResourceLoader.Load<PackedScene>(Paths.UserCard);
+        _userAddPanelScene = ResourceLoader.Load<PackedScene>(Paths.UserAddPanel);
+        _userEditPanelScene = ResourceLoader.Load<PackedScene>(Paths.UserEditPanel);
+        _userDeletePanelScene = ResourceLoader.Load<PackedScene>(Paths.UserDeletePanel);
 
         _addUserButton.Pressed += OnAddUserButtonPressed;
-        _addUserDialog.UserCreated += OnUserCreated;
-        _editUserDialog.UserEdited += OnEditUserConfirmed;
-        _deleteUserDialog.Confirmed += OnDeleteUserConfirmed;
 
         RefreshUserList();
     }
@@ -58,6 +56,8 @@ public partial class UserSelectionPage : Control
                 _userContainer.AddChild(userCardInstance);
             }
         }
+
+        _userContainer.AddChild(_addUserButton);
     }
 
     private void OnUserSelected(string username)
@@ -68,7 +68,25 @@ public partial class UserSelectionPage : Control
 
     private void OnAddUserButtonPressed()
     {
-        _addUserDialog.PopupCentered();
+        var addPanelInstance = _userAddPanelScene.Instantiate<UserAddPanel>();
+        addPanelInstance.UserCreated += OnUserCreated;
+        GetTree().Root.AddChild(addPanelInstance);
+    }
+
+    private void OnUserEditRequested(string username)
+    {
+        var editPanelInstance = _userEditPanelScene.Instantiate<UserEditPanel>();
+        editPanelInstance.Initialize(username);
+        editPanelInstance.UserEdited += OnUserEdited;
+        GetTree().Root.AddChild(editPanelInstance);
+    }
+
+    private void OnUserDeleteRequested(string username)
+    {
+        var deletePanelInstance = _userDeletePanelScene.Instantiate<UserDeletePanel>();
+        deletePanelInstance.Initialize(username);
+        deletePanelInstance.UserDeleteConfirmed += OnUserDeleteConfirmed;
+        GetTree().Root.AddChild(deletePanelInstance);
     }
 
     private void OnUserCreated(string username)
@@ -76,43 +94,13 @@ public partial class UserSelectionPage : Control
         RefreshUserList();
     }
 
-    private void OnUserEditRequested(string username)
+    private void OnUserEdited(string oldUsername, string newUsername)
     {
-        _pendingEditUser = username;
-        _editUserDialog.SetOldUsername(username);
-        _editUserDialog.PopupCentered();
+        RefreshUserList();
     }
 
-    private void OnUserDeleteRequested(string username)
+    private void OnUserDeleteConfirmed(string username)
     {
-        _pendingDeleteUser = username;
-        _deleteUserDialog.DialogText = $"Are you sure you want to delete user '{username}'? This cannot be undone.";
-        _deleteUserDialog.PopupCentered();
-    }
-
-    private void OnEditUserConfirmed(string newUsername)
-    {
-        try
-        {
-            _userManager.RenameUser(_pendingEditUser, newUsername);
-            RefreshUserList();
-        }
-        catch (System.Exception ex)
-        {
-            _editUserDialog.ShowError(ex.Message);
-        }
-    }
-
-    private void OnDeleteUserConfirmed()
-    {
-        try
-        {
-            _userManager.DeleteUser(_pendingDeleteUser);
-            RefreshUserList();
-        }
-        catch (System.Exception ex)
-        {
-            GD.PrintErr(ex.Message);
-        }
+        RefreshUserList();
     }
 }

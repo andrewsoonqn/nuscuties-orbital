@@ -1,0 +1,100 @@
+[gd_scene load_steps=7 format=3 uid="uid://ceqyqkptu6cs7"]
+
+[ext_resource type="Script" uid="uid://d32gfqx31e4pr" path="res://start/components/UserEditPanel.cs" id="1_useredit"]
+[ext_resource type="Texture2D" uid="uid://bkhw1akgv0fou" path="res://assets/flat_ui/PNG/Grey/Double/button_square_depth_gradient.png" id="2_ljexo"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_gua5t"]
+[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="5_7k06w"]
+[ext_resource type="Theme" uid="uid://bb6vwl0h1flws" path="res://assets/flat_ui/kenneyUI-blue.tres" id="6_qn7sr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v6dkc"]
+texture = ExtResource("2_ljexo")
+
+[node name="UserEditPanel" type="Control" node_paths=PackedStringArray("_usernameEdit", "_confirmButton", "_cancelButton", "_headerLabel", "_errorLabel")]
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.4
+anchor_right = 0.5
+anchor_bottom = 0.4
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_useredit")
+_usernameEdit = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ContentContainer/UsernameEdit")
+_confirmButton = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/ConfirmButton")
+_cancelButton = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/CancelButton")
+_headerLabel = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HeaderLabel")
+_errorLabel = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ContentContainer/ErrorLabel")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_v6dkc")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="HeaderLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_gua5t")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Edit User"
+horizontal_alignment = 1
+
+[node name="ContentContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="UsernameEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ContentContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme = ExtResource("3_gua5t")
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Username (3-20 characters)"
+max_length = 20
+
+[node name="ErrorLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ContentContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 2
+theme = ExtResource("3_gua5t")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+theme = ExtResource("6_qn7sr")
+text = "Confirm"
+
+[node name="CancelButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+theme = ExtResource("5_7k06w")
+text = "Cancel"

@@ -1,50 +1,54 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsf8p7uxhwu2u"]
+[gd_scene load_steps=5 format=3 uid="uid://bsf8p7uxhwu2u"]
 
-[ext_resource type="Script" path="res://start/components/UserCard.cs" id="1_card"]
+[ext_resource type="Script" uid="uid://cjlfwk5jawrd8" path="res://start/components/UserCard.cs" id="1_card"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_b1jib"]
+[ext_resource type="Theme" uid="uid://bb6vwl0h1flws" path="res://assets/flat_ui/kenneyUI-blue.tres" id="3_6jfxa"]
+[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="4_xolv7"]
 
 [node name="UserCard" type="Control" node_paths=PackedStringArray("_usernameLabel", "_selectButton", "_editButton", "_deleteButton")]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
-custom_minimum_size = Vector2(0, 60)
 script = ExtResource("1_card")
-_usernameLabel = NodePath("HBoxContainer/MarginContainer/UsernameLabel")
+_usernameLabel = NodePath("HBoxContainer/UsernameLabel")
 _selectButton = NodePath("HBoxContainer/SelectButton")
 _editButton = NodePath("HBoxContainer/EditButton")
 _deleteButton = NodePath("HBoxContainer/DeleteButton")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+offset_top = -21.0
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 10
+size_flags_horizontal = 3
 
-[node name="UsernameLabel" type="Label" parent="HBoxContainer/MarginContainer"]
+[node name="UsernameLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_b1jib")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
 text = "Username"
-horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SelectButton" type="Button" parent="HBoxContainer"]
-text = "Select"
-size_flags_horizontal = 1
-
 [node name="EditButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_b1jib")
 text = "Edit"
-size_flags_horizontal = 1
+
+[node name="SelectButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_6jfxa")
+text = "Select"
 
 [node name="DeleteButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_xolv7")
 text = "Delete"
-size_flags_horizontal = 1

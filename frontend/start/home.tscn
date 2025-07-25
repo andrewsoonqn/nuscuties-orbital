@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://d10077bwug3rs"]
+[gd_scene load_steps=83 format=3 uid="uid://d10077bwug3rs"]
 
 [ext_resource type="Script" uid="uid://crjrlgdwahath" path="res://start/Home.cs" id="1_kkgq1"]
 [ext_resource type="Texture2D" uid="uid://cwy2ry5wij5uf" path="res://assets/white-circle.png" id="2_8rh7u"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://dpdwoi777ti6k" path="res://start/home_page_sound_1.gd" id="7_3dgxr"]
 [ext_resource type="AudioStream" uid="uid://bvkiimk6elfc7" path="res://assets/Audio/click3.ogg" id="7_e7cx7"]
 [ext_resource type="Theme" uid="uid://bb6vwl0h1flws" path="res://assets/flat_ui/kenneyUI-blue.tres" id="9_8pn3w"]
-[ext_resource type="Theme" uid="uid://h1f7iqhh7ycb" path="res://assets/flat_ui/kenneyUI-yellow.tres" id="10_dhlcw"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="11_ypj6t"]
 [ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://assets/flat_ui/kenneyUI-green.tres" id="13_ypj6t"]
 [ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="15_xwqmo"]
@@ -711,7 +710,7 @@ text = "Status Screen"
 
 [node name="Store" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("10_dhlcw")
+theme = ExtResource("11_ypj6t")
 text = "Store"
 
 [node name="Settings" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
