@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgsu2hn6716me"]
+[gd_scene load_steps=4 format=3 uid="uid://cgsu2hn6716me"]
 
 [ext_resource type="Script" uid="uid://pb2yuk32x2m" path="res://start/UserSelectionPage.cs" id="1_main"]
 [ext_resource type="PackedScene" uid="uid://c5x8qhv1kwp2s" path="res://start/components/add_user_dialog.tscn" id="2_dialog"]
+[ext_resource type="PackedScene" path="res://start/components/edit_user_dialog.tscn" id="3_edituser"]
 
-[node name="UserSelectionPage" type="Control" node_paths=PackedStringArray("_userContainer", "_addUserButton", "_titleLabel", "_addUserDialog")]
+[node name="UserSelectionPage" type="Control" node_paths=PackedStringArray("_userContainer", "_addUserButton", "_titleLabel", "_addUserDialog", "_deleteUserDialog", "_editUserDialog")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +16,8 @@ _userContainer = NodePath("VBoxContainer/ScrollContainer/UserContainer")
 _addUserButton = NodePath("AddUserButton")
 _titleLabel = NodePath("VBoxContainer/TitleLabel")
 _addUserDialog = NodePath("AddUserDialog")
+_deleteUserDialog = NodePath("DeleteUserDialog")
+_editUserDialog = NodePath("EditUserDialog")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -61,3 +64,7 @@ grow_vertical = 0
 text = "+ Add User"
 
 [node name="AddUserDialog" parent="." instance=ExtResource("2_dialog")]
+
+[node name="EditUserDialog" parent="." instance=ExtResource("3_edituser")]
+
+[node name="DeleteUserDialog" type="ConfirmationDialog" parent="."]

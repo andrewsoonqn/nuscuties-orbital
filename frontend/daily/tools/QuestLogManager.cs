@@ -7,17 +7,22 @@ using FileAccess = Godot.FileAccess;
 
 public partial class QuestLogManager : Node
 {
+    private UserManager _userManager;
+    public override void _Ready()
+    {
+        _userManager = GetNode<UserManager>("/root/UserManager");
+        base._Ready();
+    }
+
     private string GetSavePath()
     {
-        var userManager = GetNode<UserManager>("/root/UserManager");
-        string username = userManager?.GetCurrentUser() ?? "DefaultUser";
+        string username = _userManager?.GetCurrentUser() ?? "DefaultUser";
         return $"user://saves/{username}/quest_saves/quest_log.json";
     }
 
     private string GetSaveDirectory()
     {
-        var userManager = GetNode<UserManager>("/root/UserManager");
-        string username = userManager?.GetCurrentUser() ?? "DefaultUser";
+        string username = _userManager?.GetCurrentUser() ?? "DefaultUser";
         return $"user://saves/{username}/quest_saves";
     }
 

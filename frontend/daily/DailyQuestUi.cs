@@ -21,15 +21,17 @@ public partial class DailyQuestUi : Control
 
     private QuestManager _questManager;
     private BaseNumberManager _baseNumberManager;
+    private QuestLogManager _questLogManager;
 
     public override void _Ready()
     {
-        LoadQuests();
-
         _backToHomeButton.Pressed += OnBackToHomeButtonPressed;
         _addQuestButton.Pressed += OnAddQuestButtonPressed;
         _questManager = this.GetNode<QuestManager>("/root/QuestManager");
         _baseNumberManager = this.GetNode<BaseNumberManager>("/root/BaseNumberManager");
+        _questLogManager = this.GetNode<QuestLogManager>("/root/QuestLogManager");
+        LoadQuests();
+
 
         this.ConnectSignals();
     }
@@ -103,8 +105,12 @@ public partial class DailyQuestUi : Control
 
     private void LoadQuests()
     {
-        List<Quest> quests = new QuestLogManager().LoadQuestLog();
-        foreach (Quest quest in quests)
+        foreach (Node child in _questList.GetChildren())
+        {
+            child.QueueFree();
+        }
+        _completableQuestComponents.Clear();
+        foreach (var quest in _questManager.GetQuests().Values)
         {
             CompletableQuestComponent newComp = (CompletableQuestComponent)ResourceLoader
                 .Load<PackedScene>(Paths.CompletableQuestComponent).Instantiate<HBoxContainer>();

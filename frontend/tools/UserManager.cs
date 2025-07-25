@@ -104,5 +104,61 @@ public partial class UserManager : Node
         return GetAllUsers().Contains(username);
     }
 
+    public void RenameUser(string oldName, string newName)
+    {
+        if (string.IsNullOrWhiteSpace(newName))
+            throw new ArgumentException("Username cannot be empty");
+        if (UserExists(newName))
+            throw new ArgumentException($"User '{newName}' already exists");
+        if (newName.Contains("_") || newName.Contains("/") || newName.Contains("\\"))
+            throw new ArgumentException("Username cannot contain special characters (_ / \\)");
+        var oldPath = $"user://saves/{oldName}";
+        var newPath = $"user://saves/{newName}";
+        if (!DirAccess.DirExistsAbsolute(oldPath))
+            throw new ArgumentException($"User '{oldName}' does not exist");
+        DirAccess.RenameAbsolute(oldPath, newPath);
+        if (_currentUsername == oldName)
+            SetCurrentUser(newName);
+    }
+
+    public void DeleteUser(string username)
+    {
+        var userPath = $"user://saves/{username}";
+        if (!DirAccess.DirExistsAbsolute(userPath))
+            throw new ArgumentException($"User '{username}' does not exist");
+        RecursiveDelete(userPath);
+        DirAccess.RemoveAbsolute(userPath);
+        if (_currentUsername == username)
+            SetCurrentUser("");
+    }
+
+    private void RecursiveDelete(string path)
+    {
+        var dir = DirAccess.Open(path);
+        if (dir == null) return;
+        dir.ListDirBegin();
+        string entry = dir.GetNext();
+        while (entry != "")
+        {
+            if (entry == "." || entry == "..")
+            {
+                entry = dir.GetNext();
+                continue;
+            }
+            string fullPath = path + "/" + entry;
+            if (dir.CurrentIsDir())
+            {
+                RecursiveDelete(fullPath);
+                DirAccess.RemoveAbsolute(fullPath);
+            }
+            else
+            {
+                DirAccess.RemoveAbsolute(fullPath);
+            }
+            entry = dir.GetNext();
+        }
+        dir.ListDirEnd();
+    }
+
 
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://d10077bwug3rs"]
+[gd_scene load_steps=84 format=3 uid="uid://d10077bwug3rs"]
 
 [ext_resource type="Script" uid="uid://crjrlgdwahath" path="res://start/Home.cs" id="1_kkgq1"]
 [ext_resource type="Texture2D" uid="uid://cwy2ry5wij5uf" path="res://assets/white-circle.png" id="2_8rh7u"]
@@ -10,6 +10,11 @@
 [ext_resource type="Script" uid="uid://bvjboup7bbgws" path="res://start/home_page_sound_2.gd" id="6_25uge"]
 [ext_resource type="Script" uid="uid://dpdwoi777ti6k" path="res://start/home_page_sound_1.gd" id="7_3dgxr"]
 [ext_resource type="AudioStream" uid="uid://bvkiimk6elfc7" path="res://assets/Audio/click3.ogg" id="7_e7cx7"]
+[ext_resource type="Theme" uid="uid://bb6vwl0h1flws" path="res://assets/flat_ui/kenneyUI-blue.tres" id="9_8pn3w"]
+[ext_resource type="Theme" uid="uid://h1f7iqhh7ycb" path="res://assets/flat_ui/kenneyUI-yellow.tres" id="10_dhlcw"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="11_ypj6t"]
+[ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://assets/flat_ui/kenneyUI-green.tres" id="13_ypj6t"]
+[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="15_xwqmo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dgxr"]
 bg_color = Color(1, 1, 1, 1)
@@ -488,76 +493,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5nrr"]
-bg_color = Color(0.815686, 0.815686, 0.815686, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8pn3w"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwqmo"]
-bg_color = Color(0.815686, 0.815686, 0.815686, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fbjbd"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_25uge"]
-bg_color = Color(0.815686, 0.815686, 0.815686, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fv4no"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rh7u"]
-bg_color = Color(0.815686, 0.815686, 0.815686, 1)
-expand_margin_left = 10.0
-expand_margin_top = 10.0
-expand_margin_right = 10.0
-expand_margin_bottom = 10.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mggfm"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oixx4"]
-bg_color = Color(0.815686, 0.815686, 0.815686, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e7cx7"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
 [node name="Home" type="Control" node_paths=PackedStringArray("_expLabel", "_levelLabel", "_expProgressBar", "_dailyButton", "_passiveButton", "_activeButton", "_statsUIButton", "_storeButton", "_settingsButton")]
 layout_mode = 3
 anchors_preset = 15
@@ -569,9 +504,9 @@ script = ExtResource("1_kkgq1")
 _expLabel = NodePath("ColorRect/MarginContainer/HBoxContainer2/VBoxContainer2/Exp")
 _levelLabel = NodePath("ColorRect/MarginContainer/HBoxContainer2/VBoxContainer2/Level")
 _expProgressBar = NodePath("ColorRect/MarginContainer/HBoxContainer2/VBoxContainer2/ExpProgressBar")
-_dailyButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/Daily")
-_passiveButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/Passive")
-_activeButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/Active")
+_dailyButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer/Daily")
+_passiveButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer/Passive")
+_activeButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer/Active")
 _statsUIButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/StatsUI")
 _storeButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Store")
 _settingsButton = NodePath("ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Settings")
@@ -755,6 +690,7 @@ theme_override_constants/margin_bottom = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect3/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect3/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -766,80 +702,55 @@ theme_override_constants/separation = 25
 script = ExtResource("6_25uge")
 
 [node name="StatsUI" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(250, 50)
+custom_minimum_size = Vector2(225, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_g8cuh")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/pressed = SubResource("StyleBoxFlat_m5nrr")
-theme_override_styles/normal = SubResource("StyleBoxFlat_8pn3w")
+theme = ExtResource("11_ypj6t")
 text = "Status Screen"
 
 [node name="Store" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_g8cuh")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/pressed = SubResource("StyleBoxFlat_xwqmo")
-theme_override_styles/normal = SubResource("StyleBoxFlat_fbjbd")
+theme = ExtResource("10_dhlcw")
 text = "Store"
 
 [node name="Settings" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_g8cuh")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/pressed = SubResource("StyleBoxFlat_xwqmo")
-theme_override_styles/normal = SubResource("StyleBoxFlat_fbjbd")
+theme = ExtResource("11_ypj6t")
 text = "Settings"
 
 [node name="ClickSoundEffect3" type="AudioStreamPlayer" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 stream = ExtResource("7_e7cx7")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect3/MarginContainer/HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="ColorRect3/MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="VBoxContainer" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 25
 script = ExtResource("7_3dgxr")
 
-[node name="Daily" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
+[node name="Daily" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(225, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_g8cuh")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/pressed = SubResource("StyleBoxFlat_25uge")
-theme_override_styles/normal = SubResource("StyleBoxFlat_fv4no")
+theme = ExtResource("13_ypj6t")
 text = "Daily Quests"
 
-[node name="Passive" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
+[node name="Passive" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_g8cuh")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/pressed = SubResource("StyleBoxFlat_8rh7u")
-theme_override_styles/normal = SubResource("StyleBoxFlat_mggfm")
+theme = ExtResource("9_8pn3w")
 text = "Passive Dungeon"
 
-[node name="Active" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
+[node name="Active" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_g8cuh")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/pressed = SubResource("StyleBoxFlat_oixx4")
-theme_override_styles/normal = SubResource("StyleBoxFlat_e7cx7")
+theme = ExtResource("15_xwqmo")
 text = "Active Dungeon"
 
-[node name="ClickSoundEffect2" type="AudioStreamPlayer" parent="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="ClickSoundEffect2" type="AudioStreamPlayer" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer"]
 stream = ExtResource("7_e7cx7")
 
 [connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Store" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" method="_on_store_pressed"]
 [connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Settings" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" method="_on_store_pressed"]
-[connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/Daily" to="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer" method="_on_daily_pressed"]
-[connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/Passive" to="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer" method="_on_passive_pressed"]
-[connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer/Active" to="ColorRect3/MarginContainer/HBoxContainer/HBoxContainer" method="_on_active_pressed"]
+[connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer/Daily" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer" method="_on_daily_pressed"]
+[connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer/Passive" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer" method="_on_passive_pressed"]
+[connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer/Active" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer" method="_on_active_pressed"]
