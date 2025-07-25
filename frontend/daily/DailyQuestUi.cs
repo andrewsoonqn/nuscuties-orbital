@@ -20,6 +20,7 @@ public partial class DailyQuestUi : Control
     private Godot.Collections.Dictionary<int, CompletableQuestComponent> _completableQuestComponents = new Godot.Collections.Dictionary<int, CompletableQuestComponent>();
 
     private QuestManager _questManager;
+    private BaseNumberManager _baseNumberManager;
 
     public override void _Ready()
     {
@@ -28,6 +29,7 @@ public partial class DailyQuestUi : Control
         _backToHomeButton.Pressed += OnBackToHomeButtonPressed;
         _addQuestButton.Pressed += OnAddQuestButtonPressed;
         _questManager = this.GetNode<QuestManager>("/root/QuestManager");
+        _baseNumberManager = this.GetNode<BaseNumberManager>("/root/BaseNumberManager");
 
         this.ConnectSignals();
     }
@@ -39,11 +41,17 @@ public partial class DailyQuestUi : Control
         questEditPanelInstance.Initialize(id);
     }
 
+    private void OnQuestCompleted(int coinReward, Vector2 position)
+    {
+        _baseNumberManager.ShowCoinGain(coinReward, position, this, 6.0f);
+    }
+
     private void OnManagerQuestAdded(int id)
     {
         CompletableQuestComponent newComp = (CompletableQuestComponent)ResourceLoader.Load<PackedScene>(Paths.CompletableQuestComponent).Instantiate<HBoxContainer>();
         newComp.Initialize(_questManager.Get(id));
         newComp.QuestRowEditRequested += OnRowEditRequested;
+        newComp.QuestCompleted += OnQuestCompleted;
         this._completableQuestComponents[id] = newComp;
 
         this._questList.AddChild(newComp);
@@ -102,6 +110,7 @@ public partial class DailyQuestUi : Control
                 .Load<PackedScene>(Paths.CompletableQuestComponent).Instantiate<HBoxContainer>();
             newComp.Initialize(quest);
             newComp.QuestRowEditRequested += OnRowEditRequested;
+            newComp.QuestCompleted += OnQuestCompleted;
             this._completableQuestComponents[quest.Id] = newComp;
             this._questList.AddChild(newComp);
         }
