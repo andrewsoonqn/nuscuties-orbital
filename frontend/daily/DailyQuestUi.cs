@@ -70,7 +70,7 @@ public partial class DailyQuestUi : Control
     {
         CompletableQuestComponent toRemove = this._completableQuestComponents.GetValueOrDefault(id);
         toRemove.QueueFree();
-        // this.RemoveChild(toRemove);
+        this.RemoveChild(toRemove);
         this._completableQuestComponents.Remove(id);
     }
 

@@ -50,6 +50,8 @@ public partial class CompletableQuestComponent : HBoxContainer
             _animationPlayer.Play("default/fade_out");
 
             GD.Print($"Daily quest completed! Gained {coinReward} coins");
+            
+            OnFadeOutFinished();
         }
         else
         {
@@ -109,16 +111,10 @@ public partial class CompletableQuestComponent : HBoxContainer
         var library = new AnimationLibrary();
         library.AddAnimation("fade_out", animation);
         _animationPlayer.AddAnimationLibrary("default", library);
-
-        _animationPlayer.AnimationFinished += OnFadeOutFinished;
     }
 
-    private void OnFadeOutFinished(StringName animationName)
+    private void OnFadeOutFinished()
     {
-        if (animationName == "fade_out")
-        {
             _questManager.Remove(_quest.Id);
-            new QuestLogManager().SaveQuestLog(_questManager.GetQuests().Values.ToList());
-        }
     }
 }
