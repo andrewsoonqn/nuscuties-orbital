@@ -70,8 +70,8 @@ public partial class PassiveOngoing : Control
         _expAccumulated = (int)_timeSpent / 2 * 100;
         _expAccumulatedLabel.Text = $"{_expAccumulated:F0} EXP";
 
-        _coinsAccumulated = _inventoryManager.CalculatePassiveDungeonCoinReward(_timeSpent / 60.0);
-        if (_coinsAccumulatedLabel != null)
+        _coinsAccumulated += _inventoryManager.CalculatePassiveDungeonCoinReward(delta);
+        if (_coinsAccumulatedLabel != null && Mathf.RoundToInt(_timeSpent) % 5 == 0) // Update coins every 5 seconds
         {
             _coinsAccumulatedLabel.Text = $"{_coinsAccumulated:F0} Coins";
         }
