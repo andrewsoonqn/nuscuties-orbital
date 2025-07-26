@@ -1,18 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvn8x7y2k4m3p"]
+[gd_scene load_steps=3 format=3 uid="uid://bvn8x7y2k4m3p"]
 
 [ext_resource type="Script" uid="uid://fnl47uaum2ue" path="res://tools/AudioManager.cs" id="1_audio"]
 [ext_resource type="AudioStream" uid="uid://bvkiimk6elfc7" path="res://assets/Audio/click3.ogg" id="2_click"]
-[ext_resource type="AudioStream" uid="uid://bqqihisqtccjv" path="res://assets/Audio/bgm/main.mp3" id="3_unjud"]
-[ext_resource type="AudioStream" uid="uid://dne0dt8t06vcs" path="res://assets/Audio/bgm/fight.ogg" id="4_wibgd"]
 
-[node name="AudioManager" type="Node" node_paths=PackedStringArray("BgmPlayer", "SfxPlayer")]
+[node name="AudioManager" type="Node" node_paths=PackedStringArray("SfxPlayer")]
 script = ExtResource("1_audio")
-BgmPlayer = NodePath("BgmPlayer")
 SfxPlayer = NodePath("SfxPlayer")
 ButtonClickSound = ExtResource("2_click")
-MainBgm = ExtResource("3_unjud")
-FightBgm = ExtResource("4_wibgd")
-
-[node name="BgmPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="."]

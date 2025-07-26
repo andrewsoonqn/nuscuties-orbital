@@ -2,11 +2,8 @@ using Godot;
 
 public partial class AudioManager : Node
 {
-    [Export] public AudioStreamPlayer BgmPlayer;
     [Export] public AudioStreamPlayer SfxPlayer;
     [Export] public AudioStream ButtonClickSound;
-    [Export] public AudioStream MainBgm;
-    [Export] public AudioStream FightBgm;
 
     public override void _Ready()
     {
@@ -21,13 +18,10 @@ public partial class AudioManager : Node
 
     public void ConnectButtonsInNode(Node node)
     {
-        // Check if this node itself is a button in the group
         if (node.IsInGroup("sfx_buttons") && node is Button button)
         {
             button.Pressed += PlayButtonClick;
         }
-
-        // Recursively check all children
         foreach (Node child in node.GetChildren())
         {
             ConnectButtonsInNode(child);
@@ -42,29 +36,6 @@ public partial class AudioManager : Node
             if (node is Button button)
                 button.Pressed += PlayButtonClick;
         }
-    }
-
-    public void PlayBgm(AudioStream stream)
-    {
-        if (BgmPlayer.Stream != stream)
-            BgmPlayer.Stream = stream;
-        if (!BgmPlayer.Playing)
-            BgmPlayer.Play();
-    }
-
-    public void PlayMainBgm()
-    {
-        PlayBgm(MainBgm);
-    }
-
-    public void PlayFightBgm()
-    {
-        PlayBgm(FightBgm);
-    }
-
-    public void StopBgm()
-    {
-        BgmPlayer.Stop();
     }
 
     public void PlaySfx(AudioStream stream)
@@ -82,17 +53,5 @@ public partial class AudioManager : Node
     {
         button.AddToGroup("sfx_buttons");
         button.Pressed += () => PlayButtonClick();
-    }
-
-    public void PauseBgm()
-    {
-        if (BgmPlayer.Playing)
-            BgmPlayer.StreamPaused = true;
-    }
-
-    public void ResumeBgm()
-    {
-        if (BgmPlayer.StreamPaused)
-            BgmPlayer.StreamPaused = false;
     }
 }

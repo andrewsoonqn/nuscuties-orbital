@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmpe7w5nfbt23"]
+
+[ext_resource type="Script" uid="uid://dsprkklu0mufr" path="res://tools/BgmManager.cs" id="1_1novf"]
+[ext_resource type="AudioStream" uid="uid://bqqihisqtccjv" path="res://assets/Audio/bgm/main.mp3" id="3_ulwut"]
+[ext_resource type="AudioStream" uid="uid://dne0dt8t06vcs" path="res://assets/Audio/bgm/fight.ogg" id="4_fnwpn"]
+
+[node name="BgmManager" type="Node" node_paths=PackedStringArray("BgmPlayer")]
+script = ExtResource("1_1novf")
+BgmPlayer = NodePath("BgmPlayer")
+MainBgm = ExtResource("3_ulwut")
+FightBgm = ExtResource("4_fnwpn")
+
+[node name="BgmPlayer" type="AudioStreamPlayer" parent="."]
