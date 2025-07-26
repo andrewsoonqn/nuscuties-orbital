@@ -1,19 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgsu2hn6716me"]
+[gd_scene load_steps=6 format=3 uid="uid://cgsu2hn6716me"]
 
-[ext_resource type="Script" uid="uid://pb2yuk32x2m" path="res://start/UserSelectionPage.cs" id="1_main"]
+[ext_resource type="Script" uid="uid://dr4snw0qo85i2" path="res://start/UserSelectionPage.cs" id="1_main"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_kliaa"]
 [ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://assets/flat_ui/kenneyUI-green.tres" id="3_0g2cu"]
 [ext_resource type="PackedScene" uid="uid://bsf8p7uxhwu2u" path="res://start/components/user_card.tscn" id="3_kliaa"]
 
-[sub_resource type="Gradient" id="Gradient_0g2cu"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 0.831373, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_twbhc"]
-gradient = SubResource("Gradient_0g2cu")
-fill_to = Vector2(1, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i0tnd"]
-texture = SubResource("GradientTexture2D_twbhc")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kliaa"]
+bg_color = Color(0.815686, 0.815686, 0.815686, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="UserSelectionPage" type="Control" node_paths=PackedStringArray("_userContainer", "_addUserButton", "_titleLabel", "_noUsersLabel")]
 layout_mode = 3
@@ -47,7 +49,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("2_kliaa")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 50
 text = "Select Player/Session"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -74,7 +76,7 @@ theme_override_constants/separation = 15
 [node name="PanelContainer" type="PanelContainer" parent="QuestsMargin/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxTexture_i0tnd")
+theme_override_styles/panel = SubResource("StyleBoxFlat_kliaa")
 
 [node name="MarginContainer" type="MarginContainer" parent="QuestsMargin/VBoxContainer/PanelContainer"]
 layout_mode = 2

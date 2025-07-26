@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dht2ibnfr51fe"]
+[gd_scene load_steps=4 format=3 uid="uid://dht2ibnfr51fe"]
 
-[ext_resource type="Script" uid="uid://bqwso72aowxl" path="res://passive/PassiveEndScene.cs" id="1_nld5h"]
+[ext_resource type="Script" uid="uid://djv4r2rxaot3y" path="res://passive/PassiveEndScene.cs" id="1_nld5h"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_ew5ij"]
+[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="3_kv6to"]
 
-[node name="PassiveEndScene" type="Control" node_paths=PackedStringArray("_expAccumulatedLabel", "_totalTimeSpentLabel", "_returnButton")]
+[node name="PassiveEndScene" type="Control" node_paths=PackedStringArray("_expAccumulatedLabel", "_coinsAccumulatedLabel", "_totalTimeSpentLabel", "_returnButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,41 +12,71 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nld5h")
-_expAccumulatedLabel = NodePath("VBoxContainer/Exp")
-_totalTimeSpentLabel = NodePath("VBoxContainer/Time")
-_returnButton = NodePath("VBoxContainer/MarginContainer/Button")
+_expAccumulatedLabel = NodePath("ColorRect/MarginContainer/VBoxContainer/Exp")
+_coinsAccumulatedLabel = NodePath("ColorRect/MarginContainer/VBoxContainer/Label")
+_totalTimeSpentLabel = NodePath("ColorRect/MarginContainer/VBoxContainer/Time")
+_returnButton = NodePath("ColorRect/MarginContainer/VBoxContainer/Button")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.333
-anchor_top = 0.381
-anchor_right = 0.736
-anchor_bottom = 0.453
-offset_left = 120.24
-offset_top = 38.88
-offset_right = -169.92
-offset_bottom = -38.88
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Session Ended!"
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
-[node name="Time" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ew5ij")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Passive Dungeon Cleared!
+"
+horizontal_alignment = 1
+
+[node name="Time" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ew5ij")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "Time Spent: 100 seconds"
+horizontal_alignment = 1
 
-[node name="Exp" type="Label" parent="VBoxContainer"]
+[node name="Exp" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_ew5ij")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "Exp Gained: 100"
+horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 20
+theme = ExtResource("2_ew5ij")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Coins Gained: 100"
+horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer/MarginContainer"]
+[node name="Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Return to 
-Passive Dungeons"
+size_flags_horizontal = 4
+theme = ExtResource("3_kv6to")
+theme_override_font_sizes/font_size = 20
+text = "Return to Passive Dungeon"
