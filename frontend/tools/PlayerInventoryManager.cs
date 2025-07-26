@@ -43,12 +43,12 @@ namespace nuscutiesapp.tools
             return Math.Max(reward, baseCoinReward);
         }
 
-        public int CalculatePassiveDungeonCoinReward(double timeSpentMinutes)
+        public int CalculatePassiveDungeonCoinReward(double timeSpentSeconds)
         {
             int level = _progressionManager.GetLevel();
             double baseCoinRate = 5.0;
             double levelMultiplier = 1.0 + (level * 0.1);
-            double exponentialMultiplier = Math.Pow(timeSpentMinutes, 1.2);
+            double exponentialMultiplier = Math.Pow(timeSpentSeconds, 1.2);
 
             Random random = new Random();
             double variance = 0.85 + (random.NextDouble() * 0.3);

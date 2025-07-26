@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cl3gayqcj5o13"]
+[gd_scene load_steps=4 format=3 uid="uid://djsmtb0gd8ipl"]
 
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="1_h5kx7"]
 [ext_resource type="Script" uid="uid://34gtjlwu3dal" path="res://start/components/ProfileCustomization.cs" id="1_profile"]

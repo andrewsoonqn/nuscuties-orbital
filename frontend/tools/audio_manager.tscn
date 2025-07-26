@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvn8x7y2k4m3p"]
+[gd_scene load_steps=3 format=3 uid="uid://bqosn4m1t6eix"]
 
 [ext_resource type="Script" uid="uid://fnl47uaum2ue" path="res://tools/AudioManager.cs" id="1_audio"]
 [ext_resource type="AudioStream" uid="uid://bvkiimk6elfc7" path="res://assets/Audio/click3.ogg" id="2_click"]

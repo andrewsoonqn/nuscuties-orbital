@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dht2ibnfr51fe"]
+[gd_scene load_steps=3 format=3 uid="uid://dht2ibnfr51fe"]
 
 [ext_resource type="Script" uid="uid://bqwso72aowxl" path="res://passive/PassiveEndScene.cs" id="1_nld5h"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_cgbe2"]
 
 [node name="PassiveEndScene" type="Control" node_paths=PackedStringArray("_expAccumulatedLabel", "_totalTimeSpentLabel", "_returnButton")]
 layout_mode = 3
@@ -10,35 +11,57 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nld5h")
-_expAccumulatedLabel = NodePath("VBoxContainer/Exp")
-_totalTimeSpentLabel = NodePath("VBoxContainer/Time")
+_expAccumulatedLabel = NodePath("VBoxContainer/VBoxContainer/Exp")
+_totalTimeSpentLabel = NodePath("VBoxContainer/VBoxContainer/Time")
 _returnButton = NodePath("VBoxContainer/MarginContainer/Button")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101961, 0.101961, 0.101961, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.333
-anchor_top = 0.381
-anchor_right = 0.736
-anchor_bottom = 0.453
-offset_left = 120.24
-offset_top = 38.88
-offset_right = -169.92
-offset_bottom = -38.88
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.5
+offset_top = -84.0
+offset_right = 130.5
+offset_bottom = 84.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_cgbe2")
+theme_override_constants/separation = 20
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Session Ended!"
 
-[node name="Time" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Time" type="Label" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Time Spent: 100 seconds"
+horizontal_alignment = 1
 
-[node name="Exp" type="Label" parent="VBoxContainer"]
+[node name="Exp" type="Label" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Exp Gained: 100"
+horizontal_alignment = 1
+
+[node name="Exp2" type="Label" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Coins Gained: 100"
+horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -46,5 +69,7 @@ theme_override_constants/margin_top = 20
 
 [node name="Button" type="Button" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 text = "Return to 
 Passive Dungeons"

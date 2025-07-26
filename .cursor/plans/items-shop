@@ -1,0 +1,256 @@
+
+
+
+Item, Skills & Shop System – Implementation Specification
+===========================================================
+
+Feature & Functionality Overview
+--------------------------------
+The item, skills, and shop system introduces a full-fledged RPG-style progression loop that lets players **earn**, **unlock**, **equip**, and **strategically swap** gear to tailor their play-style.
+
+1. Item Ecosystem
+   • Four distinct categories ensure clear role separation and intuitive inventory management.
+     – **Melee Weapons** – Close-quarters damage with varied swing speeds and ranges (Sword → Spear → Long Sword → Dagger).
+     – **Projectile Weapons** – Ranged attacks with elemental modifiers: default Staff, Fire Staff (burn DoT), Snow Staff (slow), Boomerang (return path).
+     – **Passive Necklaces** – Always-on effects: Multi-Shot, Piercing, Exploding, Homing, Armor (damage reduction).
+     – **Active Necklaces** – Triggered abilities on cooldown: Dash, Invisibility, Dual Wield, Bomb (throwable).
+   • Each item has: Name, Icon, Flavour Description, Base Stats/Effects, Price.
+   • Items unlock permanently per device; only one item per category can be equipped at a time.
+
+2. Player Progression & Currency
+   • **Coins** are the single progression currency.
+   • Acquisition sources scale naturally with player level to keep purchases meaningful:
+     – Daily Quests – predictable baseline income.
+     – Passive Dungeons – mid-tier payout on clear.
+     – Active Dungeons – dynamic drops from enemies + boss chest.
+   • Starting Loadout: player begins with basic Sword and 0 coins, encouraging early quest engagement.
+
+3. The Shop Experience
+   • Accessible from the Home scene, the Shop is the central hub for progression decisions.
+   • **TabContainer UI** mirrors the four item categories for quick navigation.
+   • Each **Item Card** cycles through three clear states:
+     1. **Locked** – Shows price, disables purchase if funds insufficient.
+     2. **Unlocked** – Presents "Equip" action; equipping automatically unequips the previous item in that slot.
+     3. **Equipped** – Button switches to "Unequip", providing immediate loadout tweaks.
+   • All state changes (coins, unlocks, equips) broadcast signals so UI remains in sync without manual refresh.
+
+4. In-Dungeon Loadout & Controls
+   • Upon entering an Active Dungeon the player spawn is pre-loaded with their five selected items.
+   • Hot-swap keys (`1`-`4`, `E`) let players adapt to combat situations on the fly without pausing gameplay.
+   • Active Necklace abilities trigger on press and respect individual cooldowns, rewarding timing and skill.
+
+5. Gameplay Impact & Balancing Goals
+   • Design encourages experimentation: low-cost early items (dagger, armor) vs. high-impact end-game gear (dual wield necklace).
+   • Elemental/projectile modifiers add tactical depth—burning/snow effects enable crowd control strategies.
+   • Utility items and active necklaces introduce defensive and mobility layers, allowing diverse builds (glass-cannon, tank, assassin, etc.).
+   • Coin economy tuned so an average session yields enough currency for meaningful progress without trivialising unlocks.
+
+This overview forms the player-facing vision; the following sections translate it into concrete technical tasks and structures.
+
+1. Persistence & Save Data
+--------------------------
+• File location: `user://player_item_data.json` (Godot’s writable path).
+• File is created on first launch with defaults.
+• JSON schema
+  ```json
+  {
+    "coins": 0,
+    "unlocked_items": {
+      "melee": ["sword"],
+      "projectile": [],
+      "utility": [],
+      "necklace_passive": [],
+      "necklace_active": []
+    },
+    "equipped_items": {
+      "melee": "sword",
+      "projectile": null,
+      "utility": null,
+      "necklace_passive": null,
+      "necklace_active": null
+    }
+  }
+  ```
+• Core helper (`ItemSaveSystem.cs`)
+  • `static PlayerData Load()` – returns struct mirror of JSON; creates file with defaults if absent.
+  • `static void Save(PlayerData data)` – serialises struct back to file.
+  • `PlayerData` struct holds the above fields.
+
+2. Currency Handling
+--------------------
+• `CurrencyManager.cs`
+  • Property `int Coins { get; private set; }`.
+  • `void AddCoins(int amount)` – increments & signals update.
+  • `bool SpendCoins(int amount)` – returns false if insufficient.
+  • Emits `CoinsChanged(int newTotal)` signal for UI.
+• Suggested prices (modifiable via catalog data table):
+  • Melee – dagger 500, spear 1500, long_sword 5000
+  • Projectile – staff 700, fire_staff 2000, snow_staff 3000, boomerang 1000
+  • Utility – armor 500, exploding_armor 5000, bomb 3000
+  • Passive necklaces – multi_proj 3000, piercing 4000, exploding 5000, homing 7000
+  • Active necklaces – dash 2000, invisibility 5000, dual_wield 4000
+• Reward scaling
+  • Daily quest: `50 + 5 * level`
+  • Passive dungeon clear: `100 + 10 * level`
+  • Active dungeon enemy drop: each enemy `rng(1..5) + level / 5`
+
+3. Item Catalogue
+-----------------
+• Central JSON/TSV at `assets/data/items_catalog.json` listing:
+  - `id`, `category`, `title`, `description`, `price`, `icon_path`, `scene_path`
+• `ItemCatalog.cs` loads this file at boot and provides lookup by id.
+
+4. Unified Weapon Strategy Architecture
+---------------------------------------
+All items are implemented as `Weapon` objects with different `IUseStrategy` implementations:
+
+```
+frontend/active/characters/Weapons/
+  UseStrategies/
+    WaitForAnimationUserStrategy.cs  (existing - melee weapons)
+    ProjectileUseStrategy.cs         (existing - ranged weapons)
+    PassiveEffectStrategy.cs         (new - passive necklaces)
+    ActiveAbilityStrategy.cs         (new - active necklaces)
+
+  // All weapon scenes use the base Weapon.cs script
+  sword.tscn, dagger.tscn, spear.tscn, long_sword.tscn     (melee)
+  staff.tscn, fire_staff.tscn, snow_staff.tscn             (projectile)
+  armor.tscn, multi_shot.tscn, piercing.tscn               (passive)
+  dash.tscn, invisibility.tscn, bomb.tscn                  (active)
+```
+
+• **Strategy Pattern**: All items leverage the existing `Weapon.Use()` → `strategy.Use(weapon)` flow.
+• **Passive Effects**: `PassiveEffectStrategy` applies modifiers once on equip, stores original values for cleanup.
+• **Active Abilities**: `ActiveAbilityStrategy` handles cooldowns, input binding, and triggered activation.
+• **Unified Creation**: `WeaponCreator.CreateFromCatalog()` determines strategy type from `ItemDef.category`.
+
+5. Inventory Management
+-----------------------
+`InventoryManager.cs`
+• Holds reference to `PlayerData`.
+• `bool UnlockItem(string id)` – checks coins via `CurrencyManager`, updates `unlocked_items`, saves.
+• `void Equip(string category, string id)` – enforces one-per-category, updates `equipped_items`, saves, emits `EquipmentChanged` signal.
+• `void Unequip(string category)` – sets to null or default sword for melee.
+
+6. Shop UI
+----------
+Scene: `ui/shop/shop.tscn`
+• Root `Control` ➔ `TabContainer` (tabs: Melee, Projectile, Passive Necklace, Active Necklace).
+• Each tab contains `GridContainer` of `ItemCard.tscn`.
+`ItemCard.tscn`
+• TextureRect (icon), Label (title), RichTextLabel (description), Button (action).
+• Script determines state:
+  - Locked ➔ Button text = price, disabled if insufficient coins.
+  - Unlocked but unequipped ➔ text = "Equip".
+  - Equipped ➔ text = "Unequip".
+• Button press handlers call `InventoryManager` / `CurrencyManager`.
+• Shop listens to `CoinsChanged` & `EquipmentChanged` to refresh UI live.
+• Shop accessible via Home scene MenuButton ➔ `Shop`.
+
+7. Dungeon Integration
+----------------------
+• On entering Active Dungeon, `LoadoutSpawner` creates `Weapon` objects for all equipped categories via `WeaponCreator.CreateFromCatalog()`.
+• All categories use the same `Weapon.Use()` interface but with different strategies:
+  - **Melee/Projectile**: Player-activated via click/attack input
+  - **Passive**: Auto-activated once on spawn to apply effects
+  - **Active**: Player-activated via `E` key with cooldown management
+• Keybinds inside dungeon:
+  - `1` – switch to melee weapon, `2` – switch to projectile weapon, `E` – activate active necklace ability.
+• Swapping triggers `Player.SwitchWeapon(category)` which changes active weapon; passive effects remain persistent.
+
+8. Reward Distribution Hooks
+----------------------------
+• Daily Quest completion ➔ `CurrencyManager.AddCoins(ComputeDailyReward(player_level))`.
+• Passive Dungeon clear ➔ same with passive formula.
+• Active Dungeon enemy death ➔ enemy emits `CoinsDropped(int amount)` which player picks up.
+• All reward functions centralised in `RewardCalculator.cs` for easy balancing.
+
+9. Testing (gdUnit4)
+--------------------
+• `tests/unit_tests/currency_manager_test.cs` – AddCoins, SpendCoins logic.
+• `tests/unit_tests/inventory_manager_test.cs` – unlock, equip, signals, save persistence.
+• `tests/integration_tests/shop_ui_test.cs` – simulate purchase flow, UI state transitions.
+
+10. Milestone Breakdown
+-----------------------
+1. CurrencyManager & SaveSystem (load/save, coin variable).
+2. Catalog JSON + base weapon/necks scenes with placeholder sprites.
+3. InventoryManager & basic Shop UI with dummy data.
+4. Implement actual item behaviours (weapon damage, projectiles, abilities).
+5. Reward hooks in game modes.
+6. Tests & polish (icons, animations, audio, balance tweaks).
+
+------------------------------------------------------------------
+Revised Design (v2) – Unified Item, Skills & Shop Architecture
+------------------------------------------------------------------
+
+Goals
+• Seamlessly integrate with current weapon code in `frontend/active` without breaking existing combat flow.
+• Re-use `BaseStatManager<T>` persistence pattern for coins, inventory, and loadout for consistency with EXP/Stats managers.
+• Decouple data (catalog JSON) from behaviour (scenes/scripts) to allow easy balancing and extension.
+• Minimise state duplication across managers through a single authoritative `PlayerProgressManager`.
+• Guarantee save-file forward compatibility via versioning & migration hooks.
+
+1. Data Model & Persistence
+• Central struct `PlayerProgressData` (coins, unlockedIds, equippedIds, saveVersion).
+• Manager: `PlayerProgressManager : BaseStatManager<PlayerProgressData>` (autoload root node).
+  – Provides API: `AddCoins`, `SpendCoins`, `UnlockItem`, `EquipItem`, `UnequipItem`, `IsUnlocked`, `IsEquipped`.
+  – Emits signals `CoinsChanged`, `InventoryChanged`, `LoadoutChanged`.
+• Save path: `user://player_progress.json`.
+• On load: if `saveVersion < CURRENT_VERSION` run migration delegate chain.
+
+2. Item Catalogue (Data-Driven)
+• File `assets/data/items_catalog.json` (id, category, title, desc, price, iconPath, scenePath, statsPayload{}).
+• Loaded on boot by singleton `ItemCatalog` (Dictionary<string, ItemDef>). No static enums – avoids code changes when adding items.
+• `statsPayload` is arbitrary JSON merged into instantiated scene via optional interface `IAppliedStats`.
+
+3. Runtime Abstractions
+• **Unified Weapon Strategy Architecture** – All items are weapons with different `IUseStrategy` implementations.
+• Category enum kept only inside code for slot limiting: Melee, Projectile, PassiveNecklace, ActiveNecklace.
+• WeaponCreator refactor:
+  – Accepts `ItemDef` instead of hard-coded weapon type.
+  – Creates `Weapon` objects for ALL categories (melee, projectile, passive, active).
+  – Determines appropriate `IUseStrategy` based on `ItemDef.category`.
+• Strategy Types:
+  – **Melee**: `WaitForAnimationUserStrategy` (existing)
+  – **Projectile**: `ProjectileUseStrategy` (existing)
+  – **Passive**: `PassiveEffectStrategy` (applies persistent modifiers on equip)
+  – **Active**: `ActiveAbilityStrategy` (cooldown-based activation with input binding)
+
+4. Coin & EXP Cohesion
+• `PlayerProgressManager` holds coins; `ProgressionManager` holds exp/level.
+• Reward functions receive reference to both managers to update coins/exp together ensuring level-up signals fire before coin UI refresh.
+
+5. Shop UI Flow
+• Scene graph unchanged (TabContainer➔Grid➔ItemCard) but state derives solely from `PlayerProgressManager` + `ItemCatalog`.
+• `ItemCard` script finite-state: Locked → Affordable (highlight) / Unaffordable → Unlocked → Equipped.
+• All buttons route to `ShopController` which queues requests to `PlayerProgressManager` (prevents double spend race).
+• `ShopController` listens to `CoinsChanged` & `InventoryChanged` for instant UI diff.
+
+6. Loadout Injection into Dungeons
+• `LoadoutSpawner` autoload queries `PlayerProgressManager.GetEquipped(category)` and creates `Weapon` objects via `WeaponCreator.CreateFromCatalog()` for ALL categories.
+• Each category gets a `Weapon` with appropriate strategy: melee uses animation, projectile shoots, passive applies effects, active handles cooldowns.
+• Hot-swap (keys 1-4,E) handled by `LoadoutManager` that switches between equipped `Weapon` objects; each weapon's strategy determines its behavior.
+
+7. Error Handling & Validation
+• `PlayerProgressManager` performs guard checks: non-negative coin balance, unique equip per category, item exists in catalog.
+• Shop button disabled via signal if validation fails (e.g., insufficient coins).
+• All managers log via `GD.PrintErr` on invalid state but continue gracefully.
+
+8. Testing Strategy
+• Unit: `PlayerProgressManagerTest`, `ItemCatalogLoadTest`, `ShopTransactionTest`.
+• Integration: simulate purchase flow & dungeon loadout to ensure equipped scenes match saved ids.
+
+9. Migration from Prototype Assets
+• Sword & Staff already exist; their scenes are referenced in the new catalog.
+• Existing `WeaponCreator.CreateSword/Staff` now internally fetches via `ItemCatalog` to avoid duplicate mapping lists.
+
+10. Milestone Updates
+1. Implement `PlayerProgressManager` + migration skeleton.
+2. Convert `WeaponCreator` + add catalog JSON.
+3. Build Shop UI controllers with new signals.
+4. Passive/Active interfaces & sample items.
+5. End-to-end dungeon spawn + hot-swap.
+6. Validation, polish, tests.
+
+This architecture maintains full backward compatibility with current combat code while providing a scalable, data-driven foundation for future content and error-resilience.

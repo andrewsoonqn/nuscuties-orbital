@@ -1,0 +1,6 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+please go through a small chunk of tasks only at a time. first, explain how you want to implement it, what principles are you considering. then ONLY AFTER CONFIRMATION start implementing 
