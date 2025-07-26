@@ -22,6 +22,13 @@ public partial class Home : Control
     private SettingsPopup _settingsPopupInstance;
     public override void _Ready()
     {
+        var userManager = GetNode<UserManager>("/root/UserManager");
+        if (string.IsNullOrEmpty(userManager.GetCurrentUser()))
+        {
+            GetTree().ChangeSceneToFile(Paths.UserSelection);
+            return;
+        }
+
         _expManager = GetNode<ProgressionManager>("/root/ProgressionManager");
         int exp = _expManager.GetExp();
         int level = _expManager.GetLevel();

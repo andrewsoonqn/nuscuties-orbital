@@ -92,7 +92,7 @@ namespace nuscutiesapp.tools
         private string GetUserDirectory()
         {
             var userManager = GetNode<UserManager>("/root/UserManager");
-            string username = userManager?.GetCurrentUser() ?? "DefaultUser";
+            string username = userManager?.GetCurrentUser();
             return $"user://saves/{username}";
         }
 

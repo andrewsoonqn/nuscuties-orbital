@@ -54,7 +54,7 @@ public partial class AddUserDialog : AcceptDialog
 
         if (username.Length > 15)
         {
-            ShowError("Username must be 20 characters or less");
+            ShowError("Username must be 15 characters or less");
             return;
         }
 

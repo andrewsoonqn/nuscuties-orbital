@@ -3,7 +3,7 @@ using nuscutiesapp.active.characters.DamageSystem;
 
 namespace nuscutiesapp.active.characters.StatusEffects
 {
-        public partial class ForcefieldStatusEffect : StatusEffect
+    public partial class ForcefieldStatusEffect : StatusEffect
     {
         private bool _hasBlocked = false;
         public bool HasBlocked => _hasBlocked;
