@@ -8,7 +8,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x3fal"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="SettingsPopup" type="Control" node_paths=PackedStringArray("_settingsContainer")]
+[node name="SettingsPopup" type="Control" node_paths=PackedStringArray("_settingsContainer", "_backButton")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -24,6 +24,7 @@ grow_vertical = 2
 theme = ExtResource("1_x3fal")
 script = ExtResource("1_settings")
 _settingsContainer = NodePath("PanelContainer/VBoxContainer/MarginContainer/SettingsContainer")
+_backButton = NodePath("PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/Button")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -50,12 +51,21 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 15
 
-[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
-size_flags_vertical = 0
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 24
 text = "Settings"
 horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer" groups=["sfx_buttons"]]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "Back"
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2

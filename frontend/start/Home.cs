@@ -68,6 +68,10 @@ public partial class Home : Control
             _settingsPopupInstance.LogoutRequested += OnLogoutRequested;
             GetTree().Root.AddChild(_settingsPopupInstance);
         }
+        else
+        {
+            _settingsPopupInstance.Show();
+        }
     }
 
     private void OnLogoutRequested()

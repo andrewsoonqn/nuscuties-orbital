@@ -5,7 +5,6 @@ public partial class ProfileCustomization : Control
 {
     [Export] private Label _currentUserLabel;
     [Export] private Button _changeUserButton;
-    [Export] private Button _editProfileButton;
 
     private UserManager _userManager;
 
@@ -20,7 +19,6 @@ public partial class ProfileCustomization : Control
     private void ConnectSignals()
     {
         _changeUserButton.Pressed += OnChangeUserPressed;
-        _editProfileButton.Pressed += OnEditProfilePressed;
     }
 
     private void UpdateDisplay()
@@ -37,10 +35,5 @@ public partial class ProfileCustomization : Control
     private void OnChangeUserPressed()
     { 
         EmitSignalLogoutRequested();
-    }
-
-    private void OnEditProfilePressed()
-    {
-        GD.Print("Edit profile functionality - to be implemented");
     }
 }

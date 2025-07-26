@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://34gtjlwu3dal" path="res://start/components/ProfileCustomization.cs" id="1_profile"]
 [ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="3_jn5k7"]
 
-[node name="ProfileCustomization" type="VBoxContainer" node_paths=PackedStringArray("_currentUserLabel", "_changeUserButton", "_editProfileButton")]
+[node name="ProfileCustomization" type="VBoxContainer" node_paths=PackedStringArray("_currentUserLabel", "_changeUserButton")]
 offset_right = 209.0
 offset_bottom = 68.0
 size_flags_horizontal = 3
@@ -12,7 +12,6 @@ theme = ExtResource("1_h5kx7")
 script = ExtResource("1_profile")
 _currentUserLabel = NodePath("CurrentUserLabel")
 _changeUserButton = NodePath("ButtonContainer/ChangeUserButton")
-_editProfileButton = NodePath("ButtonContainer/EditProfileButton")
 
 [node name="CurrentUserLabel" type="Label" parent="."]
 layout_mode = 2
@@ -28,8 +27,3 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_jn5k7")
 text = "Logout"
-
-[node name="EditProfileButton" type="Button" parent="ButtonContainer" groups=["sfx_buttons"]]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Edit Profile"
