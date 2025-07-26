@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cl3gayqcj5o13"]
+
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="1_h5kx7"]
+[ext_resource type="Script" uid="uid://34gtjlwu3dal" path="res://start/components/ProfileCustomization.cs" id="1_profile"]
+[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="3_jn5k7"]
+
+[node name="ProfileCustomization" type="VBoxContainer" node_paths=PackedStringArray("_currentUserLabel", "_changeUserButton")]
+offset_right = 209.0
+offset_bottom = 68.0
+size_flags_horizontal = 3
+theme = ExtResource("1_h5kx7")
+script = ExtResource("1_profile")
+_currentUserLabel = NodePath("CurrentUserLabel")
+_changeUserButton = NodePath("ButtonContainer/ChangeUserButton")
+
+[node name="CurrentUserLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Current User: Unknown"
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ChangeUserButton" type="Button" parent="ButtonContainer" groups=["sfx_buttons"]]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_jn5k7")
+text = "Logout"

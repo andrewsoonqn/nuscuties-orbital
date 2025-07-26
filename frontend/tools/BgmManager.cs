@@ -8,8 +8,16 @@ public partial class BgmManager : Node
 
     public override void _Ready()
     {
-        // Optionally, play main BGM on startup
-        // PlayMainBgm();
+        SetVolume(GetNode<SettingsManager>("/root/SettingsManager").LoadSettings().BgmVolume);
+    }
+
+    public float GetVolume()
+    {
+        return Mathf.DbToLinear(BgmPlayer.VolumeDb);
+    }
+    public void SetVolume(float percentage)
+    {
+        BgmPlayer.VolumeDb = Mathf.LinearToDb(percentage);
     }
 
     public void PlayBgm(AudioStream stream)
