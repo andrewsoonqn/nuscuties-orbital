@@ -91,7 +91,7 @@ size_flags_vertical = 3
 [node name="UserContainer" type="VBoxContainer" parent="QuestsMargin/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 0
 theme_override_constants/separation = 10
 
 [node name="UserCard" parent="QuestsMargin/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/UserContainer" instance=ExtResource("3_kliaa")]
