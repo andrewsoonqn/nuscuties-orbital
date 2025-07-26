@@ -1,29 +1,140 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnbn7cbnngtli"]
+[gd_scene load_steps=15 format=3 uid="uid://bnbn7cbnngtli"]
 
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="1_e74bp"]
 [ext_resource type="Script" uid="uid://dk5cvxldnpjvf" path="res://passive/PassiveOngoing.cs" id="1_xw3ot"]
+[ext_resource type="Texture2D" uid="uid://bw21rbqmofoji" path="res://assets/dungeon_art/heroes/knight/knight_run_spritesheet.png" id="2_2qsoh"]
+[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="4_ftbha"]
 
-[node name="PassiveOngoing" type="Control" node_paths=PackedStringArray("_timeSpentLabel", "_totalTimeLabel", "_timeProgressBar", "_expAccumulatedLabel", "_sessionNameLabel", "_quitButton")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2moy"]
+atlas = ExtResource("2_2qsoh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e74bp"]
+atlas = ExtResource("2_2qsoh")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftbha"]
+atlas = ExtResource("2_2qsoh")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfwvg"]
+atlas = ExtResource("2_2qsoh")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88me8"]
+atlas = ExtResource("2_2qsoh")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5srf"]
+atlas = ExtResource("2_2qsoh")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_run"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2moy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e74bp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftbha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfwvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88me8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5srf")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_detvm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_s0nrm"]
+resource_name = "run"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7kmvg"]
+_data = {
+&"RESET": SubResource("Animation_detvm"),
+&"run": SubResource("Animation_s0nrm")
+}
+
+[node name="PassiveOngoing" type="Control" node_paths=PackedStringArray("_timeSpentLabel", "_totalTimeLabel", "_timeProgressBar", "_expAccumulatedLabel", "_coinsAccumulatedLabel", "_sessionNameLabel", "_quitButton", "_runningSprite", "_runningSpritePlayer", "_spriteContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_e74bp")
 script = ExtResource("1_xw3ot")
 _timeSpentLabel = NodePath("VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer/PanelContainer/TimeSpent")
 _totalTimeLabel = NodePath("VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer/TotalTime")
 _timeProgressBar = NodePath("VBoxContainer/TimeInfo/VBoxContainer/ProgressBar")
 _expAccumulatedLabel = NodePath("VBoxContainer/Rewards/VBoxContainer/PanelContainer/ExpInfo")
+_coinsAccumulatedLabel = NodePath("VBoxContainer/Rewards/VBoxContainer/PanelContainer2/Coins")
 _sessionNameLabel = NodePath("VBoxContainer/SessionInfo/SessionName")
 _quitButton = NodePath("VBoxContainer/Quit/QuitButton")
+_runningSprite = NodePath("VBoxContainer/HBoxContainer/RunningSprite")
+_runningSpritePlayer = NodePath("VBoxContainer/HBoxContainer/RunningSprite/AnimationPlayer")
+_spriteContainer = NodePath("VBoxContainer/HBoxContainer")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101961, 0.101961, 0.101961, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.15
-anchor_top = 0.3
-anchor_right = 0.85
-anchor_bottom = 0.35
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.5
+offset_top = -200.0
+offset_right = 220.5
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="SessionInfo" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -34,8 +145,25 @@ theme_override_constants/margin_bottom = 10
 
 [node name="SessionName" type="Label" parent="VBoxContainer/SessionInfo"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Session: Unnamed"
 horizontal_alignment = 1
+
+[node name="HBoxContainer" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RunningSprite" type="AnimatedSprite2D" parent="VBoxContainer/HBoxContainer"]
+position = Vector2(42.5, 75)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_run")
+animation = &"run"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/HBoxContainer/RunningSprite"]
+libraries = {
+&"": SubResource("AnimationLibrary_7kmvg")
+}
 
 [node name="TimeInfo" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -49,6 +177,7 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TimeInfo/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="Title" type="Label" parent="VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -68,6 +197,9 @@ text = "out of 120 seconds"
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/TimeInfo/VBoxContainer"]
 layout_mode = 2
 
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
 [node name="Rewards" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
@@ -81,13 +213,24 @@ layout_mode = 2
 [node name="Title" type="Label" parent="VBoxContainer/Rewards/VBoxContainer"]
 layout_mode = 2
 text = "Rewards gained so far:"
+horizontal_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Rewards/VBoxContainer"]
 layout_mode = 2
 
 [node name="ExpInfo" type="Label" parent="VBoxContainer/Rewards/VBoxContainer/PanelContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "0 EXP"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/Rewards/VBoxContainer"]
+layout_mode = 2
+
+[node name="Coins" type="Label" parent="VBoxContainer/Rewards/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0 Coins"
 horizontal_alignment = 1
 
 [node name="Quit" type="MarginContainer" parent="VBoxContainer"]
@@ -99,4 +242,5 @@ theme_override_constants/margin_bottom = 10
 
 [node name="QuitButton" type="Button" parent="VBoxContainer/Quit"]
 layout_mode = 2
+theme = ExtResource("4_ftbha")
 text = "Quit and Get Current Rewards"
