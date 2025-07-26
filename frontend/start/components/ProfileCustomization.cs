@@ -33,7 +33,7 @@ public partial class ProfileCustomization : Control
     [Signal]
     public delegate void LogoutRequestedEventHandler();
     private void OnChangeUserPressed()
-    { 
+    {
         EmitSignalLogoutRequested();
     }
 }

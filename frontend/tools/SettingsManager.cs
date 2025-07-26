@@ -64,7 +64,7 @@ public partial class SettingsManager : Node
             {
                 string jsonString = file.GetAsText();
                 try
-                { 
+                {
                     SettingsData loadedLog = JsonSerializer.Deserialize<SettingsData>(jsonString);
                     res = loadedLog;
                 }

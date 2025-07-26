@@ -33,7 +33,7 @@ public partial class CompletableQuestComponent : HBoxContainer
 
         // Connect animation finished signal
         _animationPlayer.AnimationFinished += OnAnimationFinished;
-        
+
         GetNode<AudioManager>("/root/AudioManager").ConnectButtonsInNode(this);
     }
 

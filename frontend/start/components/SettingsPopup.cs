@@ -18,10 +18,11 @@ public partial class SettingsPopup : Control
         var sfxVolume = GetNode<AudioManager>("/root/AudioManager").GetVolume();
         return new SettingsManager.SettingsData()
         {
-            BgmVolume = bgmVolume, SfxVolume = sfxVolume
+            BgmVolume = bgmVolume,
+            SfxVolume = sfxVolume
         };
     }
-    
+
     public override void _Ready()
     {
         base._Ready();
