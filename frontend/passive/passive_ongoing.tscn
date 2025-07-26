@@ -1,8 +1,34 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnbn7cbnngtli"]
+[gd_scene load_steps=8 format=3 uid="uid://bnbn7cbnngtli"]
 
-[ext_resource type="Script" uid="uid://dk5cvxldnpjvf" path="res://passive/PassiveOngoing.cs" id="1_xw3ot"]
+[ext_resource type="Script" uid="uid://bwrfj4v4xbpbk" path="res://passive/PassiveOngoing.cs" id="1_xw3ot"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_a2moy"]
+[ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://assets/flat_ui/kenneyUI-green.tres" id="3_e74bp"]
 
-[node name="PassiveOngoing" type="Control" node_paths=PackedStringArray("_timeSpentLabel", "_totalTimeLabel", "_timeProgressBar", "_expAccumulatedLabel", "_quitButton")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ftbha"]
+bg_color = Color(1, 1, 1, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfwvg"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88me8"]
+bg_color = Color(0.686275, 0.247059, 0.843137, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2moy"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="PassiveOngoing" type="Control" node_paths=PackedStringArray("_timeSpentLabel", "_totalTimeLabel", "_timeProgressBar", "_expAccumulatedLabel", "_coinsAccumulatedLabel", "_quitButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,80 +36,151 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xw3ot")
-_timeSpentLabel = NodePath("VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer/PanelContainer/TimeSpent")
-_totalTimeLabel = NodePath("VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer/TotalTime")
-_timeProgressBar = NodePath("VBoxContainer/TimeInfo/VBoxContainer/ProgressBar")
-_expAccumulatedLabel = NodePath("VBoxContainer/Rewards/VBoxContainer/PanelContainer/ExpInfo")
-_quitButton = NodePath("VBoxContainer/Quit/QuitButton")
+_timeSpentLabel = NodePath("ColorRect/MarginContainer/VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer/PanelContainer/TimeSpent")
+_totalTimeLabel = NodePath("ColorRect/MarginContainer/VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer/TotalTime")
+_timeProgressBar = NodePath("ColorRect/MarginContainer/VBoxContainer/TimeInfo/VBoxContainer/ProgressBar")
+_expAccumulatedLabel = NodePath("ColorRect/MarginContainer/VBoxContainer/Rewards/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/ExpInfo")
+_coinsAccumulatedLabel = NodePath("ColorRect/MarginContainer/VBoxContainer/Rewards/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/CoinsInfo")
+_quitButton = NodePath("ColorRect/MarginContainer/VBoxContainer/Quit/QuitButton")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.15
-anchor_top = 0.3
-anchor_right = 0.85
-anchor_bottom = 0.35
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="TimeInfo" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_a2moy")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "IDLING..."
+horizontal_alignment = 1
+
+[node name="TimeInfo" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TimeInfo"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/TimeInfo"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TimeInfo/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/TimeInfo/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="Title" type="Label" parent="VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Time left in dungeon:"
+theme = ExtResource("2_a2moy")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Progress:"
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="ColorRect/MarginContainer/VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ftbha")
 
-[node name="TimeSpent" type="Label" parent="VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer/PanelContainer"]
+[node name="TimeSpent" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
+theme = ExtResource("2_a2moy")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "x"
 
-[node name="TotalTime" type="Label" parent="VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer"]
+[node name="TotalTime" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "out of 120 seconds"
+theme = ExtResource("2_a2moy")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "out of 120 minutes"
 
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/TimeInfo/VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="ColorRect/MarginContainer/VBoxContainer/TimeInfo/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+theme = ExtResource("2_a2moy")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/background = SubResource("StyleBoxFlat_pfwvg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_88me8")
 
-[node name="Rewards" type="MarginContainer" parent="VBoxContainer"]
+[node name="Rewards" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Rewards"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/Rewards"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="Title" type="Label" parent="VBoxContainer/Rewards/VBoxContainer"]
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/Rewards/VBoxContainer"]
 layout_mode = 2
-text = "Rewards gained so far:"
+theme = ExtResource("2_a2moy")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Rewards accumulated:"
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Rewards/VBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="ColorRect/MarginContainer/VBoxContainer/Rewards/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a2moy")
 
-[node name="ExpInfo" type="Label" parent="VBoxContainer/Rewards/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer/Rewards/VBoxContainer/PanelContainer2"]
 layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/Rewards/VBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ExpInfo" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/Rewards/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_a2moy")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
 text = "0 EXP"
 horizontal_alignment = 1
 
-[node name="Quit" type="MarginContainer" parent="VBoxContainer"]
+[node name="CoinsInfo" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/Rewards/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_a2moy")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "0 Coins"
+horizontal_alignment = 1
+
+[node name="Quit" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 10
 
-[node name="QuitButton" type="Button" parent="VBoxContainer/Quit"]
+[node name="QuitButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/Quit"]
 layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_e74bp")
 text = "Quit and Get Current Rewards"

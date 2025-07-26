@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdqyj4tvm3k8h"]
+[gd_scene load_steps=6 format=3 uid="uid://bdqyj4tvm3k8h"]
 
-[ext_resource type="Script" uid="uid://bnjrvbe5uuyvn" path="res://ui/shop/ShopController.cs" id="1_shop"]
+[ext_resource type="Script" uid="uid://bm3n5nubpanbc" path="res://ui/shop/ShopController.cs" id="1_shop"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_fre4r"]
-[ext_resource type="Texture2D" uid="uid://blnr63uhfavdd" path="res://assets/dungeon_art/props_itens/bag_coins.png" id="4_kcwo1"]
+[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="2_n5hkn"]
+[ext_resource type="Texture2D" uid="uid://c6g2lwo50uvct" path="res://assets/dungeon_art/props_itens/bag_coins.png" id="4_kcwo1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5wpfl"]
 atlas = ExtResource("4_kcwo1")
@@ -52,8 +53,8 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-theme = ExtResource("2_fre4r")
-text = "Back"
+theme = ExtResource("2_n5hkn")
+text = "Back to Home"
 
 [node name="CoinsDisplay" type="HBoxContainer" parent="VBoxContainer/MarginContainer/Header"]
 layout_mode = 2

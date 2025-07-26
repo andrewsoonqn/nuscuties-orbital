@@ -1,14 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://bx8k5jp2n7qvy"]
+[gd_scene load_steps=7 format=3 uid="uid://bx8k5jp2n7qvy"]
 
-[ext_resource type="Script" uid="uid://dukex43y0p27s" path="res://daily/components/QuestEditPanel.cs" id="1_modal"]
-[ext_resource type="Texture2D" uid="uid://bkhw1akgv0fou" path="res://assets/flat_ui/PNG/Grey/Double/button_square_depth_gradient.png" id="2_ljexo"]
+[ext_resource type="Script" uid="uid://dsyrncnxno7wr" path="res://daily/components/QuestEditPanel.cs" id="1_modal"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_gua5t"]
 [ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://assets/flat_ui/kenneyUI-green.tres" id="4_ka370"]
 [ext_resource type="Theme" uid="uid://bb6vwl0h1flws" path="res://assets/flat_ui/kenneyUI-blue.tres" id="5_6rhgm"]
 [ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="6_qn7sr"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v6dkc"]
-texture = ExtResource("2_ljexo")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12sxn"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.686275, 0.247059, 0.843137, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="QuestEditPanel" type="Control" node_paths=PackedStringArray("_titleLabel", "_descriptionLabel", "_titleEdit", "_descriptionEdit", "_editButton", "_deleteButton", "_doneButton", "_okButton", "_cancelButton", "_headerLabel")]
 layout_mode = 3
@@ -42,7 +50,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxTexture_v6dkc")
+theme_override_styles/panel = SubResource("StyleBoxFlat_12sxn")
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
 layout_mode = 2

@@ -1,11 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3gajuaurr0n6"]
+[gd_scene load_steps=4 format=3 uid="uid://c3gajuaurr0n6"]
 
-[ext_resource type="Script" uid="uid://58r80g24p8rj" path="res://active/ActiveEndScene.cs" id="1_3vdbn"]
-[ext_resource type="Texture2D" uid="uid://2mef3pbmf8gq" path="res://assets/flat_ui/PNG/Extra/Double/button_rectangle_depth_line.png" id="2_ls4rd"]
+[ext_resource type="Script" uid="uid://bideliw7tunii" path="res://active/ActiveEndScene.cs" id="1_3vdbn"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_smfae"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b72xs"]
-texture = ExtResource("2_ls4rd")
+[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="4_smfae"]
 
 [node name="EndScene" type="Control" node_paths=PackedStringArray("_message", "_rewards", "_backButton")]
 layout_mode = 3
@@ -15,9 +12,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3vdbn")
-_message = NodePath("PanelContainer/MarginContainer/VBoxContainer/Message")
-_rewards = NodePath("PanelContainer/MarginContainer/VBoxContainer/Rewards")
-_backButton = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Button")
+_message = NodePath("ColorRect/MarginContainer/VBoxContainer/Message")
+_rewards = NodePath("ColorRect/MarginContainer/VBoxContainer/Rewards")
+_backButton = NodePath("ColorRect/MarginContainer/VBoxContainer/Button")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -27,40 +24,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.45
-anchor_right = 0.5
-anchor_bottom = 0.45
-offset_left = -135.5
-offset_top = -67.96
-offset_right = 135.5
-offset_bottom = 91.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_b72xs")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 48
+size_flags_vertical = 4
+theme_override_constants/separation = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Message" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Message" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_smfae")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-text = "Congrats!"
+theme_override_font_sizes/font_size = 50
+text = "Active Dungeon Cleared!
+"
 
-[node name="Rewards" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Rewards" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_smfae")
@@ -68,15 +58,9 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "You have won x EXP"
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-
-[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("3_smfae")
+theme = ExtResource("4_smfae")
 theme_override_font_sizes/font_size = 32
-text = "Back to Menu"
+text = "Back to Home"
