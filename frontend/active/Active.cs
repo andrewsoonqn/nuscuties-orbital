@@ -20,6 +20,7 @@ public partial class Active : Control
 
     private void StartGameButtonOnPressed()
     {
+        GetNode<AudioManager>("/root/AudioManager").PlayFightBgm();
         GetTree().ChangeSceneToFile(Paths.ActiveGame);
     }
 

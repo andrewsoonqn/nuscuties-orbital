@@ -14,6 +14,7 @@ public partial class LoginPage : Control
 
     private void LoginButtonOnPressed()
     {
+        GetNode<AudioManager>("/root/AudioManager").PlayMainBgm();
         GetTree().ChangeSceneToFile(Paths.UserSelection);
     }
 }
