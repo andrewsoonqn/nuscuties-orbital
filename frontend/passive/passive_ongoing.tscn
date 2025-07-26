@@ -240,7 +240,7 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 10
 
-[node name="QuitButton" type="Button" parent="VBoxContainer/Quit"]
+[node name="QuitButton" type="Button" parent="VBoxContainer/Quit" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("4_ftbha")
 text = "Quit and Get Current Rewards"

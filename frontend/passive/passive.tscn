@@ -39,7 +39,7 @@ offset_bottom = 40.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
-[node name="BackToHome" type="Button" parent="MarginContainer"]
+[node name="BackToHome" type="Button" parent="MarginContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("3_6w03e")
 text = "Back to Home"
@@ -143,7 +143,7 @@ theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 50
 
-[node name="Button" type="Button" parent="VBoxContainer/MarginContainer"]
+[node name="Button" type="Button" parent="VBoxContainer/MarginContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("4_dmpvw")
