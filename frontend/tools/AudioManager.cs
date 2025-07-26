@@ -8,19 +8,40 @@ public partial class AudioManager : Node
 
     public override void _Ready()
     {
-        CallDeferred(nameof(ConnectButtonSignals));
+        GetTree().Root.ChildEnteredTree += OnChildEnteredTree;
+        ConnectAllCurrentButtons();
     }
 
-    private void ConnectButtonSignals()
+    private void OnChildEnteredTree(Node node)
+    {
+        ConnectButtonsInNode(node);
+    }
+
+    public void ConnectButtonsInNode(Node node)
+    {
+        // Check if this node itself is a button in the group
+        if (node.IsInGroup("sfx_buttons") && node is Button button)
+        {
+            button.Pressed += PlayButtonClick;
+        }
+    
+        // Recursively check all children
+        foreach (Node child in node.GetChildren())
+        {
+            ConnectButtonsInNode(child);
+        }
+    }
+
+    private void ConnectAllCurrentButtons()
     {
         var buttons = GetTree().GetNodesInGroup("sfx_buttons");
         foreach (var node in buttons)
         {
             if (node is Button button)
-                button.Pressed += () => PlayButtonClick();
+                button.Pressed += PlayButtonClick;
         }
     }
-
+    
     public void PlayBgm(AudioStream stream)
     {
         if (BgmPlayer.Stream != stream)

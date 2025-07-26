@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bsf8p7uxhwu2u"]
 
-[ext_resource type="Script" path="res://start/components/UserCard.cs" id="1_card"]
+[ext_resource type="Script" uid="uid://cjlfwk5jawrd8" path="res://start/components/UserCard.cs" id="1_card"]
 [ext_resource type="Texture2D" uid="uid://dfrmbvyyte6nf" path="res://assets/flat_ui/PNG/Blue/Default/button_rectangle_depth_border.png" id="2_6jfxa"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_b1jib"]
 [ext_resource type="Theme" uid="uid://bb6vwl0h1flws" path="res://assets/flat_ui/kenneyUI-blue.tres" id="3_6jfxa"]

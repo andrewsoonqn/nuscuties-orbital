@@ -148,7 +148,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 4
 theme = ExtResource("3_j6wo2")
 
-[node name="EditButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="EditButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4

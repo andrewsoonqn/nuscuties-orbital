@@ -110,13 +110,13 @@ layout_mode = 2
 theme = ExtResource("4_ka370")
 text = "Edit"
 
-[node name="OkButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="OkButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer" groups=["sfx_buttons"]]
 visible = false
 layout_mode = 2
 theme = ExtResource("5_6rhgm")
 text = "OK"
 
-[node name="CancelButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="CancelButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer" groups=["sfx_buttons"]]
 visible = false
 layout_mode = 2
 theme = ExtResource("6_qn7sr")
