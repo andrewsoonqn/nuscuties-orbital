@@ -36,6 +36,9 @@ LoadoutSpawner="*res://tools/LoadoutSpawner.cs"
 BaseNumberManager="*res://tools/BaseNumberManager.cs"
 DropManager="*res://active/drops/DropManager.cs"
 UserManager="*res://tools/UserManager.cs"
+AccountManager="*res://tools/AccountManager.cs"
+DamageNumberManager="*res://tools/DamageNumberManager.cs"
+AudioManager="*res://tools/audio_manager.tscn"
 
 [display]
 
@@ -59,6 +62,7 @@ settings/test/test_discovery=true
 [global_group]
 
 projectile_collision=""
+sfx_buttons=""
 
 [gui]
 
@@ -90,3 +94,8 @@ dash={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
+
+[user_settings]
+
+sfx_volume=100.0
+bgm_volume=100.0

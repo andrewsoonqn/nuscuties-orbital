@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bq8v7x5r8tdj3"]
+[gd_scene load_steps=4 format=3 uid="uid://cda1mi1a1x27k"]
 
-[ext_resource type="Script" uid="uid://b1qr6c2kgl1x5" path="res://active/drops/BuffPotion.cs" id="1_buff"]
+[ext_resource type="Script" path="res://active/drops/BuffPotion.cs" id="1_buff"]
 [ext_resource type="Texture2D" uid="uid://c5242g0xpme4x" path="res://assets/dawn_like/Items/Potion.png" id="2_buff"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_buff"]

@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bq8v7x5r8tdj2"]
+[gd_scene load_steps=4 format=3 uid="uid://cluiuocg7htll"]
 
-[ext_resource type="Script" uid="uid://wpnhr2sf7rtk" path="res://active/drops/HealthPotion.cs" id="1_health"]
+[ext_resource type="Script" path="res://active/drops/HealthPotion.cs" id="1_health"]
 [ext_resource type="Texture2D" uid="uid://des0thcuhucyv" path="res://assets/dungeon_art/props_itens/potion_red.png" id="2_pfd8c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_health"]

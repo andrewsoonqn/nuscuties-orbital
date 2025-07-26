@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://56pxw8nebw80"]
+[gd_scene load_steps=14 format=3 uid="uid://curvwj1fedkf2"]
 
-[ext_resource type="Script" uid="uid://37cqkhf5rq8" path="res://active/drops/VictoryOrb.cs" id="1_victory"]
+[ext_resource type="Script" path="res://active/drops/VictoryOrb.cs" id="1_victory"]
 [ext_resource type="Texture2D" uid="uid://dfnmy1ccfy63w" path="res://assets/dungeon_art/props_itens/torch_anim_f0.png" id="2_u1h0d"]
 [ext_resource type="Texture2D" uid="uid://dtmvj14shpqeu" path="res://assets/dungeon_art/props_itens/torch_anim_f1.png" id="3_ch10m"]
 [ext_resource type="Texture2D" uid="uid://c2h3l753boa2e" path="res://assets/dungeon_art/props_itens/torch_anim_f2.png" id="4_3cnib"]

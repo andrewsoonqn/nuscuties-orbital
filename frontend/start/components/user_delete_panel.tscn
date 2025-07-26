@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfchucl7nsm7n"]
+[gd_scene load_steps=7 format=3 uid="uid://cfnbom17goxt6"]
 
-[ext_resource type="Script" uid="uid://dbf4fa3dxmgo6" path="res://start/components/UserDeletePanel.cs" id="1_userdelete"]
+[ext_resource type="Script" path="res://start/components/UserDeletePanel.cs" id="1_userdelete"]
 [ext_resource type="Texture2D" uid="uid://bkhw1akgv0fou" path="res://assets/flat_ui/PNG/Grey/Double/button_square_depth_gradient.png" id="2_ljexo"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_gua5t"]
 [ext_resource type="Theme" uid="uid://bb6vwl0h1flws" path="res://assets/flat_ui/kenneyUI-blue.tres" id="5_6rhgm"]
@@ -78,12 +78,12 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="OkButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="OkButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("5_6rhgm")
 text = "OK"
 
-[node name="CancelButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="CancelButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("5_512vn")
 text = "Cancel"
