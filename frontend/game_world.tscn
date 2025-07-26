@@ -354,7 +354,6 @@ script = ExtResource("1_e08lw")
 [node name="Player" parent="." instance=ExtResource("3_mcbma")]
 position = Vector2(0, 0)
 collision_mask = 1
-_acceleration = 0.15
 
 [node name="PlayerStates" type="Label" parent="Player"]
 visible = false

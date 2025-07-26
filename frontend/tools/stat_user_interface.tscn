@@ -1,14 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cx4fh3fppdavn"]
+[gd_scene load_steps=5 format=3 uid="uid://cx4fh3fppdavn"]
 
 [ext_resource type="Script" uid="uid://bcn1fhbulr14w" path="res://tools/StatUserInterface.cs" id="1_v6qx2"]
-[ext_resource type="FontFile" uid="uid://dkjdxog3b4fl4" path="res://assets/Jacquard24-Regular.ttf" id="2_wgmce"]
-[ext_resource type="FontFile" uid="uid://db7byayhdbwy3" path="res://assets/Inter_18pt-Regular.ttf" id="3_ty1tp"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_wgmce"]
+[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="3_ty1tp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgmce"]
-bg_color = Color(0.0431373, 0.0431373, 0.0431373, 0.882353)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ty1tp"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
 
 [node name="StatUserInterface" type="Control" node_paths=PackedStringArray("_addStrengthButton", "_addStaminaButton", "_decrStrengthButton", "_decrStaminaButton", "_strengthLabel", "_staminaLabel", "_remainingStatPointsLabel", "_closeButton")]
 custom_minimum_size = Vector2(500, 300)
@@ -28,13 +25,16 @@ _decrStaminaButton = NodePath("PanelContainer/VBoxContainer/MarginContainer/VBox
 _strengthLabel = NodePath("PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Strength/Counter/HBoxContainer/Number")
 _staminaLabel = NodePath("PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Stamina/Counter/HBoxContainer/Number")
 _remainingStatPointsLabel = NodePath("PanelContainer/VBoxContainer/MarginContainer2/Remaining")
-_closeButton = NodePath("PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/Button")
+_closeButton = NodePath("PanelContainer/VBoxContainer/MarginContainer3/HBoxContainer/Button")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
+anchor_left = -0.042
+anchor_right = 1.042
 anchor_bottom = 0.93
+offset_left = 21.0
+offset_right = -21.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_wgmce")
@@ -42,39 +42,30 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_wgmce")
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ty1tp")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
-[node name="Header" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer3"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wgmce")
+
+[node name="Header" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_wgmce")
 theme_override_font_sizes/font_size = 30
 text = " Status Screen"
 
-[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer3/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_ty1tp")
-theme_override_font_sizes/font_size = 20
+size_flags_vertical = 4
+theme = ExtResource("3_ty1tp")
 text = "Back"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -86,16 +77,18 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
+theme = ExtResource("2_wgmce")
 
 [node name="Strength" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 30
 
 [node name="StatName" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Strength"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_ty1tp")
 theme_override_font_sizes/font_size = 20
-text = "Strength (increases damage)"
+text = "Strength 
+(increases damage)"
 
 [node name="Counter" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Strength"]
 layout_mode = 2
@@ -105,31 +98,31 @@ layout_mode = 2
 
 [node name="Number" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Strength/Counter/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_ty1tp")
 theme_override_font_sizes/font_size = 20
 text = "10"
 
 [node name="Incr" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Strength/Counter/HBoxContainer"]
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_ty1tp")
+size_flags_vertical = 4
 text = "+"
 
 [node name="Decr" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Strength/Counter/HBoxContainer"]
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_ty1tp")
+size_flags_vertical = 4
 text = "-"
 
 [node name="Stamina" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 30
 
 [node name="StatName" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Stamina"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_ty1tp")
 theme_override_font_sizes/font_size = 20
-text = "Stamina (reduces incoming damage)"
+text = "Stamina 
+(reduces incoming damage)"
 
 [node name="Counter" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Stamina"]
 layout_mode = 2
@@ -139,20 +132,19 @@ layout_mode = 2
 
 [node name="Number" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Stamina/Counter/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_ty1tp")
 theme_override_font_sizes/font_size = 20
 text = "10"
 
 [node name="Incr" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Stamina/Counter/HBoxContainer"]
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_ty1tp")
+size_flags_vertical = 4
 text = "+"
 
 [node name="Decr" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Stamina/Counter/HBoxContainer"]
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_ty1tp")
+size_flags_vertical = 4
 text = "-"
 
 [node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
@@ -164,7 +156,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="Remaining" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_ty1tp")
+theme = ExtResource("2_wgmce")
 theme_override_font_sizes/font_size = 20
 text = "10 Stat Points Remaining"
 horizontal_alignment = 2
