@@ -20,7 +20,7 @@ public partial class CompletableQuestComponent : HBoxContainer
     private QuestManager _questManager;
     private ProgressionManager _expManager;
     private PlayerInventoryManager _inventoryManager;
-    private AnimationPlayer _animationPlayer;
+    [Export] private AnimationPlayer _animationPlayer;
 
     public override void _Ready()
     {
@@ -28,12 +28,11 @@ public partial class CompletableQuestComponent : HBoxContainer
         _expManager = GetNode<ProgressionManager>("/root/ProgressionManager");
         _inventoryManager = GetNode<PlayerInventoryManager>("/root/PlayerInventoryManager");
 
-        _animationPlayer = new AnimationPlayer();
-        AddChild(_animationPlayer);
-        CreateFadeOutAnimation();
-
         _checkbox.Toggled += CheckboxOnToggled;
         _editButton.Pressed += OnEditButtonPressed;
+
+        // Connect animation finished signal
+        _animationPlayer.AnimationFinished += OnAnimationFinished;
     }
 
     private void CheckboxOnToggled(bool toggledOn)
@@ -45,13 +44,11 @@ public partial class CompletableQuestComponent : HBoxContainer
             int coinReward = _inventoryManager.CalculateDailyQuestCoinReward();
             _inventoryManager.AddCoins(coinReward);
 
-            EmitSignal(SignalName.QuestCompleted, coinReward, _checkbox.GlobalPosition);
-
-            _animationPlayer.Play("default/fade_out");
+            _animationPlayer.Play("fade_out");
 
             GD.Print($"Daily quest completed! Gained {coinReward} coins");
-            
-            OnFadeOutFinished();
+
+            EmitSignal(SignalName.QuestCompleted, coinReward, _checkbox.GlobalPosition);
         }
         else
         {
@@ -98,23 +95,16 @@ public partial class CompletableQuestComponent : HBoxContainer
         return _quest;
     }
 
-    private void CreateFadeOutAnimation()
-    {
-        var animation = new Animation();
-        animation.Length = 0.5f;
-
-        var track = animation.AddTrack(Animation.TrackType.Value);
-        animation.TrackSetPath(track, ":modulate:a");
-        animation.TrackInsertKey(track, 0.0f, 1.0f);
-        animation.TrackInsertKey(track, 0.5f, 0.0f);
-
-        var library = new AnimationLibrary();
-        library.AddAnimation("fade_out", animation);
-        _animationPlayer.AddAnimationLibrary("default", library);
-    }
-
     private void OnFadeOutFinished()
     {
-            _questManager.Remove(_quest.Id);
+        _questManager.Remove(_quest.Id);
+    }
+
+    private void OnAnimationFinished(StringName animName)
+    {
+        if (animName == "fade_out")
+        {
+            OnFadeOutFinished();
+        }
     }
 }
