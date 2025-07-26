@@ -1,23 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3ugllfrcxxtr"]
-
-[ext_resource type="Script" uid="uid://xh02od2g3vn3" path="res://start/components/EditProfileDialog.cs" id="1_editprofile"]
-[ext_resource type="Theme" path="res://assets/flat_ui/kenneyUINewFont2.tres" id="1_ohr3t"]
+[gd_scene load_steps=2 format=3 uid="uid://d3ugllfrcxxtr"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ohr3t"]
 
-[node name="EditProfileDialog" type="Control" node_paths=PackedStringArray("_uploadButton", "_cancelButton", "_titleLabel", "_previewTexture", "_fileDialog")]
+[node name="EditProfileDialog" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 8.0
 offset_top = 7.0
 offset_right = 653.0
 offset_bottom = 297.0
-script = ExtResource("1_editprofile")
-_uploadButton = NodePath("PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Upload")
-_cancelButton = NodePath("PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Cancel")
-_titleLabel = NodePath("PanelContainer/VBoxContainer/Label")
-_previewTexture = NodePath("PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TextureRect")
-_fileDialog = NodePath("SelectNewProfilePic")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -58,10 +49,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="SelectNewProfilePic" type="FileDialog" parent="."]
-title = "Select an Image"
+title = "Open a File"
 initial_position = 1
 size = Vector2i(661, 360)
-theme = ExtResource("1_ohr3t")
 ok_button_text = "Open"
 file_mode = 0
 access = 2

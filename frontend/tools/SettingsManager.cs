@@ -1,38 +1,88 @@
 using Godot;
 using nuscutiesapp.tools;
 using System;
+using System.Collections.Generic;
+using System.Text.Json;
 
-public partial class SettingsManager : BaseStatManager<SettingsManager.SettingsData>
+public partial class SettingsManager : Node
 {
+    private AudioManager _audioManager;
     public class SettingsData
     {
         public float BgmVolume { get; set; } = 1.0f;
         public float SfxVolume { get; set; } = 1.0f;
     }
 
-    protected override string BaseSaveFileName => "global_settings.json";
-
-    protected override void OnDataChanged() { }
-
-    public float GetBgmVolume()
+    public override void _Ready()
     {
-        return Data.BgmVolume;
+        _audioManager = GetNode<AudioManager>("/root/AudioManager");
+        base._Ready();
     }
 
-    public void SetBgmVolume(float value)
+    private string GetSavePath()
     {
-        Data.BgmVolume = value;
-        NotifyDataChanged();
+        return "user://saves/settings.json";
+    }
+    private string GetSaveDirectory()
+    {
+        return "user://saves";
     }
 
-    public float GetSfxVolume()
+    public void SaveSettings(SettingsData settings)
     {
-        return Data.SfxVolume;
+        var options = new JsonSerializerOptions { WriteIndented = true };
+        string jsonString = JsonSerializer.Serialize(settings);
+        string saveDirectory = GetSaveDirectory();
+        string savePath = GetSavePath();
+
+        var dir = DirAccess.Open(saveDirectory);
+        if (dir == null)
+        {
+            DirAccess.MakeDirRecursiveAbsolute(saveDirectory);
+        }
+
+        using var file = FileAccess.Open(savePath, FileAccess.ModeFlags.Write);
+        if (file != null)
+        {
+            file.StoreString(jsonString);
+        }
+        else
+        {
+            GD.PrintErr("Error saving settings. File is null.");
+        }
     }
 
-    public void SetSfxVolume(float value)
+    public SettingsData LoadSettings()
     {
-        Data.SfxVolume = value;
-        NotifyDataChanged();
+        string savePath = GetSavePath();
+
+        SettingsData res = new SettingsData();
+        if (FileAccess.FileExists(savePath))
+        {
+            using var file = FileAccess.Open(savePath, FileAccess.ModeFlags.Read);
+            if (file != null)
+            {
+                string jsonString = file.GetAsText();
+                try
+                { 
+                    SettingsData loadedLog = JsonSerializer.Deserialize<SettingsData>(jsonString);
+                    res = loadedLog;
+                }
+                catch (System.Exception e)
+                {
+                    GD.PrintErr($"Error loading settings: {e.Message}. Starting new log.");
+                }
+            }
+            else
+            {
+                GD.PrintErr("Error opening settings file. File is null.");
+            }
+        }
+        else
+        {
+            GD.PrintErr("No settings file found. Starting new log.");
+        }
+
+        return res;
     }
 }
