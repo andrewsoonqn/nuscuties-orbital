@@ -12,6 +12,14 @@ public partial class BgmManager : Node
         // PlayMainBgm();
     }
 
+    public float GetVolume()
+    {
+        return BgmPlayer.VolumeDb;
+    }
+    public void SetVolume(float v)
+    {
+        BgmPlayer.VolumeDb = v;
+    }
     public void PlayBgm(AudioStream stream)
     {
         if (BgmPlayer.Stream != stream)

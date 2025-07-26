@@ -28,4 +28,7 @@ public partial class Paths : Node
     public static readonly string QuestEditPanel = "res://daily/components/quest_edit_panel.tscn";
     public static readonly string Shop = "res://ui/shop/shop.tscn";
     public static readonly string SettingsPopup = "res://start/components/settings_popup.tscn";
+    public static readonly string LogoutButton = "res://start/components/logout_button.tscn";
+    public static readonly string VolumeControl = "res://start/components/volume_control.tscn";
+    public static readonly string ProfileCustomization = "res://start/components/profile_customization.tscn";
 }

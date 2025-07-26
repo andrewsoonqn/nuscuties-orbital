@@ -11,6 +11,14 @@ public partial class AudioManager : Node
         ConnectAllCurrentButtons();
     }
 
+    public float GetVolume()
+    {
+        return SfxPlayer.VolumeDb;
+    }
+    public void SetVolume(float v)
+    {
+        SfxPlayer.VolumeDb = v;
+    }
     private void OnChildEnteredTree(Node node)
     {
         ConnectButtonsInNode(node);

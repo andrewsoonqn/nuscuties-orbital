@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbjfnh4etytje"]
+
+[ext_resource type="Script" uid="uid://bvp3ns51r6isk" path="res://start/components/VolumeControl.cs" id="1_volume"]
+
+[node name="VolumeControl" type="VBoxContainer" node_paths=PackedStringArray("_bgmSlider", "_sfxSlider", "_bgmLabel", "_sfxLabel")]
+custom_minimum_size = Vector2(300, 0)
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.159
+offset_bottom = -13.48
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_volume")
+_bgmSlider = NodePath("BGMContainer/BgmSlider")
+_sfxSlider = NodePath("SFXContainer/SfxSlider")
+_bgmLabel = NodePath("BGMContainer/BgmLabel")
+_sfxLabel = NodePath("SFXContainer/SfxLabel")
+
+[node name="BGMContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="BgmLabel" type="Label" parent="BGMContainer"]
+layout_mode = 2
+text = "BGM Volume: 100%"
+
+[node name="BgmSlider" type="HSlider" parent="BGMContainer"]
+layout_mode = 2
+value = 100.0
+
+[node name="SFXContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="SfxLabel" type="Label" parent="SFXContainer"]
+layout_mode = 2
+text = "SFX Volume: 100%"
+
+[node name="SfxSlider" type="HSlider" parent="SFXContainer"]
+layout_mode = 2
+value = 100.0

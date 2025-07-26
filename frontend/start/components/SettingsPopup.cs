@@ -1,18 +1,22 @@
 using Godot;
+using nuscutiesapp.tools;
 
-public partial class SettingsPopup : Popup
+public partial class SettingsPopup : Control
 {
-    [Export] private Button _logoutButton;
+    [Export] private VBoxContainer _settingsContainer;
 
     [Signal]
     public delegate void LogoutRequestedEventHandler();
 
+    private LogoutButton _logoutButtonInstance;
     public override void _Ready()
     {
-        _logoutButton.Pressed += OnLogoutPressed;
+        base._Ready();
+        var profileComponent = (ProfileCustomization)_settingsContainer.FindChild("ProfileCustomization");
+        profileComponent.LogoutRequested += OnLogoutRequested;
     }
 
-    private void OnLogoutPressed()
+    public void OnLogoutRequested()
     {
         EmitSignal(SignalName.LogoutRequested);
         Hide();

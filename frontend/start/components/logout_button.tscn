@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnxnld2s46vsr"]
+
+[ext_resource type="Script" uid="uid://srs2fv3fed45" path="res://start/components/LogoutButton.cs" id="1_logout"]
+[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="2_3vyxy"]
+
+[node name="LogoutButton" type="BoxContainer" node_paths=PackedStringArray("_logoutButton")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_right = 62.0
+offset_bottom = 31.0
+grow_horizontal = 2
+script = ExtResource("1_logout")
+_logoutButton = NodePath("LogoutButton")
+
+[node name="LogoutButton" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("2_3vyxy")
+text = "Logout"
