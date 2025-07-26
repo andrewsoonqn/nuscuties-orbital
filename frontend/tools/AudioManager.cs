@@ -7,30 +7,20 @@ public partial class AudioManager : Node
 
     public override void _Ready()
     {
+        SetVolume(GetNode<SettingsManager>("/root/SettingsManager").LoadSettings().SfxVolume);
         GetTree().Root.ChildEnteredTree += OnChildEnteredTree;
         ConnectAllCurrentButtons();
     }
 
     public float GetVolume()
     {
-        return ConvertDbToPercentage(SfxPlayer.VolumeDb);
+        return Mathf.DbToLinear(SfxPlayer.VolumeDb);
     }
     public void SetVolume(float percentage)
     {
-        SfxPlayer.VolumeDb = ConvertPercentageToDb(percentage);
+        SfxPlayer.VolumeDb = Mathf.LinearToDb(percentage);
     }
 
-    private float ConvertPercentageToDb(float percentage)
-    {
-        if (percentage <= 0) return -80.0f;
-        return Mathf.Log(percentage / 100.0f) * 20.0f;
-    }
-
-    private float ConvertDbToPercentage(float db)
-    {
-        if (db <= -80.0f) return 0.0f;
-        return Mathf.Pow(10.0f, db / 20.0f) * 100.0f;
-    }
     private void OnChildEnteredTree(Node node)
     {
         ConnectButtonsInNode(node);

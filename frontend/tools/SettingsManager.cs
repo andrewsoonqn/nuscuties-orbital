@@ -9,8 +9,8 @@ public partial class SettingsManager : Node
     private AudioManager _audioManager;
     public class SettingsData
     {
-        public float BgmVolume { get; set; } = 1.0f;
-        public float SfxVolume { get; set; } = 1.0f;
+        public float BgmVolume { get; set; } = 1f;
+        public float SfxVolume { get; set; } = 1f;
     }
 
     public override void _Ready()

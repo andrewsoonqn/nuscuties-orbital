@@ -24,12 +24,12 @@ public partial class VolumeControl : Control
     private void SetupSliders()
     {
         _bgmSlider.MinValue = 0;
-        _bgmSlider.MaxValue = 100;
-        _bgmSlider.Step = 1;
+        _bgmSlider.MaxValue = 1;
+        _bgmSlider.Step = 0.01;
 
         _sfxSlider.MinValue = 0;
-        _sfxSlider.MaxValue = 100;
-        _sfxSlider.Step = 1;
+        _sfxSlider.MaxValue = 1;
+        _sfxSlider.Step = 0.01;
     }
 
     private void ConnectSignals()
@@ -44,14 +44,14 @@ public partial class VolumeControl : Control
         {
             float volume = _bgmManager.GetVolume();
             _bgmSlider.Value = volume;
-            _bgmLabel.Text = $"BGM Volume: {volume:F0}%";
+            _bgmLabel.Text = $"BGM Volume: {(volume * 100):F0}%";
         }
 
         if (_audioManager != null)
         {
             float volume = _audioManager.GetVolume();
             _sfxSlider.Value = volume;
-            _sfxLabel.Text = $"SFX Volume: {volume:F0}%";
+            _sfxLabel.Text = $"SFX Volume: {(volume * 100):F0}%";
         }
     }
 
@@ -60,7 +60,7 @@ public partial class VolumeControl : Control
         if (_bgmManager != null)
         {
             _bgmManager.SetVolume((float)value);
-            _bgmLabel.Text = $"BGM Volume: {value:F0}%";
+            _bgmLabel.Text = $"BGM Volume: {(value * 100):F0}%";
         }
     }
 
@@ -69,7 +69,7 @@ public partial class VolumeControl : Control
         if (_audioManager != null)
         {
             _audioManager.SetVolume((float)value);
-            _sfxLabel.Text = $"SFX Volume: {value:F0}%";
+            _sfxLabel.Text = $"SFX Volume: {(value * 100):F0}%";
         }
     }
 }

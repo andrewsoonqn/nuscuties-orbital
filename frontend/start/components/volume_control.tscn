@@ -27,7 +27,9 @@ text = "BGM Volume: 100%"
 
 [node name="BgmSlider" type="HSlider" parent="BGMContainer"]
 layout_mode = 2
-value = 100.0
+max_value = 1.0
+step = 0.1
+value = 1.0
 
 [node name="SFXContainer" type="VBoxContainer" parent="."]
 layout_mode = 2

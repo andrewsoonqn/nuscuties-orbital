@@ -84,9 +84,8 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="VolumeControl" parent="PanelContainer/VBoxContainer/MarginContainer/SettingsContainer" instance=ExtResource("3_4tfyt")]
+[node name="VolumeControl2" parent="PanelContainer/VBoxContainer/MarginContainer/SettingsContainer" instance=ExtResource("3_4tfyt")]
 layout_mode = 2
-size_flags_vertical = 0
 
 [node name="ProfileCustomization" parent="PanelContainer/VBoxContainer/MarginContainer/SettingsContainer" instance=ExtResource("4_5gyax")]
 layout_mode = 2
