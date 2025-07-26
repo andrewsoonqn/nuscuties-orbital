@@ -56,8 +56,6 @@ public partial class UserSelectionPage : Control
                 _userContainer.AddChild(userCardInstance);
             }
         }
-
-        _userContainer.AddChild(_addUserButton);
     }
 
     private void OnUserSelected(string username)

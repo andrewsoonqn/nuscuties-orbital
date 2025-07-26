@@ -16,13 +16,13 @@ public partial class QuestLogManager : Node
 
     private string GetSavePath()
     {
-        string username = _userManager?.GetCurrentUser() ?? "DefaultUser";
+        string username = _userManager?.GetCurrentUser();
         return $"user://saves/{username}/quest_saves/quest_log.json";
     }
 
     private string GetSaveDirectory()
     {
-        string username = _userManager?.GetCurrentUser() ?? "DefaultUser";
+        string username = _userManager?.GetCurrentUser();
         return $"user://saves/{username}/quest_saves";
     }
 

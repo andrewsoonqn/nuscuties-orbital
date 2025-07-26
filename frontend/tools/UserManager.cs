@@ -10,12 +10,7 @@ public partial class UserManager : Node
 
     public override void _Ready()
     {
-        var users = GetAllUsers();
-        if (users.Count > 0)
-        {
-            SetCurrentUser(users[0]);
-        }
-
+        // No automatic user selection - users must explicitly choose a user
     }
 
     public List<string> GetAllUsers()

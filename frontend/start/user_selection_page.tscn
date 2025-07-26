@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgsu2hn6716me"]
+[gd_scene load_steps=7 format=3 uid="uid://cgsu2hn6716me"]
 
 [ext_resource type="Script" uid="uid://pb2yuk32x2m" path="res://start/UserSelectionPage.cs" id="1_main"]
-[ext_resource type="PackedScene" uid="uid://c5x8qhv1kwp2s" path="res://start/components/add_user_dialog.tscn" id="2_dialog"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_kliaa"]
 [ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://assets/flat_ui/kenneyUI-green.tres" id="3_0g2cu"]
-[ext_resource type="PackedScene" uid="uid://bavhr66ofs3ol" path="res://start/components/edit_user_dialog.tscn" id="3_edituser"]
 
 [sub_resource type="Gradient" id="Gradient_0g2cu"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.831373, 1, 1)
@@ -95,17 +93,3 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_0g2cu")
 text = "+ Add User"
-
-[node name="AddUserDialog" parent="." instance=ExtResource("2_dialog")]
-size = Vector2i(440, 200)
-visible = false
-
-[node name="EditUserDialog" parent="." instance=ExtResource("3_edituser")]
-size = Vector2i(440, 200)
-visible = false
-
-[node name="DeleteUserDialog" type="ConfirmationDialog" parent="."]
-title = "Delete user"
-initial_position = 1
-size = Vector2i(400, 150)
-theme = ExtResource("2_kliaa")
