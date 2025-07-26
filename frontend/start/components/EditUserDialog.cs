@@ -50,9 +50,9 @@ public partial class EditUserDialog : AcceptDialog
             ShowError("Username must be at least 3 characters");
             return;
         }
-        if (newUsername.Length > 20)
+        if (newUsername.Length > 15)
         {
-            ShowError("Username must be 20 characters or less");
+            ShowError("Username must be 15 characters or less");
             return;
         }
         if (newUsername == _oldUsername)

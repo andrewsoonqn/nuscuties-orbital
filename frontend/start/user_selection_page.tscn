@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgsu2hn6716me"]
+[gd_scene load_steps=8 format=3 uid="uid://cgsu2hn6716me"]
 
 [ext_resource type="Script" uid="uid://pb2yuk32x2m" path="res://start/UserSelectionPage.cs" id="1_main"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_kliaa"]
 [ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://assets/flat_ui/kenneyUI-green.tres" id="3_0g2cu"]
+[ext_resource type="PackedScene" uid="uid://bsf8p7uxhwu2u" path="res://start/components/user_card.tscn" id="3_kliaa"]
 
 [sub_resource type="Gradient" id="Gradient_0g2cu"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.831373, 1, 1)
@@ -14,7 +15,7 @@ fill_to = Vector2(1, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i0tnd"]
 texture = SubResource("GradientTexture2D_twbhc")
 
-[node name="UserSelectionPage" type="Control" node_paths=PackedStringArray("_userContainer", "_addUserButton", "_titleLabel")]
+[node name="UserSelectionPage" type="Control" node_paths=PackedStringArray("_userContainer", "_addUserButton", "_titleLabel", "_noUsersLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,6 +26,7 @@ script = ExtResource("1_main")
 _userContainer = NodePath("QuestsMargin/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/UserContainer")
 _addUserButton = NodePath("QuestsMargin/VBoxContainer/AddUserButton")
 _titleLabel = NodePath("TitleLabel")
+_noUsersLabel = NodePath("Label")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -53,9 +55,9 @@ vertical_alignment = 1
 [node name="QuestsMargin" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.1
+anchor_left = 0.25
 anchor_top = 0.228
-anchor_right = 0.9
+anchor_right = 0.75
 anchor_bottom = 0.943
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -86,10 +88,33 @@ size_flags_vertical = 3
 [node name="UserContainer" type="VBoxContainer" parent="QuestsMargin/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 10
+
+[node name="UserCard" parent="QuestsMargin/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/UserContainer" instance=ExtResource("3_kliaa")]
+layout_mode = 2
 
 [node name="AddUserButton" type="Button" parent="QuestsMargin/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_0g2cu")
 text = "+ Add User"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -333.0
+offset_top = -13.5
+offset_right = 333.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_kliaa")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "No users found, create your first user!"

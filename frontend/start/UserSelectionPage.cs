@@ -7,6 +7,7 @@ public partial class UserSelectionPage : Control
     [Export] private VBoxContainer _userContainer;
     [Export] private Button _addUserButton;
     [Export] private Label _titleLabel;
+    [Export] private Label _noUsersLabel;
 
     private UserManager _userManager;
     private PackedScene _userCardScene;
@@ -24,6 +25,7 @@ public partial class UserSelectionPage : Control
 
         _addUserButton.Pressed += OnAddUserButtonPressed;
 
+        _noUsersLabel.Visible = false;
         RefreshUserList();
     }
 
@@ -38,11 +40,9 @@ public partial class UserSelectionPage : Control
 
         if (users.Count == 0)
         {
-            var noUsersLabel = new Label();
-            noUsersLabel.Text = "No users found. Create your first user!";
-            noUsersLabel.HorizontalAlignment = HorizontalAlignment.Center;
-            noUsersLabel.AddThemeStyleboxOverride("normal", new StyleBoxEmpty());
-            _userContainer.AddChild(noUsersLabel);
+            _noUsersLabel.Visible = true;
+            _noUsersLabel.GetParent().RemoveChild(_noUsersLabel);
+            _userContainer.AddChild(_noUsersLabel);
         }
         else
         {
