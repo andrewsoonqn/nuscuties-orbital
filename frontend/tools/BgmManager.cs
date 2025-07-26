@@ -14,11 +14,23 @@ public partial class BgmManager : Node
 
     public float GetVolume()
     {
-        return BgmPlayer.VolumeDb;
+        return ConvertDbToPercentage(BgmPlayer.VolumeDb);
     }
-    public void SetVolume(float v)
+    public void SetVolume(float percentage)
     {
-        BgmPlayer.VolumeDb = v;
+        BgmPlayer.VolumeDb = ConvertPercentageToDb(percentage);
+    }
+
+    private float ConvertPercentageToDb(float percentage)
+    {
+        if (percentage <= 0) return -80.0f;
+        return Mathf.Log(percentage / 100.0f) * 20.0f;
+    }
+
+    private float ConvertDbToPercentage(float db)
+    {
+        if (db <= -80.0f) return 0.0f;
+        return Mathf.Pow(10.0f, db / 20.0f) * 100.0f;
     }
     public void PlayBgm(AudioStream stream)
     {

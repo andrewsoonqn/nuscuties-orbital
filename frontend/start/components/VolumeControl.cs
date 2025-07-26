@@ -42,14 +42,16 @@ public partial class VolumeControl : Control
     {
         if (_bgmManager != null)
         {
-            _bgmSlider.Value = _bgmManager.GetVolume();
-            _bgmLabel.Text = $"BGM Volume: {_bgmSlider.Value}%";
+            float volume = _bgmManager.GetVolume();
+            _bgmSlider.Value = volume;
+            _bgmLabel.Text = $"BGM Volume: {volume:F0}%";
         }
 
         if (_audioManager != null)
         {
-            _sfxSlider.Value = _audioManager.GetVolume();
-            _sfxLabel.Text = $"SFX Volume: {_sfxSlider.Value}%";
+            float volume = _audioManager.GetVolume();
+            _sfxSlider.Value = volume;
+            _sfxLabel.Text = $"SFX Volume: {volume:F0}%";
         }
     }
 
@@ -57,8 +59,8 @@ public partial class VolumeControl : Control
     {
         if (_bgmManager != null)
         {
-            _bgmManager.SetVolume((int)value);
-            _bgmLabel.Text = $"BGM Volume: {value}%";
+            _bgmManager.SetVolume((float)value);
+            _bgmLabel.Text = $"BGM Volume: {value:F0}%";
         }
     }
 
@@ -66,8 +68,8 @@ public partial class VolumeControl : Control
     {
         if (_audioManager != null)
         {
-            _audioManager.SetVolume((int)value);
-            _sfxLabel.Text = $"SFX Volume: {value}%";
+            _audioManager.SetVolume((float)value);
+            _sfxLabel.Text = $"SFX Volume: {value:F0}%";
         }
     }
 }
