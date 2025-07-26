@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_21omx"]
 [ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="3_twbhc"]
 [ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://assets/flat_ui/kenneyUI-green.tres" id="4_21omx"]
-[ext_resource type="PackedScene" uid="uid://d3x7bmvn76h0w" path="res://active/ui/coin_gain_number.tscn" id="5_twbhc"]
+[ext_resource type="PackedScene" uid="uid://hjr66p0fctpd" path="res://active/ui/coin_gain_number.tscn" id="5_twbhc"]
 
 [sub_resource type="Gradient" id="Gradient_21omx"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.831373, 1, 1)
@@ -57,7 +57,7 @@ offset_bottom = 40.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
-[node name="BackToHome" type="Button" parent="MarginContainer"]
+[node name="BackToHome" type="Button" parent="MarginContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("3_twbhc")
 text = "Back to Home"
@@ -98,7 +98,7 @@ theme_override_font_sizes/font_size = 32
 text = "Quests"
 horizontal_alignment = 1
 
-[node name="AddQuestButton" type="Button" parent="MarginContainer2/QuestsMargin/VBoxContainer/HBoxContainer"]
+[node name="AddQuestButton" type="Button" parent="MarginContainer2/QuestsMargin/VBoxContainer/HBoxContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("4_21omx")

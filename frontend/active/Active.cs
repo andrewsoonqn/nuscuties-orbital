@@ -20,6 +20,7 @@ public partial class Active : Control
 
     private void StartGameButtonOnPressed()
     {
+        GetNode<BgmManager>("/root/BgmManager").PlayFightBgm();
         GetTree().ChangeSceneToFile(Paths.ActiveGame);
     }
 

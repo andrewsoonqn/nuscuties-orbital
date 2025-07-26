@@ -60,17 +60,17 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 8
 
-[node name="EditButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="EditButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("2_b1jib")
 text = "Edit"
 
-[node name="SelectButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="SelectButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("3_6jfxa")
 text = "Select"
 
-[node name="DeleteButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="DeleteButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("4_xolv7")
 text = "Delete"

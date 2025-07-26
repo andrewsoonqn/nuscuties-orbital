@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3x7bmvn76iaw"]
+[gd_scene load_steps=6 format=3 uid="uid://beb7g2iydv62r"]
 
 [ext_resource type="Script" uid="uid://c1sosnc0fg4vr" path="res://active/ui/HealthGainNumber.cs" id="1_health"]
 [ext_resource type="FontFile" uid="uid://cp6228syr8hh3" path="res://assets/kenney_kenney-fonts/Fonts/Kenney Mini Square.ttf" id="2_health"]

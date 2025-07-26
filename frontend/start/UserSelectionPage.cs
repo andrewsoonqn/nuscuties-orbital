@@ -54,6 +54,7 @@ public partial class UserSelectionPage : Control
                 userCardInstance.UserEditRequested += OnUserEditRequested;
                 userCardInstance.UserDeleteRequested += OnUserDeleteRequested;
                 _userContainer.AddChild(userCardInstance);
+                GetNode<AudioManager>("/root/AudioManager").ConnectButtonsInNode(userCardInstance);
             }
         }
     }

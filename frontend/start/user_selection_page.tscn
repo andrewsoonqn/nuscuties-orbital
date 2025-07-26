@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgsu2hn6716me"]
+[gd_scene load_steps=7 format=3 uid="uid://bxn1tf223p737"]
 
 [ext_resource type="Script" uid="uid://pb2yuk32x2m" path="res://start/UserSelectionPage.cs" id="1_main"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_kliaa"]
 [ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://assets/flat_ui/kenneyUI-green.tres" id="3_0g2cu"]
-[ext_resource type="PackedScene" uid="uid://bsf8p7uxhwu2u" path="res://start/components/user_card.tscn" id="3_kliaa"]
 
 [sub_resource type="Gradient" id="Gradient_0g2cu"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.831373, 1, 1)
@@ -94,10 +93,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_constants/separation = 10
 
-[node name="UserCard" parent="QuestsMargin/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/UserContainer" instance=ExtResource("3_kliaa")]
-layout_mode = 2
-
-[node name="AddUserButton" type="Button" parent="QuestsMargin/VBoxContainer"]
+[node name="AddUserButton" type="Button" parent="QuestsMargin/VBoxContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_0g2cu")

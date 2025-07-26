@@ -14,6 +14,7 @@ public partial class LoginPage : Control
 
     private void LoginButtonOnPressed()
     {
+        GetNode<BgmManager>("/root/BgmManager").PlayMainBgm();
         GetTree().ChangeSceneToFile(Paths.UserSelection);
     }
 }

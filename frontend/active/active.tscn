@@ -31,7 +31,7 @@ offset_bottom = 40.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
-[node name="BackToHome" type="Button" parent="MarginContainer"]
+[node name="BackToHome" type="Button" parent="MarginContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("4_rmj27")
 theme_override_font_sizes/font_size = 32
@@ -78,7 +78,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("3_rmj27")
 
-[node name="Start" type="Button" parent="VBoxContainer"]
+[node name="Start" type="Button" parent="VBoxContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://d10077bwug3rs"]
+[gd_scene load_steps=79 format=3 uid="uid://d10077bwug3rs"]
 
 [ext_resource type="Script" uid="uid://crjrlgdwahath" path="res://start/Home.cs" id="1_kkgq1"]
 [ext_resource type="Texture2D" uid="uid://cwy2ry5wij5uf" path="res://assets/white-circle.png" id="2_8rh7u"]
@@ -6,9 +6,6 @@
 [ext_resource type="FontFile" uid="uid://dkjdxog3b4fl4" path="res://assets/Jacquard24-Regular.ttf" id="3_g8cuh"]
 [ext_resource type="Texture2D" uid="uid://copqunclqj85v" path="res://assets/sung-jinwoo.jpg" id="3_y7uvk"]
 [ext_resource type="Texture2D" uid="uid://b5fq4n1gbmtan" path="res://assets/_comission__sung_jin_woo_sprites___solo_leveling_by_soulfiresprites_df43h3g-ezgif.com-gif-to-sprite-converter.png" id="5_fv4no"]
-[ext_resource type="Script" uid="uid://bvjboup7bbgws" path="res://start/home_page_sound_2.gd" id="6_25uge"]
-[ext_resource type="Script" uid="uid://dpdwoi777ti6k" path="res://start/home_page_sound_1.gd" id="7_3dgxr"]
-[ext_resource type="AudioStream" uid="uid://bvkiimk6elfc7" path="res://assets/Audio/click3.ogg" id="7_e7cx7"]
 [ext_resource type="Theme" uid="uid://bb6vwl0h1flws" path="res://assets/flat_ui/kenneyUI-blue.tres" id="9_8pn3w"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="11_ypj6t"]
 [ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://assets/flat_ui/kenneyUI-green.tres" id="13_ypj6t"]
@@ -681,9 +678,8 @@ theme_override_constants/margin_right = 30
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 25
-script = ExtResource("6_25uge")
 
-[node name="StatsUI" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="StatsUI" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" groups=["sfx_buttons"]]
 custom_minimum_size = Vector2(225, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -691,18 +687,15 @@ size_flags_vertical = 0
 theme = ExtResource("11_ypj6t")
 text = "Status Screen"
 
-[node name="Store" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Store" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("11_ypj6t")
 text = "Store"
 
-[node name="Settings" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Settings" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("11_ypj6t")
 text = "Settings"
-
-[node name="ClickSoundEffect3" type="AudioStreamPlayer" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
-stream = ExtResource("7_e7cx7")
 
 [node name="MarginContainer2" type="MarginContainer" parent="ColorRect3/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -710,29 +703,19 @@ layout_mode = 2
 [node name="HBoxContainer" type="VBoxContainer" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2"]
 layout_mode = 2
 theme_override_constants/separation = 25
-script = ExtResource("7_3dgxr")
 
-[node name="Daily" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="Daily" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer" groups=["sfx_buttons"]]
 custom_minimum_size = Vector2(225, 0)
 layout_mode = 2
 theme = ExtResource("13_ypj6t")
 text = "Daily Quests"
 
-[node name="Passive" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="Passive" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("9_8pn3w")
 text = "Passive Dungeon"
 
-[node name="Active" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="Active" type="Button" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("15_xwqmo")
 text = "Active Dungeon"
-
-[node name="ClickSoundEffect2" type="AudioStreamPlayer" parent="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer"]
-stream = ExtResource("7_e7cx7")
-
-[connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Store" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" method="_on_store_pressed"]
-[connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Settings" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" method="_on_store_pressed"]
-[connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer/Daily" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer" method="_on_daily_pressed"]
-[connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer/Passive" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer" method="_on_passive_pressed"]
-[connection signal="pressed" from="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer/Active" to="ColorRect3/MarginContainer/HBoxContainer/MarginContainer2/HBoxContainer" method="_on_active_pressed"]

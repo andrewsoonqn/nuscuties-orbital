@@ -12,6 +12,7 @@ public partial class ActiveEndScene : Control
     private ProgressionManager _expManager;
     public override void _Ready()
     {
+        GetNode<BgmManager>("/root/BgmManager").StopBgm();
         _expManager = GetNode<ProgressionManager>("/root/ProgressionManager");
         _rewardManager = GetNode<RewardManager>("/root/RewardManager");
         _expManager.AddExp(_rewardManager.ExpGained);
@@ -33,6 +34,7 @@ public partial class ActiveEndScene : Control
 
     private void BackButtonOnPressed()
     {
+        GetNode<BgmManager>("/root/BgmManager").PlayMainBgm();
         GetTree().ChangeSceneToFile(Paths.Active);
     }
 }

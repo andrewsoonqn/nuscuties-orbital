@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://chi5q1ptodsaf"]
+[gd_scene load_steps=27 format=3 uid="uid://chi5q1ptodsaf"]
 
 [ext_resource type="PackedScene" uid="uid://cvf7e615kvfxq" path="res://game_world.tscn" id="1_kudwv"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_6k8in"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://caxi8vx23pt4w" path="res://assets/dungeon_art/ui (new)/progress bar.png" id="4_7kwek"]
 [ext_resource type="Texture2D" uid="uid://bokei0x2xhtqh" path="res://assets/dungeon_art/ui (new)/health_ui.png" id="4_lext4"]
 [ext_resource type="Texture2D" uid="uid://dlgymkxkwptry" path="res://assets/kenney_ui-pack-pixel-adventure/Tiles/Large tiles/Thin outline/tile_0018.png" id="5_2vtgd"]
-[ext_resource type="Texture2D" uid="uid://disku7an8uvq" path="res://assets/Keyboard & Mouse/Default/keyboard_e.png" id="5_bbdxb"]
 [ext_resource type="Texture2D" uid="uid://2mef3pbmf8gq" path="res://assets/flat_ui/PNG/Extra/Double/button_rectangle_depth_line.png" id="5_hfto2"]
 [ext_resource type="Script" uid="uid://d17uqd6ssin58" path="res://active/ActiveGameUi.cs" id="5_lext4"]
 [ext_resource type="Texture2D" uid="uid://bfejfb4gdis4i" path="res://assets/Keyboard & Mouse/Vector/keyboard_1.svg" id="5_sxw8e"]
@@ -81,19 +80,6 @@ layout_mode = 2
 theme = ExtResource("3_6k8in")
 theme_override_font_sizes/font_size = 32
 text = "Pause"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer2/PanelContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer2/PanelContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("5_bbdxb")
-
-[node name="Label" type="Label" parent="ActiveGameUI/CanvasLayer/MarginContainer2/PanelContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-theme = ExtResource("3_6k8in")
-theme_override_font_sizes/font_size = 32
-text = "Inventory"
 
 [node name="MarginContainer3" type="MarginContainer" parent="ActiveGameUI/CanvasLayer"]
 anchors_preset = 2
@@ -252,12 +238,12 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Quit" type="Button" parent="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Quit" type="Button" parent="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("6_sahrs")
 text = "Quit Game"
 
-[node name="Resume" type="Button" parent="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Resume" type="Button" parent="ActiveGameUI/CanvasLayer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("7_gepbl")
 text = "Resume"

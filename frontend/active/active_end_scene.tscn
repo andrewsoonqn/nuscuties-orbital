@@ -74,7 +74,7 @@ theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 
-[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_smfae")

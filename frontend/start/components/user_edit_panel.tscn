@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ceqyqkptu6cs7"]
+[gd_scene load_steps=7 format=3 uid="uid://ch2al78pil1o3"]
 
 [ext_resource type="Script" uid="uid://d32gfqx31e4pr" path="res://start/components/UserEditPanel.cs" id="1_useredit"]
 [ext_resource type="Texture2D" uid="uid://bkhw1akgv0fou" path="res://assets/flat_ui/PNG/Grey/Double/button_square_depth_gradient.png" id="2_ljexo"]
@@ -89,12 +89,12 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="ConfirmButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="ConfirmButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("6_qn7sr")
 text = "Confirm"
 
-[node name="CancelButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="CancelButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("5_7k06w")
 text = "Cancel"

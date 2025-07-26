@@ -105,29 +105,29 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="EditButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="EditButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("4_ka370")
 text = "Edit"
 
-[node name="OkButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="OkButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer" groups=["sfx_buttons"]]
 visible = false
 layout_mode = 2
 theme = ExtResource("5_6rhgm")
 text = "OK"
 
-[node name="CancelButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="CancelButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer" groups=["sfx_buttons"]]
 visible = false
 layout_mode = 2
 theme = ExtResource("6_qn7sr")
 text = "Cancel"
 
-[node name="DeleteButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="DeleteButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("6_qn7sr")
 text = "Delete"
 
-[node name="DoneButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="DoneButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer" groups=["sfx_buttons"]]
 layout_mode = 2
 theme = ExtResource("5_6rhgm")
 text = "Done"
