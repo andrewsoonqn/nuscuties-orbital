@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmpe7w5nfbt23"]
+[gd_scene load_steps=4 format=3 uid="uid://duovnqoaffw8y"]
 
 [ext_resource type="Script" uid="uid://dsprkklu0mufr" path="res://tools/BgmManager.cs" id="1_1novf"]
 [ext_resource type="AudioStream" uid="uid://bqqihisqtccjv" path="res://assets/Audio/bgm/main.mp3" id="3_ulwut"]

@@ -1,0 +1,4 @@
+---
+alwaysApply: false
+---
+Write a detailed, elaborate description of the design description. this should include approaches tried (if any), comparison (why the old one was not good, why the current approach is good). Also include RELEVANT SOLID principles (only relevant ones), as well as applicable software design patterns. Your elaboration should be in paragraph form, and each design decision should have abstract explanations on what principles were applied, with more importantly the concrete details of how we used these principles in our implementation (explanation, examples)

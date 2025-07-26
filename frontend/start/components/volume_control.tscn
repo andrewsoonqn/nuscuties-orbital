@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbjfnh4etytje"]
+[gd_scene load_steps=2 format=3 uid="uid://la6hh1a86kwm"]
 
 [ext_resource type="Script" uid="uid://bvp3ns51r6isk" path="res://start/components/VolumeControl.cs" id="1_volume"]
 

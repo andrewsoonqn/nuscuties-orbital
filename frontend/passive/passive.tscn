@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d32fw17quc76o" path="res://passive/Passive.cs" id="1_hlllf"]
 
-[node name="Passive" type="Control" node_paths=PackedStringArray("_backToHomeButton", "_timeInfoLabel", "_timeSlider", "_startButton")]
+[node name="Passive" type="Control" node_paths=PackedStringArray("_backToHomeButton", "_timeInfoLabel", "_hoursInput", "_minutesInput", "_secondsInput", "_sessionNameInput", "_endTimeLabel", "_startButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,11 @@ grow_vertical = 2
 script = ExtResource("1_hlllf")
 _backToHomeButton = NodePath("MarginContainer/BackToHome")
 _timeInfoLabel = NodePath("VBoxContainer/Label")
-_timeSlider = NodePath("VBoxContainer/HSlider")
+_hoursInput = NodePath("VBoxContainer/HBoxContainer/HoursSpinBox")
+_minutesInput = NodePath("VBoxContainer/HBoxContainer/MinutesSpinBox")
+_secondsInput = NodePath("VBoxContainer/HBoxContainer/SecondsSpinBox")
+_sessionNameInput = NodePath("VBoxContainer/SessionNameInput")
+_endTimeLabel = NodePath("VBoxContainer/EndTimeLabel")
 _startButton = NodePath("VBoxContainer/MarginContainer/Button")
 
 [node name="Label" type="Label" parent="."]
@@ -46,17 +50,48 @@ anchor_bottom = 0.395
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Enter dungeon for: 20 seconds"
+text = "Set Timer Duration"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-min_value = 10.0
-max_value = 180.0
-step = 10.0
+
+[node name="HoursLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Hours:"
+
+[node name="HoursSpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 23.0
+
+[node name="MinutesLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Minutes:"
+
+[node name="MinutesSpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 59.0
+
+[node name="SecondsLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Seconds:"
+
+[node name="SecondsSpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 59.0
 value = 20.0
-tick_count = 18
-ticks_on_borders = true
+
+[node name="SessionNameInput" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter session name..."
+
+[node name="EndTimeLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "End time: --:--"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -66,4 +101,4 @@ theme_override_constants/margin_right = 50
 
 [node name="Button" type="Button" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
-text = "Confirm and Start"
+text = "Start Session"

@@ -8,6 +8,7 @@ public partial class PassiveOngoing : Control
     [Export] ProgressBar _timeProgressBar;
     [Export] Label _expAccumulatedLabel;
     [Export] Label _coinsAccumulatedLabel;
+    [Export] Label _sessionNameLabel;
     [Export] Button _quitButton;
 
     private double _totalTime;
@@ -28,6 +29,16 @@ public partial class PassiveOngoing : Control
         if (_coinsAccumulatedLabel != null)
         {
             _coinsAccumulatedLabel.Text = $"{_coinsAccumulated:F0} Coins";
+        }
+
+        string sessionName = _passiveSessionInfoManager.getSessionName();
+        if (!string.IsNullOrEmpty(sessionName))
+        {
+            _sessionNameLabel.Text = $"Session: {sessionName}";
+        }
+        else
+        {
+            _sessionNameLabel.Text = "Session: Unnamed";
         }
 
         _quitButton.Pressed += () => OnEnd("Quit");

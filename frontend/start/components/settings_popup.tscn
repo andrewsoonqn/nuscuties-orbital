@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://b6oxowt4jcmh5" path="res://start/components/SettingsPopup.cs" id="1_settings"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="1_x3fal"]
-[ext_resource type="PackedScene" uid="uid://dbjfnh4etytje" path="res://start/components/volume_control.tscn" id="3_4tfyt"]
-[ext_resource type="PackedScene" uid="uid://cl3gayqcj5o13" path="res://start/components/profile_customization.tscn" id="4_5gyax"]
+[ext_resource type="PackedScene" uid="uid://la6hh1a86kwm" path="res://start/components/volume_control.tscn" id="3_4tfyt"]
+[ext_resource type="PackedScene" uid="uid://djsmtb0gd8ipl" path="res://start/components/profile_customization.tscn" id="4_5gyax"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x3fal"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="SettingsPopup" type="Control" node_paths=PackedStringArray("_settingsContainer", "_backButton")]
+[node name="SettingsPopup" type="Control"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -23,8 +23,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_x3fal")
 script = ExtResource("1_settings")
-_settingsContainer = NodePath("PanelContainer/VBoxContainer/MarginContainer/SettingsContainer")
-_backButton = NodePath("PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/Button")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

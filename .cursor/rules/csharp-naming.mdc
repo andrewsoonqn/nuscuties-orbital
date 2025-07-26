@@ -1,0 +1,5 @@
+---
+description: When creating csharp (.cs) file
+alwaysApply: false
+---
+Please use PascalCase for any csharp .cs files. e.g. `NodeManager.cs`

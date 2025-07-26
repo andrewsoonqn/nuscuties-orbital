@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dk5cvxldnpjvf" path="res://passive/PassiveOngoing.cs" id="1_xw3ot"]
 
-[node name="PassiveOngoing" type="Control" node_paths=PackedStringArray("_timeSpentLabel", "_totalTimeLabel", "_timeProgressBar", "_expAccumulatedLabel", "_quitButton")]
+[node name="PassiveOngoing" type="Control" node_paths=PackedStringArray("_timeSpentLabel", "_totalTimeLabel", "_timeProgressBar", "_expAccumulatedLabel", "_sessionNameLabel", "_quitButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +14,7 @@ _timeSpentLabel = NodePath("VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer/P
 _totalTimeLabel = NodePath("VBoxContainer/TimeInfo/VBoxContainer/HBoxContainer/TotalTime")
 _timeProgressBar = NodePath("VBoxContainer/TimeInfo/VBoxContainer/ProgressBar")
 _expAccumulatedLabel = NodePath("VBoxContainer/Rewards/VBoxContainer/PanelContainer/ExpInfo")
+_sessionNameLabel = NodePath("VBoxContainer/SessionInfo/SessionName")
 _quitButton = NodePath("VBoxContainer/Quit/QuitButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -23,6 +24,18 @@ anchor_left = 0.15
 anchor_top = 0.3
 anchor_right = 0.85
 anchor_bottom = 0.35
+
+[node name="SessionInfo" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SessionName" type="Label" parent="VBoxContainer/SessionInfo"]
+layout_mode = 2
+text = "Session: Unnamed"
+horizontal_alignment = 1
 
 [node name="TimeInfo" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
