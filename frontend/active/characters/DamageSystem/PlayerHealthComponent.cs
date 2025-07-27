@@ -1,3 +1,5 @@
+using nuscutiesapp.active.characters.StatusEffects;
+
 namespace nuscutiesapp.active.characters.DamageSystem
 {
     public partial class PlayerHealthComponent : HealthComponent
@@ -23,7 +25,6 @@ namespace nuscutiesapp.active.characters.DamageSystem
             damageAmt = float.Max(damageAmt, 0);
             return damageAmt;
         }
-
 
     }
 }

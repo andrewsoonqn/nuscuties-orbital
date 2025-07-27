@@ -6,6 +6,7 @@ namespace nuscutiesapp.active.characters.StatusEffects
     {
         private Color _modulationColor;
         private Color _originalColor;
+        private bool _isApplied = false;
 
         public ModulationStrategy(Color modulationColor)
         {
@@ -19,6 +20,7 @@ namespace nuscutiesapp.active.characters.StatusEffects
             {
                 _originalColor = target.AnimatedSprite.Modulate;
                 target.AnimatedSprite.Modulate = _modulationColor;
+                _isApplied = true;
             }
         }
 
@@ -27,15 +29,12 @@ namespace nuscutiesapp.active.characters.StatusEffects
             if (target?.AnimatedSprite != null)
             {
                 target.AnimatedSprite.Modulate = _originalColor;
+                _isApplied = false;
             }
         }
 
         public void UpdateEffect(Character target)
         {
-            if (target?.AnimatedSprite != null)
-            {
-                target.AnimatedSprite.Modulate = _modulationColor;
-            }
         }
     }
 }

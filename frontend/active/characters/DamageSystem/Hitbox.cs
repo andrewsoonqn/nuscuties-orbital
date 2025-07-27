@@ -38,10 +38,20 @@ public partial class Hitbox : Area2D
     {
         if (body is Character character && monitoring)
         {
-            this._knockbackDirection = character.GlobalPosition - _wielder.GlobalPosition; // TODO change this
+            this._knockbackDirection = character.GlobalPosition - _wielder.GlobalPosition;
             _knockbackDirection = _knockbackDirection.Normalized();
 
             float damageAmt = _damageFunc.CalculateDamage();
+
+            if (_wielder.StatusEffects != null)
+            {
+                var buffEffect = _wielder.StatusEffects.GetStatusEffect<BuffStatusEffect>();
+                if (buffEffect != null && buffEffect.IsActive)
+                {
+                    damageAmt *= buffEffect.GetDamageMultiplier();
+                }
+            }
+
             DamageInfo damageInfo = new DamageInfo(
                 damageAmt, _knockbackDirection * _knockbackMagnitude, _statusEffect
             );

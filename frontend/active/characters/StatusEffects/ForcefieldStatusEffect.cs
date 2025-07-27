@@ -13,9 +13,12 @@ namespace nuscutiesapp.active.characters.StatusEffects
         public override void _Ready()
         {
             base._Ready();
-            _duration = 30.0f;
-            var forcefieldParticleScene = GD.Load<PackedScene>("res://active/characters/StatusEffects/particles/forcefield_particles.tscn");
-            _visualEffectStrategy = new ParticleEffectStrategy(forcefieldParticleScene);
+            _duration = float.MaxValue;
+            var shieldScene = GD.Load<PackedScene>("res://active/characters/StatusEffects/shield_overlay.tscn");
+
+            _visualEffectStrategy = new SpriteOverlayStrategy(
+                shieldScene
+            );
         }
 
         protected override void OnApplied()
@@ -28,14 +31,16 @@ namespace nuscutiesapp.active.characters.StatusEffects
             GD.Print($"Removed forcefield from {_target.Name}");
         }
 
-        public void BlockDamage()
+        public bool TryBlockDamage()
         {
             if (!_hasBlocked && _isActive)
             {
                 _hasBlocked = true;
-                GD.Print("Forcefield absorbed a hit!");
+                GD.Print("Forcefield absorbed damage but allowed knockback!");
                 Remove();
+                return true;
             }
+            return false;
         }
     }
 }
