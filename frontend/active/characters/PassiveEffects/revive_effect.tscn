@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://revive_effect"]
+
+[ext_resource type="Script" uid="uid://revive_effect_script" path="res://active/characters/PassiveEffects/ReviveEffect.cs" id="1_revive_effect"]
+
+[node name="ReviveEffect" type="Node"]
+script = ExtResource("1_revive_effect")

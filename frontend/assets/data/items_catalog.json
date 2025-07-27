@@ -160,5 +160,18 @@
 	  "cooldown": 0.5,
 	  "knockback": 0
 	}
+  },
+  {
+	"Id": "revive_necklace",
+	"Category": "necklace_passive",
+	"Title": "Necklace of Resurrection",
+	"Description": "Revives you once when you die, restoring 10 health and granting temporary forcefield",
+	"Price": 1500,
+	"IconPath": "res://assets/dawn_like/Items/Necklace0.png",
+	"ScenePath": "res://active/characters/PassiveEffects/revive_effect.tscn",
+	"StatsPayload": {
+	  "reviveHealth": 10,
+	  "forcefieldDuration": 5
+	}
   }
 ]
