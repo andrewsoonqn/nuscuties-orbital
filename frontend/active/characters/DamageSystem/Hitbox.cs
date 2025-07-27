@@ -12,11 +12,11 @@ public partial class Hitbox : Area2D
     [Export] private float _knockbackMagnitude;
     [Export] private DamageFunction _damageFunc;
 
-    private string _statusEffect;
+    [Export] private string _statusEffect;
 
     protected DerivedStatCalculator _derivedStatCalculator;
 
-    private CollisionShape2D _collisionShape;
+    [Export] private CollisionShape2D _collisionShape;
 
     public override void _Ready()
     {

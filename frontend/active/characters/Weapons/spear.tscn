@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://bvtirkilp8exj"]
 
-[ext_resource type="Script" uid="uid://dn4keoqyjsifd" path="res://active/characters/Weapons/Weapon.cs" id="1_spear"]
-[ext_resource type="Texture2D" uid="uid://cp0fgkpjbowtd" path="res://assets/dawn_like/Items/LongWep.png" id="1_spear_texture"]
-[ext_resource type="Script" uid="uid://dce3d7qkegp" path="res://active/characters/DamageSystem/Hitbox.cs" id="4_spear"]
+[ext_resource type="Script" uid="uid://bd5hng23y3l6s" path="res://active/characters/Weapons/Weapon.cs" id="1_spear"]
+[ext_resource type="Texture2D" uid="uid://bwijh0l0t8uhg" path="res://assets/dawn_like/Items/LongWep.png" id="1_spear_texture"]
+[ext_resource type="Script" uid="uid://bjaj5j7bptrlu" path="res://active/characters/DamageSystem/Hitbox.cs" id="4_spear"]
 
 [sub_resource type="Animation" id="Animation_spear_reset"]
 length = 0.001
@@ -47,7 +47,7 @@ region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_spear"]
 radius = 2.00001
-height = 12.0
+height = 14.0
 
 [node name="Spear" type="Node2D" node_paths=PackedStringArray("_myHitbox", "_animationPlayer")]
 script = ExtResource("1_spear")
@@ -71,5 +71,5 @@ collision_mask = 4
 script = ExtResource("4_spear")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Hitbox"]
-position = Vector2(7.67708e-05, 14)
+position = Vector2(1.04904e-05, 11)
 shape = SubResource("CapsuleShape2D_spear")

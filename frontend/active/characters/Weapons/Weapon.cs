@@ -11,8 +11,8 @@ namespace nuscutiesapp.active.characters.Weapons
     {
         [Export] private Hitbox _myHitbox;
         [Export] private AnimationPlayer _animationPlayer;
-        private int _attackDurationMs;
-        private IUseStrategy _useStrategy;
+        [Export] private int _attackDurationMs;
+        public IUseStrategy UseStrategy;
 
         public override void _Ready()
         {
@@ -23,7 +23,7 @@ namespace nuscutiesapp.active.characters.Weapons
         }
         public void Use()
         {
-            _useStrategy.Use(this); // TODO: explain
+            UseStrategy.Use(this); // TODO: explain
         }
 
         public enum WeaponType { Sword, Fist, Staff } // TODO: might change
@@ -49,7 +49,7 @@ namespace nuscutiesapp.active.characters.Weapons
             Weapon weapon = ResourceLoader.Load<PackedScene>(weaponPath).Instantiate<Weapon>();
             weapon._myHitbox.Initialize(wielder, damageFunc, knockbackMagnitude);
             weapon._attackDurationMs = attackDurationMs;
-            weapon._useStrategy = useStrategy;
+            weapon.UseStrategy = useStrategy;
             return weapon;
         }
 
@@ -61,7 +61,7 @@ namespace nuscutiesapp.active.characters.Weapons
         {
             _myHitbox.Initialize(wielder, damageFunc, knockbackMagnitude);
             _attackDurationMs = attackDurationMs;
-            _useStrategy = useStrategy;
+            UseStrategy = useStrategy;
         }
     }
 }

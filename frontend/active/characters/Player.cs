@@ -1,5 +1,6 @@
 using Godot;
 using nuscutiesapp.active.characters.ActivateWeaponStrategies;
+using nuscutiesapp.active.characters.ActiveAbilities;
 using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
@@ -19,6 +20,8 @@ public partial class Player : Character
     private LoadoutSpawner.LoadoutData _currentLoadout;
 
     private Dictionary<WeaponClass, Weapon> _weapons = new Dictionary<WeaponClass, Weapon>();
+    private DualWieldAbility _dualWieldAbility;
+
     public override void _Ready()
     {
         AddToGroup("player");
@@ -53,6 +56,8 @@ public partial class Player : Character
         this._eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
 
         ActivateWeaponStrategy = new InputActivateWeaponStrategy();
+        InitializeDualWield();
+
     }
 
     public override void _Process(double delta)
@@ -82,15 +87,18 @@ public partial class Player : Character
             {
                 MyWeapon.ApplyScale(new Vector2(1, -1));
             }
+
+            OnWeaponRotation(mouseDirection);
         }
 
         HandleActiveAbilityInput();
+        HandleDualWieldInput();
         base._Process(delta);
     }
 
     private void HandleActiveAbilityInput()
     {
-        if (Input.IsActionJustPressed("dash") && _currentLoadout?.ActiveAbilities != null)
+        if (Input.IsActionJustPressed("active_ability") && _currentLoadout?.ActiveAbilities != null)
         {
             foreach (var ability in _currentLoadout.ActiveAbilities)
             {
@@ -129,6 +137,7 @@ public partial class Player : Character
         RemoveChild(MyWeapon);
         MyWeapon = weapon;
         AddChild(MyWeapon);
+        OnWeaponUpdate();
     }
     public void SwitchWeapon(WeaponClass weaponClass)
     {
@@ -171,11 +180,54 @@ public partial class Player : Character
         }
 
         _loadoutSpawner.ApplyLoadout(this, _currentLoadout);
+        OnWeaponUpdate();
     }
 
     public LoadoutSpawner.LoadoutData GetCurrentLoadout()
     {
         return _currentLoadout;
+    }
+
+    public void OnWeaponAttack()
+    {
+        if (_currentLoadout?.ActiveAbilities != null)
+        {
+            foreach (var ability in _currentLoadout.ActiveAbilities)
+            {
+                if (ability is DualWieldAbility dualWieldAbility && dualWieldAbility.IsActive())
+                {
+                    dualWieldAbility.OnPlayerAttack();
+                }
+            }
+        }
+    }
+
+    public void OnWeaponUpdate()
+    {
+        if (_currentLoadout?.ActiveAbilities != null)
+        {
+            foreach (var ability in _currentLoadout.ActiveAbilities)
+            {
+                if (ability is DualWieldAbility dualWieldAbility && dualWieldAbility.IsActive())
+                {
+                    dualWieldAbility.OnPlayerWeaponUpdate();
+                }
+            }
+        }
+    }
+
+    public void OnWeaponRotation(Vector2 direction)
+    {
+        if (_currentLoadout?.ActiveAbilities != null)
+        {
+            foreach (var ability in _currentLoadout.ActiveAbilities)
+            {
+                if (ability is DualWieldAbility dualWieldAbility && dualWieldAbility.IsActive())
+                {
+                    dualWieldAbility.OnPlayerWeaponRotation(direction);
+                }
+            }
+        }
     }
 
     public override void _ExitTree()
@@ -185,5 +237,20 @@ public partial class Player : Character
             _loadoutSpawner.RemoveLoadout(this, _currentLoadout);
         }
         base._ExitTree();
+    }
+
+    private void InitializeDualWield()
+    {
+        _dualWieldAbility = new DualWieldAbility();
+        AddChild(_dualWieldAbility);
+        _dualWieldAbility.Initialize(this);
+    }
+
+    private void HandleDualWieldInput()
+    {
+        if (Input.IsActionJustPressed("dual_wield"))
+        {
+            _dualWieldAbility.Activate();
+        }
     }
 }

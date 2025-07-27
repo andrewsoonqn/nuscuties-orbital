@@ -40,7 +40,7 @@ public partial class Enemy : Character
             new DamageFunction(() => 10),
             200,
             100,
-            new NoAnimationUseStrategy()
+            new PersistentUseStrategy()
             );
         AddChild(MyWeapon);
 

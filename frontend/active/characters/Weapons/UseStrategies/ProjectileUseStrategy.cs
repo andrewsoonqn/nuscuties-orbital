@@ -24,6 +24,10 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
             _knockback = knockback;
             _statusEffect = statusEffect;
         }
+        public IUseStrategy Copy()
+        {
+            return new ProjectileUseStrategy(_projectileScenePath, _wielder, _damageFunction, _knockback, _statusEffect);
+        }
 
         public async void Use(Weapon weapon)
         {

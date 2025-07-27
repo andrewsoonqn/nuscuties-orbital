@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace nuscutiesapp.active.characters.Weapons.UseStrategies
 {
-    public partial class NoAnimationUseStrategy : Node, IUseStrategy
+    public partial class PersistentUseStrategy : Node, IUseStrategy
     {
         private Weapon _weapon;
         public void Use(Weapon weapon)
@@ -19,6 +19,11 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
         {
             // await Task.Delay(_weapon.GetDurationMs());
             // _weapon.GetHitbox().monitoring = false;
+        }
+        
+        public IUseStrategy Copy()
+        {
+            return new PersistentUseStrategy();
         }
     }
 }

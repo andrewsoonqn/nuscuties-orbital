@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq8x70a01a2b3"]
+
+[ext_resource type="Script" path="res://active/characters/SecondHand.cs" id="1_secondhand"]
+
+[node name="SecondHand" type="Node2D"]
+script = ExtResource("1_secondhand")
