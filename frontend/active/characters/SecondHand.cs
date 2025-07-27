@@ -1,5 +1,7 @@
 using Godot;
+using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.Weapons;
+using nuscutiesapp.active.characters.Weapons.UseStrategies;
 using System.Threading.Tasks;
 
 namespace nuscutiesapp.active.characters

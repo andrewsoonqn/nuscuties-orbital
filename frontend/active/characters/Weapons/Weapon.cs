@@ -11,7 +11,7 @@ namespace nuscutiesapp.active.characters.Weapons
     {
         [Export] private Hitbox _myHitbox;
         [Export] private AnimationPlayer _animationPlayer;
-        private int _attackDurationMs;
+        [Export] private int _attackDurationMs;
         public IUseStrategy UseStrategy;
 
         public override void _Ready()
