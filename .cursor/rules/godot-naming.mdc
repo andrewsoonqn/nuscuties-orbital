@@ -1,5 +1,0 @@
----
-description: Whenever creating a Godot scene
-alwaysApply: false
----
-Please follow a snake_case when naming a Godot scene, e.g. `my_scene.tscn`
