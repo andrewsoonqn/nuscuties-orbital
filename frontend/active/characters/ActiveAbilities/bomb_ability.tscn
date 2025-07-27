@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b64aoop1the4f"]
+
+[ext_resource type="Script" uid="uid://blqj82s8kgo42" path="res://active/characters/ActiveAbilities/BombAbility.cs" id="1_bomb_ability_script"]
+
+[node name="BombAbility" type="Node"]
+script = ExtResource("1_bomb_ability_script")

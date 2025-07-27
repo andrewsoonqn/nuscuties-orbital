@@ -90,7 +90,7 @@ public partial class Player : Character
 
     private void HandleActiveAbilityInput()
     {
-        if (Input.IsActionJustPressed("dash") && _currentLoadout?.ActiveAbilities != null)
+        if (Input.IsActionJustPressed("active_ability") && _currentLoadout?.ActiveAbilities != null)
         {
             foreach (var ability in _currentLoadout.ActiveAbilities)
             {

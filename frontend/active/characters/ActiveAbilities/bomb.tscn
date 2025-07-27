@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu0s777urh6d8"]
+
+[ext_resource type="Script" uid="uid://dwgejmfcpgea5" path="res://active/characters/ActiveAbilities/Bomb.cs" id="1_bomb_script"]
+[ext_resource type="Texture2D" uid="uid://bon1frg4nfuq7" path="res://assets/dungeon_art/props_itens/bomb_anim_f0.png" id="2_bomb_texture"]
+
+[node name="Bomb" type="Node2D"]
+script = ExtResource("1_bomb_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bomb_texture")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
