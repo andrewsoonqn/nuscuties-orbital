@@ -218,6 +218,11 @@ namespace nuscutiesapp.tools
                 foreach (var effect in loadout.PassiveEffects)
                 {
                     effect.ApplyEffect(targetCharacter);
+
+                    if (effect is Node effectNode)
+                    {
+                        targetCharacter.AddChild(effectNode);
+                    }
                 }
             }
 
@@ -240,6 +245,11 @@ namespace nuscutiesapp.tools
                 foreach (var effect in loadout.PassiveEffects)
                 {
                     effect.RemoveEffect(targetCharacter);
+
+                    if (effect is Node effectNode)
+                    {
+                        effectNode.QueueFree();
+                    }
                 }
             }
 

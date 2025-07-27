@@ -92,7 +92,6 @@ public partial class Player : Character
         }
 
         HandleActiveAbilityInput();
-        HandleDualWieldInput();
         base._Process(delta);
     }
 
@@ -246,11 +245,4 @@ public partial class Player : Character
         _dualWieldAbility.Initialize(this);
     }
 
-    private void HandleDualWieldInput()
-    {
-        if (Input.IsActionJustPressed("dual_wield"))
-        {
-            _dualWieldAbility.Activate();
-        }
-    }
 }
