@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ecv60eugvlay"]
 
-[ext_resource type="Script" uid="uid://nppfsq5y662c" path="res://active/WaveDisplay.cs" id="1_cqr5r"]
-[ext_resource type="Texture2D" uid="uid://cwmfbmlkblr1m" path="res://assets/flat_ui/PNG/Red/Default/button_rectangle_depth_border.png" id="1_u2tej"]
+[ext_resource type="Script" uid="uid://8bbd4n7ips3i" path="res://active/WaveDisplay.cs" id="1_cqr5r"]
+[ext_resource type="Texture2D" uid="uid://554meaiwaavk" path="res://assets/flat_ui/PNG/Red/Default/button_rectangle_depth_border.png" id="1_u2tej"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_cqr5r"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eoccg"]

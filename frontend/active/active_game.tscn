@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://chi5q1ptodsaf"]
+[gd_scene load_steps=33 format=3 uid="uid://chi5q1ptodsaf"]
 
 [ext_resource type="PackedScene" uid="uid://cvf7e615kvfxq" path="res://game_world.tscn" id="1_kudwv"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_6k8in"]
@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://5fjp7rk2j7wi" path="res://assets/Keyboard & Mouse/Vector/keyboard_2.svg" id="8_bbdxb"]
 [ext_resource type="Texture2D" uid="uid://cq2c6opnc0pa8" path="res://assets/Keyboard & Mouse/Double/keyboard_space.png" id="10_lyh32"]
 [ext_resource type="Texture2D" uid="uid://bon1frg4nfuq7" path="res://assets/dungeon_art/props_itens/bomb_anim_f0.png" id="12_hj30a"]
-[ext_resource type="PackedScene" uid="uid://c10dolxs2eew4" path="res://active/ui/cooldown_indicator.tscn" id="19_3qjxp"]
+[ext_resource type="PackedScene" uid="uid://b5u8fbqkt8rm1" path="res://active/ui/cooldown_indicator.tscn" id="19_3qjxp"]
 [ext_resource type="Script" uid="uid://c8axldjbmh8h5" path="res://active/WaveInformation.cs" id="20_5rjfj"]
 [ext_resource type="Script" uid="uid://d4dfcrnvttyua" path="res://active/EnemyTracker.cs" id="22_3tek5"]
 [ext_resource type="PackedScene" uid="uid://bhcy2p2gvqvcb" path="res://active/loadout_display.tscn" id="23_3qjxp"]
@@ -37,6 +37,18 @@ region = Rect2(32, 48, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_3tek5"]
 atlas = ExtResource("10_lyh32")
 region = Rect2(12, 32, 104, 64)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qjxp"]
+bg_color = Color(0.219608, 0.219608, 0.219608, 0.768627)
+
+[sub_resource type="Gradient" id="Gradient_3qjxp"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.219608, 0.219608, 0.219608, 0.768627)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3lnur"]
+gradient = SubResource("Gradient_3qjxp")
+fill_from = Vector2(0.988166, 0.0118343)
+fill_to = Vector2(0, 0)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2vtgd"]
 texture = ExtResource("5_hfto2")
@@ -136,7 +148,6 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="MeleeTexture" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer"]
-z_index = 1
 layout_mode = 2
 texture = ExtResource("6_lq7bx")
 stretch_mode = 5
@@ -169,7 +180,6 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="ProjectileTexture" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer2/PanelContainer/MarginContainer"]
-z_index = 1
 layout_mode = 2
 texture = SubResource("AtlasTexture_bbdxb")
 stretch_mode = 5
@@ -219,7 +229,6 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="PassiveTexture" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer2/PanelContainer/MarginContainer"]
-z_index = 1
 layout_mode = 2
 texture = SubResource("AtlasTexture_bbdxb")
 stretch_mode = 5
@@ -254,10 +263,20 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="ActiveTexture" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/MarginContainer3/PanelContainer/MarginContainer2"]
-z_index = 1
 layout_mode = 2
 texture = ExtResource("12_hj30a")
 stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/MarginContainer3/PanelContainer/MarginContainer2"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3qjxp")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/MarginContainer3/PanelContainer/MarginContainer2"]
+layout_mode = 2
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture2D_3lnur")
 
 [node name="PanelContainer2" type="PanelContainer" parent="ActiveGameUI/CanvasLayer"]
 anchors_preset = -1
@@ -367,7 +386,9 @@ theme_override_font_sizes/font_size = 32
 text = "50 enemies remaining"
 horizontal_alignment = 2
 
-[node name="CooldownIndicator" parent="ActiveGameUI/CanvasLayer" instance=ExtResource("19_3qjxp")]
+[node name="CooldownIndicator" parent="ActiveGameUI/CanvasLayer" node_paths=PackedStringArray("_overlayPanel", "_progressBar") instance=ExtResource("19_3qjxp")]
+_overlayPanel = NodePath("../MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/MarginContainer3/PanelContainer/MarginContainer2/Panel")
+_progressBar = NodePath("../MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/MarginContainer3/PanelContainer/MarginContainer2/TextureProgressBar")
 
 [node name="GameWorld" parent="." instance=ExtResource("1_kudwv")]
 

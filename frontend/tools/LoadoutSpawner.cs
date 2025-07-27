@@ -8,6 +8,9 @@ namespace nuscutiesapp.tools
 {
     public partial class LoadoutSpawner : Node
     {
+        [Signal]
+        public delegate void ActiveAbilityCreatedEventHandler(Node ability);
+
         private PlayerInventoryManager _inventoryManager;
         private ItemCatalog _itemCatalog;
         private DerivedStatCalculator _statCalculator;
@@ -105,6 +108,7 @@ namespace nuscutiesapp.tools
                 if (ability != null)
                 {
                     abilities.Add(ability);
+                    EmitSignal(SignalName.ActiveAbilityCreated, (Node)ability);
                 }
             }
 

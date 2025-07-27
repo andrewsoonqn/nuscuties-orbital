@@ -4,4 +4,3 @@
 
 [node name="DashAbility" type="Node"]
 script = ExtResource("1_dash_ability")
-_dashDistance = 120.0

@@ -5,9 +5,9 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
 {
     public partial class DashAbility : Node, IActiveAbility
     {
-        [Export] private float _dashDistance = 40.0f;
+        [Export] private float _dashDistance = 60.0f;
         [Export] private float _cooldownTime = 3.0f;
-        [Export] private float _dashDuration = 0.05f;
+        [Export] private float _dashDuration = 0.2f;
 
         private Character _owner;
         private Timer _cooldownTimer;

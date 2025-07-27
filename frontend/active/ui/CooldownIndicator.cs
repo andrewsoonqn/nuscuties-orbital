@@ -7,12 +7,10 @@ namespace nuscutiesapp.active.ui
     {
         [Export] private Panel _overlayPanel;
         [Export] private TextureProgressBar _progressBar;
-        [Export] private Color _loadingColor = new Color(0.5f, 0.5f, 0.5f, 0.7f);
-        [Export] private Color _inProgressColor = new Color(0.3f, 0.3f, 0.3f, 0.8f);
-        [Export] private Color _cooldownColor = new Color(0.5f, 0.5f, 0.5f, 0.7f);
 
         private IActiveAbility _activeAbility;
         private bool _isVisible = false;
+        private LoadoutSpawner _loadoutSpawner;
 
         public override void _Ready()
         {
@@ -26,25 +24,22 @@ namespace nuscutiesapp.active.ui
                 _progressBar = GetNode<TextureProgressBar>("ProgressBar");
             }
 
-            SetupProgressBar();
+            ConnectToLoadoutSpawner();
             SetVisible(false);
         }
 
-        private void SetupProgressBar()
+        private void ConnectToLoadoutSpawner()
         {
-            if (_progressBar == null) return;
-
-            var circularTexture = GD.Load<Texture2D>("res://assets/white-circle.png");
-            if (circularTexture != null)
+            _loadoutSpawner = GetNode<LoadoutSpawner>("/root/LoadoutSpawner");
+            if (_loadoutSpawner != null)
             {
-                _progressBar.TextureProgress = circularTexture;
-                _progressBar.FillMode = (int)TextureProgressBar.FillModeEnum.Clockwise;
+                _loadoutSpawner.ActiveAbilityCreated += OnActiveAbilityCreated;
             }
         }
 
-        public void SetActiveAbility(IActiveAbility ability)
+        private void OnActiveAbilityCreated(Node ability)
         {
-            _activeAbility = ability;
+            _activeAbility = (IActiveAbility)ability;
         }
 
         public override void _Process(double delta)
@@ -62,28 +57,27 @@ namespace nuscutiesapp.active.ui
 
                 case ActiveAbilityPhase.Loading:
                     SetVisible(true);
-                    UpdateProgressBar(completionPercentage, _loadingColor);
+                    UpdateProgressBar(completionPercentage);
                     break;
 
                 case ActiveAbilityPhase.InProgress:
                     SetVisible(true);
-                    SetFullOverlay(_inProgressColor);
+                    SetFullOverlay();
                     break;
 
                 case ActiveAbilityPhase.Cooldown:
                     SetVisible(true);
-                    UpdateProgressBar(completionPercentage, _cooldownColor);
+                    UpdateProgressBar(completionPercentage);
                     break;
             }
         }
 
-        private void UpdateProgressBar(float completionPercentage, Color color)
+        private void UpdateProgressBar(float completionPercentage)
         {
             if (_progressBar == null) return;
 
             _progressBar.Visible = true;
-            _progressBar.Value = completionPercentage * 100f;
-            _progressBar.Modulate = color;
+            _progressBar.Value = 100 - completionPercentage * 100f;
 
             if (_overlayPanel != null)
             {
@@ -91,20 +85,11 @@ namespace nuscutiesapp.active.ui
             }
         }
 
-        private void SetFullOverlay(Color color)
+        private void SetFullOverlay()
         {
             if (_overlayPanel == null) return;
 
             _overlayPanel.Visible = true;
-            var styleBox = new StyleBoxFlat();
-            styleBox.BgColor = color;
-            styleBox.CornerRadiusTopLeft = 8;
-            styleBox.CornerRadiusTopRight = 8;
-            styleBox.CornerRadiusBottomLeft = 8;
-            styleBox.CornerRadiusBottomRight = 8;
-
-            _overlayPanel.AddThemeStyleboxOverride("panel", styleBox);
-
             if (_progressBar != null)
             {
                 _progressBar.Visible = false;
