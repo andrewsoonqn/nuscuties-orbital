@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.active.characters.ActiveAbilities;
 
 namespace nuscutiesapp.active.characters.MovementStrategies
 {
@@ -7,8 +8,14 @@ namespace nuscutiesapp.active.characters.MovementStrategies
         public PlayerMovementStrategy(Character character) : base(character)
         {
         }
+
         public override void GetDirection()
         {
+            if (IsPlayerDashing())
+            {
+                MyCharacter.MovDirection = Vector2.Zero;
+                return;
+            }
 
             MyCharacter.MovDirection = Vector2.Zero;
             if (Input.IsActionPressed("ui_up") || Input.IsKeyPressed(Key.W))
@@ -30,7 +37,25 @@ namespace nuscutiesapp.active.characters.MovementStrategies
             {
                 MyCharacter.MovDirection += Vector2.Right;
             }
+        }
 
+        private bool IsPlayerDashing()
+        {
+            if (MyCharacter is Player player)
+            {
+                var loadout = player.GetCurrentLoadout();
+                if (loadout?.ActiveAbilities != null)
+                {
+                    foreach (var ability in loadout.ActiveAbilities)
+                    {
+                        if (ability is DashAbility dashAbility && dashAbility.IsDashing)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
         }
     }
 }

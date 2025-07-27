@@ -5,15 +5,17 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
 {
     public partial class DashAbility : Node, IActiveAbility
     {
-        [Export] private float _dashDistance = 100.0f;
+        [Export] private float _dashDistance = 120.0f;
         [Export] private float _cooldownTime = 3.0f;
-        [Export] private float _dashDuration = 0.2f;
+        [Export] private float _dashDuration = 0.1f;
 
         private Character _owner;
         private Timer _cooldownTimer;
         private bool _isDashing = false;
         private Vector2 _dashDirection;
         private float _dashTimer = 0.0f;
+
+        public bool IsDashing => _isDashing;
 
         public override void _Ready()
         {
@@ -35,7 +37,7 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
                 return false;
             }
 
-            _dashDirection = (_owner.GetGlobalMousePosition() - _owner.GlobalPosition).Normalized();
+            _dashDirection = _owner.MovDirection;
             if (_dashDirection == Vector2.Zero)
             {
                 _dashDirection = Vector2.Right;
@@ -45,6 +47,8 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
             _dashTimer = _dashDuration;
             _cooldownTimer.Start();
 
+            float dashSpeed = _dashDistance / _dashDuration;
+            _owner.MaxSpeed += dashSpeed;
             GD.Print($"Dash activated! Direction: {_dashDirection}");
             return true;
         }
@@ -63,15 +67,16 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
         {
             if (_isDashing && _owner != null)
             {
+                float dashSpeed = _dashDistance / _dashDuration;
                 _dashTimer -= (float)delta;
 
                 if (_dashTimer > 0)
                 {
-                    float dashSpeed = _dashDistance / _dashDuration;
                     _owner.Velocity = _dashDirection * dashSpeed;
                 }
                 else
                 {
+                    _owner.MaxSpeed -= dashSpeed;
                     _isDashing = false;
                     GD.Print("Dash completed");
                 }
