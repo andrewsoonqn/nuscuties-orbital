@@ -1,13 +1,14 @@
 using Godot;
 using nuscutiesapp.tools;
+using nuscutiesapp.active.characters.StatusEffects;
 using System;
 
 namespace nuscutiesapp.active.characters.DamageSystem
 {
     public partial class HealthComponent : Node, IDamageable
     {
-        protected Character _owner; // can change to not just character in the future
-        [Export] public float MaxHP = 20; // TODO make this private
+        protected Character _owner;
+        [Export] public float MaxHP = 20;
         public float CurrentHP { get; set; }
 
         public event Action<float, DamageInfo> Damaged;
@@ -31,13 +32,29 @@ namespace nuscutiesapp.active.characters.DamageSystem
         {
             if (CurrentHP <= 0) return;
 
-            CurrentHP = float.Max(CurrentHP - GetDamageAmt(damageInfo), 0);
-
-            ApplyDamageModulation();
-
-            if (CurrentHP <= 0)
+            bool forcefieldActive = false;
+            if (_owner.StatusEffects != null)
             {
-                Died?.Invoke(damageInfo);
+                var forcefieldEffect = _owner.StatusEffects.GetStatusEffect<ForcefieldStatusEffect>();
+                if (forcefieldEffect != null && forcefieldEffect.TryBlockDamage())
+                {
+                    forcefieldActive = true;
+                }
+            }
+
+            if (!forcefieldActive)
+            {
+                CurrentHP = float.Max(CurrentHP - GetDamageAmt(damageInfo), 0);
+                ApplyDamageModulation();
+
+                if (CurrentHP <= 0)
+                {
+                    Died?.Invoke(damageInfo);
+                }
+                else
+                {
+                    Damaged?.Invoke(CurrentHP, damageInfo);
+                }
             }
             else
             {

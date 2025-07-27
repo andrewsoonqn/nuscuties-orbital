@@ -1,16 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfbf3rsfwt4es"]
+[gd_scene load_steps=2 format=3 uid="uid://cfbf3rsfwt4es"]
 
 [ext_resource type="Script" uid="uid://bd7qq36cejpkf" path="res://active/characters/StatusEffects/particles/ForcefieldParticles.cs" id="1_0x0x0"]
-[ext_resource type="Texture2D" uid="uid://c2mriam1cee3p" path="res://assets/dawn_like/Items/Shield.png" id="1_up50q"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_igkpm"]
-atlas = ExtResource("1_up50q")
-region = Rect2(96, 0, 16, 16)
 
 [node name="ForcefieldParticles" type="CPUParticles2D"]
-modulate = Color(1, 1, 1, 0.25098)
 amount = 3
-texture = SubResource("AtlasTexture_igkpm")
 emission_shape = 3
 emission_rect_extents = Vector2(10, 10)
 direction = Vector2(0, -1)
