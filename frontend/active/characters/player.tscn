@@ -1,12 +1,12 @@
 [gd_scene load_steps=31 format=3 uid="uid://d4ukkagofjxm"]
 
 [ext_resource type="PackedScene" uid="uid://c2aoax7gfqdq6" path="res://active/characters/character.tscn" id="1_wjgc2"]
-[ext_resource type="Texture2D" uid="uid://e44ds11llc6w" path="res://assets/dungeon_art/heroes/knight/knight_idle_spritesheet.png" id="2_tlgbr"]
-[ext_resource type="Script" uid="uid://dxgw4m3bmqjax" path="res://active/characters/Player.cs" id="2_x55qg"]
-[ext_resource type="Texture2D" uid="uid://clk2gv5lxpvoe" path="res://assets/dungeon_art/effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" id="3_guxn7"]
-[ext_resource type="Texture2D" uid="uid://bw21rbqmofoji" path="res://assets/dungeon_art/heroes/knight/knight_run_spritesheet.png" id="3_x55qg"]
+[ext_resource type="Texture2D" uid="uid://jkklqrkxx82h" path="res://assets/dungeon_art/heroes/knight/knight_idle_spritesheet.png" id="2_tlgbr"]
+[ext_resource type="Script" uid="uid://if4go2den0bl" path="res://active/characters/Player.cs" id="2_x55qg"]
+[ext_resource type="Texture2D" uid="uid://bnimnlhqqighc" path="res://assets/dungeon_art/effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" id="3_guxn7"]
+[ext_resource type="Texture2D" uid="uid://cy6y8rl2q5ip0" path="res://assets/dungeon_art/heroes/knight/knight_run_spritesheet.png" id="3_x55qg"]
 [ext_resource type="PackedScene" uid="uid://b021spcuxd3gw" path="res://active/direction_arrow.tscn" id="7_e5a7i"]
-[ext_resource type="Script" uid="uid://3x37o78ldiak" path="res://active/characters/DamageSystem/PlayerHealthComponent.cs" id="7_s54qp"]
+[ext_resource type="Script" uid="uid://l76kk6wlbomj" path="res://active/characters/DamageSystem/PlayerHealthComponent.cs" id="7_s54qp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0y68l"]
 atlas = ExtResource("3_guxn7")
@@ -278,3 +278,7 @@ script = ExtResource("7_s54qp")
 MaxHP = 60.0
 
 [node name="DirectionArrow" parent="." index="4" instance=ExtResource("7_e5a7i")]
+
+[node name="MyColorManager" parent="." index="6" node_paths=PackedStringArray("_parent", "_sprite")]
+_parent = NodePath("..")
+_sprite = NodePath("../AnimatedSprite2D")

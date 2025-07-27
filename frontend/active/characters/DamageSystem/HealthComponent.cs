@@ -15,7 +15,6 @@ namespace nuscutiesapp.active.characters.DamageSystem
         public event Action<DamageInfo> Died;
 
         protected DerivedStatCalculator _derivedStatCalculator;
-        private Color _originalModulation;
 
         public override void _Ready()
         {
@@ -71,19 +70,11 @@ namespace nuscutiesapp.active.characters.DamageSystem
             return false;
         }
 
-        private async void ApplyDamageModulation()
+        private void ApplyDamageModulation()
         {
-            if (_owner?.AnimatedSprite != null)
+            if (_owner?.MyColorManager != null)
             {
-                _originalModulation = _owner.AnimatedSprite.Modulate;
-                _owner.AnimatedSprite.Modulate = new Color(1, 0.5f, 0.5f);
-
-                await _owner.ToSignal(_owner.GetTree().CreateTimer(0.3f), SceneTreeTimer.SignalName.Timeout);
-
-                if (_owner?.AnimatedSprite != null)
-                {
-                    _owner.AnimatedSprite.Modulate = _originalModulation;
-                }
+                _owner.MyColorManager.Pulse(new Color(1, 0.5f, 0.5f), 0.3f);
             }
         }
     }
