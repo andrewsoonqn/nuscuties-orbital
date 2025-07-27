@@ -52,7 +52,7 @@ namespace nuscutiesapp.active.characters.DamageSystem
                 {
                     if (!TryRevive(damageInfo))
                     {
-                    Died?.Invoke(damageInfo);
+                        Died?.Invoke(damageInfo);
                     }
                 }
                 else

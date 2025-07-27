@@ -48,6 +48,7 @@ namespace nuscutiesapp.active.characters.PassiveEffects
 
             _reviveUsed = true;
             _targetHealth.CurrentHP = _reviveHealth;
+            _targetHealth.TakeDamage(new DamageInfo(0, damageInfo.Knockback));
 
             if (character.StatusEffects != null)
             {
