@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://de53ys2p7gj4c"]
+
+[ext_resource type="Texture2D" uid="uid://bw154r45ejxbp" path="res://assets/dawn_like/Items/ShieldOverlay.png" id="1_shield"]
+
+[node name="ShieldOverlay" type="Sprite2D"]
+modulate = Color(1, 0.666667, 1, 0.305882)
+z_index = 1
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("1_shield")

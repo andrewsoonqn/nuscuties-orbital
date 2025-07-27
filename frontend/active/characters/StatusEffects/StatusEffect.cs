@@ -63,6 +63,7 @@ namespace nuscutiesapp.active.characters.StatusEffects
             if (_remainingDuration <= 0)
             {
                 Remove();
+                return;
             }
 
             _visualEffectStrategy?.UpdateEffect(_target);
