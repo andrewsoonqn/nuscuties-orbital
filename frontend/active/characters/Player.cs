@@ -173,6 +173,11 @@ public partial class Player : Character
         _loadoutSpawner.ApplyLoadout(this, _currentLoadout);
     }
 
+    public LoadoutSpawner.LoadoutData GetCurrentLoadout()
+    {
+        return _currentLoadout;
+    }
+
     public override void _ExitTree()
     {
         if (_currentLoadout != null && _loadoutSpawner != null)
