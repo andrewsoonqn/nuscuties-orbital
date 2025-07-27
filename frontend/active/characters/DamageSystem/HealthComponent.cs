@@ -50,7 +50,10 @@ namespace nuscutiesapp.active.characters.DamageSystem
 
                 if (CurrentHP <= 0)
                 {
-                    Died?.Invoke(damageInfo);
+                    if (!TryRevive(damageInfo))
+                    {
+                        Died?.Invoke(damageInfo);
+                    }
                 }
                 else
                 {
@@ -61,6 +64,11 @@ namespace nuscutiesapp.active.characters.DamageSystem
             {
                 Damaged?.Invoke(CurrentHP, damageInfo);
             }
+        }
+
+        protected virtual bool TryRevive(in DamageInfo damageInfo)
+        {
+            return false;
         }
 
         private async void ApplyDamageModulation()
