@@ -15,7 +15,6 @@ namespace nuscutiesapp.tools
             {
                 { "melee", new List<string> { "sword" } },
                 { "projectile", new List<string>() },
-                { "utility", new List<string>() },
                 { "necklace_passive", new List<string>() },
                 { "necklace_active", new List<string>() }
             };
@@ -24,7 +23,6 @@ namespace nuscutiesapp.tools
             {
                 { "melee", "sword" },
                 { "projectile", null },
-                { "utility", null },
                 { "necklace_passive", null },
                 { "necklace_active", null }
             };

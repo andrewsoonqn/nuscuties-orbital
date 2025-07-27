@@ -38,7 +38,6 @@ namespace nuscutiesapp.ui.shop
             {
                 { "melee", _tabContainer.GetNode<GridContainer>("Melee/MeleeGrid") },
                 { "projectile", _tabContainer.GetNode<GridContainer>("Projectile/ProjectileGrid") },
-                { "utility", _tabContainer.GetNode<GridContainer>("Utility/UtilityGrid") },
                 { "necklace_passive", _tabContainer.GetNode<GridContainer>("Passive Necklaces/PassiveGrid") },
                 { "necklace_active", _tabContainer.GetNode<GridContainer>("Active Necklaces/ActiveGrid") }
             };

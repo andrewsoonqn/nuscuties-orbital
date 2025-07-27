@@ -37,7 +37,8 @@ namespace nuscutiesapp.active
 
             if (string.IsNullOrEmpty(equippedItemId))
             {
-                iconRect.Texture = null;
+                var noItemTexture = GD.Load<Texture2D>("res://assets/item_icons/no_item.png");
+                iconRect.Texture = noItemTexture;
                 return;
             }
 
@@ -45,7 +46,8 @@ namespace nuscutiesapp.active
             if (itemDef == null)
             {
                 GD.PrintErr($"Item not found in catalog: {equippedItemId}");
-                iconRect.Texture = null;
+                var noItemTexture = GD.Load<Texture2D>("res://assets/item_icons/no_item.png");
+                iconRect.Texture = noItemTexture;
                 return;
             }
 
@@ -59,12 +61,14 @@ namespace nuscutiesapp.active
                 else
                 {
                     GD.PrintErr($"Failed to load texture: {itemDef.IconPath}");
-                    iconRect.Texture = null;
+                    var noItemTexture = GD.Load<Texture2D>("res://assets/item_icons/no_item@no_item.png");
+                    iconRect.Texture = noItemTexture;
                 }
             }
             else
             {
-                iconRect.Texture = null;
+                var noItemTexture = GD.Load<Texture2D>("res://assets/item_icons/no_item@no_item.png");
+                iconRect.Texture = noItemTexture;
             }
         }
     }
