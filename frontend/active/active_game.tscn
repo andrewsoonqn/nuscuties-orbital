@@ -1,27 +1,28 @@
-[gd_scene load_steps=27 format=3 uid="uid://chi5q1ptodsaf"]
+[gd_scene load_steps=29 format=3 uid="uid://chi5q1ptodsaf"]
 
 [ext_resource type="PackedScene" uid="uid://cvf7e615kvfxq" path="res://game_world.tscn" id="1_kudwv"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="3_6k8in"]
-[ext_resource type="Texture2D" uid="uid://ean5rq8mka0d" path="res://assets/Keyboard & Mouse/Default/keyboard_escape.png" id="3_dem6s"]
-[ext_resource type="Script" uid="uid://dv8gdccq18wng" path="res://active/characters/DrawHealth.cs" id="3_ir5f8"]
+[ext_resource type="Texture2D" uid="uid://b0e5gdsmi265" path="res://assets/Keyboard & Mouse/Default/keyboard_escape.png" id="3_dem6s"]
+[ext_resource type="Script" uid="uid://clhm8el6vplb4" path="res://active/characters/DrawHealth.cs" id="3_ir5f8"]
 [ext_resource type="PackedScene" uid="uid://ecv60eugvlay" path="res://active/wave_display.tscn" id="3_lyh32"]
-[ext_resource type="Script" uid="uid://blw8vgyur3qig" path="res://active/characters/UIPrintHealth.cs" id="3_mp5i6"]
-[ext_resource type="Texture2D" uid="uid://caxi8vx23pt4w" path="res://assets/dungeon_art/ui (new)/progress bar.png" id="4_7kwek"]
-[ext_resource type="Texture2D" uid="uid://bokei0x2xhtqh" path="res://assets/dungeon_art/ui (new)/health_ui.png" id="4_lext4"]
-[ext_resource type="Texture2D" uid="uid://dlgymkxkwptry" path="res://assets/kenney_ui-pack-pixel-adventure/Tiles/Large tiles/Thin outline/tile_0018.png" id="5_2vtgd"]
-[ext_resource type="Texture2D" uid="uid://2mef3pbmf8gq" path="res://assets/flat_ui/PNG/Extra/Double/button_rectangle_depth_line.png" id="5_hfto2"]
-[ext_resource type="Script" uid="uid://d17uqd6ssin58" path="res://active/ActiveGameUi.cs" id="5_lext4"]
-[ext_resource type="Texture2D" uid="uid://bfejfb4gdis4i" path="res://assets/Keyboard & Mouse/Vector/keyboard_1.svg" id="5_sxw8e"]
-[ext_resource type="Texture2D" uid="uid://bmd6bnudrqldm" path="res://assets/dungeon_art/heroes/knight/weapon_sword_1.png" id="6_lq7bx"]
+[ext_resource type="Script" uid="uid://dhmqeq0op3jbc" path="res://active/characters/UIPrintHealth.cs" id="3_mp5i6"]
+[ext_resource type="Texture2D" uid="uid://1f5uvdwoo350" path="res://assets/dungeon_art/ui (new)/progress bar.png" id="4_7kwek"]
+[ext_resource type="Texture2D" uid="uid://bjdvwnfmg50ot" path="res://assets/dungeon_art/ui (new)/health_ui.png" id="4_lext4"]
+[ext_resource type="Texture2D" uid="uid://vefbgvapxogh" path="res://assets/kenney_ui-pack-pixel-adventure/Tiles/Large tiles/Thin outline/tile_0018.png" id="5_2vtgd"]
+[ext_resource type="Texture2D" uid="uid://dc1rnl5jq5voy" path="res://assets/flat_ui/PNG/Extra/Double/button_rectangle_depth_line.png" id="5_hfto2"]
+[ext_resource type="Script" uid="uid://be1pgqc8aakvg" path="res://active/ActiveGameUi.cs" id="5_lext4"]
+[ext_resource type="Texture2D" uid="uid://cslhvgco0j6am" path="res://assets/Keyboard & Mouse/Vector/keyboard_1.svg" id="5_sxw8e"]
+[ext_resource type="Texture2D" uid="uid://d3p8aca1eu3yw" path="res://assets/dungeon_art/heroes/knight/weapon_sword_1.png" id="6_lq7bx"]
 [ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="6_sahrs"]
 [ext_resource type="Theme" uid="uid://bb6vwl0h1flws" path="res://assets/flat_ui/kenneyUI-blue.tres" id="7_gepbl"]
-[ext_resource type="Texture2D" uid="uid://dc2hn8jmwn2og" path="res://assets/dawn_like/Items/Wand.png" id="7_jm1vr"]
-[ext_resource type="Texture2D" uid="uid://b6kei1exly834" path="res://assets/Keyboard & Mouse/Vector/keyboard_2.svg" id="8_bbdxb"]
-[ext_resource type="Texture2D" uid="uid://bjti66qm6xawi" path="res://assets/Keyboard & Mouse/Vector/keyboard_3.svg" id="10_hj30a"]
-[ext_resource type="Texture2D" uid="uid://453frowrrtj1" path="res://assets/dungeon_art/props_itens/bomb_anim_f0.png" id="12_hj30a"]
-[ext_resource type="Script" uid="uid://c0f263hwc1rs8" path="res://active/WaveInformation.cs" id="20_5rjfj"]
-[ext_resource type="Script" uid="uid://trv4qpxml7vi" path="res://active/EnemyTracker.cs" id="22_3tek5"]
-[ext_resource type="Script" uid="uid://bd1grego0dljs" path="res://active/WeaponSwitcher.cs" id="23_3tek5"]
+[ext_resource type="Texture2D" uid="uid://dmuh3obecyogr" path="res://assets/dawn_like/Items/Wand.png" id="7_jm1vr"]
+[ext_resource type="Texture2D" uid="uid://5fjp7rk2j7wi" path="res://assets/Keyboard & Mouse/Vector/keyboard_2.svg" id="8_bbdxb"]
+[ext_resource type="Texture2D" uid="uid://cq2c6opnc0pa8" path="res://assets/Keyboard & Mouse/Double/keyboard_space.png" id="10_lyh32"]
+[ext_resource type="Texture2D" uid="uid://bon1frg4nfuq7" path="res://assets/dungeon_art/props_itens/bomb_anim_f0.png" id="12_hj30a"]
+[ext_resource type="Script" uid="uid://c8axldjbmh8h5" path="res://active/WaveInformation.cs" id="20_5rjfj"]
+[ext_resource type="Script" uid="uid://d4dfcrnvttyua" path="res://active/EnemyTracker.cs" id="22_3tek5"]
+[ext_resource type="PackedScene" uid="uid://bhcy2p2gvqvcb" path="res://active/loadout_display.tscn" id="23_3qjxp"]
+[ext_resource type="Script" uid="uid://d0esyh2k7x8n6" path="res://active/WeaponSwitcher.cs" id="23_3tek5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v3mdj"]
 
@@ -31,6 +32,10 @@ texture = ExtResource("5_2vtgd")
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbdxb"]
 atlas = ExtResource("7_jm1vr")
 region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tek5"]
+atlas = ExtResource("10_lyh32")
+region = Rect2(12, 32, 104, 64)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2vtgd"]
 texture = ExtResource("5_hfto2")
@@ -85,7 +90,7 @@ text = "Pause"
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -148.0
+offset_top = -216.0
 offset_right = 412.0
 grow_vertical = 0
 theme_override_constants/margin_left = 20
@@ -93,6 +98,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3"]
 layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer"]
 layout_mode = 2
@@ -128,7 +134,8 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer"]
+[node name="MeleeTexture" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer"]
+z_index = 1
 layout_mode = 2
 texture = ExtResource("6_lq7bx")
 stretch_mode = 5
@@ -160,39 +167,93 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer2/PanelContainer/MarginContainer"]
+[node name="ProjectileTexture" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer2/PanelContainer/MarginContainer"]
+z_index = 1
 layout_mode = 2
 texture = SubResource("AtlasTexture_bbdxb")
 stretch_mode = 5
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="MarginContainer4" type="MarginContainer" parent="ActiveGameUI/CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -412.0
+offset_top = -216.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer4"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_v3mdj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="BoxContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
 
-[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/BoxContainer"]
-layout_mode = 2
-texture = ExtResource("10_hj30a")
-
-[node name="MarginContainer3" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3"]
+[node name="MarginContainer2" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/MarginContainer3"]
+[node name="PanelContainer" type="PanelContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer2"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_sxw8e")
 
-[node name="MarginContainer2" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/MarginContainer3/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer2/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/MarginContainer3/PanelContainer/MarginContainer2"]
+[node name="PassiveTexture" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer2/PanelContainer/MarginContainer"]
+z_index = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_bbdxb")
+stretch_mode = 5
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="BoxContainer" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TextureRect" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_3tek5")
+
+[node name="MarginContainer3" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/MarginContainer3"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_sxw8e")
+
+[node name="MarginContainer2" type="MarginContainer" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/MarginContainer3/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ActiveTexture" type="TextureRect" parent="ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/MarginContainer3/PanelContainer/MarginContainer2"]
+z_index = 1
 layout_mode = 2
 texture = ExtResource("12_hj30a")
 stretch_mode = 5
@@ -324,3 +385,9 @@ script = ExtResource("22_3tek5")
 
 [node name="WeaponSwitcher" type="Node" parent="."]
 script = ExtResource("23_3tek5")
+
+[node name="LoadoutDisplay" parent="." node_paths=PackedStringArray("_meleeWeaponIcon", "_projectileWeaponIcon", "_activeAbilityIcon", "_passiveEffectIcon") instance=ExtResource("23_3qjxp")]
+_meleeWeaponIcon = NodePath("../ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/MeleeTexture")
+_projectileWeaponIcon = NodePath("../ActiveGameUI/CanvasLayer/MarginContainer3/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer2/PanelContainer/MarginContainer/ProjectileTexture")
+_activeAbilityIcon = NodePath("../ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/MarginContainer3/PanelContainer/MarginContainer2/ActiveTexture")
+_passiveEffectIcon = NodePath("../ActiveGameUI/CanvasLayer/MarginContainer4/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer2/PanelContainer/MarginContainer/PassiveTexture")
