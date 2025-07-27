@@ -34,7 +34,7 @@ public abstract partial class Character : CharacterBody2D
     private ActiveDungeonEventManager _eventManager;
     private BaseNumberManager _numberManager;
 
-    protected Weapon MyWeapon;
+    public Weapon MyWeapon;
     protected IActivateWeaponStrategy ActivateWeaponStrategy;
 
     public override void _Ready()

@@ -1,5 +1,6 @@
 using Godot;
 using nuscutiesapp.active.characters.ActivateWeaponStrategies;
+using nuscutiesapp.active.characters.ActiveAbilities;
 using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
 using nuscutiesapp.active.characters.StateLogic;
@@ -19,6 +20,8 @@ public partial class Player : Character
     private LoadoutSpawner.LoadoutData _currentLoadout;
 
     private Dictionary<WeaponClass, Weapon> _weapons = new Dictionary<WeaponClass, Weapon>();
+    private DualWieldAbility _dualWieldAbility;
+
     public override void _Ready()
     {
         AddToGroup("player");
@@ -53,6 +56,8 @@ public partial class Player : Character
         this._eventManager = GetNode<ActiveDungeonEventManager>("/root/ActiveDungeonEventManager");
 
         ActivateWeaponStrategy = new InputActivateWeaponStrategy();
+        InitializeDualWield();
+
     }
 
     public override void _Process(double delta)
@@ -60,7 +65,7 @@ public partial class Player : Character
         Vector2 mouseDirection = (GetGlobalMousePosition() - GlobalPosition).Normalized();
 
         if (mouseDirection.X > 0 && AnimatedSprite.FlipH)
-        // if (MovDirection.X > 0 && AnimatedSprite.FlipH)
+            // if (MovDirection.X > 0 && AnimatedSprite.FlipH)
         {
             AnimatedSprite.FlipH = false;
 
@@ -82,9 +87,12 @@ public partial class Player : Character
             {
                 MyWeapon.ApplyScale(new Vector2(1, -1));
             }
+
+            OnWeaponRotation(mouseDirection);
         }
 
         HandleActiveAbilityInput();
+        HandleDualWieldInput();
         base._Process(delta);
     }
 
@@ -129,6 +137,7 @@ public partial class Player : Character
         RemoveChild(MyWeapon);
         MyWeapon = weapon;
         AddChild(MyWeapon);
+        OnWeaponUpdate();
     }
     public void SwitchWeapon(WeaponClass weaponClass)
     {
@@ -171,6 +180,7 @@ public partial class Player : Character
         }
 
         _loadoutSpawner.ApplyLoadout(this, _currentLoadout);
+        OnWeaponUpdate();
     }
 
     public LoadoutSpawner.LoadoutData GetCurrentLoadout()
@@ -185,5 +195,44 @@ public partial class Player : Character
             _loadoutSpawner.RemoveLoadout(this, _currentLoadout);
         }
         base._ExitTree();
+    }
+
+    private void InitializeDualWield()
+    {
+        _dualWieldAbility = new DualWieldAbility();
+        AddChild(_dualWieldAbility);
+        _dualWieldAbility.Initialize(this);
+    }
+
+    private void HandleDualWieldInput()
+    {
+        if (Input.IsActionJustPressed("dual_wield"))
+        {
+            _dualWieldAbility.Activate();
+        }
+    }
+
+    public void OnWeaponAttack()
+    {
+        if (_dualWieldAbility != null && _dualWieldAbility.IsActive())
+        {
+            _dualWieldAbility.OnPlayerAttack();
+        }
+    }
+
+    public void OnWeaponUpdate()
+    {
+        if (_dualWieldAbility != null && _dualWieldAbility.IsActive())
+        {
+            _dualWieldAbility.OnPlayerWeaponUpdate();
+        }
+    }
+
+    public void OnWeaponRotation(Vector2 direction)
+    {
+        if (_dualWieldAbility != null && _dualWieldAbility.IsActive())
+        {
+            _dualWieldAbility.OnPlayerWeaponRotation(direction);
+        }
     }
 }

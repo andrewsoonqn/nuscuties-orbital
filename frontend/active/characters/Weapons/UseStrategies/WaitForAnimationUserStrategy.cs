@@ -37,5 +37,10 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
             CallDeferred(MethodName.OnAttackFinished, animName);
             _weapon.GetHitbox().monitoring = true;
         }
+        
+        public IUseStrategy Copy()
+        {
+            return new WaitForAnimationUserStrategy();
+        }
     }
 }

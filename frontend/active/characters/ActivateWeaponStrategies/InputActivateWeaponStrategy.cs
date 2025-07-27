@@ -10,6 +10,11 @@ namespace nuscutiesapp.active.characters.ActivateWeaponStrategies
             if (Input.IsActionJustPressed("ui_attack"))
             {
                 weapon.Use();
+
+                if (attacker is Player player)
+                {
+                    player.OnWeaponAttack();
+                }
             }
         }
     }
