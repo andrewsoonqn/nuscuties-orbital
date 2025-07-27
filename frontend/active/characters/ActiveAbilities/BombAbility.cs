@@ -8,11 +8,12 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
         [Export] private float _cooldownTime = 5.0f;
         [Export] private float _explosionRadius = 100.0f;
         [Export] private float _explosionDamage = 50.0f;
-        [Export] private float _fuseTime = 2.0f;
+        [Export] private float _fuseTime = 3.0f;
 
         private Character _owner;
         private Timer _cooldownTimer;
         private PackedScene _bombScene;
+        private Bomb _currentBomb;
 
         public override void _Ready()
         {
@@ -31,7 +32,21 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
 
         public bool Activate()
         {
-            if (IsOnCooldown() || _owner == null || _bombScene == null)
+            if (_owner == null || _bombScene == null)
+            {
+                return false;
+            }
+
+            if (_currentBomb != null)
+            {
+                _currentBomb.ManualDetonate();
+                _currentBomb = null;
+                _cooldownTimer.Start();
+                GD.Print("Bomb manually detonated!");
+                return true;
+            }
+
+            if (IsOnCooldown())
             {
                 return false;
             }
@@ -41,7 +56,8 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
             {
                 _owner.GetParent().AddChild(bomb);
                 bomb.Initialize(_owner.GlobalPosition, _explosionRadius, _explosionDamage, _fuseTime);
-                _cooldownTimer.Start();
+                bomb.BombDestroyed += OnBombDestroyed;
+                _currentBomb = bomb;
                 GD.Print("Bomb dropped!");
                 return true;
             }
@@ -57,6 +73,12 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
         public float GetCooldownRemaining()
         {
             return (float)_cooldownTimer.TimeLeft;
+        }
+
+        public void OnBombDestroyed()
+        {
+            _currentBomb = null;
+            _cooldownTimer.Start();
         }
     }
 }

@@ -6,11 +6,14 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
 {
     public partial class Bomb : Node2D
     {
+        [Signal] public delegate void BombDestroyedEventHandler();
+
         [Export] private float _explosionRadius = 100.0f;
         [Export] private float _explosionDamage = 50.0f;
         [Export] private float _fuseTime = 2.0f;
 
         private Timer _fuseTimer;
+        private bool _isDetonating = false;
         [Export] private AnimatedSprite2D _sprite;
         [Export] private AnimationPlayer _animationPlayer;
         [Export] private Area2D _explosionArea;
@@ -53,11 +56,24 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
 
         private void OnFuseTimeout()
         {
-            StartExplosionSequence();
+            if (!_isDetonating)
+            {
+                StartExplosionSequence();
+            }
+        }
+
+        public void ManualDetonate()
+        {
+            if (!_isDetonating)
+            {
+                _fuseTimer.Stop();
+                StartExplosionSequence();
+            }
         }
 
         private async void StartExplosionSequence()
         {
+            _isDetonating = true;
             _animationPlayer.Play("almost");
             await ToSignal(_animationPlayer, AnimationPlayer.SignalName.AnimationFinished);
 
@@ -69,7 +85,7 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
             var bodies = _explosionArea.GetOverlappingBodies();
             await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
             await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
-            
+
             foreach (var body in bodies)
             {
                 if (body is Character character)
@@ -83,6 +99,7 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
             }
 
             await ToSignal(_animationPlayer, AnimationPlayer.SignalName.AnimationFinished);
+            EmitSignal(SignalName.BombDestroyed);
             QueueFree();
         }
     }
