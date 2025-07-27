@@ -147,5 +147,18 @@
 	  "cooldown": 5,
 	  "knockback": 0
 	}
+  },
+  {
+	"Id": "dual_wield_necklace",
+	"Category": "necklace_active",
+	"Title": "Necklace of Dual Wielding",
+	"Description": "Allows you to wield a second weapon in your off-hand (press Space to toggle)",
+	"Price": 1200,
+	"IconPath": "res://assets/dawn_like/Items/Necklace1.png",
+	"ScenePath": "res://active/characters/ActiveAbilities/DualWieldAbility.tscn",
+	"StatsPayload": {
+	  "cooldown": 0.5,
+	  "knockback": 0
+	}
   }
 ]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dual_wield_ability"]
+
+[ext_resource type="Script" path="res://active/characters/ActiveAbilities/DualWieldAbility.cs" id="1_dual_wield"]
+
+[node name="DualWieldAbility" type="Node"]
+script = ExtResource("1_dual_wield")

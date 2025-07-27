@@ -65,7 +65,7 @@ public partial class Player : Character
         Vector2 mouseDirection = (GetGlobalMousePosition() - GlobalPosition).Normalized();
 
         if (mouseDirection.X > 0 && AnimatedSprite.FlipH)
-            // if (MovDirection.X > 0 && AnimatedSprite.FlipH)
+        // if (MovDirection.X > 0 && AnimatedSprite.FlipH)
         {
             AnimatedSprite.FlipH = false;
 
@@ -188,6 +188,48 @@ public partial class Player : Character
         return _currentLoadout;
     }
 
+    public void OnWeaponAttack()
+    {
+        if (_currentLoadout?.ActiveAbilities != null)
+        {
+            foreach (var ability in _currentLoadout.ActiveAbilities)
+            {
+                if (ability is DualWieldAbility dualWieldAbility && dualWieldAbility.IsActive())
+                {
+                    dualWieldAbility.OnPlayerAttack();
+                }
+            }
+        }
+    }
+
+    public void OnWeaponUpdate()
+    {
+        if (_currentLoadout?.ActiveAbilities != null)
+        {
+            foreach (var ability in _currentLoadout.ActiveAbilities)
+            {
+                if (ability is DualWieldAbility dualWieldAbility && dualWieldAbility.IsActive())
+                {
+                    dualWieldAbility.OnPlayerWeaponUpdate();
+                }
+            }
+        }
+    }
+
+    public void OnWeaponRotation(Vector2 direction)
+    {
+        if (_currentLoadout?.ActiveAbilities != null)
+        {
+            foreach (var ability in _currentLoadout.ActiveAbilities)
+            {
+                if (ability is DualWieldAbility dualWieldAbility && dualWieldAbility.IsActive())
+                {
+                    dualWieldAbility.OnPlayerWeaponRotation(direction);
+                }
+            }
+        }
+    }
+
     public override void _ExitTree()
     {
         if (_currentLoadout != null && _loadoutSpawner != null)
@@ -209,30 +251,6 @@ public partial class Player : Character
         if (Input.IsActionJustPressed("dual_wield"))
         {
             _dualWieldAbility.Activate();
-        }
-    }
-
-    public void OnWeaponAttack()
-    {
-        if (_dualWieldAbility != null && _dualWieldAbility.IsActive())
-        {
-            _dualWieldAbility.OnPlayerAttack();
-        }
-    }
-
-    public void OnWeaponUpdate()
-    {
-        if (_dualWieldAbility != null && _dualWieldAbility.IsActive())
-        {
-            _dualWieldAbility.OnPlayerWeaponUpdate();
-        }
-    }
-
-    public void OnWeaponRotation(Vector2 direction)
-    {
-        if (_dualWieldAbility != null && _dualWieldAbility.IsActive())
-        {
-            _dualWieldAbility.OnPlayerWeaponRotation(direction);
         }
     }
 }
