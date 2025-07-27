@@ -41,7 +41,6 @@ AudioManager="*res://tools/audio_manager.tscn"
 BgmManager="*res://tools/bgm_manager.tscn"
 SettingsManager="*res://tools/SettingsManager.cs"
 ColorManager="*res://active/characters/ColorManager.cs"
-AccountManager="*res://tools/AccountManager.cs"
 
 [display]
 
