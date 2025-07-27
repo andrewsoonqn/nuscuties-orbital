@@ -1,6 +1,6 @@
 using Godot;
-using nuscutiesapp.tools;
 using nuscutiesapp.active.characters.StatusEffects;
+using nuscutiesapp.tools;
 using System;
 
 namespace nuscutiesapp.active.characters.DamageSystem
