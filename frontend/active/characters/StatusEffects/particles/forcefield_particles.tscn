@@ -1,22 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8xv8yqxqxqxq"]
+[gd_scene load_steps=4 format=3 uid="uid://cfbf3rsfwt4es"]
 
 [ext_resource type="Script" uid="uid://bd7qq36cejpkf" path="res://active/characters/StatusEffects/particles/ForcefieldParticles.cs" id="1_0x0x0"]
+[ext_resource type="Texture2D" uid="uid://c2mriam1cee3p" path="res://assets/dawn_like/Items/Shield.png" id="1_up50q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igkpm"]
+atlas = ExtResource("1_up50q")
+region = Rect2(96, 0, 16, 16)
 
 [node name="ForcefieldParticles" type="CPUParticles2D"]
-emitting = false
-amount = 30
-lifetime = 2.0
-explosiveness = 0.1
-randomness = 0.1
-lifetime_randomness = 0.2
-direction = Vector2(0, 0)
-spread = 360.0
+modulate = Color(1, 1, 1, 0.25098)
+amount = 3
+texture = SubResource("AtlasTexture_igkpm")
+emission_shape = 3
+emission_rect_extents = Vector2(10, 10)
+direction = Vector2(0, -1)
+spread = 0.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 10.0
-initial_velocity_max = 20.0
-angular_velocity_min = -45.0
-angular_velocity_max = 45.0
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
 scale_amount_min = 0.3
-scale_amount_max = 0.8
+scale_amount_max = 0.5
 color = Color(0.3, 0.7, 1, 0.8)
 script = ExtResource("1_0x0x0")

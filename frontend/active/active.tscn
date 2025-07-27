@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://b4al34vyos4fy"]
 
-[ext_resource type="Script" uid="uid://cu0ik6y6n8qhl" path="res://active/Active.cs" id="1_o7aax"]
+[ext_resource type="Script" uid="uid://dejyevp5kek2k" path="res://active/Active.cs" id="1_o7aax"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="2_axlrc"]
-[ext_resource type="Texture2D" uid="uid://cy7uc54fnsfy" path="res://assets/dungeon_art/tiles/wall/door_closed.png" id="3_rmj27"]
+[ext_resource type="Texture2D" uid="uid://k8llf3i6nxes" path="res://assets/dungeon_art/tiles/wall/door_closed.png" id="3_rmj27"]
 [ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/flat_ui/kenneyUI-red.tres" id="4_rmj27"]
 
 [node name="Active" type="Control" node_paths=PackedStringArray("_backToHomeButton", "_startGameButton")]

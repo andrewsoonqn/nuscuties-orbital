@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqxv8yqxqxqxq"]
+[gd_scene load_steps=2 format=3 uid="uid://cejvyypalsmtf"]
 
 [ext_resource type="Script" uid="uid://d3f5xt4excwns" path="res://active/characters/StatusEffects/particles/BurnParticles.cs" id="1_0x0x0"]
 
