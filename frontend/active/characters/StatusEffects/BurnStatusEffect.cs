@@ -9,20 +9,11 @@ namespace nuscutiesapp.active.characters.StatusEffects
 
         public override string StatusName => "Burn";
 
-        protected override void OnApplied()
+        public override void _Ready()
         {
-            if (_target?.AnimatedSprite != null)
-            {
-                _target.AnimatedSprite.Modulate = new Color(1.0f, 0.7f, 0.7f);
-            }
-        }
-
-        protected override void OnRemoved()
-        {
-            if (_target?.AnimatedSprite != null)
-            {
-                _target.AnimatedSprite.Modulate = new Color(1.0f, 1.0f, 1.0f);
-            }
+            base._Ready();
+            var burnParticleScene = GD.Load<PackedScene>("res://active/characters/StatusEffects/particles/burn_particles.tscn");
+            _visualEffectStrategy = new ParticleEffectStrategy(burnParticleScene);
         }
 
         protected override void OnTick()

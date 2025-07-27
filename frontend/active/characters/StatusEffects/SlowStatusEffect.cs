@@ -11,15 +11,10 @@ namespace nuscutiesapp.active.characters.StatusEffects
 
         public override string StatusName => "Slow";
 
-        public override void _Process(double delta)
+        public override void _Ready()
         {
-            base._Process(delta);
-
-            // Continuously maintain blue modulation while active
-            if (_isActive && _target?.AnimatedSprite != null)
-            {
-                ApplyBlueModulation();
-            }
+            base._Ready();
+            _visualEffectStrategy = new ModulationStrategy(new Color(0.7f, 0.7f, 1.0f));
         }
 
         protected override void OnApplied()
@@ -32,7 +27,6 @@ namespace nuscutiesapp.active.characters.StatusEffects
                 _speedModified = true;
 
                 GD.Print($"Slowed {_target.Name}: {_originalMaxSpeed} -> {newMaxSpeed}");
-                ApplyBlueModulation();
             }
         }
 
@@ -42,19 +36,6 @@ namespace nuscutiesapp.active.characters.StatusEffects
             {
                 _target.MaxSpeed = _originalMaxSpeed;
                 GD.Print($"Restored speed for {_target.Name}: {_originalMaxSpeed}");
-
-                if (_target.AnimatedSprite != null)
-                {
-                    _target.AnimatedSprite.Modulate = new Color(1.0f, 1.0f, 1.0f);
-                }
-            }
-        }
-
-        private void ApplyBlueModulation()
-        {
-            if (_target?.AnimatedSprite != null)
-            {
-                _target.AnimatedSprite.Modulate = new Color(0.7f, 0.7f, 1.0f);
             }
         }
     }
