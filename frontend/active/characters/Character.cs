@@ -1,4 +1,5 @@
 using Godot;
+using nuscutiesapp.active.characters;
 using nuscutiesapp.active.characters.ActivateWeaponStrategies;
 using nuscutiesapp.active.characters.DamageSystem;
 using nuscutiesapp.active.characters.MovementStrategies;
@@ -30,6 +31,7 @@ public abstract partial class Character : CharacterBody2D
 
     public HealthComponent Health;
     public StatusEffectManager StatusEffects;
+    public ColorManager MyColorManager;
 
     private ActiveDungeonEventManager _eventManager;
     private BaseNumberManager _numberManager;
@@ -44,6 +46,7 @@ public abstract partial class Character : CharacterBody2D
         this.MyAnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         this.Health = GetNode<HealthComponent>("Health");
         this.StatusEffects = GetNode<StatusEffectManager>("StatusEffectManager");
+        this.MyColorManager = GetNode<ColorManager>("MyColorManager");
 
         Health.Damaged += OnDamaged;
         Health.Died += OnDied;
