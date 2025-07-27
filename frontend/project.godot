@@ -36,11 +36,12 @@ LoadoutSpawner="*res://tools/LoadoutSpawner.cs"
 BaseNumberManager="*res://tools/BaseNumberManager.cs"
 DropManager="*res://active/drops/DropManager.cs"
 UserManager="*res://tools/UserManager.cs"
-AccountManager="*res://tools/AccountManager.cs"
 DamageNumberManager="*res://tools/DamageNumberManager.cs"
 AudioManager="*res://tools/audio_manager.tscn"
 BgmManager="*res://tools/bgm_manager.tscn"
 SettingsManager="*res://tools/SettingsManager.cs"
+ColorManager="*res://active/characters/ColorManager.cs"
+AccountManager="*res://tools/AccountManager.cs"
 
 [display]
 
