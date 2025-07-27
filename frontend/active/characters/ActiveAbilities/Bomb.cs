@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using nuscutiesapp.active.characters.DamageSystem;
 
 namespace nuscutiesapp.active.characters.ActiveAbilities
@@ -10,10 +11,10 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
         [Export] private float _fuseTime = 2.0f;
 
         private Timer _fuseTimer;
-        private Sprite2D _sprite;
-        private AnimationPlayer _animationPlayer;
-        private Area2D _explosionArea;
-        private CollisionShape2D _explosionShape;
+        [Export] private AnimatedSprite2D _sprite;
+        [Export] private AnimationPlayer _animationPlayer;
+        [Export] private Area2D _explosionArea;
+        [Export] private CollisionShape2D _explosionShape;
 
         public override void _Ready()
         {
@@ -22,15 +23,6 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
             _fuseTimer.OneShot = true;
             _fuseTimer.Timeout += OnFuseTimeout;
             AddChild(_fuseTimer);
-
-            _sprite = GetNode<Sprite2D>("Sprite2D");
-            _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-            _explosionArea = GetNode<Area2D>("ExplosionArea");
-            _explosionShape = GetNode<CollisionShape2D>("ExplosionArea/CollisionShape2D");
-
-            var circleShape = new CircleShape2D();
-            circleShape.Radius = _explosionRadius;
-            _explosionShape.Shape = circleShape;
 
             _explosionArea.Monitoring = false;
             _explosionArea.Monitorable = false;
@@ -47,22 +39,37 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
             _fuseTimer.WaitTime = _fuseTime;
             _fuseTimer.Start();
 
-            var circleShape = new CircleShape2D();
-            circleShape.Radius = _explosionRadius;
-            _explosionShape.Shape = circleShape;
+            // StartWarningAnimation();
         }
+
+        // private async void StartWarningAnimation()
+        // {
+        //     await ToSignal(GetTree().CreateTimer(_fuseTime - 0.5f), Timer.SignalName.Timeout);
+        //     if (IsInstanceValid(this) && !_fuseTimer.IsStopped())
+        //     {
+        //         _animationPlayer.Play("almost");
+        //     }
+        // }
 
         private void OnFuseTimeout()
         {
-            Explode();
+            StartExplosionSequence();
         }
 
-        private async void Explode()
+        private async void StartExplosionSequence()
         {
+            _animationPlayer.Play("almost");
+            await ToSignal(_animationPlayer, AnimationPlayer.SignalName.AnimationFinished);
+
             _animationPlayer.Play("explode");
             _explosionArea.Monitoring = true;
 
+            await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
+            await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
             var bodies = _explosionArea.GetOverlappingBodies();
+            await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
+            await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
+            
             foreach (var body in bodies)
             {
                 if (body is Character character)

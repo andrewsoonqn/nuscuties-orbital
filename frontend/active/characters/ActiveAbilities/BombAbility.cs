@@ -39,7 +39,7 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
             var bomb = _bombScene.Instantiate<Bomb>();
             if (bomb != null)
             {
-                _owner.GetTree().CurrentScene.AddChild(bomb);
+                _owner.GetParent().AddChild(bomb);
                 bomb.Initialize(_owner.GlobalPosition, _explosionRadius, _explosionDamage, _fuseTime);
                 _cooldownTimer.Start();
                 GD.Print("Bomb dropped!");
