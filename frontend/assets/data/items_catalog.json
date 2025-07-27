@@ -1,0 +1,135 @@
+[
+  {
+	"Id": "sword",
+	"Category": "melee",
+	"Title": "Iron Sword",
+	"Description": "A sturdy iron sword with reliable damage",
+	"Price": 100,
+	"IconPath": "res://assets/dungeon_art/heroes/knight/weapon_sword_1.png",
+	"ScenePath": "res://active/characters/Weapons/sword.tscn",
+	"StatsPayload": {
+	  "damage": 25,
+	  "attackDuration": 250,
+	  "knockback": 200
+	}
+  },
+  {
+	"Id": "dagger",
+	"Category": "melee",
+	"Title": "Swift Dagger",
+	"Description": "A quick, lightweight blade for rapid strikes",
+	"Price": 500,
+	"IconPath": "res://assets/dawn_like/Items/ShortWep.png",
+	"ScenePath": "res://active/characters/Weapons/dagger.tscn",
+	"StatsPayload": {
+	  "damage": 15,
+	  "attackDuration": 200,
+	  "knockback": 150
+	}
+  },
+  {
+	"Id": "spear",
+	"Category": "melee",
+	"Title": "Long Spear",
+	"Description": "A balanced weapon with superior reach",
+	"Price": 1500,
+	"IconPath": "res://assets/dawn_like/Items/LongWep.png",
+	"ScenePath": "res://active/characters/Weapons/spear.tscn",
+	"StatsPayload": {
+	  "damage": 30,
+	  "attackDuration": 100,
+	  "knockback": 300
+	}
+  },
+  {
+	"Id": "longsword",
+	"Category": "melee",
+	"Title": "Heavy Longsword",
+	"Description": "A powerful two-handed blade that deals devastating damage",
+	"Price": 5000,
+	"IconPath": "res://assets/dawn_like/Items/MedWep.png",
+	"ScenePath": "res://active/characters/Weapons/longsword.tscn",
+	"StatsPayload": {
+	  "damage": 40,
+	  "attackDuration": 350,
+	  "knockback": 400
+	}
+  },
+  {
+	"Id": "staff",
+	"Category": "projectile",
+	"Title": "Magic Staff",
+	"Description": "A mystical staff that fires magical projectiles",
+	"Price": 200,
+	"IconPath": "res://assets/dawn_like/Items/Wand.png",
+	"ScenePath": "res://active/characters/Weapons/staff.tscn",
+	"StatsPayload": {
+	  "projectileScenePath": "res://active/characters/Weapons/staff_projectile.tscn",
+	  "damage": 15,
+	  "projectileSpeed": 300,
+	  "cooldown": 600,
+	  "knockback": 150
+	}
+  },
+  {
+	"Id": "fire_staff",
+	"Category": "projectile",
+	"Title": "Fire Staff",
+	"Description": "A staff that conjures fireballs with burning effects",
+	"Price": 800,
+	"IconPath": "res://assets/dawn_like/Items/Wand.png",
+	"ScenePath": "res://active/characters/Weapons/fire_staff.tscn",
+	"StatsPayload": {
+	  "projectileScenePath": "res://active/characters/Weapons/fire_staff_projectile.tscn",
+	  "damage": 25,
+	  "projectileSpeed": 250,
+	  "cooldown": 800,
+	  "knockback": 120,
+	  "statusEffect": "burn"
+	}
+  },
+  {
+	"Id": "ice_staff",
+	"Category": "projectile",
+	"Title": "Ice Staff",
+	"Description": "A staff that fires ice projectiles that slow enemies",
+	"Price": 600,
+	"IconPath": "res://assets/dawn_like/Items/Wand.png",
+	"ScenePath": "res://active/characters/Weapons/ice_staff.tscn",
+	"StatsPayload": {
+	  "projectileScenePath": "res://active/characters/Weapons/ice_staff_projectile.tscn",
+	  "damage": 20,
+	  "projectileSpeed": 280,
+	  "cooldown": 700,
+	  "knockback": 80,
+	  "statusEffect": "slow"
+	}
+  },
+  {
+	"Id": "health_necklace",
+	"Category": "necklace_passive",
+	"Title": "Necklace of Vitality",
+	"Description": "Increases maximum health by 20 points",
+	"Price": 500,
+	"IconPath": "res://assets/dawn_like/Items/Necklace0.png",
+	"ScenePath": "res://active/characters/PassiveEffects/health_boost_effect.tscn",
+	"StatsPayload": {
+	  "healthBonus": 20,
+	  "knockback": 0
+	}
+  },
+  {
+	"Id": "dash_necklace",
+	"Category": "necklace_active",
+	"Title": "Necklace of Agility",
+	"Description": "Grants a dash ability (press Space to activate)",
+	"Price": 750,
+	"IconPath": "res://assets/dawn_like/Items/Necklace1.png",
+	"ScenePath": "res://active/characters/ActiveAbilities/dash_ability.tscn",
+	"StatsPayload": {
+	  "dashDistance": 150,
+	  "cooldown": 3,
+	  "knockback": 0
+	}
+  }
+]
