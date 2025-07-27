@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5u8fbqkt8rm1"]
+
+[ext_resource type="Script" uid="uid://d0agy0ftern7k" path="res://active/ui/CooldownIndicator.cs" id="1_cooldown_script"]
+
+[node name="CooldownIndicator" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_cooldown_script")

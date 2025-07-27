@@ -5,15 +5,16 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
 {
     public partial class DashAbility : Node, IActiveAbility
     {
-        [Export] private float _dashDistance = 40.0f;
+        [Export] private float _dashDistance = 60.0f;
         [Export] private float _cooldownTime = 3.0f;
-        [Export] private float _dashDuration = 0.05f;
+        [Export] private float _dashDuration = 0.2f;
 
         private Character _owner;
         private Timer _cooldownTimer;
         private bool _isDashing = false;
         private Vector2 _dashDirection;
         private float _dashTimer = 0.0f;
+        private ActiveAbilityPhase _currentPhase = ActiveAbilityPhase.Ready;
 
         public bool IsDashing => _isDashing;
 
@@ -45,7 +46,7 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
 
             _isDashing = true;
             _dashTimer = _dashDuration;
-            _cooldownTimer.Start();
+            _currentPhase = ActiveAbilityPhase.InProgress;
 
             float dashSpeed = _dashDistance / _dashDuration;
             _owner.MaxSpeed += dashSpeed;
@@ -63,6 +64,43 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
             return (float)_cooldownTimer.TimeLeft;
         }
 
+        public ActiveAbilityPhase GetCurrentPhase()
+        {
+            if (_isDashing)
+            {
+                return ActiveAbilityPhase.InProgress;
+            }
+            else if (IsOnCooldown())
+            {
+                return ActiveAbilityPhase.Cooldown;
+            }
+            else
+            {
+                return ActiveAbilityPhase.Ready;
+            }
+        }
+
+        public float GetPhaseCompletionPercentage()
+        {
+            switch (_currentPhase)
+            {
+                case ActiveAbilityPhase.Loading:
+                    return 1f;
+
+                case ActiveAbilityPhase.InProgress:
+                    if (_dashDuration <= 0f) return 1f;
+                    return 1f - (_dashTimer / _dashDuration);
+
+                case ActiveAbilityPhase.Cooldown:
+                    if (_cooldownTime <= 0f) return 1f;
+                    return 1f - (GetCooldownRemaining() / _cooldownTime);
+
+                case ActiveAbilityPhase.Ready:
+                default:
+                    return 1f;
+            }
+        }
+
         public override void _PhysicsProcess(double delta)
         {
             if (_isDashing && _owner != null)
@@ -78,6 +116,8 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
                 {
                     _owner.MaxSpeed -= dashSpeed;
                     _isDashing = false;
+                    _currentPhase = ActiveAbilityPhase.Cooldown;
+                    _cooldownTimer.Start();
                     GD.Print("Dash completed");
                 }
             }

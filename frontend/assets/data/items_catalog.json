@@ -5,7 +5,7 @@
 	"Title": "Iron Sword",
 	"Description": "A sturdy iron sword with reliable damage",
 	"Price": 100,
-	"IconPath": "res://assets/dungeon_art/heroes/knight/weapon_sword_1.png",
+	"IconPath": "res://assets/item_icons/normal-sword.png",
 	"ScenePath": "res://active/characters/Weapons/sword.tscn",
 	"StatsPayload": {
 	  "damage": 25,
@@ -19,7 +19,7 @@
 	"Title": "Swift Dagger",
 	"Description": "A quick, lightweight blade for rapid strikes",
 	"Price": 500,
-	"IconPath": "res://assets/dawn_like/Items/ShortWep.png",
+	"IconPath": "res://assets/item_icons/dagger.png",
 	"ScenePath": "res://active/characters/Weapons/dagger.tscn",
 	"StatsPayload": {
 	  "damage": 15,
@@ -33,7 +33,7 @@
 	"Title": "Long Spear",
 	"Description": "A balanced weapon with superior reach",
 	"Price": 1500,
-	"IconPath": "res://assets/dawn_like/Items/LongWep.png",
+	"IconPath": "res://assets/item_icons/spear.png",
 	"ScenePath": "res://active/characters/Weapons/spear.tscn",
 	"StatsPayload": {
 	  "damage": 30,
@@ -47,7 +47,7 @@
 	"Title": "Heavy Longsword",
 	"Description": "A powerful two-handed blade that deals devastating damage",
 	"Price": 5000,
-	"IconPath": "res://assets/dawn_like/Items/MedWep.png",
+	"IconPath": "res://assets/item_icons/long-sword.png",
 	"ScenePath": "res://active/characters/Weapons/longsword.tscn",
 	"StatsPayload": {
 	  "damage": 40,
@@ -61,7 +61,7 @@
 	"Title": "Magic Staff",
 	"Description": "A mystical staff that fires magical projectiles",
 	"Price": 200,
-	"IconPath": "res://assets/dawn_like/Items/Wand.png",
+	"IconPath": "res://assets/item_icons/normal-staff.png",
 	"ScenePath": "res://active/characters/Weapons/staff.tscn",
 	"StatsPayload": {
 	  "projectileScenePath": "res://active/characters/Weapons/staff_projectile.tscn",
@@ -77,7 +77,7 @@
 	"Title": "Fire Staff",
 	"Description": "A staff that conjures fireballs with burning effects",
 	"Price": 800,
-	"IconPath": "res://assets/dawn_like/Items/Wand.png",
+	"IconPath": "res://assets/item_icons/fire-staff.png",
 	"ScenePath": "res://active/characters/Weapons/fire_staff.tscn",
 	"StatsPayload": {
 	  "projectileScenePath": "res://active/characters/Weapons/fire_staff_projectile.tscn",
@@ -94,7 +94,7 @@
 	"Title": "Ice Staff",
 	"Description": "A staff that fires ice projectiles that slow enemies",
 	"Price": 600,
-	"IconPath": "res://assets/dawn_like/Items/Wand.png",
+	"IconPath": "res://assets/item_icons/ice-staff.png",
 	"ScenePath": "res://active/characters/Weapons/ice_staff.tscn",
 	"StatsPayload": {
 	  "projectileScenePath": "res://active/characters/Weapons/ice_staff_projectile.tscn",
@@ -109,9 +109,9 @@
 	"Id": "health_necklace",
 	"Category": "necklace_passive",
 	"Title": "Necklace of Vitality",
-	"Description": "Increases maximum health by 20 points",
+	"Description": "Increases maximum health by 20 points, and provides health regeneration capabilities",
 	"Price": 500,
-	"IconPath": "res://assets/dawn_like/Items/Necklace0.png",
+	"IconPath": "res://assets/item_icons/health-necklace.png",
 	"ScenePath": "res://active/characters/PassiveEffects/health_boost_effect.tscn",
 	"StatsPayload": {
 	  "healthBonus": 20,
@@ -124,7 +124,7 @@
 	"Title": "Necklace of Agility",
 	"Description": "Grants a dash ability (press Space to activate)",
 	"Price": 750,
-	"IconPath": "res://assets/dawn_like/Items/Necklace1.png",
+	"IconPath": "res://assets/item_icons/dash-necklace.png",
 	"ScenePath": "res://active/characters/ActiveAbilities/dash_ability.tscn",
 	"StatsPayload": {
 	  "dashDistance": 150,
@@ -135,10 +135,10 @@
   {
 	"Id": "bomb_necklace",
 	"Category": "necklace_active",
-	"Title": "Necklace of Explosives",
-	"Description": "Drops a bomb that explodes after a short delay",
+	"Title": "Necklace of Calamity",
+	"Description": "Drops a bomb that explodes after a short delay, dealing damage to enemies in the area. The bomb can be detonated early by pressing Space.",
 	"Price": 1000,
-	"IconPath": "res://assets/dawn_like/Items/Necklace1.png",
+	"IconPath": "res://assets/item_icons/bomb-necklace.png",
 	"ScenePath": "res://active/characters/ActiveAbilities/bomb_ability.tscn",
 	"StatsPayload": {
 	  "explosionRadius": 100,
@@ -154,7 +154,7 @@
 	"Title": "Necklace of Dual Wielding",
 	"Description": "Allows you to wield a second weapon in your off-hand (press Space to toggle)",
 	"Price": 1200,
-	"IconPath": "res://assets/dawn_like/Items/Necklace1.png",
+	"IconPath": "res://assets/item_icons/dual-wield-necklace.png",
 	"ScenePath": "res://active/characters/ActiveAbilities/DualWieldAbility.tscn",
 	"StatsPayload": {
 	  "cooldown": 0.5,
@@ -167,7 +167,7 @@
 	"Title": "Necklace of Resurrection",
 	"Description": "Revives you once when you die, restoring 10 health and granting temporary forcefield",
 	"Price": 1500,
-	"IconPath": "res://assets/dawn_like/Items/Necklace0.png",
+	"IconPath": "res://assets/item_icons/resurrection-necklace.png",
 	"ScenePath": "res://active/characters/PassiveEffects/revive_effect.tscn",
 	"StatsPayload": {
 	  "reviveHealth": 10,

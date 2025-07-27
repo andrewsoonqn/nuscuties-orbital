@@ -25,9 +25,6 @@ public partial class WeaponSwitcher : Node
                 case Key.Key2:
                     SwitchWeaponTo(WeaponClass.Ranged);
                     break;
-                case Key.Key3:
-                    SwitchWeaponTo(WeaponClass.Utility);
-                    break;
             }
         }
         base._Input(@event);

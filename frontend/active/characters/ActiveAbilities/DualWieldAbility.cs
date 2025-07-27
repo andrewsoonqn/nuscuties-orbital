@@ -13,6 +13,7 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
         private PackedScene _secondHandScene;
         private SecondHand _secondHand;
         private Player _player;
+        private ActiveAbilityPhase _currentPhase = ActiveAbilityPhase.Ready;
 
         public override void _Ready()
         {
@@ -42,6 +43,8 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
                 return false;
             }
 
+            _currentPhase = ActiveAbilityPhase.InProgress;
+
             if (!_isActive)
             {
                 EnableDualWield();
@@ -52,6 +55,7 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
             }
 
             _cooldownTimer.Start();
+            _currentPhase = ActiveAbilityPhase.Cooldown;
             return true;
         }
 
@@ -111,6 +115,38 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
         public float GetCooldownRemaining()
         {
             return (float)_cooldownTimer.TimeLeft;
+        }
+
+        public ActiveAbilityPhase GetCurrentPhase()
+        {
+            if (IsOnCooldown())
+            {
+                return ActiveAbilityPhase.Cooldown;
+            }
+            else
+            {
+                return ActiveAbilityPhase.Ready;
+            }
+        }
+
+        public float GetPhaseCompletionPercentage()
+        {
+            switch (_currentPhase)
+            {
+                case ActiveAbilityPhase.Loading:
+                    return 0f;
+
+                case ActiveAbilityPhase.InProgress:
+                    return 1f;
+
+                case ActiveAbilityPhase.Cooldown:
+                    if (_cooldownTime <= 0f) return 1f;
+                    return 1f - (GetCooldownRemaining() / _cooldownTime);
+
+                case ActiveAbilityPhase.Ready:
+                default:
+                    return 1f;
+            }
         }
 
         public bool IsActive()

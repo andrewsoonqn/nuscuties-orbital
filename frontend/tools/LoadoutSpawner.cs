@@ -8,6 +8,9 @@ namespace nuscutiesapp.tools
 {
     public partial class LoadoutSpawner : Node
     {
+        [Signal]
+        public delegate void ActiveAbilityCreatedEventHandler(Node ability);
+
         private PlayerInventoryManager _inventoryManager;
         private ItemCatalog _itemCatalog;
         private DerivedStatCalculator _statCalculator;
@@ -23,7 +26,6 @@ namespace nuscutiesapp.tools
         {
             public Weapon MeleeWeapon { get; set; }
             public Weapon ProjectileWeapon { get; set; }
-            public Node UtilityItem { get; set; }
             public List<IPassiveEffect> PassiveEffects { get; set; } = new();
             public List<IActiveAbility> ActiveAbilities { get; set; } = new();
         }
@@ -34,7 +36,6 @@ namespace nuscutiesapp.tools
 
             loadout.MeleeWeapon = SpawnMeleeWeapon(targetCharacter);
             loadout.ProjectileWeapon = SpawnProjectileWeapon(targetCharacter);
-            loadout.UtilityItem = SpawnUtilityItem(targetCharacter);
             loadout.PassiveEffects = SpawnPassiveEffects(targetCharacter);
             loadout.ActiveAbilities = SpawnActiveAbilities(targetCharacter);
 
@@ -79,34 +80,6 @@ namespace nuscutiesapp.tools
             return weapon;
         }
 
-        private Node SpawnUtilityItem(Character targetCharacter)
-        {
-            string equippedUtilityId = _inventoryManager.GetEquipped("utility");
-            if (string.IsNullOrEmpty(equippedUtilityId))
-            {
-                return null;
-            }
-
-            var itemDef = _itemCatalog.Get(equippedUtilityId);
-            if (itemDef == null)
-            {
-                GD.PrintErr($"Utility item not found in catalog: {equippedUtilityId}");
-                return null;
-            }
-
-            if (!string.IsNullOrEmpty(itemDef.ScenePath))
-            {
-                var scene = GD.Load<PackedScene>(itemDef.ScenePath);
-                if (scene != null)
-                {
-                    return scene.Instantiate();
-                }
-            }
-
-            GD.PrintErr($"Failed to load utility item scene: {itemDef.ScenePath}");
-            return null;
-        }
-
         private List<IPassiveEffect> SpawnPassiveEffects(Character targetCharacter)
         {
             var effects = new List<IPassiveEffect>();
@@ -135,6 +108,7 @@ namespace nuscutiesapp.tools
                 if (ability != null)
                 {
                     abilities.Add(ability);
+                    EmitSignal(SignalName.ActiveAbilityCreated, (Node)ability);
                 }
             }
 
@@ -264,7 +238,6 @@ namespace nuscutiesapp.tools
                 }
             }
 
-            loadout.UtilityItem?.QueueFree();
         }
     }
 }

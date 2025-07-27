@@ -14,6 +14,9 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
         private Timer _cooldownTimer;
         private PackedScene _bombScene;
         private Bomb _currentBomb;
+        private ActiveAbilityPhase _currentPhase = ActiveAbilityPhase.Ready;
+        private float _bombFuseTimer = 0f;
+        private bool _bombDetonating = false;
 
         public override void _Ready()
         {
@@ -41,7 +44,8 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
             {
                 _currentBomb.ManualDetonate();
                 _currentBomb = null;
-                _cooldownTimer.Start();
+                _bombDetonating = true;
+                _currentPhase = ActiveAbilityPhase.InProgress;
                 GD.Print("Bomb manually detonated!");
                 return true;
             }
@@ -58,6 +62,9 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
                 bomb.Initialize(_owner.GlobalPosition, _explosionRadius, _explosionDamage, _fuseTime);
                 bomb.BombDestroyed += OnBombDestroyed;
                 _currentBomb = bomb;
+                _bombFuseTimer = _fuseTime;
+                _bombDetonating = false;
+                _currentPhase = ActiveAbilityPhase.InProgress;
                 GD.Print("Bomb dropped!");
                 return true;
             }
@@ -75,9 +82,62 @@ namespace nuscutiesapp.active.characters.ActiveAbilities
             return (float)_cooldownTimer.TimeLeft;
         }
 
+        public ActiveAbilityPhase GetCurrentPhase()
+        {
+            if (_currentBomb != null || _bombDetonating)
+            {
+                return ActiveAbilityPhase.InProgress;
+            }
+            else if (IsOnCooldown())
+            {
+                return ActiveAbilityPhase.Cooldown;
+            }
+            else
+            {
+                return ActiveAbilityPhase.Ready;
+            }
+        }
+
+        public float GetPhaseCompletionPercentage()
+        {
+            switch (_currentPhase)
+            {
+                case ActiveAbilityPhase.Loading:
+                    return 0f;
+
+                case ActiveAbilityPhase.InProgress:
+                    if (_currentBomb == null && !_bombDetonating) return 1f;
+                    if (_bombDetonating) return 1f;
+                    if (_fuseTime <= 0f) return 1f;
+                    return 1f - (_bombFuseTimer / _fuseTime);
+
+                case ActiveAbilityPhase.Cooldown:
+                    if (_cooldownTime <= 0f) return 1f;
+                    return 1f - (GetCooldownRemaining() / _cooldownTime);
+
+                case ActiveAbilityPhase.Ready:
+                default:
+                    return 1f;
+            }
+        }
+
+        public override void _Process(double delta)
+        {
+            if (_currentBomb != null && !_bombDetonating)
+            {
+                _bombFuseTimer -= (float)delta;
+                if (_bombFuseTimer <= 0f)
+                {
+                    _bombFuseTimer = 0f;
+                }
+            }
+        }
+
         public void OnBombDestroyed()
         {
             _currentBomb = null;
+            _bombDetonating = false;
+            _currentPhase = ActiveAbilityPhase.Cooldown;
             _cooldownTimer.Start();
         }
     }
