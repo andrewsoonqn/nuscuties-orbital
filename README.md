@@ -92,14 +92,12 @@ The rise of TikTok, YouTube Shorts and Instagram Reels has contributed to attent
 Download the latest release [here](https://github.com/andrewsoonqn/nuscuties-orbital/releases/).
 - For **Windows** users, download the `.exe` file.
 - For **MacOS** users, download the `.dmg` file.  
-
 Run the downloaded `.dmg` or `.exe` file for the app.
   
 ---
 
 ## 🙌 Using the App
 The app features three main core pages:
-
 https://github.com/user-attachments/assets/bddb389f-66b1-4d2c-b84e-c1fc9c19c240
 
 1. **Daily Quests**
