@@ -21,6 +21,7 @@ namespace nuscutiesapp.active.characters.StatusEffects
             base._Ready();
             _duration = 10.0f;
             _statCalculator = GetNode<DerivedStatCalculator>("/root/DerivedStatCalculator");
+            _visualEffectStrategy = new ModulationStrategy(new Color(1.2f, 1.0f, 0.7f));
         }
 
         protected override void OnApplied()
@@ -35,7 +36,6 @@ namespace nuscutiesapp.active.characters.StatusEffects
                 _statsModified = true;
 
                 GD.Print($"Applied buff to {_target.Name}: Speed x{_speedMultiplier}, Size x{_sizeMultiplier}, Damage x{_damageMultiplier}");
-                ApplyGoldModulation();
             }
         }
 
@@ -46,29 +46,6 @@ namespace nuscutiesapp.active.characters.StatusEffects
                 _target.MaxSpeed = _originalMaxSpeed;
                 _target.Scale = _originalScale;
                 GD.Print($"Removed buff from {_target.Name}");
-
-                if (_target.AnimatedSprite != null)
-                {
-                    _target.AnimatedSprite.Modulate = new Color(1.0f, 1.0f, 1.0f);
-                }
-            }
-        }
-
-        private void ApplyGoldModulation()
-        {
-            if (_target?.AnimatedSprite != null)
-            {
-                _target.AnimatedSprite.Modulate = new Color(1.2f, 1.0f, 0.7f);
-            }
-        }
-
-        public override void _Process(double delta)
-        {
-            base._Process(delta);
-
-            if (_isActive && _target?.AnimatedSprite != null)
-            {
-                ApplyGoldModulation();
             }
         }
 

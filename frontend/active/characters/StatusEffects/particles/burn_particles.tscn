@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqxv8yqxqxqxq"]
+
+[ext_resource type="Script" uid="uid://d3f5xt4excwns" path="res://active/characters/StatusEffects/particles/BurnParticles.cs" id="1_0x0x0"]
+
+[node name="BurnParticles" type="CPUParticles2D"]
+amount = 20
+randomness = 0.2
+lifetime_randomness = 0.3
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+scale_amount_min = 0.5
+color = Color(1, 0.5, 0, 1)
+script = ExtResource("1_0x0x0")

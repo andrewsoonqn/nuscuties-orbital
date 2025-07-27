@@ -11,6 +11,7 @@ namespace nuscutiesapp.active.characters.StatusEffects
         protected float _remainingDuration;
         protected float _timeSinceLastTick;
         protected bool _isActive = false;
+        protected IVisualEffectStrategy _visualEffectStrategy;
 
         public float RemainingDuration => _remainingDuration;
         public bool IsActive => _isActive;
@@ -30,6 +31,7 @@ namespace nuscutiesapp.active.characters.StatusEffects
             _timeSinceLastTick = 0.0f;
 
             OnApplied();
+            _visualEffectStrategy?.ApplyEffect(_target);
             GD.Print($"Applied {StatusName} to {target.Name} for {_duration} seconds");
         }
 
@@ -38,6 +40,7 @@ namespace nuscutiesapp.active.characters.StatusEffects
             if (!_isActive) return;
 
             _isActive = false;
+            _visualEffectStrategy?.RemoveEffect(_target);
             OnRemoved();
             GD.Print($"Removed {StatusName} from {_target?.Name}");
 
@@ -61,6 +64,8 @@ namespace nuscutiesapp.active.characters.StatusEffects
             {
                 Remove();
             }
+
+            _visualEffectStrategy?.UpdateEffect(_target);
         }
 
         protected virtual void OnApplied() { }

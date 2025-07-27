@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8xv8yqxqxqxq"]
+
+[ext_resource type="Script" uid="uid://bd7qq36cejpkf" path="res://active/characters/StatusEffects/particles/ForcefieldParticles.cs" id="1_0x0x0"]
+
+[node name="ForcefieldParticles" type="CPUParticles2D"]
+emitting = false
+amount = 30
+lifetime = 2.0
+explosiveness = 0.1
+randomness = 0.1
+lifetime_randomness = 0.2
+direction = Vector2(0, 0)
+spread = 360.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+angular_velocity_min = -45.0
+angular_velocity_max = 45.0
+scale_amount_min = 0.3
+scale_amount_max = 0.8
+color = Color(0.3, 0.7, 1, 0.8)
+script = ExtResource("1_0x0x0")

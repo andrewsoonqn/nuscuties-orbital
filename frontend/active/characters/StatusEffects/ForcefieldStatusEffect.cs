@@ -14,22 +14,18 @@ namespace nuscutiesapp.active.characters.StatusEffects
         {
             base._Ready();
             _duration = 30.0f;
+            var forcefieldParticleScene = GD.Load<PackedScene>("res://active/characters/StatusEffects/particles/forcefield_particles.tscn");
+            _visualEffectStrategy = new ParticleEffectStrategy(forcefieldParticleScene);
         }
 
         protected override void OnApplied()
         {
             GD.Print($"Applied forcefield to {_target.Name}");
-            ApplyShieldModulation();
         }
 
         protected override void OnRemoved()
         {
             GD.Print($"Removed forcefield from {_target.Name}");
-
-            if (_target.AnimatedSprite != null)
-            {
-                _target.AnimatedSprite.Modulate = new Color(1.0f, 1.0f, 1.0f);
-            }
         }
 
         public void BlockDamage()
@@ -39,24 +35,6 @@ namespace nuscutiesapp.active.characters.StatusEffects
                 _hasBlocked = true;
                 GD.Print("Forcefield absorbed a hit!");
                 Remove();
-            }
-        }
-
-        private void ApplyShieldModulation()
-        {
-            if (_target?.AnimatedSprite != null)
-            {
-                _target.AnimatedSprite.Modulate = new Color(0.7f, 0.9f, 1.2f);
-            }
-        }
-
-        public override void _Process(double delta)
-        {
-            base._Process(delta);
-
-            if (_isActive && _target?.AnimatedSprite != null)
-            {
-                ApplyShieldModulation();
             }
         }
     }

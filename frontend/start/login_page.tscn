@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://13hnbl0ktyhc"]
 
-[ext_resource type="Script" uid="uid://eat1hh4arcc8" path="res://start/LoginPage.cs" id="1_k63q7"]
-[ext_resource type="FontFile" uid="uid://dkjdxog3b4fl4" path="res://assets/Jacquard24-Regular.ttf" id="2_vyq1t"]
+[ext_resource type="Script" uid="uid://dktpe0llq7tak" path="res://start/LoginPage.cs" id="1_k63q7"]
+[ext_resource type="FontFile" uid="uid://bpd3bs550077i" path="res://assets/Jacquard24-Regular.ttf" id="2_vyq1t"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/flat_ui/kenneyUI.tres" id="4_c8fcd"]
 
 [node name="LoginPage" type="Control" node_paths=PackedStringArray("_loginButton")]
