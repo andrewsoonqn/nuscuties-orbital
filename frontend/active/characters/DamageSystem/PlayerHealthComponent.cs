@@ -1,5 +1,5 @@
-using nuscutiesapp.active.characters.StatusEffects;
 using nuscutiesapp.active.characters.PassiveEffects;
+using nuscutiesapp.active.characters.StatusEffects;
 using System.Linq;
 
 namespace nuscutiesapp.active.characters.DamageSystem

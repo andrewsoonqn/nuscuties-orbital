@@ -20,7 +20,7 @@ namespace nuscutiesapp.active.characters.Weapons.UseStrategies
             // await Task.Delay(_weapon.GetDurationMs());
             // _weapon.GetHitbox().monitoring = false;
         }
-        
+
         public IUseStrategy Copy()
         {
             return new PersistentUseStrategy();
