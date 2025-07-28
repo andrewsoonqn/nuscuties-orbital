@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="nuscuties app"
+config/name="nuscuties"
 run/main_scene="uid://13hnbl0ktyhc"
 config/features=PackedStringArray("4.4", "C#", "Mobile")
-config/icon="res://assets/godot_icon.svg"
+config/icon="uid://o0exbbutccfg"
 Mobile)config/icon="res://assets/godot_icon.svg"
 
 [autoload]
